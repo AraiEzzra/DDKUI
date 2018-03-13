@@ -48,7 +48,7 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            $http.post("/api/accounts/open/", { secret: pass }).then(function (resp) {
+            $http.post(url + "/api/accounts/open/", { secret: pass }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
