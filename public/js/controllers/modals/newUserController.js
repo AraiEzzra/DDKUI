@@ -1,7 +1,7 @@
 require('angular');
 
-var config = require('../../../config');
-var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort;
+/* var config = require('../../../config');
+var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort; */
 
 angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, newUser, userService, $state, viewFactory, gettextCatalog, $window) {
 
@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "ne
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            $http.post(url + "/api/accounts/open/", { secret: pass }).then(function (resp) {
+            $http.post("http://159.65.139.248:7000/api/accounts/open/", { secret: pass }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
