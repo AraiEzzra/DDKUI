@@ -1,6 +1,6 @@
 // added new service to check status of an user
 
-var config = require('../../package.json');
+var config = require('../../../config');
 var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort;
 
 angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$window', '$location', function ($http, userService, $window, $location) {

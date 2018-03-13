@@ -1,6 +1,6 @@
 require('angular');
 
-var config = require('../../package.json');
+var config = require('../../../config');
 var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort;
 
 angular.module('ETPApp').factory('serverSocket', ["socketFactory", "$location", function (socketFactory, $location) {
