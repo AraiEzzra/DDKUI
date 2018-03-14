@@ -20,6 +20,13 @@ app.get('/', function (req, res) {
     res.render('wallet.html', { layout: false });
 });
 
+app.use(function (req, res, next) {
+    if (req.url.indexOf('/api/') === -1 && req.url.indexOf('/peer/') === -1) {
+        return res.redirect('/');
+    }
+    next();
+});
+
 app.listen(port, function() {
     console.log('server running on port : ', port);
 })
