@@ -6,7 +6,7 @@ angular.module('ETPApp').controller('blockInfoController', ["$scope", "$http", "
     $scope.transactionsLength = 0;
 
     $scope.getTransactionsOfBlock = function (blockId) {
-        $http.get($rootScope.severUrl + "/api/transactions/", {params: {blockId: blockId}})
+        $http.get($rootScope.serverUrl + "/api/transactions/", {params: {blockId: blockId}})
             .then(function (resp) {
                 $scope.transactions = resp.data.transactions;
                 $scope.transactionsLength = $scope.transactions.length;
@@ -31,7 +31,7 @@ angular.module('ETPApp').controller('blockInfoController', ["$scope", "$http", "
     }
 
     $scope.previousBlock = function (blockId) {
-        $http.get($rootScope.severUrl + "/api/blocks/get?id=" +
+        $http.get($rootScope.serverUrl + "/api/blocks/get?id=" +
         blockId)
             .then(function (resp) {
                 $scope.block = resp.data.block;

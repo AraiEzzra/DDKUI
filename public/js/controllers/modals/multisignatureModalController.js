@@ -66,7 +66,7 @@ angular.module('ETPApp').controller('multisignatureModalController', ["$scope", 
                 $scope.member = '';
             } else {
                 if (correctAddress) {
-                    $http.get($rootScope.severUrl + "/api/accounts?address=" + member).then(function (response) {
+                    $http.get($rootScope.serverUrl + "/api/accounts?address=" + member).then(function (response) {
                         if (response.data.success) {
                             $scope.presendError = false;
                             $scope.addingError = '';
@@ -121,7 +121,7 @@ angular.module('ETPApp').controller('multisignatureModalController', ["$scope", 
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put($rootScope.severUrl + '/api/multisignatures', data).then(function (response) {
+            $http.put($rootScope.serverUrl + '/api/multisignatures', data).then(function (response) {
                 $scope.sending = false;
 
                 if (response.data.error) {

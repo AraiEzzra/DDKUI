@@ -12,7 +12,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
 
 
     $scope.getCurrentFee = function () {
-        $http.get($rootScope.severUrl + '/api/blocks/getFee').then(function (resp) {
+        $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
                 $scope.currentFee = resp.data.fee;
                 $scope.fee = resp.data.fee;
             });
@@ -162,7 +162,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.post($rootScope.severUrl + "/api/frogings/freeze", data)
+            $http.post($rootScope.serverUrl + "/api/frogings/freeze", data)
                 .then(function (resp) {
                     if (resp.data.success) {
                         Materialize.toast('Freeze Success', 3000, 'green white-text');

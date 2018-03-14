@@ -5,7 +5,7 @@ angular.module('ETPApp').controller('blockModalController', ["$scope", "$http", 
     $scope.loading = true;
     $scope.transactions = [];
     $scope.getTransactionsOfBlock = function (blockId) {
-        $http.get($rootScope.severUrl + "/api/transactions/", {params: {blockId: blockId}})
+        $http.get($rootScope.serverUrl + "/api/transactions/", {params: {blockId: blockId}})
             .then(function (resp) {
                 $scope.transactions = resp.data.transactions;
                 $scope.loading = false;

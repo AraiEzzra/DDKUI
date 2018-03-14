@@ -90,7 +90,7 @@ angular.module('ETPApp').controller('delegatesController', ['$scope', '$rootScop
     $scope.unconfirmedTransactions = {
         list: [],
         getList: function () {
-            $http.get($rootScope.severUrl + "/api/transactions/unconfirmed/", {params: {senderPublicKey: userService.publicKey}})
+            $http.get($rootScope.serverUrl + "/api/transactions/unconfirmed/", {params: {senderPublicKey: userService.publicKey}})
                 .then(function (response) {
                     $scope.unconfirmedTransactions.list = [];
                     response.data.transactions.forEach(function (transaction) {
@@ -110,7 +110,7 @@ angular.module('ETPApp').controller('delegatesController', ['$scope', '$rootScop
     $scope.delegates = {
         list: [],
         getList: function (cb) {
-            $http.get($rootScope.severUrl + "/api/accounts/delegates/", {params: {address: userService.address}})
+            $http.get($rootScope.serverUrl + "/api/accounts/delegates/", {params: {address: userService.address}})
                 .then(function (response) {
                     if (response.data.delegates == null) {
                         return [];

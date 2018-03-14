@@ -22,7 +22,7 @@ angular.module('ETPApp').controller('walletTransactionsController', ['$scope', '
 
     $scope.getParams = function () {
 
-        $http.get($rootScope.severUrl + "/api/accounts?address=" + $scope.walletAddress)
+        $http.get($rootScope.serverUrl + "/api/accounts?address=" + $scope.walletAddress)
             .then(function (response) {
 
                 if (response.data.success) {

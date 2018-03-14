@@ -36,7 +36,7 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
 
     $scope.migrateData = function (data, address) {
         //update database tables : mem_accounts and stakeOrder table
-        $http.post($rootScope.severUrl + "/api/accounts/migrateData/", {
+        $http.post($rootScope.serverUrl + "/api/accounts/migrateData/", {
             data: data,
             address: address
         }).then(function (resp) {
@@ -52,7 +52,7 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            console.log('$rootScope.severUrl 2: ', $rootScope.severUrl);
+            console.log('$rootScope.serverUrl 2: ', $rootScope.serverUrl);
             $http.post($scope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {

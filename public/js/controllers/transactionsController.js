@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('transactionsController', ['$scope', '$rootS
                     $scope.searchTransactions.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
-                    $http.get($rootScope.severUrl + '/api/transactions/unconfirmed', {
+                    $http.get($rootScope.serverUrl + '/api/transactions/unconfirmed', {
                         params: {
                             senderPublicKey: userService.publicKey,
                             address: userService.address

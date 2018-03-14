@@ -18,7 +18,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
     }
 
     $scope.isInstalled = function () {
-        $http.get($rootScope.severUrl + '/api/dapps/installedIds').then(function (response) {
+        $http.get($rootScope.serverUrl + '/api/dapps/installedIds').then(function (response) {
             $scope.installed = (response.data.ids.indexOf($stateParams.dappId) >= 0);
             $scope.loading = false;
         });
@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
     }
 
     $scope.getInstalling = function () {
-        $http.get($rootScope.severUrl + "/api/dapps/installing").then(function (response) {
+        $http.get($rootScope.serverUrl + "/api/dapps/installing").then(function (response) {
             if (response.data.success) {
                 $scope.installingIds = response.data.installing;
             }
@@ -47,7 +47,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
     };
 
     $scope.getUninstalling = function () {
-        $http.get($rootScope.severUrl + "/api/dapps/uninstalling").then(function (response) {
+        $http.get($rootScope.serverUrl + "/api/dapps/uninstalling").then(function (response) {
             if (response.data.success) {
                 $scope.uninstallingIds = response.data.uninstalling;
             }
@@ -55,7 +55,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
     };
 
     $scope.getLaunched = function () {
-        $http.get($rootScope.severUrl + "/api/dapps/launched").then(function (response) {
+        $http.get($rootScope.serverUrl + "/api/dapps/launched").then(function (response) {
             if (response.data.success) {
                 $scope.launchedIds = response.data.launched;
             }
@@ -70,7 +70,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
         $scope.showMore = !$scope.showMore;
     };
 
-    $http.get($rootScope.severUrl + "/api/dapps/get?id=" + $stateParams.dappId).then(function (response) {
+    $http.get($rootScope.serverUrl + "/api/dapps/get?id=" + $stateParams.dappId).then(function (response) {
         $scope.dapp = response.data.dapp;
         $scope.view.page = { title: $scope.dapp.name, previous: 'main.dappstore' };
         $scope.view.inLoading = false;
@@ -83,7 +83,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
         if (masterPassphrase) {
             data.master = masterPassphrase;
         }
-        $http.post($rootScope.severUrl + "/api/dapps/uninstall", data).then(function (response) {
+        $http.post($rootScope.serverUrl + "/api/dapps/uninstall", data).then(function (response) {
             $scope.getInstalling();
             $scope.getLaunched();
             $scope.getUninstalling();
@@ -129,7 +129,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
             data.master = masterPassphrase;
         }
         $scope.installingIds.push($stateParams.dappId);
-        $http.post($rootScope.severUrl + "/api/dapps/install", data).then(function (response) {
+        $http.post($rootScope.serverUrl + "/api/dapps/install", data).then(function (response) {
             $scope.getInstalling();
             $scope.getLaunched();
             $scope.getUninstalling();
@@ -172,7 +172,7 @@ angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', 
         if (masterPass) {
             data.master = masterPass;
         }
-        $http.post($rootScope.severUrl + "/api/dapps/launch", data).then(function (response) {
+        $http.post($rootScope.serverUrl + "/api/dapps/launch", data).then(function (response) {
             $scope.getInstalling();
             $scope.getLaunched();
             $scope.getUninstalling();

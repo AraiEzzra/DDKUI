@@ -104,7 +104,7 @@ angular.module('ETPApp').controller('registrationDelegateModalController', ["$sc
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put($rootScope.severUrl + "/api/delegates/", data)
+            $http.put($rootScope.serverUrl + "/api/delegates/", data)
                 .then(function (resp) {
                     $scope.sending = false;
                     userService.setDelegateProcess(resp.data.success);

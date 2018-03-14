@@ -83,7 +83,7 @@ angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put($rootScope.severUrl + "/api/accounts/delegates", data).then(function (resp) {
+            $http.put($rootScope.serverUrl + "/api/accounts/delegates", data).then(function (resp) {
                 $scope.sending = false;
 
                 if (resp.data.error) {

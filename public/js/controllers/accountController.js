@@ -63,7 +63,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     }
 
     $scope.getTransactions = function () {
-        $http.get($rootScope.severUrl + "/api/transactions", {
+        $http.get($rootScope.serverUrl + "/api/transactions", {
             params: {
                 senderPublicKey: userService.publicKey,
                 recipientId: $scope.address,
@@ -73,7 +73,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         }).then(function (resp) {
             var transactions = resp.data.transactions;
 
-            $http.get($rootScope.severUrl + '/api/transactions/unconfirmed', {
+            $http.get($rootScope.serverUrl + '/api/transactions/unconfirmed', {
                 params: {
                     senderPublicKey: userService.publicKey,
                     address: userService.address
@@ -91,7 +91,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     }
 
     $scope.getAccount = function () {
-        $http.get($rootScope.severUrl + "/api/accounts", { params: { address: userService.address } }).then(function (resp) {
+        $http.get($rootScope.serverUrl + "/api/accounts", { params: { address: userService.address } }).then(function (resp) {
             $scope.view.inLoading = false;
             if (resp.data.account) {
                 var account = resp.data.account;
@@ -119,7 +119,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
 
     /* For total stakeholders */
     $scope.getStakeholdersCount = function () {
-        $http.get($rootScope.severUrl + "/api/frogings/countStakeholders")
+        $http.get($rootScope.serverUrl + "/api/frogings/countStakeholders")
         .then(function (resp) {
             if (resp.data.success) {
                 var countStakeholders = resp.data.countStakeholders.count;
@@ -132,7 +132,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
 
     /* For Circulating Supply */
     $scope.getCirculatingSupply = function () {
-        $http.get($rootScope.severUrl + "/api/accounts/getCirculatingSupply")
+        $http.get($rootScope.serverUrl + "/api/accounts/getCirculatingSupply")
         .then(function (resp) {
             if (resp.data.success) {
                 var circulatingSupply = resp.data.circulatingSupply / 100000000;
@@ -145,7 +145,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
 
     /* For Total Count*/
     $scope.getAccountHolders = function () {
-        $http.get($rootScope.severUrl + "/api/accounts/count")
+        $http.get($rootScope.serverUrl + "/api/accounts/count")
         .then(function (resp) {
             if (resp.data.success) {
                 var totalCount = resp.data.count;
@@ -163,7 +163,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
             $scope.rememberedPassphrase = $rootScope.secretPhrase;
         }
        
-        $http.post($rootScope.severUrl + "/api/frogings/getMyETPFrozen", { secret: $scope.rememberedPassphrase })
+        $http.post($rootScope.serverUrl + "/api/frogings/getMyETPFrozen", { secret: $scope.rememberedPassphrase })
         .then(function (resp) {
             if (resp.data.success) {
                 var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
@@ -178,7 +178,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
 
     /* For Your total supply */
     $scope.getTotalSupply = function () {
-        $http.get($rootScope.severUrl + "/api/accounts/totalSupply")
+        $http.get($rootScope.serverUrl + "/api/accounts/totalSupply")
         .then(function (resp) {
             if (resp.data.success) {
                 var totalSupply = resp.data.totalSupply / 100000000;
@@ -191,7 +191,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
 
     /* For total ETP staked by stakeholders */
     $scope.getTotalETPStaked = function () {
-        $http.get($rootScope.severUrl + "/api/frogings/getTotalETPStaked")
+        $http.get($rootScope.serverUrl + "/api/frogings/getTotalETPStaked")
         .then(function (resp) {
             if (resp.data.success) {
                 var totalETPStaked = resp.data.totalETPStaked.sum / 100000000;

@@ -119,7 +119,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.getCurrentFee = function () {
-        $http.get($rootScope.severUrl + '/api/blocks/getFee').then(function (resp) {
+        $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
                 $scope.currentFee = resp.data.fee;
                 $scope.fee = resp.data.fee;
             });
@@ -224,7 +224,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put($rootScope.severUrl + '/api/transactions', data).then(function (resp) {
+            $http.put($rootScope.serverUrl + '/api/transactions', data).then(function (resp) {
                 $scope.sending = false;
 
                 if (resp.data.error) {

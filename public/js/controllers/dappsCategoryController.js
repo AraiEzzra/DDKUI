@@ -58,14 +58,14 @@ angular.module('ETPApp').controller('dappsCategoryController', ['$scope', 'viewF
     $scope.searchDappText = function () {
         if ($scope.category == 'Installed') {
             if ($scope.searchDapp.searchForDapp.trim() != '') {
-                $http.get($rootScope.severUrl + "/api/dapps/search?q=" + $scope.searchDapp.searchForDapp + "&installed=1").then(function (response) {
+                $http.get($rootScope.serverUrl + "/api/dapps/search?q=" + $scope.searchDapp.searchForDapp + "&installed=1").then(function (response) {
                     $scope.dapps = $scope.shuffle(response.data.dapps);
                     $scope.searchDapp.inSearch = false;
                     $scope.view.inLoading = false;
                     $scope.searchedText = '(search for "' + $scope.searchDapp.searchForDapp + '")';
                 });
             } else {
-                $http.get($rootScope.severUrl + "/api/dapps/installed").then(function (response) {
+                $http.get($rootScope.serverUrl + "/api/dapps/installed").then(function (response) {
                     $scope.dapps = $scope.shuffle(response.data.dapps);
                     $scope.searchedText = '';
                     $scope.view.inLoading = false;
@@ -74,14 +74,14 @@ angular.module('ETPApp').controller('dappsCategoryController', ['$scope', 'viewF
             }
         } else {
             if ($scope.searchDapp.searchForDapp.trim() != '') {
-                $http.get($rootScope.severUrl + "/api/dapps/search?q=" + $scope.searchDapp.searchForDapp + "&category=" + $scope.categoryId).then(function (response) {
+                $http.get($rootScope.serverUrl + "/api/dapps/search?q=" + $scope.searchDapp.searchForDapp + "&category=" + $scope.categoryId).then(function (response) {
                     $scope.dapps = $scope.shuffle(response.data.dapps);
                     $scope.searchDapp.inSearch = false;
                     $scope.view.inLoading = false;
                     $scope.searchedText = '(search for "' + $scope.searchDapp.searchForDapp + '")';
                 });
             } else {
-                $http.get($rootScope.severUrl + "/api/dapps/?category=" + $scope.category).then(function (response) {
+                $http.get($rootScope.serverUrl + "/api/dapps/?category=" + $scope.category).then(function (response) {
                     $scope.dapps = $scope.shuffle(response.data.dapps);
                     $scope.searchDapp.inSearch = false;
                     $scope.searchedText = '';

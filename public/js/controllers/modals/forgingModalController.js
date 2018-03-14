@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('forgingModalController', ["$scope", "$rootS
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.post($rootScope.severUrl + "/api/delegates/forging/enable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
+            $http.post($rootScope.serverUrl + "/api/delegates/forging/enable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
                 .then(function (resp) {
                     userService.setForging(resp.data.success);
                     $scope.forging = resp.data.success;
@@ -65,7 +65,7 @@ angular.module('ETPApp').controller('forgingModalController', ["$scope", "$rootS
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.post($rootScope.severUrl + "/api/delegates/forging/disable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
+            $http.post($rootScope.serverUrl + "/api/delegates/forging/disable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
                 .then(function (resp) {
                     userService.setForging(!resp.data.success);
                     $scope.forging = !resp.data.success;

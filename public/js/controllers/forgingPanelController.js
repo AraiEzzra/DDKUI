@@ -5,7 +5,7 @@ angular.module('ETPApp').controller('forgingPanelController', ['$scope', '$http'
     $scope.buttonType = "submit";
 
     $scope.getForgingInfo = function () {
-      $http.get($rootScope.severUrl + "/api/forging").then(function (resp) {
+      $http.get($rootScope.serverUrl + "/api/forging").then(function (resp) {
         $scope.forgingEnabled = resp.data.enabled;
 
         if ($scope.forgingEnabled) {
@@ -24,7 +24,7 @@ angular.module('ETPApp').controller('forgingPanelController', ['$scope', '$http'
         return;
       }
 
-      $http.post($rootScope.severUrl + "/api/forging/enable", {
+      $http.post($rootScope.serverUrl + "/api/forging/enable", {
         secret: pass,
         saveToConfig: $scope.saveToConfig
       }).then(function (resp) {
@@ -43,7 +43,7 @@ angular.module('ETPApp').controller('forgingPanelController', ['$scope', '$http'
         alert("Provide secret passphrase");
         return;
       }
-      $http.post($rootScope.severUrl + "/api/forging/disable", {
+      $http.post($rootScope.serverUrl + "/api/forging/disable", {
         secret: pass
       }).then(function (resp) {
         if (resp.data.success) {

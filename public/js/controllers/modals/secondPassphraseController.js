@@ -63,7 +63,7 @@ angular.module('ETPApp').controller('secondPassphraseModalController', ["$scope"
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put($rootScope.severUrl + "/api/signatures", {
+            $http.put($rootScope.serverUrl + "/api/signatures", {
                 secret: pass,
                 secondSecret: $scope.newPassphrase,
                 publicKey: userService.publicKey

@@ -173,29 +173,29 @@ angular.module('ETPApp').controller('forgingController', ['$scope', '$rootScope'
     };
 
     $scope.getForgedAmount = function () {
-        $http.get($rootScope.severUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey}})
+        $http.get($rootScope.serverUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey}})
             .then(function (resp) {
                 $scope.totalForged = resp.data.forged;
             });
     };
 
     $scope.getForgingStatistics = function () {
-        $http.get($rootScope.severUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment (moment().format('YYYY-MM-DD')).unix (), end: moment().unix ()}})
+        $http.get($rootScope.serverUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment (moment().format('YYYY-MM-DD')).unix (), end: moment().unix ()}})
             .then(function (resp) {
                 $scope.statistics.today = resp.data.forged;
             });
 
-        $http.get($rootScope.severUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment().subtract (1, 'days').unix (), end: moment().unix ()}})
+        $http.get($rootScope.serverUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment().subtract (1, 'days').unix (), end: moment().unix ()}})
             .then(function (resp) {
                 $scope.statistics.last24h = resp.data.forged;
             });
 
-        $http.get($rootScope.severUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment().subtract (7, 'days').unix (), end: moment().unix ()}})
+        $http.get($rootScope.serverUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment().subtract (7, 'days').unix (), end: moment().unix ()}})
             .then(function (resp) {
                 $scope.statistics.last7d = resp.data.forged;
             });
 
-        $http.get($rootScope.severUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment().subtract (30, 'days').unix (), end: moment().unix ()}})
+        $http.get($rootScope.serverUrl + "/api/delegates/forging/getForgedByAccount", {params: {generatorPublicKey: userService.publicKey, start: moment().subtract (30, 'days').unix (), end: moment().unix ()}})
             .then(function (resp) {
                 $scope.statistics.last30d = resp.data.forged;
             });

@@ -6,7 +6,7 @@ angular.module('ETPApp').controller("loadingController", ["$scope", "$http", "$r
     $scope.height = 0;
 
     $scope.getHeight = function () {
-        $http.get($rootScope.severUrl + "/api/loader/status")
+        $http.get($rootScope.serverUrl + "/api/loader/status")
             .then(function (resp) {
                 if (resp.data.success) {
                     if (!resp.data.loaded) {

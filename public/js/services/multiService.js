@@ -19,7 +19,7 @@ angular.module('ETPApp').service('multiService', function ($http, $rootScope, us
                 }
 
 
-                $http.get($rootScope.severUrl + "/api/multisignatures/pending", {
+                $http.get($rootScope.serverUrl + "/api/multisignatures/pending", {
                     params: queryParams
                 })
                     .then(function (response) {
@@ -56,7 +56,7 @@ angular.module('ETPApp').service('multiService', function ($http, $rootScope, us
                 }
 
 
-                $http.get($rootScope.severUrl + "/api/multisignatures/accounts", {
+                $http.get($rootScope.serverUrl + "/api/multisignatures/accounts", {
                     params: queryParams
                 })
                     .then(function (response) {
@@ -82,7 +82,7 @@ angular.module('ETPApp').service('multiService', function ($http, $rootScope, us
         },
 
         confirmTransaction: function (queryParams, cb) {
-            $http.post($rootScope.severUrl + "/api/multisignatures/sign",
+            $http.post($rootScope.serverUrl + "/api/multisignatures/sign",
                 queryParams
             )
                 .then(function (response) {

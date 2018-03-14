@@ -47,7 +47,7 @@ angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootSco
         }
         var data = { secret: pass };
         $scope.errorMessage = "";
-        console.log('$rootScope.severUrl 3: ', $rootScope.severUrl);
+        console.log('$rootScope.serverUrl 3: ', $rootScope.serverUrl);
         $http.post($scope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
             if (resp.data.success) {
                 $window.localStorage.setItem('token', resp.data.account.token);

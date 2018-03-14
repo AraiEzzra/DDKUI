@@ -21,14 +21,14 @@ angular.module('ETPApp').controller('userInfoController', ["$scope", "$http", "$
         }
         $scope.userIdOld = userId;
         $scope.transactions = { view: false, list: [] };
-        $http.get($rootScope.severUrl + "/api/accounts", { params: { address: userId }})
+        $http.get($rootScope.serverUrl + "/api/accounts", { params: { address: userId }})
         .then(function (resp) {
             if (resp.data.account) {
                 $scope.account = resp.data.account;
             } else {
                 $scope.account = { address: userId, publicKey: null };
             }
-            $http.get($rootScope.severUrl + "/api/transactions", {
+            $http.get($rootScope.serverUrl + "/api/transactions", {
                 params: {
                     senderPublicKey: $scope.account.publicKey,
                     recipientId: $scope.account.address,
@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('userInfoController', ["$scope", "$http", "$
             .then(function (resp) {
                 var transactions = resp.data.transactions;
 
-                $http.get($rootScope.severUrl + '/api/transactions/unconfirmed', {
+                $http.get($rootScope.serverUrl + '/api/transactions/unconfirmed', {
                     params: {
                         senderPublicKey: $scope.account.publicKey,
                         address: $scope.account.address

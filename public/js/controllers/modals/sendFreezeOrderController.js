@@ -85,7 +85,7 @@ angular.module('ETPApp').controller('sendFreezeOrderController', ['$scope', '$ro
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.post($rootScope.severUrl + "/api/shiftOrder/sendFreezeOrder", data)
+            $http.post($rootScope.serverUrl + "/api/shiftOrder/sendFreezeOrder", data)
                 .then(function (resp) {
                     if (resp.data.success) {
                         Materialize.toast('Send freeze order successfully', 3000, 'green white-text');
@@ -100,7 +100,7 @@ angular.module('ETPApp').controller('sendFreezeOrderController', ['$scope', '$ro
     }
 
     $scope.getCurrentFee = function () {
-        $http.get($rootScope.severUrl + '/api/blocks/getFee').then(function (resp) {
+        $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
                 $scope.currentFee = resp.data.fee;
                 $scope.fee = resp.data.fee;
             });

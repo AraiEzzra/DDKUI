@@ -3,7 +3,7 @@ require('angular');
 angular.module('ETPApp').controller('templateController', ['$scope', '$rootScope', '$http', 'userService', "$interval", 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, gettextCatalog) {
 
     $scope.getInitialSync = function () {
-        $http.get($rootScope.severUrl + "/api/loader/status/sync").then(function (resp) {
+        $http.get($rootScope.serverUrl + "/api/loader/status/sync").then(function (resp) {
             if (resp.data.success) {
                 $rootScope.syncing = resp.data.syncing;
                 $rootScope.height = resp.data.height;

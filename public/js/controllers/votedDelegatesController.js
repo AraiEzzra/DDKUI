@@ -78,7 +78,7 @@ angular.module('ETPApp').controller('votedDelegatesController', ['$scope', '$roo
     $scope.unconfirmedTransactions = {
         list: [],
         getList: function () {
-            $http.get($rootScope.severUrl + "/api/transactions/unconfirmed/", {params: {senderPublicKey: userService.publicKey}})
+            $http.get($rootScope.serverUrl + "/api/transactions/unconfirmed/", {params: {senderPublicKey: userService.publicKey}})
                 .then(function (response) {
                     $scope.unconfirmedTransactions.list = [];
                     response.data.transactions.forEach(function (transaction) {
