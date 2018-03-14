@@ -33,7 +33,7 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
         FS.saveAs(blob, "ETPPassphrase.txt");
     }
 
-    $scope.login = function (pass) {
+    $scope.login = function (pass,$rootScope) {
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
             $scope.noMatch = true;
