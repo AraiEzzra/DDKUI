@@ -50,6 +50,7 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
                     userService.setForging(resp.data.account.forging);
                     userService.setSecondPassphrase(resp.data.account.secondSignature);
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
+                    console.log('Changing state to main.passphrase');
                     $state.go('main.dashboard');
                 } else {
                     console.error("Login failed. Failed to open account.");

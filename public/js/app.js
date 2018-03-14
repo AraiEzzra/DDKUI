@@ -99,7 +99,7 @@ ETPApp.config([
     console.log('$rootScope.serverUrl in app.js :', $rootScope.serverUrl);
     $rootScope.defaultLoaderScreen = false;
     // render current logged-in user upon page refresh if currently logged-in
-    AuthService.getUserStatus()
+    /* AuthService.getUserStatus()
     .then(function () {
         if (AuthService.isLoggedIn()) {
             console.log('status : logged In');
@@ -130,5 +130,5 @@ ETPApp.config([
                 }
             } 
         });
-    }); 
+    }); */ 
 });
