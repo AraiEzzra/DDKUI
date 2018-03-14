@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout', '$rootScope', '$http', "userService", "$interval", 'blockService', 'blockModal', 'blockInfo', 'userInfo', 'ngTableParams', 'viewFactory', 'gettextCatalog', function ($rootScope, $timeout, $scope, $http, userService, $interval, blockService, blockModal, blockInfo, userInfo, ngTableParams, viewFactory, gettextCatalog) {
+angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout', '$rootScope', '$http', "userService", "$interval", 'blockService', 'blockModal', 'blockInfo', 'userInfo', 'ngTableParams', 'viewFactory', 'gettextCatalog', 'esClient', function ($rootScope, $timeout, $scope, $http, userService, $interval, blockService, blockModal, blockInfo, userInfo, ngTableParams, viewFactory, gettextCatalog, esClient) {
     
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -62,8 +62,32 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
         });
     }
 
-    $scope.updateBlocks = function () {
-        $scope.tableBlocks.reload();
+    $scope.updateHeight = function() {
+        $http.get($rootScope.serverUrl + "/api/blocks/getHeight").then(function (resp) {
+            console.log('height response : ', resp);
+            if(resp.data.success) {
+                $scope.updatedHeight = resp.data.height;
+            }
+        });
+    }
+
+    $scope.updateTotalTrs = function () {
+        esClient.search({
+            index: 'trs',
+            type: 'trs',
+            body: {
+                query: {
+                    match_all: {}
+                },
+                sort: [{ height: { order: 'desc' } }],
+            }
+        }, function (err, res) {
+            if(!err) {
+                if (res.hits.hits[0]._source.height) {
+                    $scope.totalTrs = res.hits.hits[0]._source.height;
+                }
+            }
+        });
     };
     // end Blocks
 
@@ -75,6 +99,7 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
 
     $scope.updateBlocks();
     $scope.updateHeight();
+    $scope.updateTotalTrs();
 
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.blocksInterval);
