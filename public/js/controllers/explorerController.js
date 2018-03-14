@@ -70,9 +70,9 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
                 query: {
                     match_all: {}
                 },
-                sort: [{ height: { order: 'desc' } }],
             }
         }, function (err, res) {
+            console.log('trs resp : ', resp);
             if(!err) {
                 if (res.hits.hits[0]._source.height) {
                     $scope.totalTrs = res.hits.hits[0]._source.height;
