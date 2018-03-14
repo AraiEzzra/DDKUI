@@ -1,7 +1,7 @@
 require('angular');
 
 var config = require('../../../config');
-var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort;
+var url = config.serverProtocol + '://' + config.serverHost + ':' + config.serverPort;
 
 angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUser", 'gettextCatalog', '$cookies', '$window', function ($rootScope, $scope, $http, $state, userService, newUser, gettextCatalog, $cookies, $window) {
 
@@ -11,7 +11,7 @@ angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.rememberPassphrase = true;
     $scope.errorMessage = "";
 
-   
+
 
     $scope.cleanUpUserData = function () {
         var userProperties = ['address', 'allVotes', 'balance', 'balanceToShow', 'dataToShow', 'unconfirmedBalance',
@@ -47,7 +47,36 @@ angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootSco
         var data = { secret: pass };
         $scope.errorMessage = "";
         console.log('$rootScope.severUrl : ', $rootScope.severUrl);
-        $http.post($rootScope.severUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
+        console.log('url : ', url);
+        $http({
+            method: 'POST',
+            url: url + '/user/status',
+            data: { secret: pass },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function (resp) {
+            if (resp.data.success) {
+                $window.localStorage.setItem('token', resp.data.account.token);
+                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token);
+                userService.setForging(resp.data.account.forging);
+                userService.setSecondPassphrase(resp.data.account.secondSignature || resp.data.account.unconfirmedSignature);
+                userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
+                if (remember) {
+                    userService.setSessionPassphrase(pass);
+                }
+
+                var goto = $cookies.get('goto');
+                if (goto) {
+                    $state.go(goto);
+                } else {
+                    $state.go('main.dashboard');
+                }
+            } else {
+                $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
+            }
+        }).error(function (error) {
+            $scope.errorMessage = error.data.error ? error.data.error : error.data;
+        });
+        /* $http.post($rootScope.severUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
             if (resp.data.success) {
                 $window.localStorage.setItem('token', resp.data.account.token);
                 userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token);
@@ -69,7 +98,7 @@ angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootSco
             }
         }, function (error) {
             $scope.errorMessage = error.data.error ? error.data.error : error.data;
-        });
+        }); */
     }
 
     var passphrase = $cookies.get('passphrase');
