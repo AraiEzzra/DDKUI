@@ -87,7 +87,38 @@ ETPApp.config([
                 controller: "passphraseController"
             })
             /* .state('loading', {
-                url: "/",
+                url: "/",AuthService.getUserStatus()
+    .then(function () {
+        if (AuthService.isLoggedIn()) {
+            console.log('status : logged In');
+             $timeout(function(){
+                    $state.go('main.dashboard');
+            },1000);
+        } else {
+            console.log('status : not logged In');
+            $timeout(function(){
+                $state.go('passphrase');
+            },1000);          
+        }
+    });
+    
+    // user authentication upon page forward/back for currently logged-in user
+    $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+        AuthService.getUserStatus()
+        .then(function () {
+            if(toState.url == '/existingETPSUser'){
+                $state.go('existingETPSUser');
+            }else{
+                if (AuthService.isLoggedIn()) {
+                    console.log('toState.name : ', toState.name);
+                    $state.go(toState.name);
+                } else {
+                    console.log('toState.name : passphrase');
+                    $state.go('passphrase');
+                }
+            } 
+        });
+    });
                 templateUrl: "/partials/loading.html"
             }); */
     }

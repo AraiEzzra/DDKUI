@@ -53,6 +53,15 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
         $scope.tableBlocks.reload();
     });
 
+    $scope.updateHeight = function() {
+        $http.get($rootScope.serverUrl + "/api/blocks/getHeight").then(function (resp) {
+            console.log('height response : ', resp);
+            if(resp.data.success) {
+                $scope.updatedHeight = resp.data.height;
+            }
+        });
+    }
+
     $scope.updateBlocks = function () {
         $scope.tableBlocks.reload();
     };
@@ -65,6 +74,7 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
     });
 
     $scope.updateBlocks();
+    $scope.updateHeight();
 
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.blocksInterval);
