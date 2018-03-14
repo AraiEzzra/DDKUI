@@ -51,7 +51,7 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            console.log('$rootScope.severUrl : ', $rootScope.severUrl);
+            console.log('$rootScope.severUrl 2: ', $rootScope.severUrl);
             $http.post($rootScope.severUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
