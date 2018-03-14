@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('userInfoController', ["$scope", "$http", "userInfo", "userService","sendTransactionModal", function ($scope, $http, userInfo, userService, sendTransactionModal) {
+angular.module('ETPApp').controller('userInfoController', ["$scope", "$http", "$rootScope", "userInfo", "userService","sendTransactionModal", function ($scope, $http, $rootScope, userInfo, userService, sendTransactionModal) {
 
     $scope.userIdOld = '';
     $scope.thisUser = userService;
@@ -21,14 +21,14 @@ angular.module('ETPApp').controller('userInfoController', ["$scope", "$http", "u
         }
         $scope.userIdOld = userId;
         $scope.transactions = { view: false, list: [] };
-        $http.get("/api/accounts", { params: { address: userId }})
+        $http.get($rootScope.severUrl + "/api/accounts", { params: { address: userId }})
         .then(function (resp) {
             if (resp.data.account) {
                 $scope.account = resp.data.account;
             } else {
                 $scope.account = { address: userId, publicKey: null };
             }
-            $http.get("/api/transactions", {
+            $http.get($rootScope.severUrl + "/api/transactions", {
                 params: {
                     senderPublicKey: $scope.account.publicKey,
                     recipientId: $scope.account.address,
@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('userInfoController', ["$scope", "$http", "u
             .then(function (resp) {
                 var transactions = resp.data.transactions;
 
-                $http.get('/api/transactions/unconfirmed', {
+                $http.get($rootScope.severUrl + '/api/transactions/unconfirmed', {
                     params: {
                         senderPublicKey: $scope.account.publicKey,
                         address: $scope.account.address

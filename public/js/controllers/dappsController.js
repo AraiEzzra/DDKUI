@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('dappsController', ['$scope', 'viewFactory', '$http', 'dappsService', '$timeout', 'addDappModal', "$interval", 'gettextCatalog', function ($scope, viewFactory, $http, dappsService, $timeout, addDappModal, $interval, gettextCatalog) {
+angular.module('ETPApp').controller('dappsController', ['$scope', 'viewFactory', '$rootScope', '$http', 'dappsService', '$timeout', 'addDappModal', "$interval", 'gettextCatalog', function ($scope, viewFactory, $rootScope, $http, dappsService, $timeout, addDappModal, $interval, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -66,12 +66,12 @@ angular.module('ETPApp').controller('dappsController', ['$scope', 'viewFactory',
     $scope.searchDappText = function () {
         if ($scope.searchDapp.searchForDappGlobal.trim() == '') {
 
-            $http.get("/api/dapps").then(function (response) {
+            $http.get($rootScope.severUrl + "/api/dapps").then(function (response) {
                 $scope.dapps = $scope.shuffle(response.data.dapps);
                 $scope.searchedText = '';
                 $scope.view.inLoading = false;
             });
-            $http.get("/api/dapps/installed").then(function (response) {
+            $http.get($rootScope.severUrl + "/api/dapps/installed").then(function (response) {
                 $scope.installedDapps = $scope.shuffle(response.data.dapps);
                 $scope.searchedInstalledText = '';
 
@@ -79,14 +79,14 @@ angular.module('ETPApp').controller('dappsController', ['$scope', 'viewFactory',
             });
 
         } else {
-            $http.get("/api/dapps/search?q=" + $scope.searchDapp.searchForDappGlobal).then(function (response) {
+            $http.get($rootScope.severUrl + "/api/dapps/search?q=" + $scope.searchDapp.searchForDappGlobal).then(function (response) {
                 $scope.dapps = $scope.shuffle(response.data.dapps);
                 $scope.searchDapp.inSearch = false;
                 $scope.view.inLoading = false;
                 $scope.searchedText = '(search for "' + $scope.searchDapp.searchForDappGlobal + '")';
             });
             if (!$scope.showPlaceholder) {
-                $http.get("/api/dapps/search?q=" + $scope.searchDapp.searchForDappGlobal + "&installed=1").then(function (response) {
+                $http.get($rootScope.severUrl + "/api/dapps/search?q=" + $scope.searchDapp.searchForDappGlobal + "&installed=1").then(function (response) {
                     $scope.installedDapps = $scope.shuffle(response.data.dapps);
                     $scope.searchedInstalledText = '(search for "' + $scope.searchDapp.searchForDappGlobal + '")';
                 });

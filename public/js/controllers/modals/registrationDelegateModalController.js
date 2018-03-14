@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('registrationDelegateModalController', ["$scope", "registrationDelegateModal", "$http", "userService", "feeService", "delegateService", function ($scope, registrationDelegateModal, $http, userService, feeService, delegateService) {
+angular.module('ETPApp').controller('registrationDelegateModalController', ["$scope", "$rootScope", "registrationDelegateModal", "$http", "userService", "feeService", "delegateService", function ($scope, $rootScope, registrationDelegateModal, $http, userService, feeService, delegateService) {
 
     $scope.error = null;
     $scope.sending = false;
@@ -104,7 +104,7 @@ angular.module('ETPApp').controller('registrationDelegateModalController', ["$sc
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put("/api/delegates/", data)
+            $http.put($rootScope.severUrl + "/api/delegates/", data)
                 .then(function (resp) {
                     $scope.sending = false;
                     userService.setDelegateProcess(resp.data.success);

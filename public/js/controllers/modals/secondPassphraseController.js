@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('secondPassphraseModalController', ["$scope", "secondPassphraseModal", "$http", "userService", "feeService", function ($scope, secondPassphraseModal, $http, userService, feeService) {
+angular.module('ETPApp').controller('secondPassphraseModalController', ["$scope", '$rootScope', "secondPassphraseModal", "$http", "userService", "feeService", function ($scope, $rootScope, secondPassphraseModal, $http, userService, feeService) {
 
     $scope.sending = false;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
@@ -63,7 +63,7 @@ angular.module('ETPApp').controller('secondPassphraseModalController', ["$scope"
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put("/api/signatures", {
+            $http.put($rootScope.severUrl + "/api/signatures", {
                 secret: pass,
                 secondSecret: $scope.newPassphrase,
                 publicKey: userService.publicKey

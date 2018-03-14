@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$http", "userService", "feeService", "$timeout", function ($scope, voteModal, $http, userService, feeService, $timeout) {
+angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$rootScope", "$http", "userService", "feeService", "$timeout", function ($scope, voteModal, $rootScope, $http, userService, feeService, $timeout) {
 
     $scope.sending = false;
     $scope.passmode = false;
@@ -83,7 +83,7 @@ angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put("/api/accounts/delegates", data).then(function (resp) {
+            $http.put($rootScope.severUrl + "/api/accounts/delegates", data).then(function (resp) {
                 $scope.sending = false;
 
                 if (resp.data.error) {

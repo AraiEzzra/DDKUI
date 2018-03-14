@@ -3,7 +3,7 @@ require('angular');
 /* var config = require('../../../../config');
 var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort; */
 
-angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$http", "newUserMigration", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, newUserMigration, userService, $state, viewFactory, gettextCatalog, $window) {
+angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$http", "$rootScope", "newUserMigration", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, $rootScope, newUserMigration, userService, $state, viewFactory, gettextCatalog, $window) {
 
     $scope.step = 1;
     $scope.noMatch = false;
@@ -35,7 +35,7 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
 
     $scope.migrateData = function (data, address) {
         //update database tables : mem_accounts and stakeOrder table
-        $http.post("/api/accounts/migrateData/", {
+        $http.post($rootScope.severUrl + "/api/accounts/migrateData/", {
             data: data,
             address: address
         }).then(function (resp) {
@@ -51,7 +51,7 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            $http.post("http://159.65.139.248:7000/api/accounts/open/", { secret: pass }).then(function (resp) {
+            $http.post($rootScope.severUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);

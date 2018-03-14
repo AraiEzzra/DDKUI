@@ -33,7 +33,7 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
     // function to validate existing ETPS user from ETP_test database
     $scope.validateExistingUser = function (username, password) {
 
-        $http.post("/api/accounts/existingETPSUser/validate", {
+        $http.post($rootScope.severUrl + "/api/accounts/existingETPSUser/validate", {
             username: btoa(username),
             password: btoa(password)
         })
@@ -43,7 +43,7 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
                 } else {
                     var userInfo = {};
                     Object.assign(userInfo, resp.records);
-                    $http.post("/api/accounts/existingETPSUser", { userInfo: userInfo }).then(function (response) {
+                    $http.post($rootScope.severUrl + "/api/accounts/existingETPSUser", { userInfo: userInfo }).then(function (response) {
                         if (response.data.success) {
                             if (response.data.isMigrated) {
                                 $scope.errorMessage = 'User is already migrated';

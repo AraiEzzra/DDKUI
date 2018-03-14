@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('forgingModalController', ["$scope", "forgingModal", "$http", "userService", 'gettextCatalog', function ($scope, forgingModal, $http, userService, gettextCatalog) {
+angular.module('ETPApp').controller('forgingModalController', ["$scope", "$rootScope", "forgingModal", "$http", "userService", 'gettextCatalog', function ($scope, $rootScope, forgingModal, $http, userService, gettextCatalog) {
 
     $scope.error = null;
     $scope.sending = false;
@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('forgingModalController', ["$scope", "forgin
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.post("/api/delegates/forging/enable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
+            $http.post($rootScope.severUrl + "/api/delegates/forging/enable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
                 .then(function (resp) {
                     userService.setForging(resp.data.success);
                     $scope.forging = resp.data.success;
@@ -65,7 +65,7 @@ angular.module('ETPApp').controller('forgingModalController', ["$scope", "forgin
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.post("/api/delegates/forging/disable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
+            $http.post($rootScope.severUrl + "/api/delegates/forging/disable", {secret: $scope.secretPhrase, publicKey: userService.publicKey})
                 .then(function (resp) {
                     userService.setForging(!resp.data.success);
                     $scope.forging = !resp.data.success;

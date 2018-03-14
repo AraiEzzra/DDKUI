@@ -1,10 +1,10 @@
 require('angular');
 
-angular.module('ETPApp').service('transactionsService', function ($http, userService) {
+angular.module('ETPApp').service('transactionsService', function ($http, $rootScope, userService) {
 
     var transactionsList = {
         requestTransactions: function (params, cb) {
-            $http.get("/api/transactions", {
+            $http.get($rootScope.severUrl + "/api/transactions", {
                 params: params
             }).then(function (response) {
                 if (response.data.success) {
@@ -15,7 +15,7 @@ angular.module('ETPApp').service('transactionsService', function ($http, userSer
             });
         },
         getTransaction: function (transactionId, cb) {
-            $http.get("/api/transactions/get", {
+            $http.get($rootScope.severUrl + "/api/transactions/get", {
                 params: {
                     id: transactionId
                 }
@@ -48,7 +48,7 @@ angular.module('ETPApp').service('transactionsService', function ($http, userSer
             requestParams.limit = params.count();
             requestParams.offset = (params.page() - 1) * params.count()
 
-            $http.get("/api/transactions", {
+            $http.get($rootScope.severUrl + "/api/transactions", {
                 params: requestParams
             }).then(function (response) {
                 if (response.data.success) {

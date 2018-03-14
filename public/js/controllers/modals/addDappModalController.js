@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('addDappModalController', ["$scope", "$http", "addDappModal", "userService", "feeService", "viewFactory", 'gettextCatalog', function ($scope, $http, addDappModal, userService, feeService, viewFactory, gettextCatalog) {
+angular.module('ETPApp').controller('addDappModalController', ["$scope", "$http", "$rootScope", "addDappModal", "userService", "feeService", "viewFactory", 'gettextCatalog', function ($scope, $http, $rootScope, addDappModal, userService, feeService, viewFactory, gettextCatalog) {
 
     $scope.sending = false;
     $scope.view = viewFactory;
@@ -86,7 +86,7 @@ angular.module('ETPApp').controller('addDappModalController', ["$scope", "$http"
         if (!$scope.sending) {
             $scope.view.inLoading = $scope.sending = true;
 
-            $http.put('/api/dapps', data).then(function (response) {
+            $http.put($rootScope.severUrl + '/api/dapps', data).then(function (response) {
                 $scope.view.inLoading = $scope.sending = false;
 
                 if (response.data.error) {

@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('multisignatureModalController', ["$scope", "$http", "multisignatureModal", "viewFactory", "userService", "feeService", "gettextCatalog", function ($scope, $http, multisignatureModal, viewFactory, userService, feeService, gettextCatalog) {
+angular.module('ETPApp').controller('multisignatureModalController', ["$scope", "$http", "$rootScope", "multisignatureModal", "viewFactory", "userService", "feeService", "gettextCatalog", function ($scope, $http, $rootScope, multisignatureModal, viewFactory, userService, feeService, gettextCatalog) {
 
     $scope.sending = false;
     $scope.view = viewFactory;
@@ -66,7 +66,7 @@ angular.module('ETPApp').controller('multisignatureModalController', ["$scope", 
                 $scope.member = '';
             } else {
                 if (correctAddress) {
-                    $http.get("/api/accounts?address=" + member).then(function (response) {
+                    $http.get($rootScope.severUrl + "/api/accounts?address=" + member).then(function (response) {
                         if (response.data.success) {
                             $scope.presendError = false;
                             $scope.addingError = '';
@@ -121,7 +121,7 @@ angular.module('ETPApp').controller('multisignatureModalController', ["$scope", 
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put('/api/multisignatures', data).then(function (response) {
+            $http.put($rootScope.severUrl + '/api/multisignatures', data).then(function (response) {
                 $scope.sending = false;
 
                 if (response.data.error) {

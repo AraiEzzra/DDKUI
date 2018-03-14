@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('multiService', function ($http, userService, $filter) {
+angular.module('ETPApp').service('multiService', function ($http, $rootScope, userService, $filter) {
 
     var service = {
         gettingPendings: false,
@@ -19,7 +19,7 @@ angular.module('ETPApp').service('multiService', function ($http, userService, $
                 }
 
 
-                $http.get("/api/multisignatures/pending", {
+                $http.get($rootScope.severUrl + "/api/multisignatures/pending", {
                     params: queryParams
                 })
                     .then(function (response) {
@@ -56,7 +56,7 @@ angular.module('ETPApp').service('multiService', function ($http, userService, $
                 }
 
 
-                $http.get("/api/multisignatures/accounts", {
+                $http.get($rootScope.severUrl + "/api/multisignatures/accounts", {
                     params: queryParams
                 })
                     .then(function (response) {
@@ -82,7 +82,7 @@ angular.module('ETPApp').service('multiService', function ($http, userService, $
         },
 
         confirmTransaction: function (queryParams, cb) {
-            $http.post("/api/multisignatures/sign",
+            $http.post($rootScope.severUrl + "/api/multisignatures/sign",
                 queryParams
             )
                 .then(function (response) {

@@ -1,12 +1,12 @@
 require('angular');
 
-angular.module('ETPApp').controller("loadingController", ["$scope", "$http", "$interval", "$window", function ($scope, $http, $interval, $window) {
+angular.module('ETPApp').controller("loadingController", ["$scope", "$http", "$rootScope", "$interval", "$window", function ($scope, $http, $rootScope, $interval, $window) {
 
     $scope.height = null;
     $scope.height = 0;
 
     $scope.getHeight = function () {
-        $http.get("/api/loader/status")
+        $http.get($rootScope.severUrl + "/api/loader/status")
             .then(function (resp) {
                 if (resp.data.success) {
                     if (!resp.data.loaded) {

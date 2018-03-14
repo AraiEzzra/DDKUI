@@ -1,11 +1,11 @@
 require('angular');
 
-angular.module('ETPApp').controller('blockModalController', ["$scope", "$http", "blockModal", "userInfo", function ($scope, $http, blockModal, userInfo) {
+angular.module('ETPApp').controller('blockModalController', ["$scope", "$http", "$rootScope", "blockModal", "userInfo", function ($scope, $http, $rootScope, blockModal, userInfo) {
 
     $scope.loading = true;
     $scope.transactions = [];
     $scope.getTransactionsOfBlock = function (blockId) {
-        $http.get("/api/transactions/", {params: {blockId: blockId}})
+        $http.get($rootScope.severUrl + "/api/transactions/", {params: {blockId: blockId}})
             .then(function (resp) {
                 $scope.transactions = resp.data.transactions;
                 $scope.loading = false;

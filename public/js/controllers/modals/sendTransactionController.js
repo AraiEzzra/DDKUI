@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('sendTransactionController', ['$scope', 'sendTransactionModal', '$http', 'userService', 'feeService', '$timeout', '$filter', function ($scope, sendTransactionModal, $http, userService, feeService, $timeout, $filter) {
+angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$rootScope', 'sendTransactionModal', '$http', 'userService', 'feeService', '$timeout', '$filter', function ($scope, $rootScope, sendTransactionModal, $http, userService, feeService, $timeout, $filter) {
 
     $scope.sending = false;
     $scope.passmode = false;
@@ -119,7 +119,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', 'sen
     }
 
     $scope.getCurrentFee = function () {
-        $http.get('/api/blocks/getFee').then(function (resp) {
+        $http.get($rootScope.severUrl + '/api/blocks/getFee').then(function (resp) {
                 $scope.currentFee = resp.data.fee;
                 $scope.fee = resp.data.fee;
             });
@@ -224,7 +224,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', 'sen
         if (!$scope.sending) {
             $scope.sending = true;
 
-            $http.put('/api/transactions', data).then(function (resp) {
+            $http.put($rootScope.severUrl + '/api/transactions', data).then(function (resp) {
                 $scope.sending = false;
 
                 if (resp.data.error) {

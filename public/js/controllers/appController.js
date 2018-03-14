@@ -26,7 +26,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getCategories = function () {
-        $http.get("/api/dapps/categories").then(function (response) {
+        $http.get($rootScope.severUrl + "/api/dapps/categories").then(function (response) {
             if (response.data.success) {
                 $scope.categories = response.data.categories;
             } else {
@@ -119,7 +119,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     };
 
     $scope.getVersion = function () {
-        $http.get("/api/peers/version").then(function (response) {
+        $http.get($rootScope.severUrl + "/api/peers/version").then(function (response) {
             if (response.data.success) {
                 $scope.version = response.data.version;
                 $http.get("https://login.ETP.io/api/peers/version").then(function (response) {
@@ -162,7 +162,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     $scope.resetAppData();
 
     $scope.getAppData = function () {
-        $http.get("/api/accounts", { params: { address: userService.address } })
+        $http.get($rootScope.severUrl + "/api/accounts", { params: { address: userService.address } })
             .then(function (resp) {
                 var account = resp.data.account;
                 if (!account) {
@@ -211,7 +211,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     };
 
     $scope.getMasterPassphrase = function () {
-        $http.get("api/dapps/ismasterpasswordenabled")
+        $http.get($rootScope.severUrl + "api/dapps/ismasterpasswordenabled")
             .then(function (resp) {
                 if (resp.data.success) {
                     $scope.ismasterpasswordenabled = resp.data.enabled;
@@ -247,7 +247,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
 
     $scope.enableForging = function () {
         if ($scope.rememberedPassphrase) {
-            $http.post("/api/delegates/forging/enable", {
+            $http.post($rootScope.severUrl + "/api/delegates/forging/enable", {
                 secret: $scope.rememberedPassphrase,
                 publicKey: userService.publicKey
             })
@@ -286,7 +286,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
 
             $scope.error = null;
 
-            $http.post("/api/delegates/forging/disable", {
+            $http.post($rootScope.severUrl + "/api/delegates/forging/disable", {
                 secret: $scope.rememberedPassphrase,
                 publicKey: userService.publicKey
             })
@@ -336,7 +336,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getForging = function (cb) {
-        $http.get("/api/delegates/forging/status", { params: { publicKey: userService.publicKey } })
+        $http.get($rootScope.severUrl + "/api/delegates/forging/status", { params: { publicKey: userService.publicKey } })
             .then(function (resp) {
                 $scope.forgingAllowed = resp.data.success;
                 $scope.forging = resp.data.enabled;
@@ -351,7 +351,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
             publicKey: userService.publicKey
         }
 
-        $http.get("/api/multisignatures/accounts", {
+        $http.get($rootScope.severUrl + "/api/multisignatures/accounts", {
             params: queryParams
         })
             .then(function (response) {
@@ -359,7 +359,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
                     if (response.data.accounts.length) {
                         return userService.setMultisignature(true, cb);
                     } else {
-                        $http.get("/api/multisignatures/pending", {
+                        $http.get($rootScope.severUrl + "/api/multisignatures/pending", {
                             params: queryParams
                         })
                             .then(function (response) {
@@ -403,7 +403,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
             $scope.delegate = response;
             userService.setDelegate($scope.delegate);
             if (!response.noDelegate) {
-                $http.get("/api/transactions", {
+                $http.get($rootScope.severUrl + "/api/transactions", {
                     params: {
                         senderPublicKey: userService.publicKey,
                         limit: 1,
@@ -421,7 +421,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getSync = function () {
-        $http.get("/api/loader/status/sync").then(function (resp) {
+        $http.get($rootScope.severUrl + "/api/loader/status/sync").then(function (resp) {
             if (resp.data.success) {
                 $scope.syncState = (resp.data.syncing && resp.data.blocks) ? Math.floor(100 * resp.data.height / resp.data.blocks) : null;
                 if ($scope.syncState != undefined) {
@@ -432,7 +432,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getMyVotesCount = function () {
-        $http.get("/api/accounts/delegates/", { params: { address: userService.address } })
+        $http.get($rootScope.severUrl + "/api/accounts/delegates/", { params: { address: userService.address } })
             .then(function (response) {
                 $scope.myVotesCount = response.data.delegates ? response.data.delegates.length : 0;
             });
@@ -443,7 +443,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.logout = function () {
-        $http.post('/api/accounts/logout', { address: userService.getAddress(), token: $window.localStorage.getItem('token') }).then(function (res) {
+        $http.post($rootScope.severUrl + "/api/accounts/logout", { address: userService.getAddress(), token: $window.localStorage.getItem('token') }).then(function (res) {
             $window.localStorage.setItem('token', '');
             $location.path('passphrase');
         });

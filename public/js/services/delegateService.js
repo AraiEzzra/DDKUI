@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('delegateService', function ($http, $filter, $q) {
+angular.module('ETPApp').service('delegateService', function ($http, $rootScope, $filter, $q) {
 
     function filterData(data, filter) {
         return $filter('filter')(data, filter);
@@ -42,7 +42,7 @@ angular.module('ETPApp').service('delegateService', function ($http, $filter, $q
                     cb();
                     $defer.resolve(transformedData);
                 } else {
-                    $http.get("/api/delegates/", {params: {orderBy: "rate:asc", limit: this.topRate, offset: 0}})
+                    $http.get($rootScope.severUrl + "/api/delegates/", {params: {orderBy: "rate:asc", limit: this.topRate, offset: 0}})
                         .then(function (response) {
                             angular.copy(response.data.delegates, delegates.cachedTOP.data);
                             delegates.cachedTOP.time = new Date();
@@ -70,7 +70,7 @@ angular.module('ETPApp').service('delegateService', function ($http, $filter, $q
                 else {
                     this.cachedStandby.data = [];
                     var getPart = function (limit, offset) {
-                        $http.get("/api/delegates/", {params: {orderBy: "rate:asc", limit: limit, offset: offset}})
+                        $http.get($rootScope.severUrl + "/api/delegates/", {params: {orderBy: "rate:asc", limit: limit, offset: offset}})
                             .then(function (response) {
                                 if (response.data.delegates.length > 0) {
                                     delegates.cachedStandby.data = delegates.cachedStandby.data.concat(response.data.delegates);
@@ -101,7 +101,7 @@ angular.module('ETPApp').service('delegateService', function ($http, $filter, $q
                     $defer.resolve(transformedData);
                     cb();
                 } else {
-                    $http.get("/api/accounts/delegates/", {params: {address: address}})
+                    $http.get($rootScope.severUrl + "/api/accounts/delegates/", {params: {address: address}})
                         .then(function (response) {
                             angular.copy(response.data.delegates ? response.data.delegates : [], delegates.cachedVotedDelegates.data);
                             delegates.cachedVotedDelegates.time = new Date();
@@ -116,7 +116,7 @@ angular.module('ETPApp').service('delegateService', function ($http, $filter, $q
             }
         },
         getDelegate: function (publicKey, cb) {
-            $http.get("/api/delegates/get/", {params: {publicKey: publicKey}})
+            $http.get($rootScope.severUrl + "/api/delegates/get/", {params: {publicKey: publicKey}})
                 .then(function (response) {
                     if (response.data.success) {
                         response.data.delegate.active = delegates.isActiveRate(response.data.delegate.rate);
@@ -128,8 +128,8 @@ angular.module('ETPApp').service('delegateService', function ($http, $filter, $q
         },
         getCountedDelegate: function (publicKey, cb) {
             $q.all([
-                $http.get("/api/delegates/get/", {params: {publicKey: publicKey}}),
-                $http.get("/api/delegates/count")
+                $http.get($rootScope.severUrl + "/api/delegates/get/", {params: {publicKey: publicKey}}),
+                $http.get($rootScope.severUrl + "/api/delegates/count")
             ]).then(function(results) {
                 if (results[0].data.success) {
                     var response = results[0];
@@ -148,7 +148,7 @@ angular.module('ETPApp').service('delegateService', function ($http, $filter, $q
             });
         },
         getSearchList: function ($defer, search, params, filter, cb) {
-            $http.get("/api/delegates/search", {params: {q: search}})
+            $http.get($rootScope.severUrl + "/api/delegates/search", {params: {q: search}})
                 .then(function (response) {
                     var delegates = angular.copy(response.data.delegates) || [];
                     params.total(delegates.length);
