@@ -82,14 +82,14 @@ ETPApp.config([
                 controller: "existingETPSUserController"
             })
             .state('passphrase', {
-                url: "/login",
+                url: "/",
                 templateUrl: "/partials/passphrase.html",
                 controller: "passphraseController"
             })
-            .state('loading', {
+            /* .state('loading', {
                 url: "/",
                 templateUrl: "/partials/loading.html"
-            });
+            }); */
     }
 ]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout) {
     languageService();
@@ -102,13 +102,15 @@ ETPApp.config([
     AuthService.getUserStatus()
     .then(function () {
         if (AuthService.isLoggedIn()) {
+            console.log('status : logged In');
              $timeout(function(){
                     $state.go('main.dashboard');
             },1000);
         } else {
+            console.log('status : not logged In');
             $timeout(function(){
                 $state.go('passphrase');
-        },1000);          
+            },1000);          
         }
     });
     
@@ -120,8 +122,10 @@ ETPApp.config([
                 $state.go('existingETPSUser');
             }else{
                 if (AuthService.isLoggedIn()) {
+                    console.log('toState.name : ', toState.name);
                     $state.go(toState.name);
                 } else {
+                    console.log('toState.name : passphrase');
                     $state.go('passphrase');
                 }
             } 

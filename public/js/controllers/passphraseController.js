@@ -10,7 +10,6 @@ angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootSco
     userService.rememberedPassphrase = '';
     $scope.rememberPassphrase = true;
     $scope.errorMessage = "";
-    $scope.serverUrl = 'http://159.65.139.248:7000';
 
 
 
@@ -48,7 +47,7 @@ angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootSco
         var data = { secret: pass };
         $scope.errorMessage = "";
         console.log('$rootScope.serverUrl 3: ', $rootScope.serverUrl);
-        $http.post($scope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
+        $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
             if (resp.data.success) {
                 $window.localStorage.setItem('token', resp.data.account.token);
                 userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token);

@@ -10,7 +10,6 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
     $scope.view = viewFactory;
     $scope.view.loadingText = gettextCatalog.getString('Registering user');
     $scope.view.inLoading = false;
-    $scope.serverUrl = 'http://159.65.139.248:7000';
 
     $scope.activeLabel = function (pass) {
         return pass != '';
@@ -41,8 +40,9 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
         } else {
             $scope.view.inLoading = true;
             console.log('$rootScope.serverUrl 1: ', $rootScope.serverUrl);
-            $http.post($scope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
                 $scope.view.inLoading = false;
+                console.log('resp : ', resp);
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
                     newUser.deactivate();
