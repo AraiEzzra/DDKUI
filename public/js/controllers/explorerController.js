@@ -62,16 +62,7 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
         });
     }
 
-    $scope.updateHeight = function() {
-        $http.get($rootScope.serverUrl + "/api/blocks/getHeight").then(function (resp) {
-            console.log('height response : ', resp);
-            if(resp.data.success) {
-                $scope.updatedHeight = resp.data.height;
-            }
-        });
-    }
-
-    $scope.updateTotalTrs = function () {
+    $scope.updateTotalTrs = function() {
         esClient.search({
             index: 'trs',
             type: 'trs',
@@ -88,6 +79,10 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
                 }
             }
         });
+    }
+
+    $scope.updateBlocks = function () {
+        $scope.tableBlocks.reload();
     };
     // end Blocks
 
