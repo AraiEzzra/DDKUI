@@ -72,7 +72,7 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
         }, function (err, res) {
             console.log('block res : ', res.hits.total);
             if(!err) {
-                $scope.totalTrs = res.hits.total;
+                $scope.updatedHeight = res.hits.total;
             }
         });
     }
