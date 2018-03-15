@@ -54,13 +54,6 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
     });
 
     $scope.updateHeight = function() {
-        /* $http.get($rootScope.serverUrl + "/api/blocks/getHeight").then(function (resp) {
-            console.log('height response : ', resp);
-            if(resp.data.success) {
-                $scope.updatedHeight = resp.data.height;
-            }
-        }); */
-
         esClient.search({
             index: 'blocks',
             type: 'blocks',
@@ -70,7 +63,6 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
                 },
             }
         }, function (err, res) {
-            console.log('block res : ', res.hits.total);
             if(!err) {
                 $scope.updatedHeight = res.hits.total;
             }
@@ -87,7 +79,6 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
                 },
             }
         }, function (err, res) {
-            console.log('trs res : ', res.hits.total);
             if(!err) {
                 $scope.totalTrs = res.hits.total;
             }

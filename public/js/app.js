@@ -96,18 +96,15 @@ ETPApp.config([
     clipboardService();
     $rootScope.$state = $state;
     $rootScope.serverUrl = 'http://159.65.139.248:7000';
-    //console.log('$rootScope.serverUrl in app.js :', $rootScope.serverUrl);
     $rootScope.defaultLoaderScreen = false;
     // render current logged-in user upon page refresh if currently logged-in
     AuthService.getUserStatus()
     .then(function () {
         if (AuthService.isLoggedIn()) {
-           // console.log('status : logged In');
              $timeout(function(){
                     $state.go('main.dashboard');
             },1000);
         } else {
-            //console.log('status : not logged In');
             $timeout(function(){
                 $state.go('passphrase');
             },1000);          
@@ -122,10 +119,8 @@ ETPApp.config([
                 $state.go('existingETPSUser');
             }else{
                 if (AuthService.isLoggedIn()) {
-                    console.log('toState.name : ', toState.name);
                     $state.go(toState.name);
                 } else {
-                    console.log('toState.name : passphrase');
                     $state.go('passphrase');
                 }
             } 

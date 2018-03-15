@@ -39,10 +39,8 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            console.log('$rootScope.serverUrl 1: ', $rootScope.serverUrl);
             $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
                 $scope.view.inLoading = false;
-                console.log('resp : ', resp);
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
                     newUser.deactivate();
@@ -50,7 +48,6 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
                     userService.setForging(resp.data.account.forging);
                     userService.setSecondPassphrase(resp.data.account.secondSignature);
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
-                    console.log('Changing state to main.dashboard');
                     $state.go('main.dashboard');
                 } else {
                     console.error("Login failed. Failed to open account.");

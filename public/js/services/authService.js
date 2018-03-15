@@ -16,7 +16,6 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
 
     // check whether user is logged-in or not
     function isLoggedIn() {
-        //console.log('user status : ', user);
 	if (user) {
             return true;
         } else {
@@ -25,8 +24,7 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
     }
     
     // get user's status
-    function getUserStatus() {
-	console.log('url inside getUserStatus : ', url);
+    function getUserStatus() {;
         return $http({
             method: 'GET',
             url: url + '/user/status',
@@ -34,7 +32,6 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
                 token: $window.localStorage.getItem('token')
             }
         }).success(function (resp) {
-	    console.log('resp.status : ', resp);
             if (resp.status && resp.data.success) {
                 user = true;
                 userService.setData();
@@ -46,28 +43,7 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
                 user = false;
             }
         }).error(function (err) {
-	    console.log('err in getting status : ', err);
             user = false;
         });
-        /* return $http.get('/user/status', {
-            params: {
-                token: $window.localStorage.getItem('token')
-            }
-        })
-        .success(function (resp) {
-            if (resp.status && resp.data.success) {
-                user = true;
-                userService.setData();
-                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance);
-                userService.setForging(resp.data.account.forging);
-                userService.setSecondPassphrase(resp.data.account.secondSignature || resp.data.account.unconfirmedSignature);
-                userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
-            } else {
-                user = false;
-            }
-        })
-        .error(function (data) {
-            user = false;
-        }); */
     }
 }]);
