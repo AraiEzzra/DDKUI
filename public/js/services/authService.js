@@ -16,7 +16,8 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
 
     // check whether user is logged-in or not
     function isLoggedIn() {
-        if (user) {
+        //console.log('user status : ', user);
+	if (user) {
             return true;
         } else {
             return false;
@@ -25,10 +26,15 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
     
     // get user's status
     function getUserStatus() {
+	console.log('url inside getUserStatus : ', url);
         return $http({
             method: 'GET',
-            url: url + '/user/status'
+            url: url + '/user/status',
+	    params: {
+                token: $window.localStorage.getItem('token')
+            }
         }).success(function (resp) {
+	    console.log('resp.status : ', resp);
             if (resp.status && resp.data.success) {
                 user = true;
                 userService.setData();
@@ -40,6 +46,7 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
                 user = false;
             }
         }).error(function (err) {
+	    console.log('err in getting status : ', err);
             user = false;
         });
         /* return $http.get('/user/status', {
