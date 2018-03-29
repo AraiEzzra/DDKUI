@@ -1,2 +1,3 @@
 .vscode/
-public/i18n/template.pot
+testUsers.json
+config.json

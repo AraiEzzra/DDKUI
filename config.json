@@ -1,6 +1,0 @@
-{
-    "serverProtocol": "http",
-    "serverHost": "159.65.139.248",
-    "serverPort": 7000,
-    "elasticsearchHost": "159.65.139.247"
-}
