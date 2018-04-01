@@ -28,7 +28,7 @@ angular.module('ETPApp').service("stakeService", function ($http, $filter, esCli
       var address = userService.getAddress();
       var startTime;
       var endTime;
-      
+
       // added search functionality for stake orders
       //FIXME: Search stake orders based on conditions
       if (searchForStake) {
@@ -133,35 +133,53 @@ angular.module('ETPApp').service("stakeService", function ($http, $filter, esCli
           index: 'stake_orders',
           type: 'stake_orders',
           body: {
-            "query": {
-              "bool": {
-                "must": [
-                  {
-                    "term": {
-                      "senderId.keyword": address
-                    }
-                  }
-                ],
-                "must_not": [],
-                "should": []
-              }
+            query: {
+                match_all: {}
             },
-            "sort": [],
-            "aggs": {}
-          }
+            sort: [],
+        }
         }, function (error, stakeResponse, status) {
-          var resultData = [];
-          stakeResponse.hits.hits.forEach(function (stakeOrder) {
-            resultData.push(stakeOrder._source);
-          });
-          if (resultData != null) {
-            params.total(resultData.length)
-            var filteredData = $filter('filter')(resultData, filter);
-            var transformedData = transformData(resultData, filter, params)
-            $defer.resolve(transformedData);
+
+          if (stakeResponse.hits.total > 0) {
+            esClient.search({
+              index: 'stake_orders',
+              type: 'stake_orders',
+              body: {
+                "query": {
+                  "bool": {
+                    "must": [
+                      {
+                        "term": {
+                          "senderId.keyword": address
+                        }
+                      }
+                    ],
+                    "must_not": [],
+                    "should": []
+                  }
+                },
+                "from": 0,
+                "size": stakeResponse.hits.total,
+                "sort": [{ startTime: { order: 'desc' } }],
+                "aggs": {}
+              }
+            }, function (error, stakeRes, status) {
+              var resultData = [];
+              stakeRes.hits.hits.forEach(function (stakeOrder) {
+                resultData.push(stakeOrder._source);
+              });
+              if (resultData != null) {
+                params.total(resultData.length)
+                var filteredData = $filter('filter')(resultData, filter);
+                var transformedData = transformData(resultData, filter, params)
+                $defer.resolve(transformedData);
+              }
+              cb(null);
+            });
           }
-          cb(null);
+
         });
+
       }
     }
   };

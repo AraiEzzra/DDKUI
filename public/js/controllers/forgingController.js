@@ -113,7 +113,7 @@ angular.module('ETPApp').controller('forgingController', ['$scope', '$rootScope'
                     $scope.loading = false;
                     $scope.countForgingBlocks = params.total();
                     $scope.view.inLoading = false;
-                }, userService.publicKey);
+                }, userService.address);
             }
         }
     });
