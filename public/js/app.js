@@ -10,11 +10,13 @@ require('../node_modules/angular-chart.js/dist/angular-chart.js');
 require('../node_modules/angular-socket-io/socket.js');
 require('../node_modules/ng-table/dist/ng-table.js');
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
+require('../node_modules/imhere-angular-wizard/dist/imhere-angular-wizard.js');
+
 
 
 Mnemonic = require('bitcore-mnemonic');
 
-ETPApp = angular.module('ETPApp', ['ui.router', 'btford.modal', 'ngCookies', 'ngTable', 'ngAnimate', 'chart.js', 'btford.socket-io', 'ui.bootstrap', 'angular.filter', 'gettext', 'elasticsearch']);
+ETPApp = angular.module('ETPApp', ['ui.router', 'btford.modal', 'ngCookies', 'ngTable', 'ngAnimate', 'chart.js', 'btford.socket-io', 'ui.bootstrap', 'angular.filter', 'gettext', 'elasticsearch', 'imhere-angular-wizard']);
 
 ETPApp.config([
     "$locationProvider",

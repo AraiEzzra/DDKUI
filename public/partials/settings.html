@@ -3,7 +3,7 @@
     <div class="col-xs-12">
         <div class="panel panel-default settings-panel">
             <div class="panel-heading">
-				
+
                 <h2>{{'General'|translate}}</h2>
             </div>
             <div class="panel-body">
@@ -28,5 +28,96 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="">
+    <div class="col-xs-12" style="background:#fff;">
+
+        <imhere-wizard on-finish="app.finish()">
+            <div class="row">
+                <div class="imhere-steps-nav">
+                    <imhere-steps-nav>
+                        <imhere-step-btn ng-repeat="step in [1,2,3,4] track by $index" step-index="$index"></imhere-step-btn>
+                    </imhere-steps-nav>
+
+                </div>
+                <div class="col-md-12 tab-contant">
+
+                    <imhere-step title="Download App">
+
+
+
+                        <div class="comm-tab-container">
+                            <h1>Download and install google Authication APP</h1>
+                            <a href="#" class="down-app-store down-load-img"></a>
+                            <a href="#" class="down-google-play down-load-img"></a>
+                        </div>
+
+
+                        <imhere-next>NEXT </imhere-next>
+                    </imhere-step>
+                    <imhere-step title="Scen QR Code">
+
+                        <div class="comm-tab-container">
+                            <a href="#" class="qr-code"></a>
+
+                            <input class="form-control qr-code-input" type="text" value="Enter QR Code" id="qrCode" name="qrCode">
+
+                        </div>
+
+
+                        <imhere-pre>BACK</imhere-pre>
+                        <imhere-next>NEXT</imhere-next>
+                    </imhere-step>
+                    <imhere-step title="Backup Key">
+
+                        <div class="comm-tab-container">
+                            <p class="qr-code-key">TEFXZE123ert</p>
+
+                            <span class="qr-info">Please save this key on paper. This ket allow you to recover your google Authentication in case
+                                of phone lose.</span>
+
+                        </div>
+
+
+
+                        <imhere-pre>BACK</imhere-pre>
+                        <imhere-next>NEXT </imhere-next>
+                    </imhere-step>
+                    <imhere-step title="Enable Google Authentication">
+                        <div class="comm-tab-container qr-code-input">
+                            <form class="m-t-35">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Key">
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Your Passphrase">
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="2FA Code">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                        <imhere-pre>BACK</imhere-pre>
+                        <imhere-complete>Complete</imhere-complete>
+                    </imhere-step>
+                    <imhere-step-complete>
+                        <h1>Complete!</h1>
+                        <p>display what you want</p>
+                        <imhere-reset>RESET</imhere-reset>
+                    </imhere-step-complete>
+                </div>
+            </div>
+        </imhere-wizard>
     </div>
 </div>
