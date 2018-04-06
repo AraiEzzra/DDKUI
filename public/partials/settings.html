@@ -33,7 +33,7 @@
 
 
     <!-- For Google Authentication Enable Section -->
-   <!--  <div class="col-xs-12">
+    <!--  <div class="col-xs-12">
         <div class="panel panel-default settings-panel">
             <div class="panel-heading">
                 <h2>{{'Google Authentication'|translate}}</h2>
@@ -158,49 +158,101 @@
 
 <div class="content main-google-auth-section">
 
-        <form class="form-horizontal">
-        
-          <ul class="nav nav-tabs">
+    <form class="form-horizontal">
+
+        <ul class="nav nav-tabs">
             <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex()}">
-              <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a>
+                <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a>
             </li>
-          </ul>
-          <div ng-switch on="selection">
-        
+        </ul>
+        <div ng-switch on="selection">
+
             <!-- First Step -->
             <div ng-switch-when="Step 1: Download App">
-              <div class="row">
+                <div class="row">
                     <h1>Step 1</h1>
-              </div>
+                    <div class="alert alert-success" ng-show="successMessage.nextStep">
+                        {{ successMessage.nextStep }}
+                    </div>
+                </div>
             </div>
-        
+
             <!-- Second Step -->
             <div ng-switch-when="Step 2: Scan QR Code">
                 <h1>Step 2</h1>
+                <div class="comm-tab-container">
+                    <img src="{{ dataUrl }}" alt="dataUrl" class="img-thumbnail">
+                    <input class="form-control qr-code-input" type="text" value="Enter QR Code" ng-model="settings.otp" name="qrCode">
+                    <br>
+                    <br>
+                    <p class="error-container" ng-show="errorMessage.fromServer">
+                        <span class="pass-error">{{errorMessage.fromServer}}</span>
+                    </p>
+                    <p class="error-container" ng-show="errorMessage.otp">
+                        <span class="pass-error">{{errorMessage.otp}}</span>
+                    </p>
+                    <div class="alert alert-success" ng-show="successMessage.nextStep">
+                        {{ successMessage.nextStep }}
+                    </div>
+                </div>
             </div>
-        
+
             <!-- Third Step -->
             <div ng-switch-when="Step 3: Backup Key">
                 <h1>Step 3</h1>
+                <p class="qr-code-key">{{ twoFactorKey }}</p>
+                <br>
+                <br>
+                <p class="error-container" ng-show="errorMessage.fromServer">
+                    <span class="pass-error">{{errorMessage.fromServer}}</span>
+                </p>
+                <div class="alert alert-success" ng-show="successMessage.nextStep">
+                    {{ successMessage.nextStep }}
+                </div>
             </div>
 
-             <!-- Four Step -->
-             <div ng-switch-when="Step 4: Enable Google Authentication">
-                    <h1>Step 4</h1>
+            <!-- Four Step -->
+            <div ng-switch-when="Step 4: Enable Google Authentication">
+                <h1>Step 4</h1>
+                <div class="alert alert-success" ng-show="successMessage.nextStep">
+                    {{ successMessage.nextStep }}
                 </div>
-            
-          </div>
-          <div class="clearfix"></div>
-          <ul class="pager pull-left">
+                <div class="comm-tab-container qr-code-input">
+                    <form class="m-t-35" ng-submit="enableTwoFactor(twoFactor)">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Key" ng-model="settings.twoFactor.key">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Your Passphrase" ng-model="settings.twoFactor.secret">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="2FA Code" ng-model="settings.twoFactor.otp">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="pager pull-left">
             <li class="" ng-class="{disabled: !hasPreviousStep()}">
-              <a href="javascript:void(0);" ng-click="decrementStep()">&larr; Previous Step</a>
+                <a href="javascript:void(0);" ng-click="decrementStep()">&larr; Previous Step</a>
             </li>
             <li class="" ng-class="{disabled: !hasNextStep()}">
-              <a href="javascript:void(0);" ng-click="incrementStep()">Next Step &rarr;</a>
+                <a href="javascript:void(0);" ng-click="incrementStep()">Next Step &rarr;</a>
             </li>
-          </ul>
-          <!-- <div class="pull-right"><button style="margin:20px 0;" class="btn btn-success">Confirm and Register</button></div>
-          <div class="clearfix"></div> -->
-        </form>
-        
-          </div>
+        </ul>
+        <div class="pull-right">
+            <button ng-click="validateStep()" style="margin:20px 0;" class="btn btn-success">Confirm and Register</button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+
+</div>
