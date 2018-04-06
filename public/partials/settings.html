@@ -1,9 +1,9 @@
 <div class="top-margin"></div>
 <div class="row">
+    <!-- For Translate Section -->
     <div class="col-xs-12">
         <div class="panel panel-default settings-panel">
             <div class="panel-heading">
-
                 <h2>{{'General'|translate}}</h2>
             </div>
             <div class="panel-body">
@@ -29,95 +29,178 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="">
-    <div class="col-xs-12" style="background:#fff;">
-
-        <imhere-wizard on-finish="app.finish()">
-            <div class="row">
-                <div class="imhere-steps-nav">
-                    <imhere-steps-nav>
-                        <imhere-step-btn ng-repeat="step in [1,2,3,4] track by $index" step-index="$index"></imhere-step-btn>
-                    </imhere-steps-nav>
-
-                </div>
-                <div class="col-md-12 tab-contant">
-
-                    <imhere-step title="Download App">
+    <!-- End Translate Section -->
 
 
-
-                        <div class="comm-tab-container">
-                            <h1>Download and install google Authication APP</h1>
-                            <a href="#" class="down-app-store down-load-img"></a>
-                            <a href="#" class="down-google-play down-load-img"></a>
-                        </div>
-
-
-                        <imhere-next>NEXT </imhere-next>
-                    </imhere-step>
-                    <imhere-step title="Scen QR Code">
-
-                        <div class="comm-tab-container">
-                            <a href="#" class="qr-code"></a>
-
-                            <input class="form-control qr-code-input" type="text" value="Enter QR Code" id="qrCode" name="qrCode">
-
-                        </div>
-
-
-                        <imhere-pre>BACK</imhere-pre>
-                        <imhere-next>NEXT</imhere-next>
-                    </imhere-step>
-                    <imhere-step title="Backup Key">
-
-                        <div class="comm-tab-container">
-                            <p class="qr-code-key">TEFXZE123ert</p>
-
-                            <span class="qr-info">Please save this key on paper. This ket allow you to recover your google Authentication in case
-                                of phone lose.</span>
-
-                        </div>
-
-
-
-                        <imhere-pre>BACK</imhere-pre>
-                        <imhere-next>NEXT </imhere-next>
-                    </imhere-step>
-                    <imhere-step title="Enable Google Authentication">
-                        <div class="comm-tab-container qr-code-input">
-                            <form class="m-t-35">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Key">
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Your Passphrase">
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="2FA Code">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="clearfix"></div>
-                        <imhere-pre>BACK</imhere-pre>
-                        <imhere-complete>Complete</imhere-complete>
-                    </imhere-step>
-                    <imhere-step-complete>
-                        <h1>Complete!</h1>
-                        <p>display what you want</p>
-                        <imhere-reset>RESET</imhere-reset>
-                    </imhere-step-complete>
-                </div>
+    <!-- For Google Authentication Enable Section -->
+   <!--  <div class="col-xs-12">
+        <div class="panel panel-default settings-panel">
+            <div class="panel-heading">
+                <h2>{{'Google Authentication'|translate}}</h2>
             </div>
-        </imhere-wizard>
-    </div>
+            <div class="panel-body">
+
+
+                <div class="google-auth-info">
+                    <div class="auth-icon">
+                        <img src="images/teaser.png">
+                    </div>
+                    <div class="auth-text">
+                        <span class="fw500">Google Auth</span>
+                        <br> Use for withdrawals and security modification.
+                    </div>
+                    <div class="btn-enable">
+                        <a class="btn btn-blue-nav waves-effect waves-light">
+                            <translate>Enable</translate>
+                        </a>
+                        <a class="btn btn-white waves-effect">
+                            <translate>Disable</translate>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div> -->
+    <!-- End Google Authentication Enable Section -->
+
+
+
+
+
+
 </div>
+
+
+
+
+
+
+
+<!-- For Google Authentication -->
+<!-- <div class="col-xs-12 main-google-auth-section">
+    <imhere-wizard on-finish="app.finish()">
+        <div class="row">
+            <div class="imhere-steps-nav">
+                <imhere-steps-nav>
+                    <imhere-step-btn ng-repeat="step in [1,2,3,4] track by $index" step-index="$index"></imhere-step-btn>
+                </imhere-steps-nav>
+            </div>
+            <div class="col-md-12 tab-contant">
+                <imhere-step title="Download App">
+                    <div class="comm-tab-container">
+                        <h1>Download and install google Authication APP</h1>
+                        <a href="#" class="down-app-store down-load-img"></a>
+                        <a href="#" class="down-google-play down-load-img"></a>
+                    </div>
+                    <imhere-next>NEXT </imhere-next>
+                </imhere-step>
+                <imhere-step title="Scen QR Code">
+                    <div class="comm-tab-container">
+                        <a href="#" class="qr-code"></a>
+                        <input class="form-control qr-code-input" type="text" value="Enter QR Code" id="qrCode" name="qrCode">
+                    </div>
+                    <imhere-pre>BACK</imhere-pre>
+                    <imhere-next disabled="app.check()">NEXT</imhere-next>
+                </imhere-step>
+                <imhere-step title="Backup Key">
+                    <div class="comm-tab-container">
+                        <p class="qr-code-key">TEFXZE123ert</p>
+                        <span class="qr-info">Please save this key on paper. This ket allow you to recover your google Authentication in case of
+                            phone lose.</span>
+                    </div>
+                    <imhere-pre>BACK</imhere-pre>
+                    <imhere-next>NEXT </imhere-next>
+                </imhere-step>
+                <imhere-step title="Enable Google Authentication">
+                    <div class="comm-tab-container qr-code-input">
+                        <form class="m-t-35">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Key">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Your Passphrase">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="2FA Code">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <imhere-pre>BACK</imhere-pre>
+                    <imhere-complete>Complete</imhere-complete>
+                </imhere-step>
+                <imhere-step-complete>
+                    <h1>Complete!</h1>
+                    <p>display what you want</p>
+                    <imhere-reset>RESET</imhere-reset>
+                </imhere-step-complete>
+            </div>
+        </div>
+    </imhere-wizard>
+</div> -->
+<!--End Google Authentication -->
+
+
+
+
+<div class="content main-google-auth-section">
+
+        <form class="form-horizontal">
+        
+          <ul class="nav nav-tabs">
+            <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex()}">
+              <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a>
+            </li>
+          </ul>
+          <div ng-switch on="selection">
+        
+            <!-- First Step -->
+            <div ng-switch-when="Step 1: Download App">
+              <div class="row">
+                    <h1>Step 1</h1>
+              </div>
+            </div>
+        
+            <!-- Second Step -->
+            <div ng-switch-when="Step 2: Scan QR Code">
+                <h1>Step 2</h1>
+            </div>
+        
+            <!-- Third Step -->
+            <div ng-switch-when="Step 3: Backup Key">
+                <h1>Step 3</h1>
+            </div>
+
+             <!-- Four Step -->
+             <div ng-switch-when="Step 4: Enable Google Authentication">
+                    <h1>Step 4</h1>
+                </div>
+            
+          </div>
+          <div class="clearfix"></div>
+          <ul class="pager pull-left">
+            <li class="" ng-class="{disabled: !hasPreviousStep()}">
+              <a href="javascript:void(0);" ng-click="decrementStep()">&larr; Previous Step</a>
+            </li>
+            <li class="" ng-class="{disabled: !hasNextStep()}">
+              <a href="javascript:void(0);" ng-click="incrementStep()">Next Step &rarr;</a>
+            </li>
+          </ul>
+          <!-- <div class="pull-right"><button style="margin:20px 0;" class="btn btn-success">Confirm and Register</button></div>
+          <div class="clearfix"></div> -->
+        </form>
+        
+          </div>
