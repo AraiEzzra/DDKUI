@@ -2,6 +2,23 @@ require('angular');
 
 angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "multisignatureModal", 'gettextCatalog', '$location', function ($rootScope, $scope, $http, userService, $interval, multisignatureModal, gettextCatalog, $location) {
 
+    $scope.checkTwoFactorStatus = function () {
+        console.log('checking 2fa status');
+        $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {
+            params: {
+                publicKey: userService.publicKey
+            }
+        })
+            .then(function (resp) {
+                console.log('resp', resp);
+                if (resp.data.success) {
+                    $scope.disable = true;
+                } else {
+                    $scope.enable = true;
+                }
+            })
+    }
+    $scope.checkTwoFactorStatus();
     var setPage = function () {
         $scope.view.page = { title: gettextCatalog.getString('Settings'), previous: null };
     }
@@ -14,10 +31,17 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
     $scope.errorMessage = {};
 
     $scope.view.bar = {};
+    $scope.myVar = false;
 
     $scope.settings = {
         user: userService,
         enabledMultisign: false
+    }
+
+    // Show Div
+    $scope.showDiv = function (data) {
+        $scope.myVar = data;
+        $scope.goToStep(0);
     }
 
     // Enable/Disable multisignature settings
@@ -55,22 +79,6 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
             }
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     $scope.steps = [
         'Step 1: Download App',
@@ -141,6 +149,7 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
                         $scope.presendError = false;
                         $scope.errorMessage = {};
                         $scope.incrementStep();
+
                     }
                     //$scope.presendError = false;
                     //$scope.errorMessage = {};
@@ -157,19 +166,19 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
                 otp: $scope.settings.otp
             };
             $http.post($rootScope.serverUrl + "/api/accounts/verifyOTP", data)
-            .then(function (resp) {
-                if (resp.data.success) {
-                    $scope.twoFactorKey = resp.data.key
-                    $scope.successMessage.nextStep = 'Click Next to Continue';
-                    $scope.presendError = false;
-                    $scope.errorMessage = {};
-                    $scope.incrementStep();
-                } else {
-                    $scope.presendError = true;
-                    $scope.errorMessage.fromServer = resp.data.error;
-                    return;
-                }
-            });
+                .then(function (resp) {
+                    if (resp.data.success) {
+                        $scope.twoFactorKey = resp.data.key
+                        $scope.successMessage.nextStep = 'Click Next to Continue';
+                        $scope.presendError = false;
+                        $scope.errorMessage = {};
+                        $scope.incrementStep();
+                    } else {
+                        $scope.presendError = true;
+                        $scope.errorMessage.fromServer = resp.data.error;
+                        return;
+                    }
+                });
         }
         if (stepIndex === 2) {
             $scope.successMessage = {};
@@ -179,37 +188,67 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
         if (stepIndex === 3) {
             $scope.successMessage = {};
             console.log('executing step 4');
-           // $scope.enableTwoFactor = function (twoFactor) {
-                var data = {
-                    publicKey: userService.publicKey,
-                    key: $scope.settings.twoFactor.key,
-                    secret: $scope.settings.twoFactor.secret,
-                    otp: $scope.settings.twoFactor.otp
-                };
-                console.log('data : ', data);
-                $http.post($rootScope.serverUrl + "/api/accounts/enableTwoFactor", data)
+            // $scope.enableTwoFactor = function (twoFactor) {
+            var data = {
+                publicKey: userService.publicKey,
+                key: $scope.settings.twoFactor.key,
+                secret: $scope.settings.twoFactor.secret,
+                otp: $scope.settings.twoFactor.otp
+            };
+            console.log('data : ', data);
+            $http.post($rootScope.serverUrl + "/api/accounts/enableTwoFactor", data)
                 .then(function (resp) {
                     console.log('resp : ', resp);
                     if (resp.data.success) {
                         $scope.twoFactorKey = resp.data.key
                         $scope.successMessage.nextStep = 'Google Authentication is enabled for : ' + userService.getAddress();
+                        Materialize.toast('2FA Enabled', 3000, 'green white-text');
+
+                        $scope.enable = false;
+                        console.log($scope.enable);
+
+                        $scope.myVar = false;
+                        console.log($scope.myVar);
+
+                        $scope.disable = true
+                        console.log($scope.disable);
+
+
+
+
                         $scope.presendError = false;
                         $scope.errorMessage = {};
+
                     } else {
                         $scope.presendError = true;
                         $scope.errorMessage.fromServer = resp.data.error;
                         //$scope.twoFactorKey = 'No Key. Please check previous step.'
                     }
-        
-                    //$scope.OTP = true;
                 });
-           // }
         }
     };
 
 
 
+    $scope.disableTwoFactor = function () {
+        var data = {
+            publicKey: userService.publicKey
+        };
+        $http.post($rootScope.serverUrl + '/api/accounts/disableTwoFactor', data)
+            .then(function (resp) {
+                if (resp.data.success) {
+                    $scope.enable = true;
+                    $scope.disable = false;
+                }
+                /// console.log('resp', resp);
 
+
+                // console.log('resp', resp);
+
+                //$scope.myVarDisable = false;
+                //console.log('resp', resp);
+            })
+    }
 
 }]);
 
