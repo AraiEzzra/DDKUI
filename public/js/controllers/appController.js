@@ -211,7 +211,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     };
 
     $scope.getMasterPassphrase = function () {
-        $http.get($rootScope.serverUrl + "api/dapps/ismasterpasswordenabled")
+        $http.get($rootScope.serverUrl + "/api/dapps/ismasterpasswordenabled")
             .then(function (resp) {
                 if (resp.data.success) {
                     $scope.ismasterpasswordenabled = resp.data.enabled;
