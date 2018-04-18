@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUserMigration", 'gettextCatalog', '$cookies', 'focus', function ($rootScope, $scope, $http, $state, userService, newUserMigration, gettextCatalog, $cookies, focus) {
+angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUserMigration", 'gettextCatalog', '$cookies', 'focus', function ($scope, $rootScope, $http, $state, userService, newUserMigration, gettextCatalog, $cookies, focus) {
 
     userService.setData();
     userService.rememberPassphrase = false;
@@ -24,7 +24,7 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
     $scope.validateExistingUser = function (username, password) {
         var post = "username=" + btoa(username) + "&password=" + btoa(password);
 
-        $http.post("/api/accounts/existingETPSUser/validate", {
+        $http.post($rootScope.serverUrl +"/api/accounts/existingETPSUser/validate", {
 
             data: post
         })
@@ -35,7 +35,7 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
                 } else {
                     var userInfo = {};
                     Object.assign(userInfo, resp.userInfo);
-                    $http.post("/api/accounts/existingETPSUser", { userInfo: userInfo }).then(function (response) {
+                    $http.post($rootScope.serverUrl +"/api/accounts/existingETPSUser", { userInfo: userInfo }).then(function (response) {
                         if (response.data.success) {
                             if (response.data.isMigrated) {
                                 $scope.errorMessage = 'User is already migrated';

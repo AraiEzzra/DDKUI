@@ -109,8 +109,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 }
                 $scope.secondPassphrase = userService.secondPassphrase;
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
-                $scope.balanceDec = $scope.balance / 100000000;
-                $scope.balanceDecParseInt = parseInt($scope.balanceDec);
+                $scope.unconfirmedBalanceDec = $scope.unconfirmedBalance / 100000000;
             } else {
                 $scope.resetAppData();
             }
@@ -167,7 +166,13 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         .then(function (resp) {
             if (resp.data.success) {
                 var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
-                $scope.myETPFrozen = parseInt(myETPFrozen);
+                console.log("myETPFrozen"+$scope.myETPFrozen);
+
+                $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
+                if ($scope.stakeBalanceToShow[1]) {
+                    $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
+                }
+                $scope.myETPFrozen = (myETPFrozen);
             } else {
                 console.log(resp.data.error);
                 $scope.myETPFrozen = 0;
@@ -195,7 +200,12 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         .then(function (resp) {
             if (resp.data.success) {
                 var totalETPStaked = resp.data.totalETPStaked.sum / 100000000;
-                $scope.totalETPStaked = parseInt(totalETPStaked);
+                $scope.totalETPStaked = (totalETPStaked);
+                console.log("totalETPStaked"+$scope.totalETPStaked);
+                $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
+                if ($scope.totalStakeBalanceToShow[1]) {
+                    $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
+                }
             } else {
                 console.log(resp.data.error);
             }
