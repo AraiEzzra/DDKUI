@@ -46,8 +46,8 @@ angular.module('ETPApp').controller('blockchainController', ['$scope', '$timeout
         timestamp: gettextCatalog.getString('Time'),
         numberOfTransactions: gettextCatalog.getString('Transactions'),
         totalAmount: gettextCatalog.getString('Amount'),
-        totalFee: gettextCatalog.getString('Fee'),
-        reward: gettextCatalog.getString('Reward')
+        totalFee: gettextCatalog.getString('Fee')
+  //      reward: gettextCatalog.getString('Reward')
     };
 
     $scope.tableBlocks.settings().$scope = $scope;
