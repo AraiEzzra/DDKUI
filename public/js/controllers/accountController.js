@@ -166,7 +166,6 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         .then(function (resp) {
             if (resp.data.success) {
                 var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
-                console.log("myETPFrozen"+$scope.myETPFrozen);
 
                 $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
                 if ($scope.stakeBalanceToShow[1]) {
@@ -201,7 +200,6 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
             if (resp.data.success) {
                 var totalETPStaked = resp.data.totalETPStaked.sum / 100000000;
                 $scope.totalETPStaked = (totalETPStaked);
-                console.log("totalETPStaked"+$scope.totalETPStaked);
                 $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
                 if ($scope.totalStakeBalanceToShow[1]) {
                     $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];

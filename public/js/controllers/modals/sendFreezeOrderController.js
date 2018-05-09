@@ -107,14 +107,14 @@ angular.module('ETPApp').controller('sendFreezeOrderController', ['$scope', '$ro
     }
 
     feeService(function (fees) {
-        $scope.fee = fees.sendfreeze;
+        $scope.fee = (($scope.freezedAmount / 100000000) * (fees.sendfreeze * 100000000))/100;
     });
 
     $scope.close = function () {
         if ($scope.destroy) {
             $scope.destroy();
         }
-        //sendTransactionModal.deactivate();
+       
         sendFreezeOrderModal.deactivate();
     }
     

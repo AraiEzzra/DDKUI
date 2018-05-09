@@ -241,8 +241,22 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         }
     }
 
-    feeService(function (fees) {
-        $scope.fee = fees.send;
-    });
+    $scope.calFees = function (amount) {
+
+        feeService(function (fees) {
+            if (amount < 101) {
+                $scope.fee = (amount * fees.send.level1 * 100000000) / 100;
+            } else if (amount > 100 && amount < 1001) {
+                $scope.fee = (amount * fees.send.level2 * 100000000) / 100;
+            } else {
+                $scope.fee = (amount * fees.send.level3 * 100000000) / 100;
+            }
+
+        });
+    };
+
+    /* feeService(function (fees) {
+        $scope.fee = fees.send.level1 * 100000000;
+    }); */
 
 }]);
