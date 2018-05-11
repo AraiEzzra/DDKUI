@@ -11,16 +11,16 @@
                     </div>
                     <div class="modal-header clearfix">
                         <div>
-                            <h2>{{'Freeze ETP'|translate}}</h2>
+                            <h2>{{'Stake ETP'|translate}}</h2>
                         </div>
-                        <div><translate>Please enter the ETP Amount that you would like to freeze.</translate></div>
+                        <div><translate>Please enter the ETP Amount that you would like to Stake.</translate></div>
                     </div>
                     <div class="modal-body">
                         <form ng-submit="passcheck()">
                             <div class="field-padding">
                                 <div class="input-field">
                                     <input id="fAmount" type="text" ng-change="calFees(fAmount)" ng-model="fAmount" ng-focus="focus == 'fAmount'" ng-class="{'invalid': errorMessage.fAmount}">
-                                    <label for="fAmount"><translate>Freeze ETP Amount </translate></label>
+                                    <label for="fAmount"><translate>Stake ETP Amount </translate></label>
                                 </div>
                                 <span class="fee-text flat-text pull-right" ng-show="fAmount"><translate>Fee: {{fee | ETPFilter}} ETP</span>
                                 <span class="pass-error" ng-show="errorMessage.fAmount">{{errorMessage.fAmount}}</span>
@@ -42,7 +42,7 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze ETP' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake ETP' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -77,7 +77,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze ETP' | translate}}" ng-click="freezeOrder(secretPhrase)" class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake ETP' | translate}}" ng-click="freezeOrder(secretPhrase)" class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -113,7 +113,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze ETP' | translate}}" ng-click="freezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake ETP' | translate}}" ng-click="freezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

@@ -13,7 +13,7 @@
                     </div>
                     <div class="modal-header clearfix">
                         <div>
-                            <h2>{{'Send Freeze Order'|translate}}</h2>
+                            <h2>{{'Send Stake Order'|translate}}</h2>
                         </div>
                         <div>
                             <translate>Please enter the Recipient Address to which this order send.</translate>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="modal-body bordered top-margin-40">
                         <span class="send-info-text flat-text">
-                            <translate>Make sure you're sending freeze ETP to the right address. This action can't be undone later.</translate>
+                            <translate>Make sure you're sending staked ETP to the right address. This action can't be undone later.</translate>
                         </span>
                     </div>
                     <div class="modal-body bordered">
@@ -100,7 +100,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Send Freeze ETP' | translate}}" ng-click="sendFreezeOrder(secretPhrase)" class="btn-flat waves-blue"
+                                <input type="submit" value="{{'Send Stake ETP' | translate}}" ng-click="sendFreezeOrder(secretPhrase)" class="btn-flat waves-blue"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
@@ -137,7 +137,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze ETP' | translate}}" ng-click="sendFreezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake ETP' | translate}}" ng-click="sendFreezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
