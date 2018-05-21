@@ -118,7 +118,7 @@ angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$
             }
         });
 
-        $scope.fee = ($scope.myETPFrozen * fees.vote)*100000000/100;
+        $scope.fee = ($scope.myETPFrozen * fees.vote * 100000000)/100;
     });
 
 }]);
