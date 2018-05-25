@@ -33,19 +33,13 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
                 if (!resp.success) {
                     $scope.errorMessage = resp.error;
                 } else {
-                    var userInfo = {};
-                    Object.assign(userInfo, resp.userInfo);
-                    $http.post($rootScope.serverUrl +"/api/accounts/existingETPSUser", { userInfo: userInfo }).then(function (response) {
-                        if (response.data.success) {
-                            if (response.data.isMigrated) {
-                                $scope.errorMessage = 'User is already migrated';
-                            } else {
-                                $scope.newUser(userInfo);
-                            }
-                        } else {
-                            $scope.errorMessage = response.data.error;
-                        }
-                    });
+                    if(resp.userInfo.transferred_etp === 1){
+                        $scope.errorMessage = 'User is already migrated';
+                    }else{
+                        var userInfo = {};
+                        Object.assign(userInfo, resp.userInfo);
+                        $scope.newUser(userInfo);
+                    }
                 }
             })
             .error(function (err) {

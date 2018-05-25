@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$rootScope", "$http", "userService", "feeService", "$timeout", function ($scope, voteModal, $rootScope, $http, userService, feeService, $timeout) {
+angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$rootScope", "$http", "userService", "feeService", "$timeout", "$filter", function ($scope, voteModal, $rootScope, $http, userService, feeService, $timeout, $filter) {
 
     $scope.sending = false;
     $scope.passmode = false;
@@ -112,13 +112,14 @@ angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$
                     $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
                 }
                 $scope.myETPFrozen = (myETPFrozen);
+                $scope.fee = (resp.data.totalETPStaked.sum * fees.vote)/100;
             } else {
                 console.log(resp.data.error);
                 $scope.myETPFrozen = 0;
             }
         });
 
-        $scope.fee = ($scope.myETPFrozen * fees.vote)*100000000/100;
+        
     });
 
 }]);
