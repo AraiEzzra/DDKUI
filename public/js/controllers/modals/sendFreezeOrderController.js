@@ -70,7 +70,7 @@ angular.module('ETPApp').controller('sendFreezeOrderController', ['$scope', '$ro
 
         var data = {
             secret: secretPhrase,
-            frozeId: $scope.freezeId,
+            stakeId: $scope.stakeId,
             recipientId: $scope.recipientAddress,
             freezedAmount: $scope.freezedAmount
         };

@@ -43,7 +43,7 @@ angular.module('ETPApp').controller('stakeController', ['$scope', '$rootScope', 
     stakedAmount: gettextCatalog.getString('StakeAmount'),
     status: gettextCatalog.getString('Status'),
     startTime: gettextCatalog.getString('StartTime'),
-    matureTime: gettextCatalog.getString('MatureTime'),
+    VoteTimeRemain: gettextCatalog.getString('VoteTimeRemain'),
     monthRemain: gettextCatalog.getString('MonthRemain'),
     recipient: gettextCatalog.getString('Recipient'),
     action: gettextCatalog.getString('Action')
@@ -57,9 +57,8 @@ angular.module('ETPApp').controller('stakeController', ['$scope', '$rootScope', 
 
 
   $scope.sendFreezeOrder = function (id,freezedAmount) {
-
     $scope.sendFreezeOrderModal = sendFreezeOrderModal.activate({
-      freezeId: id,
+      stakeId: id,
       freezedAmount:freezedAmount,
       destroy: function () {
       }

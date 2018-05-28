@@ -43,7 +43,7 @@ angular.module('ETPApp').service("stakeService", function ($http, $filter, esCli
             var d2 = new Date(Date.UTC(year, (month - 1), day, 17, 0, 0, 0));
             return parseInt((d2.getTime() - d1.getTime()) / 1000);
           }
-
+          //FIXME: start/end Dates should be modified on the UI
           var startDate = '20-02-2018';
           var endDate = '21-02-2018';
           var startTime = calculateTimestamp(startDate);
