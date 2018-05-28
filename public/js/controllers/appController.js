@@ -584,8 +584,11 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
         if ($scope.myClass.length != 0) {
             $scope.classRemove();
         } else {
+            if($state.current.name=='main.dashboard') return;
             $scope.classAdd();
         }
-    };
+    }
 
 }]);
+
+
