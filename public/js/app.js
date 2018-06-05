@@ -77,6 +77,11 @@ ETPApp.config([
                 templateUrl: "/partials/blockchain.html",
                 controller: "blockchainController"
             })
+            .state('main.withdrawl', {
+                url: "/withdrawl",
+                templateUrl: "/partials/withdrawl.html",
+                controller: "withdrawlController"
+            })
             .state('existingETPSUser', {
                 url: "/existingETPSUser",
                 templateUrl: "/partials/existing-etps-user.html",

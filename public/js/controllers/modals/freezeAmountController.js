@@ -37,7 +37,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         }
 
         if (currency == null) {
-            return error('ETP amount can not be blank');
+            return error('DDK amount can not be blank');
         }
 
         if (parts.length == 1) {
@@ -45,7 +45,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
             fraction = '00000000';
         } else if (parts.length == 2) {
             if (parts[1].length > 8) {
-                return error('ETP amount must not have more than 8 decimal places');
+                return error('DDK amount must not have more than 8 decimal places');
             } else if (parts[1].length <= 8) {
                 // Less than eight decimal places
                 fraction = parts[1];
@@ -54,7 +54,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
                 fraction = parts[1].substring(0, 8);
             }
         } else {
-            return error('ETP amount must have only one decimal point');
+            return error('DDK amount must have only one decimal point');
         }
 
         // Pad to eight decimal places
@@ -64,7 +64,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
 
         // Check for zero amount
         if (amount == '0' && fraction == '00000000') {
-            return error('ETP amount can not be zero');
+            return error('DDK amount can not be zero');
         }
 
         // Combine whole with fractional part
@@ -73,7 +73,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         // In case there's a comma or something else in there.
         // At this point there should only be numbers.
         if (!/^\d+$/.test(result)) {
-            return error('ETP amount contains non-numeric characters');
+            return error('DDK amount contains non-numeric characters');
         }
 
         // Remove leading zeroes

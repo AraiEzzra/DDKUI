@@ -199,7 +199,7 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
     // end Transactions
 
 
-    /* For ETP Tansaction Per Day and ETP Price */
+    /* For DDK Tansaction Per Day and DDK Price */
     $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
     $scope.series = ['Series A'];
     $scope.data = [

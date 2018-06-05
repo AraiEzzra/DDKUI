@@ -9,7 +9,7 @@
                                 <translate>Close modal</translate>
                             </span>
                         </div>
-                        <span class="modal-log">ETP</span>
+                        <span class="modal-log">DDK</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -33,7 +33,7 @@
                             </div>
 
                             <span class="fee-text flat-text pull-right">
-                                <translate>Fee: {{fee | ETPFilter}} ETP</translate>
+                                <translate>Fee: {{fee | ETPFilter}} DDK</translate>
                             </span>
                             <p class="error-container" ng-show="errorMessage.recipient">
                                 <span class="pass-error">{{errorMessage.recipient}}</span>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="modal-body bordered top-margin-40">
                         <span class="send-info-text flat-text">
-                            <translate>Make sure you're sending freeze ETP to the right address. This action can't be undone later.</translate>
+                            <translate>Make sure you're sending freeze DDK to the right address. This action can't be undone later.</translate>
                         </span>
                     </div>
                     <div class="modal-body bordered">
@@ -100,7 +100,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Send Freeze ETP' | translate}}" ng-click="sendFreezeOrder(secretPhrase)" class="btn-flat waves-blue"
+                                <input type="submit" value="{{'Send Freeze DDK' | translate}}" ng-click="sendFreezeOrder(secretPhrase)" class="btn-flat waves-blue"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
@@ -111,7 +111,7 @@
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only"><translate>Close modal</translate></span>
                         </div>
-                        <span class="modal-log">ETP</span>
+                        <span class="modal-log">DDK</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -137,7 +137,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze ETP' | translate}}" ng-click="sendFreezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Freeze DDK' | translate}}" ng-click="sendFreezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

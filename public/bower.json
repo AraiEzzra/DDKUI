@@ -1,5 +1,5 @@
 {
-  "name": "ETP-ui",
+  "name": "DDK-UI",
   "version": "0.8.0",
   "dependencies": {
     "jquery": "=2.2.4",

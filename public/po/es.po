@@ -64,9 +64,9 @@ msgid "Add a new application"
 msgstr "Añadir nueva aplicación"
 
 #: partials/modals/multisignatureModal.html:46
-msgid "Add group members by typing in their Lisk address and pressing enter."
+msgid "Add group members by typing in their DDK address and pressing enter."
 msgstr ""
-"Añadir miembros de grupo escribiendo su dirección Lisk y pulsando enter."
+"Añadir miembros de grupo escribiendo su dirección DDK y pulsando enter."
 
 #: partials/modals/secondPassphraseModal.html:126
 msgid "ADD SECOND PASSPHRASE"
@@ -336,7 +336,7 @@ msgstr "COMISIÓN "
 #: partials/modals/registrationDelegateModal.html:23
 #: partials/modals/secondPassphraseModal.html:28
 #: partials/modals/sendTransaction.html:31 partials/modals/vote.html:25
-msgid "Fee: {{fee | liskFilter}} ETP"
+msgid "Fee: {{fee | liskFilter}} DDK"
 msgstr "Comision"
 
 #: partials/forging.html:74
@@ -454,23 +454,23 @@ msgid "LAUNCH"
 msgstr "COMENZAR"
 
 #: wallet.html:20
-msgid "Lisk - Blockchain Application Platform"
-msgstr "Lisk - Plataforma de Aplicaciones Blockchain"
+msgid "DDK - Blockchain Application Platform"
+msgstr "DDK - Plataforma de Aplicaciones Blockchain"
 
 #: js/controllers/delegatesController.js:158
 #: js/controllers/votedDelegatesController.js:117
 #: js/controllers/walletPendingsController.js:43
 #: partials/modals/multisignatureModal.html:52
-msgid "Lisk Address"
-msgstr "Dirección ETP"
+msgid "DDK Address"
+msgstr "Dirección DDK"
 
 #: partials/account.html:33
-msgid "Lisk Client"
-msgstr "Cliente Lisk"
+msgid "DDK Client"
+msgstr "Cliente DDK"
 
 #: partials/account.html:43
-msgid "Lisk Client Outdated"
-msgstr "Cliente Lisk Desactualizado"
+msgid "DDK Client Outdated"
+msgstr "Cliente DDK Desactualizado"
 
 #: js/controllers/dappController.js:7
 #: js/controllers/dappsCategoryController.js:7
@@ -514,12 +514,12 @@ msgid "Logout"
 msgstr "Cerrar sesión"
 
 #: partials/modals/sendTransaction.html:29
-msgid "ETP Amount"
-msgstr "Cantidad ETP"
+msgid "DDK Amount"
+msgstr "Cantidad DDK"
 
 #: partials/forging.html:11
-msgid "ETP Earned"
-msgstr "ETP Ganados"
+msgid "DDK Earned"
+msgstr "DDK Ganados"
 
 #: partials/modals/newUser.html:72
 msgid ""
@@ -557,10 +557,10 @@ msgstr ""
 
 #: partials/modals/sendTransaction.html:41
 msgid ""
-"Make sure you're sending ETP to the right address. This action can't be "
+"Make sure you're sending DDK to the right address. This action can't be "
 "undone later."
 msgstr ""
-"Asegúrese de que ha enviado ETP a la dirección correcta. Está acción no "
+"Asegúrese de que ha enviado DDK a la dirección correcta. Está acción no "
 "podrá ser revertida más adelante"
 
 #: js/controllers/modals/masterPassphraseModalController.js:9
@@ -696,10 +696,10 @@ msgstr "Transacciones Pendientes"
 #: partials/modals/multisignatureModal.html:107
 msgid ""
 "Please check your input below and go back if necessary. Double-check the "
-"group members, else you risk losing your ETP balance!"
+"group members, else you risk losing your DDK balance!"
 msgstr ""
 "Por favor revise su input debajo y vuelve atrás si es necesario.  Vuelve a "
-"verificar los miembros del grupo,  de lo contrario perderá su saldo ETP!"
+"verificar los miembros del grupo,  de lo contrario perderá su saldo DDK!"
 
 #: partials/modals/registrationDelegateModal.html:15
 msgid "Please choose a delegate name."
@@ -723,10 +723,10 @@ msgstr "Por favor introduzca la passpharse maestra para este nodo. "
 
 #: partials/modals/sendTransaction.html:15
 msgid ""
-"Please enter the Recipient Address and ETP Amount that you would like send "
+"Please enter the Recipient Address and DDK Amount that you would like send "
 "below."
 msgstr ""
-"Por favor introduzca la Dirección Destinataria y la cantidad ETP que le "
+"Por favor introduzca la Dirección Destinataria y la cantidad DDK que le "
 "gustaría enviar mas abajo."
 
 #: partials/modals/addDappModal.html:142 partials/modals/forgingModal.html:16
@@ -905,8 +905,8 @@ msgstr "enviar lisk"
 #: partials/delegates.html:120 partials/delegates.html:51
 #: partials/modals/sendTransaction.html:13 partials/modals/userInfo.html:28
 #: partials/votes.html:49
-msgid "Send ETP"
-msgstr "Enviar ETP"
+msgid "Send DDK"
+msgstr "Enviar DDK"
 
 #: js/controllers/transactionsController.js:63 partials/account.html:70
 msgid "Sender"
@@ -994,12 +994,12 @@ msgstr "Resumen "
 
 #: partials/modals/openDappModal.html:19
 msgid ""
-"The Lisk apps platform currently does not provide any protection against any "
+"The DDK apps platform currently does not provide any protection against any "
 "unauthorized system calls made from the running application. Therefore "
 "opening any untrusted applications is not yet advisable, and could "
 "potentially lead to loss of funds."
 msgstr ""
-"La plataforma Lisk apps actualmente no ofrece ninguna protección contra "
+"La plataforma DDK apps actualmente no ofrece ninguna protección contra "
 "llamadas del sistema no autorizadas realizadas por las aplicaciones en "
 "ejecución. Por lo tanto, abrir una aplicación no confiable aun no es "
 "aconsejable, ya que podría producir una perdida total de fondos.\n"
@@ -1007,13 +1007,13 @@ msgstr ""
 
 #: partials/modals/masterPassphraseModal.html:30
 msgid ""
-"The master passphrase is auto-generated upon first launching the Lisk "
+"The master passphrase is auto-generated upon first launching the DDK "
 "client. It can be found at the end of the config.json file. Therefore only "
 "node operators can install, launch or uninstall applications. Once "
 "applications are in a launched state, anyone is free to open and use them."
 msgstr ""
 "La passphrase maestra es generada automáticamente en el primer lanzamiento "
-"del cliente Lisk. Puede ser encontrada al final del archivo config.json. Por "
+"del cliente DDK. Puede ser encontrada al final del archivo config.json. Por "
 "lo tanto, sólo los operadores de nodos pueden instalar, desinstalar o "
 "ejecutar aplicaciones. Una vez lanzadas las aplicaciones, cualquiera es "
 "libre de abrirlas y utilizarlas."
@@ -1038,26 +1038,26 @@ msgstr ""
 msgid ""
 "This walkthrough will guide you through the necessary steps to create a "
 "multi-signature group. It's very important that you know what multi-"
-"signatures are, else you risk loosing your ETP balance.<br><br>A multi-"
+"signatures are, else you risk loosing your DDK balance.<br><br>A multi-"
 "signature group consists of N accounts, the one who created the group is the "
 "group owner. When the owner wants to make a transaction, M of N accounts "
 "within the group need to confirm it, otherwise the transaction will not be "
 "processed. The values M and N are specified in this walkthrough."
 "<br><br><b>Things you need to know for the multi-signature group setup:</"
 "b><br><br>• The number of group members (N).<br>• The number of needed "
-"confirmations (M).<br>• The addresses of the Lisk accounts you want to add "
+"confirmations (M).<br>• The addresses of the DDK accounts you want to add "
 "to the group."
 msgstr ""
 "Este tutorial le guiará a través de los pasos necesarios para crear un grupo "
 "multifirma. Es muy importante que sepas que es Multifirma, de lo contrario "
-"corre el riesgo de perder su saldo ETP.<br><br> Un grupo multifirma consta "
+"corre el riesgo de perder su saldo DDK.<br><br> Un grupo multifirma consta "
 "de N cuentas, el creador del grupo es el propietario del grupo. Cuando el "
 "propietario quiere hacer una transacción, M de N cuentas dentro del grupo "
 "necesitan confirmarlo, de lo contrario la transacción no será procesada. Los "
 "valores M y N se especifican en este tutorial.<br><br><b> Las cosas que "
 "necesita saber para la configuración de grupo multifirma:</b><br><br>• El "
 "número de miembros del grupo (N).<br>• El numero de confirmaciones "
-"necesarias (M).<br>• Las direcciones de las cuentas Lisk que desea añadir al "
+"necesarias (M).<br>• Las direcciones de las cuentas DDK que desea añadir al "
 "grupo."
 
 #: js/controllers/blockchainController.js:43

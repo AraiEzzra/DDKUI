@@ -3,14 +3,12 @@ require('angular');
 angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "multisignatureModal", 'gettextCatalog', '$location', function ($rootScope, $scope, $http, userService, $interval, multisignatureModal, gettextCatalog, $location) {
 
     $scope.checkTwoFactorStatus = function () {
-        console.log('checking 2fa status');
         $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {
             params: {
                 publicKey: userService.publicKey
             }
         })
             .then(function (resp) {
-                console.log('resp', resp);
                 if (resp.data.success) {
                     $scope.disable = true;
                 } else {
@@ -133,16 +131,13 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
 
     $scope.validateStep = function () {
         var stepIndex = $scope.getCurrentStepIndex();
-        //console.log('stepIndex : ', stepIndex);
         if (stepIndex === 0) {
             $scope.successMessage = {};
-            console.log('executing step 1');
             var data = {
                 publicKey: userService.publicKey
             };
             $http.post($rootScope.serverUrl + "/api/accounts/generateQRCode", data)
                 .then(function (resp) {
-                    console.log('resp : ', resp);
                     if (resp.data.success) {
                         $scope.dataUrl = resp.data.dataUrl;
                         $scope.successMessage.nextStep = 'Click Next to Continue';
@@ -182,12 +177,10 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
         }
         if (stepIndex === 2) {
             $scope.successMessage = {};
-            console.log('executing step 3');
             $scope.incrementStep();
         }
         if (stepIndex === 3) {
             $scope.successMessage = {};
-            console.log('executing step 4');
             // $scope.enableTwoFactor = function (twoFactor) {
             var data = {
                 publicKey: userService.publicKey,
@@ -195,26 +188,18 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
                 secret: $scope.settings.twoFactor.secret,
                 otp: $scope.settings.twoFactor.otp
             };
-            console.log('data : ', data);
             $http.post($rootScope.serverUrl + "/api/accounts/enableTwoFactor", data)
                 .then(function (resp) {
-                    console.log('resp : ', resp);
                     if (resp.data.success) {
                         $scope.twoFactorKey = resp.data.key
                         $scope.successMessage.nextStep = 'Google Authentication is enabled for : ' + userService.getAddress();
                         Materialize.toast('2FA Enabled', 3000, 'green white-text');
 
                         $scope.enable = false;
-                        console.log($scope.enable);
 
                         $scope.myVar = false;
-                        console.log($scope.myVar);
 
                         $scope.disable = true
-                        console.log($scope.disable);
-
-
-
 
                         $scope.presendError = false;
                         $scope.errorMessage = {};
@@ -240,13 +225,6 @@ angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope
                     $scope.enable = true;
                     $scope.disable = false;
                 }
-                /// console.log('resp', resp);
-
-
-                // console.log('resp', resp);
-
-                //$scope.myVarDisable = false;
-                //console.log('resp', resp);
             })
     }
 

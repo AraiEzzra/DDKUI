@@ -61,7 +61,7 @@
     <div class="header-wrapper top-header-section">
         <div class="nav-bar clearfix" id="header">
             <a ui-sref="main.account" class="log-box">
-                <div id="logo">ETP</div>
+                <div id="logo">DDK</div>
             </a>
             <div class="logo">
                 <button type="button" class="toggle-menu" ng-click="toggleMenu()">
@@ -84,11 +84,11 @@
             </div>
             <div id="top-menu">
                 <span id="balance" class="margin-right-10">
-                    <span>Available ETP</span>
+                    <span>Available DDK</span>
                     {{availableBalance | ETPFilter}}
                 </span>
                 <span id="balance" class="margin-right-10">
-                    {{unconfirmedBalance | ETPFilter}} ETP
+                    {{unconfirmedBalance | ETPFilter}} DDK
                 </span>
                 <a class="btn btn-blue-nav waves-effect waves-light margin-right-10" ng-click="freezeAmount()">
                     <translate>Freeze</translate>
@@ -321,6 +321,14 @@
                         <div class="nav-icon" id="stake-icon"></div>
                         <span class="menu-text">
                             <translate>Stake</translate>
+                        </span>
+                    </a>
+                </li>
+                <li ng-show="showMenuItem('main.withdrawl')" ui-sref-active="active">
+                    <a ui-sref="main.withdrawl" class="waves-effect waves-blue">
+                        <div class="nav-icon" id="stake-icon"></div>
+                        <span class="menu-text" ng-click="getWithdrawlStatus()">
+                            <translate>Withdrawl</translate>
                         </span>
                     </a>
                 </li>

@@ -156,7 +156,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         });
     }
  
-    /* For Your ETP Frozen */
+    /* For Your DDK Frozen */
     $scope.getMyETPFrozen = function () {
 
         if (($scope.rememberedPassphrase == undefined || $scope.rememberedPassphrase == false)) {
@@ -189,7 +189,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         });
     }
 
-    /* For total ETP staked by stakeholders */
+    /* For total DDK staked by stakeholders */
     $scope.getTotalETPStaked = function () {
         $http.get($rootScope.serverUrl + "/api/frogings/getTotalETPStaked")
         .then(function (resp) {
@@ -203,7 +203,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     }
 
     $scope.getCandles = function () {
-        $http.get("https://explorer.ETP.io/api/candles/getCandles")
+        $http.get("https://explorer.DDK.io/api/candles/getCandles")
         .then(function (response) {
             $scope.graphs.ETPPrice.data = (response.data && response.data.candles) ? [
                 response.data.candles.map(

@@ -418,22 +418,22 @@ msgid "Latest version"
 msgstr "Ultima versiune"
 
 #: wallet.html:20
-msgid "Lisk - Decentralized Application Platform"
-msgstr "Lisk - Platforma Aplicatiilor Descentralizate"
+msgid "DDK - Decentralized Application Platform"
+msgstr "DDK - Platforma Aplicatiilor Descentralizate"
 
 #: js/controllers/delegatesController.js:158
 #: js/controllers/votedDelegatesController.js:117
 #: js/controllers/walletPendingsController.js:43
-msgid "Lisk Address"
-msgstr "Adresa Lisk"
+msgid "DDK Address"
+msgstr "Adresa DDK"
 
 #: partials/account.html:33
-msgid "Lisk Client"
-msgstr "Client Lisk"
+msgid "DDK Client"
+msgstr "Client DDK"
 
 #: partials/account.html:43
-msgid "Lisk Client Outdated"
-msgstr "Clinet Lisk invechit"
+msgid "DDK Client Outdated"
+msgstr "Clinet DDK invechit"
 
 #: js/controllers/walletsController.js:7
 msgid "Loading Multi-Signature Groups"
@@ -884,7 +884,7 @@ msgstr "Pasul 2/4 - Specificatii"
 msgid "Step 3/3 - Confirmation"
 msgstr "Pasul 3/3 - Confirmare"
 
-# Storage Links or Lisk?
+# Storage Links or DDK?
 #: partials/modals/addDappModal.html:59
 msgid "Step 3/4 - Storage Links"
 msgstr "Pasul 3/4 - Stocheaza Links"
@@ -922,12 +922,12 @@ msgid ""
 "processed. The values M and N are specified in this walkthrough."
 "<br><br><b>Things you need to know for the multi-signature group setup:</"
 "b><br><br>• The number of group members (N).<br>• The number of needed "
-"confirmations (M).<br>• The addresses of the Lisk accounts you want to add "
+"confirmations (M).<br>• The addresses of the DDK accounts you want to add "
 "to the group."
 msgstr ""
 "Acest tutorial vă va ghida prin pașii necesari pentru a crea un grup de "
 "semnaturi multiple. Este foarte important să intelegeti ce inseamna termenul "
-"semnaturi-multiple, altfel riscați să pierdeți Lisk disponibil. <br> Un grup "
+"semnaturi-multiple, altfel riscați să pierdeți DDK disponibil. <br> Un grup "
 "de semnaturi multiple este format din conturi N, unde cel care a creat "
 "grupul este proprietarul grupului. În cazul în care proprietarul dorește să "
 "facă o tranzacție, M a conturilor N în cadrul grupului trebuie să-l "
@@ -935,7 +935,7 @@ msgstr ""
 "sunt specificate în acest tutorial. <br> <b> Lucruri pe care trebuie să "
 "știți pentru configurarea grupului semnatur-multiple:. </ B> <br> • Numărul "
 "de membri ai grupului ( N). <br> • Numărul confirmărilor necesare (M). <fie> "
-"• Adresele Lisk ale conturilor pe care doriți să le adăugați la grup."
+"• Adresele DDK ale conturilor pe care doriți să le adăugați la grup."
 
 #: js/controllers/blockchainController.js:43
 #: js/controllers/forgingController.js:116

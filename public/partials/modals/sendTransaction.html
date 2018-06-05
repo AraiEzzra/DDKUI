@@ -9,14 +9,14 @@
                                 <translate>Close modal</translate>
                             </span>
                         </div>
-                        <span class="modal-log">ETP</span>
+                        <span class="modal-log">DDK</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
-                            <h2>{{'Send ETP'|translate}}</h2>
+                            <h2>{{'Send DDK'|translate}}</h2>
                         </div>
                         <div>
-                            <translate>Please enter the Recipient Address and ETP Amount that you would like send below.</translate>
+                            <translate>Please enter the Recipient Address and DDK Amount that you would like send below.</translate>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -33,11 +33,11 @@
                                 <div class="input-field">
                                     <input id="amount" type="text" ng-model="amount" ng-focus="focus == 'amount'" ng-class="{'invalid': errorMessage.amount}">
                                     <label for="amount">
-                                        <translate>ETP Amount</translate>
+                                        <translate>DDK Amount</translate>
                                     </label>
                                 </div>
                                 <span class="fee-text flat-text pull-right">
-                                    <translate>Fee: {{fee | ETPFilter}} ETP</span>
+                                    <translate>Fee: {{fee | ETPFilter}} DDK</span>
                                 <span class="pass-error" ng-show="errorMessage.amount">{{errorMessage.amount}}</span>
                             </div>
                             <p class="error-container" ng-show="errorMessage.fromServer">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="modal-body bordered">
                         <span class="send-info-text flat-text">
-                            <translate>Make sure you're sending ETP to the right address. This action can't be undone later.</translate>
+                            <translate>Make sure you're sending DDK to the right address. This action can't be undone later.</translate>
                         </span>
                     </div>
                     <div class="modal-body bordered">
@@ -57,7 +57,7 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send ETP' | translate}}" ng-click="checkStatus()" class="btn-flat blue-link" ng-class="{'disabled': sending}"
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="checkStatus()" class="btn-flat blue-link" ng-class="{'disabled': sending}"
                                     ng-disabled="sending" />
                             </li>
                         </ul>
@@ -100,7 +100,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="OTPModalPopup()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send ETP' | translate}}" ng-click="sendTransaction(secretPhrase)" class="btn-flat waves-blue"
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase)" class="btn-flat waves-blue"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
@@ -113,7 +113,7 @@
                                 <translate>Close modal</translate>
                             </span>
                         </div>
-                        <span class="modal-log">ETP</span>
+                        <span class="modal-log">DDK</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -144,7 +144,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send ETP' | translate}}" ng-click="sendTransaction(secretPhrase, true)" class="btn-flat blue-link"
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase, true)" class="btn-flat blue-link"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
@@ -157,7 +157,7 @@
                                 <translate>Close modal</translate>
                             </span>
                         </div>
-                        <span class="modal-log">ETP</span>
+                        <span class="modal-log">DDK</span>
                     </div>
                     <div class="modal-header clearfix">
 

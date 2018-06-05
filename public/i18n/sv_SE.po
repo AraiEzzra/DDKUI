@@ -59,9 +59,9 @@ msgid "Account Verification"
 msgstr "Kontoverifikation"
 
 #: partials/modals/multisignatureModal.html:46
-msgid "Add group members by typing in their Lisk address and pressing enter."
+msgid "Add group members by typing in their DDK address and pressing enter."
 msgstr ""
-"Lägg till gruppmedlemmar genom att skriva in deras Lisk-adress och trycka "
+"Lägg till gruppmedlemmar genom att skriva in deras DDK-adress och trycka "
 "enter"
 
 #: partials/modals/secondPassphraseModal.html:126
@@ -331,8 +331,8 @@ msgstr "AVGIFT"
 #: partials/modals/registrationDelegateModal.html:23
 #: partials/modals/secondPassphraseModal.html:28
 #: partials/modals/sendTransaction.html:31 partials/modals/vote.html:25
-msgid "Fee: {{fee | liskFilter}} ETP"
-msgstr "Avgift: {{fee | liskFilter}} ETP"
+msgid "Fee: {{fee | liskFilter}} DDK"
+msgstr "Avgift: {{fee | liskFilter}} DDK"
 
 #: partials/forging.html:74
 msgid "Forged Blocks"
@@ -449,23 +449,23 @@ msgid "LAUNCH"
 msgstr "STARTA"
 
 #: wallet.html:22
-msgid "Lisk - Blockchain Application Platform"
-msgstr "Lisk - Blockchain Application Platform"
+msgid "DDK - Blockchain Application Platform"
+msgstr "DDK - Blockchain Application Platform"
 
 #: js/controllers/delegatesController.js:158
 #: js/controllers/votedDelegatesController.js:117
 #: js/controllers/walletPendingsController.js:43
 #: partials/modals/multisignatureModal.html:52
-msgid "Lisk Address"
-msgstr "Lisk-Adress"
+msgid "DDK Address"
+msgstr "DDK-Adress"
 
 #: partials/account.html:33
-msgid "Lisk Client"
-msgstr "Lisk-Klient"
+msgid "DDK Client"
+msgstr "DDK-Klient"
 
 #: partials/account.html:43
-msgid "Lisk Client Outdated"
-msgstr "Ej Senaste Lisk-klienten"
+msgid "DDK Client Outdated"
+msgstr "Ej Senaste DDK-klienten"
 
 #: js/controllers/dappController.js:7
 #: js/controllers/dappsCategoryController.js:7
@@ -509,12 +509,12 @@ msgid "Logout"
 msgstr "Logga ut"
 
 #: partials/modals/sendTransaction.html:29
-msgid "ETP Amount"
-msgstr "ETP-summa"
+msgid "DDK Amount"
+msgstr "DDK-summa"
 
 #: partials/forging.html:11
-msgid "ETP Earned"
-msgstr "ETP intjänade"
+msgid "DDK Earned"
+msgstr "DDK intjänade"
 
 #: partials/modals/newUser.html:72
 msgid ""
@@ -553,10 +553,10 @@ msgstr ""
 
 #: partials/modals/sendTransaction.html:41
 msgid ""
-"Make sure you're sending ETP to the right address. This action can't be "
+"Make sure you're sending DDK to the right address. This action can't be "
 "undone later."
 msgstr ""
-"Se till så att du skickar ETP till rätt adress. Denna handling kan inte "
+"Se till så att du skickar DDK till rätt adress. Denna handling kan inte "
 "ångras senare."
 
 #: js/controllers/modals/masterPassphraseModalController.js:9
@@ -691,10 +691,10 @@ msgstr "Väntande transaktioner"
 #: partials/modals/multisignatureModal.html:107
 msgid ""
 "Please check your input below and go back if necessary. Double-check the "
-"group members, else you risk losing your ETP balance!"
+"group members, else you risk losing your DDK balance!"
 msgstr ""
 "Vänligen kontrollera inmatningen nedanför och gå tillbaka om nödvändigt. "
-"Dubbelkolla gruppmedlemmarna, annars riskerar du att förlora din ETP-balans!"
+"Dubbelkolla gruppmedlemmarna, annars riskerar du att förlora din DDK-balans!"
 
 #: partials/modals/registrationDelegateModal.html:15
 msgid "Please choose a delegate name."
@@ -718,10 +718,10 @@ msgstr "Vänligen skriv in master-lösenfrasen för denna nod."
 
 #: partials/modals/sendTransaction.html:15
 msgid ""
-"Please enter the Recipient Address and ETP Amount that you would like send "
+"Please enter the Recipient Address and DDK Amount that you would like send "
 "below."
 msgstr ""
-"Vänligen skriv in Mottagarens Adress och ETP-belopp som du vill skicka nedan."
+"Vänligen skriv in Mottagarens Adress och DDK-belopp som du vill skicka nedan."
 
 #: partials/modals/addDappModal.html:142 partials/modals/forgingModal.html:16
 #: partials/modals/registrationDelegateModal.html:53
@@ -895,8 +895,8 @@ msgstr "skicka lisk"
 #: partials/delegates.html:120 partials/delegates.html:51
 #: partials/modals/sendTransaction.html:13 partials/modals/userInfo.html:28
 #: partials/votes.html:49
-msgid "Send ETP"
-msgstr "Skicka ETP"
+msgid "Send DDK"
+msgstr "Skicka DDK"
 
 #: js/controllers/transactionsController.js:63 partials/account.html:70
 msgid "Sender"
@@ -984,24 +984,24 @@ msgstr "Sammanfattning"
 
 #: partials/modals/openDappModal.html:19
 msgid ""
-"The Lisk apps platform currently does not provide any protection against any "
+"The DDK apps platform currently does not provide any protection against any "
 "unauthorized system calls made from the running application. Therefore "
 "opening any untrusted applications is not yet advisable, and could "
 "potentially lead to loss of funds."
 msgstr ""
-"Den här Lisk-applatformen erbjuder för närvarande inte något skydd mot "
+"Den här DDK-applatformen erbjuder för närvarande inte något skydd mot "
 "obehöriga systemanrop gjorda av programmet som körs. Att öppna ej pålitliga "
 "applikationer är därför inte rekommenderat, och kan potentiellt leda till "
 "förlust av tillgångar."
 
 #: partials/modals/masterPassphraseModal.html:30
 msgid ""
-"The master passphrase is auto-generated upon first launching the Lisk "
+"The master passphrase is auto-generated upon first launching the DDK "
 "client. It can be found at the end of the config.json file. Therefore only "
 "node operators can install, launch or uninstall applications. Once "
 "applications are in a launched state, anyone is free to open and use them."
 msgstr ""
-"Master-lösenfrasen är auto-genererad när du först startar Lisk-klienten. Du "
+"Master-lösenfrasen är auto-genererad när du först startar DDK-klienten. Du "
 "kan finna den i slutet av config.json-filen. Därav kan endast nod-operatörer "
 "installera, starta och avinstallera applikationer. När väl en applikation "
 "har startats kan vem som helst öppna och använda dem."
@@ -1026,25 +1026,25 @@ msgstr ""
 msgid ""
 "This walkthrough will guide you through the necessary steps to create a "
 "multi-signature group. It's very important that you know what multi-"
-"signatures are, else you risk loosing your ETP balance.<br><br>A multi-"
+"signatures are, else you risk loosing your DDK balance.<br><br>A multi-"
 "signature group consists of N accounts, the one who created the group is the "
 "group owner. When the owner wants to make a transaction, M of N accounts "
 "within the group need to confirm it, otherwise the transaction will not be "
 "processed. The values M and N are specified in this walkthrough."
 "<br><br><b>Things you need to know for the multi-signature group setup:</"
 "b><br><br>• The number of group members (N).<br>• The number of needed "
-"confirmations (M).<br>• The addresses of the Lisk accounts you want to add "
+"confirmations (M).<br>• The addresses of the DDK accounts you want to add "
 "to the group."
 msgstr ""
 "Denna genomgång kommer att guida dig genom de nödvändiga stegen för att "
 "skapa en multi-signaturgrupp . Det är mycket viktigt att du vet vad multi-"
-"signaturer är, annars riskerar du att förlora din ETP-balans.<br><br>En "
+"signaturer är, annars riskerar du att förlora din DDK-balans.<br><br>En "
 "multi-signaturgrupp består av N konton, den som skapade gruppen är gruppens "
 "ägare. När ägaren vill göra en transaktion, så måste M av N konton inom "
 "gruppen bekräfta det, annars kommer transaktionen inte att behandlas. "
 "Värdena M och N anges i denna genomgång.<br><br><b>Saker du behöver veta för "
 "upprättningen av multi-signaturgruppen:</b><br>• Antalet gruppmedlemmar (N)."
-"<br>• Antalet behövda bekräftelser (M).<br> • Adresserna för Lisk-kontona du "
+"<br>• Antalet behövda bekräftelser (M).<br> • Adresserna för DDK-kontona du "
 "vill lägga till i gruppen."
 
 #: js/controllers/blockchainController.js:43

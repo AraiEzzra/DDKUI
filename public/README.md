@@ -1,8 +1,8 @@
-# Lisk UI
+# DDK UI
 
-Lisk is a next generation crypto-currency and blockchain application platform, written entirely in JavaScript. For more information please refer to our website: https://lisk.io/.
+DDK is a next generation crypto-currency and blockchain application platform, written entirely in JavaScript. For more information please refer to our website: https://lisk.io/.
 
-This repository contains the [AngularJS](https://angularjs.org/) based user-interface submodule of the Lisk client.
+This repository contains the [AngularJS](https://angularjs.org/) based user-interface submodule of the DDK client.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
@@ -43,7 +43,7 @@ You can set the following cookies (e.g. using [EditThisCookies](http://www.editt
 
 ## License
 
-Copyright © 2016-2017 Lisk Foundation
+Copyright © 2016-2017 DDK Foundation
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -55,7 +55,7 @@ You should have received a copy of the [GNU General Public License](https://gith
 
 This program also incorporates work previously released with lisk-ui `0.7.0` (and earlier) versions under the [MIT License](https://opensource.org/licenses/MIT). To comply with the requirements of that license, the following permission notice, applicable to those parts of the code only, is included below:
 
-Copyright © 2016-2017 Lisk Foundation  
+Copyright © 2016-2017 DDK Foundation  
 Copyright © 2015 Crypti
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

@@ -5,7 +5,7 @@
                 <div class="modal-content">
                     <div class="modal-header clearfix">
                         <img class="account" src="/images/account.png">
-                        <h2 class="media-heading">{{'ETP USER'|translate}}</h2>
+                        <h2 class="media-heading">{{'DDK USER'|translate}}</h2>
 
                         <input id="accountAddress" class="clipboard" value="{{account.address}}" readonly>
 
@@ -24,7 +24,7 @@
                                 <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-target="#accountPublicKey" clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);"><i class="small material-icons">assignment</i><translate>Copy Public Key</translate></button>
                             </li>
                             <li>
-                                <button class="btn-flat btn-copy blue-link" ng-click="sendTransactionToUser()"><i class="mdi-content-send"></i><translate>Send ETP</translate></button>
+                                <button class="btn-flat btn-copy blue-link" ng-click="sendTransactionToUser()"><i class="mdi-content-send"></i><translate>Send DDK</translate></button>
                             </li>
                         </ul>
                     </div>
@@ -33,7 +33,7 @@
                             <ul class="list-group">
                                 <li class="list-group-item summary"><translate>Summary</translate></li>
                                 <li class="list-group-item bordered"><translate>Total Balance</translate>
-                                    <span class="pull-right small-text">{{account.unconfirmedBalance | ETPFilter }} ETP</span>
+                                    <span class="pull-right small-text">{{account.unconfirmedBalance | ETPFilter }} DDK</span>
                                 </li>
                                 <li class="list-group-item"><translate>USD Equivalent</translate>
                                     <span class="pull-right small-text">${{convertToUSD(account.unconfirmedBalance) || 0 | number: 2}}</span>
@@ -59,10 +59,10 @@
                                         <span class="pull-right small-text">{{transaction.confirmations}}</span>
                                     </li>
                                     <li class="list-group-item"><translate>Amount</translate>
-                                        <span class="pull-right small-text">{{transaction.amount / 100000000}} ETP</span>
+                                        <span class="pull-right small-text">{{transaction.amount / 100000000}} DDK</span>
                                     </li>
                                     <li class="list-group-item bordered"><translate>Fee</translate>
-                                        <span class="pull-right small-text">{{transaction.fee / 100000000}} ETP</span>
+                                        <span class="pull-right small-text">{{transaction.fee / 100000000}} DDK</span>
                                     </li>
                                     <li class="list-group-item"><translate>USD Equivalent</translate>
                                         <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
@@ -80,18 +80,18 @@
                                         <div class="transaction-path">
                                             <div class="transaction-part pull-left">
                                                 <a href="#" class="blue-link" ng-click="getAccountDetail(transaction.senderId)">{{transaction.senderId}}</a>
-                                                <span class="ETP">{{transaction.amount | ETPFilter}} ETP</span>
+                                                <span class="DDK">{{transaction.amount | ETPFilter}} DDK</span>
                                             </div>
                                             <div class="transaction-direction"></div>
                                             <div class="transaction-part pull-right">
                                                 <a href="#" class="blue-link" ng-click="getAccountDetail(transaction.recipientId)">{{transaction.recipientId
                                                 || ""}}</a>
-                                                <span class="ETP">{{transaction.amount | ETPFilter}} ETP</span>
+                                                <span class="DDK">{{transaction.amount | ETPFilter}} DDK</span>
                                             </div>
                                         </div>
                                         <div class="transaction-bottom">
-                                            <div class="fee"><translate>FEE</translate>: {{transaction.fee | ETPFilter}} ETP</div>
-                                            <div class="ETP">{{transaction.amount | ETPFilter}} ETP</div>
+                                            <div class="fee"><translate>FEE</translate>: {{transaction.fee | ETPFilter}} DDK</div>
+                                            <div class="DDK">{{transaction.amount | ETPFilter}} DDK</div>
                                             <div class="confirmations">{{transaction.confirmations || 0 }} <translate>CONFIRMATIONS</translate></div>
                                         </div>
                                     </li>

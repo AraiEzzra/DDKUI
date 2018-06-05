@@ -63,7 +63,6 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     function validateOTP(onValid) {
         $scope.errorMessage = {};
         if ($scope.otpNumber == '') {
-            console.log('Check1');
             $scope.errorMessage.otpNumber = 'No OTP supplied';
             $scope.presendError = true;
         }
@@ -108,19 +107,15 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.checkStatus = function () {
-        console.log('userService.publicKey : ', userService.publicKey);
         $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {
             params: {
                 publicKey: userService.publicKey
             }
         })
             .then(function (resp) {
-                console.log('resp', resp);
                 if (resp.data.success) {
-                    console.log("checkStatus success");
                     $scope.OTPModalPopup();
                 } else {
-                    console.log("checkStatus fail");
                     $scope.OTP = false;
                     $scope.passcheck();
                 }
@@ -144,9 +139,9 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         if (!string) {
             return;
         }
-        if (string[string.length - 1] == 'E') {
-            var isnum = /^\d+$/.test(string.substring(0, string.length - 1));
-            if (isnum && string.length - 1 >= 1 && string.length - 1 <= 20) {
+        if (string[0] == 'D') {
+            var isnum = /^\d+$/.test(string.substring(3, string.length));
+            if (isnum && string.length - 1 >= 1 && string.length - 3 <= 20) {
                 $scope.accountValid = true;
             } else {
                 $scope.accountValid = false;
@@ -182,7 +177,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         }
 
         if (currency == null) {
-            return error('ETP amount can not be blank');
+            return error('DDK amount can not be blank');
         }
 
         if (parts.length == 1) {
@@ -190,7 +185,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
             fraction = '00000000';
         } else if (parts.length == 2) {
             if (parts[1].length > 8) {
-                return error('ETP amount must not have more than 8 decimal places');
+                return error('DDK amount must not have more than 8 decimal places');
             } else if (parts[1].length <= 8) {
                 // Less than eight decimal places
                 fraction = parts[1];
@@ -199,7 +194,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
                 fraction = parts[1].substring(0, 8);
             }
         } else {
-            return error('ETP amount must have only one decimal point');
+            return error('DDK amount must have only one decimal point');
         }
 
         // Pad to eight decimal places
@@ -209,7 +204,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
         // Check for zero amount
         if (amount == '0' && fraction == '00000000') {
-            return error('ETP amount can not be zero');
+            return error('DDK amount can not be zero');
         }
 
         // Combine whole with fractional part
@@ -218,7 +213,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         // In case there's a comma or something else in there.
         // At this point there should only be numbers.
         if (!/^\d+$/.test(result)) {
-            return error('ETP amount contains non-numeric characters');
+            return error('DDK amount contains non-numeric characters');
         }
 
         // Remove leading zeroes
