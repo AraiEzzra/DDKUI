@@ -32,6 +32,7 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
                 token: $window.localStorage.getItem('token')
             }
         }).success(function (resp) {
+            console.log(resp.data.refreshToken);
             if(resp.data.refreshToken) {
                 $window.localStorage.setItem('token', resp.data.refreshToken);
             }
