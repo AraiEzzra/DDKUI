@@ -23,7 +23,8 @@
                                 </li>
                             </ul>
                             <div class="modal-body voting-fee">
-                                <span class="fee-text flat-text pull-right"><translate>Fee: {{fee | ETPFilter}} DDK</span>
+                                    <span class="fee-text flat-text pull-right" ng-if="fee !='0'"><translate>Fee: {{fee | ETPFilter}} ETP</span>
+                                    <span class="fee-text flat-text pull-right" ng-if="fee =='0'">Please Stake before vote/unvote</span>    
                             </div>
                             <div class="modal-body voting-error" ng-if="fromServer">
                                 <span class="pass-error">{{fromServer}}</span>

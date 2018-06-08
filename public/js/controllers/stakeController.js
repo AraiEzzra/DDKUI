@@ -40,10 +40,10 @@ angular.module('ETPApp').controller('stakeController', ['$scope', '$rootScope', 
     });
 
   $scope.tableStakes.cols = {
-    freezedAmount: gettextCatalog.getString('FreezeAmount'),
+    stakedAmount: gettextCatalog.getString('StakeAmount'),
     status: gettextCatalog.getString('Status'),
-    insertTime: gettextCatalog.getString('InsertTime'),
-    matureTime: gettextCatalog.getString('MatureTime'),
+    startTime: gettextCatalog.getString('StartTime'),
+    VoteTimeRemain: gettextCatalog.getString('VoteTimeRemain'),
     monthRemain: gettextCatalog.getString('MonthRemain'),
     recipient: gettextCatalog.getString('Recipient'),
     action: gettextCatalog.getString('Action')
@@ -57,9 +57,8 @@ angular.module('ETPApp').controller('stakeController', ['$scope', '$rootScope', 
 
 
   $scope.sendFreezeOrder = function (id,freezedAmount) {
-
     $scope.sendFreezeOrderModal = sendFreezeOrderModal.activate({
-      freezeId: id,
+      stakeId: id,
       freezedAmount:freezedAmount,
       destroy: function () {
       }

@@ -116,7 +116,7 @@ angular.module('ETPApp').service('delegateService', function ($http, $rootScope,
             }
         },
         getDelegate: function (publicKey, cb) {
-            $http.get($rootScope.serverUrl + "/api/delegates/get/", {params: {publicKey: publicKey}})
+            $http.get($rootScope.serverUrl + "/api/delegates/get", {params: {publicKey: publicKey}})
                 .then(function (response) {
                     if (response.data.success) {
                         response.data.delegate.active = delegates.isActiveRate(response.data.delegate.rate);
@@ -128,7 +128,7 @@ angular.module('ETPApp').service('delegateService', function ($http, $rootScope,
         },
         getCountedDelegate: function (publicKey, cb) {
             $q.all([
-                $http.get($rootScope.serverUrl + "/api/delegates/get/", {params: {publicKey: publicKey}}),
+                $http.get($rootScope.serverUrl + "/api/delegates/get", {params: {publicKey: publicKey}}),
                 $http.get($rootScope.serverUrl + "/api/delegates/count")
             ]).then(function(results) {
                 if (results[0].data.success) {

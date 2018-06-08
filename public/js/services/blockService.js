@@ -1,6 +1,21 @@
 require('angular');
 
-angular.module('ETPApp').service('blockService', function ($http, esClient) {
+angular.module('ETPApp').service('blockService', function ($http, esClient, $filter) {
+    function filterData(data, filter) {
+        return $filter('filter')(data, filter)
+      }
+    
+      function orderData(data, params) {
+        return params.sorting() ? $filter('orderBy')(data, params.orderBy()) : filteredData;
+      }
+    
+      function sliceData(data, params) {
+        return data.slice((params.page() - 1) * params.count(), params.page() * params.count())
+      }
+    
+      function transformData(data, filter, params) {
+        return sliceData(orderData(filterData(data, filter), params), params);
+      }
     // modified search with elasticsearch
     var blocks = {
         lastBlockId: null,
@@ -26,7 +41,7 @@ angular.module('ETPApp').service('blockService', function ($http, esClient) {
                 }
             });
         },
-        getBlocks: function (searchForBlock, $defer, params, filter, cb, publicKey, fromBlocks) {
+        getBlocks: function (searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
             blocks.searchForBlock = searchForBlock.trim();
             if (blocks.searchForBlock != '') {
                 this.getBlock(blocks.searchForBlock, function (response) {
@@ -44,7 +59,7 @@ angular.module('ETPApp').service('blockService', function ($http, esClient) {
                                     match: {
                                         "height": blocks.searchForBlock
                                     }
-                                },
+                                }
                             }
                         }, function (error, blockResponse, status) {
                             if (error) {
@@ -109,6 +124,52 @@ angular.module('ETPApp').service('blockService', function ($http, esClient) {
                                     cb();
                                     $defer.resolve([]);
                                 }
+                            });
+                        } else {
+                            esClient.search({
+                                index: 'blocks',
+                                type: 'blocks',
+                                body: {
+                                    "query": {
+                                        "bool": {
+                                            "must": [
+                                                {
+                                                    "match_all": {}
+                                                },
+
+                                                {
+                                                    "term": {
+                                                        "generatorId.keyword": address
+                                                    }
+                                                }
+                                            ],
+                                            "must_not": [],
+                                            "should": []
+                                        }
+                                    },
+                                    "from": 0,
+                                    "size": blocksResponse.hits.total,
+                                    "sort": [{ height: { order: 'desc' } }],
+                                    "aggs": {}
+                                }
+                            }, function (err, res) {
+
+                                
+
+                                
+                                
+                                var blocksData = [];
+                                res.hits.hits.forEach(function (block) {
+                                    blocksData.push(block._source);
+                                  });
+                                  if (blocksData != null) {
+                                    params.total(blocksData.length);
+                                    var filteredData = $filter('filter')(blocksData, filter);
+                                    var transformedData = transformData(blocksData, filter, params)
+                                    $defer.resolve(transformedData);
+                                  }
+                                  cb(null);
+
                             });
                         }
                     });

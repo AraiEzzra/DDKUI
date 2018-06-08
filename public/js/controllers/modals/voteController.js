@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$rootScope", "$http", "userService", "feeService", "$timeout", function ($scope, voteModal, $rootScope, $http, userService, feeService, $timeout) {
+angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$rootScope", "$http", "userService", "feeService", "$timeout", "$filter", function ($scope, voteModal, $rootScope, $http, userService, feeService, $timeout, $filter) {
 
     $scope.sending = false;
     $scope.passmode = false;
@@ -101,7 +101,24 @@ angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$
     }
 
     feeService(function (fees) {
-        $scope.fee = fees.vote;
+
+        $http.post($rootScope.serverUrl + "/api/frogings/getMyETPFrozen", { secret: $scope.rememberedPassphrase })
+        .then(function (resp) {
+            if (resp.data.success) {
+                var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
+
+                $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
+                if ($scope.stakeBalanceToShow[1]) {
+                    $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
+                }
+                $scope.myETPFrozen = (myETPFrozen);
+                $scope.fee = (resp.data.totalETPStaked.sum * fees.vote)/100;
+            } else {
+                console.log(resp.data.error);
+                $scope.myETPFrozen = 0;
+            }
+        });
+ 
     });
 
 }]);

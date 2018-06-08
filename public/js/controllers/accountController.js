@@ -101,6 +101,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 userService.unconfirmedBalance = account.unconfirmedBalance;
                 userService.secondPassphrase = account.secondSignature || account.unconfirmedSignature;
                 userService.unconfirmedPassphrase = account.unconfirmedSignature;
+                userService.totalFrozeAmount = account.totalFrozeAmount;
                 $scope.balance = userService.balance;
                 $scope.unconfirmedBalance = userService.unconfirmedBalance;
                 $scope.balanceToShow = $filter('decimalFilter')(userService.unconfirmedBalance);
@@ -109,8 +110,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 }
                 $scope.secondPassphrase = userService.secondPassphrase;
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
-                $scope.balanceDec = $scope.balance / 100000000;
-                $scope.balanceDecParseInt = parseInt($scope.balanceDec);
+                $scope.unconfirmedBalanceDec = $scope.unconfirmedBalance / 100000000;
             } else {
                 $scope.resetAppData();
             }
@@ -159,20 +159,11 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     /* For Your DDK Frozen */
     $scope.getMyETPFrozen = function () {
 
-        if (($scope.rememberedPassphrase == undefined || $scope.rememberedPassphrase == false)) {
-            $scope.rememberedPassphrase = $rootScope.secretPhrase;
-        }
-       
-        $http.post($rootScope.serverUrl + "/api/frogings/getMyETPFrozen", { secret: $scope.rememberedPassphrase })
-        .then(function (resp) {
-            if (resp.data.success) {
-                var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
-                $scope.myETPFrozen = parseInt(myETPFrozen);
-            } else {
-                console.log(resp.data.error);
-                $scope.myETPFrozen = 0;
-            }
-        });
+                $scope.myETPFrozen = userService.totalFrozeAmount / 100000000;
+                $scope.stakeBalanceToShow = $filter('decimalFilter')(userService.totalFrozeAmount);
+                if ($scope.stakeBalanceToShow[1]) {
+                    $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
+                } 
     }
 
 
@@ -195,15 +186,19 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         .then(function (resp) {
             if (resp.data.success) {
                 var totalETPStaked = resp.data.totalETPStaked.sum / 100000000;
-                $scope.totalETPStaked = parseInt(totalETPStaked);
+                $scope.totalETPStaked = (totalETPStaked);
+                $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
+                if ($scope.totalStakeBalanceToShow[1]) {
+                    $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
+                }
             } else {
                 console.log(resp.data.error);
             }
         });
     }
 
-    $scope.getCandles = function () {
-        $http.get("https://explorer.DDK.io/api/candles/getCandles")
+  /*   $scope.getCandles = function () {
+        $http.get("https://explorer.ETP.io/api/candles/getCandles")
         .then(function (response) {
             $scope.graphs.ETPPrice.data = (response.data && response.data.candles) ? [
                 response.data.candles.map(
@@ -213,7 +208,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 )
             ] : [];
         });
-    }
+    } */
 
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.balanceInterval);
@@ -257,8 +252,20 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         }
     });
 
+    $scope.$on('updateTotalStakeAmount', function (event, data) {
+        $scope.$$listeners.updateControllerData.splice(1);
+        if ((data.indexOf('main.dashboard') != -1 && $state.current.name == 'main.dashboard') || data.indexOf('main.transactions') != -1) {
+            $scope.updateAppView();
+        }
+    });
+
+    $scope.$on('updateTotalStakeAmount', function (ev, data) {
+        $scope.getAccount();
+        $scope.getTotalETPStaked();
+    });
+
     $scope.updateAppView();
-    $scope.getCandles();
+  /*   $scope.getCandles(); */
 
 
 }]);

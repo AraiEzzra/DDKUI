@@ -21,11 +21,17 @@ app.get('/', function (req, res) {
 });
 
 app.use(function (req, res, next) {
-    if (req.url.indexOf('/api/') === -1 && req.url.indexOf('/peer/') === -1) {
+
+    if (req.url.indexOf('/api/') === -1 && req.url.indexOf('/peer/') === -1 && req.url.indexOf('/referal') === -1) {
         return res.redirect('/');
     }
     next();
 });
+
+app.use(function (req, res, next) {
+    res.render('wallet.html', { layout: false });
+});
+
 
 app.listen(port, function() {
     console.log('server running on port : ', port);

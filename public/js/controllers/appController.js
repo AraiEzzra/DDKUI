@@ -109,7 +109,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
         'main.withdrawl',
 
     ];
-
+/*
     $scope.getPriceTicker = function () {
         $http.get("https://explorer.DDK.io/api/getPriceTicker")
             .then(function (response) {
@@ -117,9 +117,9 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
                 $scope.ETP_btc = Math.floor(response.data.tickers.DDK.BTC * 1000000) / 1000000;
                 $scope.ETP_usd = Math.floor(response.data.tickers.DDK.USD * 1000000) / 1000000;
             });
-    };
+    }; */
 
-    $scope.getVersion = function () {
+  /*   $scope.getVersion = function () {
         $http.get($rootScope.serverUrl + "/api/peers/version").then(function (response) {
             if (response.data.success) {
                 $scope.version = response.data.version;
@@ -132,7 +132,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
                 $scope.version = 'version error';
             }
         });
-    };
+    }; */
 
     $scope.convertToUSD = function (DDK) {
         return (DDK / 100000000) * $scope.ETP_usd;
@@ -566,8 +566,8 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getAppData();
-    $scope.getPriceTicker();
-    $scope.getVersion();
+   /*  $scope.getPriceTicker(); */
+   /*  $scope.getVersion(); */
     $scope.getMasterPassphrase();
     $timeout(function () {
         $scope.getVersion();

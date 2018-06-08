@@ -31,13 +31,10 @@
                             </p>
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="amount" type="text" ng-model="amount" ng-focus="focus == 'amount'" ng-class="{'invalid': errorMessage.amount}">
-                                    <label for="amount">
-                                        <translate>DDK Amount</translate>
-                                    </label>
+                                    <input id="amount" type="text" ng-change="calFees(amount)" ng-model="amount" ng-focus="focus == 'amount'" ng-class="{'invalid': errorMessage.amount}">
+                                    <label for="amount"><translate>DDK Amount</translate></label>
                                 </div>
-                                <span class="fee-text flat-text pull-right">
-                                    <translate>Fee: {{fee | ETPFilter}} DDK</span>
+                                <span class="fee-text flat-text pull-right" ng-show="amount"><translate>Fee: {{fee | ETPFilter}} DDK</span>
                                 <span class="pass-error" ng-show="errorMessage.amount">{{errorMessage.amount}}</span>
                             </div>
                             <p class="error-container" ng-show="errorMessage.fromServer">

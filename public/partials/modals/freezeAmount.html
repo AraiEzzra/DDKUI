@@ -11,18 +11,18 @@
                     </div>
                     <div class="modal-header clearfix">
                         <div>
-                            <h2>{{'Freeze DDK'|translate}}</h2>
+                            <h2>{{'Stake DDK'|translate}}</h2>
                         </div>
-                        <div><translate>Please enter the DDK Amount that you would like to freeze.</translate></div>
+                        <div><translate>Please enter the DDK Amount that you would like to Stake.</translate></div>
                     </div>
                     <div class="modal-body">
                         <form ng-submit="passcheck()">
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="fAmount" type="text" ng-model="fAmount" ng-focus="focus == 'fAmount'" ng-class="{'invalid': errorMessage.fAmount}">
-                                    <label for="fAmount"><translate>Freeze DDK Amount </translate></label>
+                                    <input id="fAmount" type="text" ng-change="calFees(fAmount)" ng-model="fAmount" ng-focus="focus == 'fAmount'" ng-class="{'invalid': errorMessage.fAmount}">
+                                    <label for="fAmount"><translate>Stake DDK Amount </translate></label>
                                 </div>
-                                <span class="fee-text flat-text pull-right"><translate>Fee: {{fee | ETPFilter}} DDK</span>
+                                <span class="fee-text flat-text pull-right" ng-show="fAmount"><translate>Fee: {{fee }} DDK</span>
                                 <span class="pass-error" ng-show="errorMessage.fAmount">{{errorMessage.fAmount}}</span>
                             </div>
                             <p class="error-container" ng-show="errorMessage.recipient">
@@ -42,7 +42,7 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze DDK' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -77,7 +77,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze DDK' | translate}}" ng-click="freezeOrder(secretPhrase)" class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase)" class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -113,7 +113,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze DDK' | translate}}" ng-click="freezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

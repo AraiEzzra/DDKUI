@@ -178,9 +178,13 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         }
     }
 
-    feeService(function (fees) {
-        $scope.fee = fees.froze;
-    });
+    $scope.calFees = function(fAmount) {
+        
+        feeService(function (fees) {
+            $scope.fee = ( fAmount * (fees.froze))/(100);
+            console.log($scope.fee);
+        });
+    };
 
     $scope.close = function () {
         if ($scope.destroy) {

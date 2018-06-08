@@ -13,7 +13,7 @@
                     </div>
                     <div class="modal-header clearfix">
                         <div>
-                            <h2>{{'Send Freeze Order'|translate}}</h2>
+                            <h2>{{'Send Stake Order'|translate}}</h2>
                         </div>
                         <div>
                             <translate>Please enter the Recipient Address to which this order send.</translate>
@@ -22,8 +22,8 @@
                     <div class="modal-body send-freeze-order">
                         <form ng-submit="passcheck()">
                             <div class="input-group app-addon" ng-hide="true">
-                                <input id="sender" ng-focus="focus == 'sender'" type="text" class="form-control" placeholder="{{'Freeze Id'|translate}}"
-                                    ng-model="freezeId" readonly>
+                                <input id="sender" ng-focus="focus == 'sender'" type="text" class="form-control" placeholder="{{'Stake Id'|translate}}"
+                                    ng-model="stakeId" readonly>
                             </div>
 
                             <div class="input-group app-addon">
@@ -137,7 +137,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Freeze DDK' | translate}}" ng-click="sendFreezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="sendFreezeOrder(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

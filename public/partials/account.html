@@ -49,40 +49,25 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 pr0 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/money-bag-with-dollar-symbol.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">
-            <span class="strong">{{balanceToShow[0] || 0}}
-              <span class="small">{{balanceToShow[1]}}</span>
-            </span>&nbsp;DDK</span>
-          <br>
-          <span>({{((balanceDecParseInt/circulatingSupply)*100).toFixed(2)}}%)</span>
-          <span class="info-box-text">{{'Your DDK Balance'|translate}}</span>
+    <div class="col-md-3 col-sm-6 col-xs-12 pl7 pr0 dashboard-info">
+      <div class="panel widget widget-brown">
+        <div class="panel-body">
+          <span class="icon-container"><span class="info-box-icon bg-blue"><img src="images/money-bag-with-dollar-symbol.png" width="32"></span></span>
+            <div class="info-box-content">
+                <span class="info-box-number"><span class="strong">{{balanceToShow[0] || 0}}<span class="small">{{balanceToShow[1]}}</span></span>&nbsp;ETP</span> <br><span>({{((unconfirmedBalanceDec/circulatingSupply)*100).toFixed(2)}}%)</span>
+                <span class="info-box-text">{{'Your ETP Balance'|translate}}</span>
+              </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/snowflake.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{myETPFrozen || 0}} DDK</span>
-          <br>
-          <span>({{totalETPStaked?((myETPFrozen/totalETPStaked)*100).toFixed(2):0}}%)</span>
-          <span class="info-box-text">{{'Your DDK Frozen'|translate}}</span>
+    <div class="col-md-3 col-sm-6 col-xs-12 pr7 dashboard-info">
+      <div class="panel widget widget-brown">
+        <div class="panel-body">
+          <span class="icon-container"><span class="info-box-icon bg-blue"><img src="images/snowflake.png" width="32"></span></span>
+            <div class="info-box-content">
+                <span class="info-box-number">{{stakeBalanceToShow[0] || 0}}<span class="small">{{stakeBalanceToShow[1]}}</span></span>&nbsp;ETP</span> <br><span>({{totalETPStaked?((myETPFrozen/totalETPStaked)*100).toFixed(2):0}}%)</span>
+                <span class="info-box-text">{{'Your ETP Staked'|translate}}</span>
+              </div>
         </div>
       </div>
     </div>
@@ -118,19 +103,14 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/moneylock.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalETPStaked || 0}} DDK</span>
-          <br>
-          <span class="info-box-text">{{'Total Stake Amount'|translate}}</span>
+    <div class="col-md-3 col-sm-6 col-xs-12 pl7 dashboard-info">
+      <div class="panel widget widget-brown">
+        <div class="panel-body">
+            <span class="icon-container"><span class="info-box-icon bg-blue"><img src="images/moneylock.png" width="32"></span></span>
+            <div class="info-box-content">
+                <span class="info-box-number">{{totalStakeBalanceToShow[0] || 0}}<span class="small">{{totalStakeBalanceToShow[1]}}</span></span>&nbsp;ETP</span><br>
+                <span class="info-box-text">{{'Total Stake Amount'|translate}}</span>
+              </div>
         </div>
       </div>
     </div>
@@ -150,51 +130,50 @@
           </span>
         </div>
       </div>
-      <div class="table-responsive">
-        <table class="table" id="transactions" ng-if="transactions.length">
-          <thead>
-            <tr class="head">
-              <th class="hide-in-1400">
-                <translate>Transaction ID</translate>
-              </th>
-              <th class="padding-in-1400">
-                <translate>Sender</translate>
-              </th>
-              <th>
-                <translate>Recipient</translate>
-              </th>
-              <th>
-                <translate>Time</translate>
-              </th>
-              <th>
-                <translate>Amount (Fee)</translate>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="transaction in transactions">
-              <td class="hide-in-1400">
-                <a href="#" ng-click="transactionInfo(transaction)" class="word-break-xs">{{transaction.id}}</a>
-              </td>
-              <td class="padding-in-1400">
-                <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
-              </td>
-              <td ng-show="transaction.type &lt;= 1">
-                <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
-              </td>
-              <td ng-show="transaction.type &gt; 1"></td>
-              <td>
-                {{transaction.timestamp | timeAgoFilter: false}}
-              </td>
-              <td>
-                <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                {{transaction.amount | ETPFilter}} ({{transaction.fee | ETPFilter}})
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table id="transactions" ng-if="transactions.length">
+        <thead>
+          <tr class="head">
+            <th class="hide-in-1400">
+              <translate>Transaction ID</translate>
+            </th>
+            <th class="padding-in-1400">
+              <translate>Sender</translate>
+            </th>
+            <th>
+              <translate>Recipient</translate>
+            </th>
+            <th>
+              <translate>Time</translate>
+            </th>
+            <th>
+              <translate>Amount (Fee)</translate>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="transaction in transactions">
+            <td class="hide-in-1400">
+              <a href="#" ng-click="transactionInfo(transaction)" class="word-break-xs">{{transaction.id}}</a>
+            </td>
+            <td class="padding-in-1400">
+              <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
+            </td>
+            <td ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+              <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
+            </td>
+            <td ng-show="(transaction.type &gt; 1) && (transaction.type &lt; 10)"></td>
+            <td>
+              {{transaction.timestamp | timeAgoFilter: false}}
+            </td>
+            <td>
+              <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+              <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
+              <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+              {{transaction.amount | ETPFilter}} ({{transaction.fee | ETPFilter}})
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <div class="panel-body empty-body" ng-if="!transactions.length">
         <!-- <div class="logo-grey"></div> -->
         <p class="empty-state-text">
