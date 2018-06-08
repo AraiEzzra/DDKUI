@@ -101,6 +101,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 userService.unconfirmedBalance = account.unconfirmedBalance;
                 userService.secondPassphrase = account.secondSignature || account.unconfirmedSignature;
                 userService.unconfirmedPassphrase = account.unconfirmedSignature;
+                userService.totalFrozeAmount = account.totalFrozeAmount;
                 $scope.balance = userService.balance;
                 $scope.unconfirmedBalance = userService.unconfirmedBalance;
                 $scope.balanceToShow = $filter('decimalFilter')(userService.unconfirmedBalance);
@@ -158,25 +159,11 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     /* For Your ETP Frozen */
     $scope.getMyETPFrozen = function () {
 
-        if (($scope.rememberedPassphrase == undefined || $scope.rememberedPassphrase == false)) {
-            $scope.rememberedPassphrase = $rootScope.secretPhrase;
-        }
-       
-        $http.post($rootScope.serverUrl + "/api/frogings/getMyETPFrozen", { secret: $scope.rememberedPassphrase })
-        .then(function (resp) {
-            if (resp.data.success) {
-                var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
-
-                $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
+                $scope.myETPFrozen = userService.totalFrozeAmount / 100000000;
+                $scope.stakeBalanceToShow = $filter('decimalFilter')(userService.totalFrozeAmount);
                 if ($scope.stakeBalanceToShow[1]) {
                     $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
-                }
-                $scope.myETPFrozen = (myETPFrozen);
-            } else {
-                console.log(resp.data.error);
-                $scope.myETPFrozen = 0;
-            }
-        });
+                } 
     }
 
 
@@ -210,7 +197,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         });
     }
 
-    $scope.getCandles = function () {
+  /*   $scope.getCandles = function () {
         $http.get("https://explorer.ETP.io/api/candles/getCandles")
         .then(function (response) {
             $scope.graphs.ETPPrice.data = (response.data && response.data.candles) ? [
@@ -221,7 +208,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 )
             ] : [];
         });
-    }
+    } */
 
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.balanceInterval);
@@ -265,8 +252,20 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         }
     });
 
+    $scope.$on('updateTotalStakeAmount', function (event, data) {
+        $scope.$$listeners.updateControllerData.splice(1);
+        if ((data.indexOf('main.dashboard') != -1 && $state.current.name == 'main.dashboard') || data.indexOf('main.transactions') != -1) {
+            $scope.updateAppView();
+        }
+    });
+
+    $scope.$on('updateTotalStakeAmount', function (ev, data) {
+        $scope.getAccount();
+        $scope.getTotalETPStaked();
+    });
+
     $scope.updateAppView();
-    $scope.getCandles();
+  /*   $scope.getCandles(); */
 
 
 }]);

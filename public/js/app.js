@@ -44,7 +44,7 @@ ETPApp.config([
             .state('main.stake', {
                 url: "/stake",
                 templateUrl: "/partials/stake.html",
-            	controller: "stakeController"
+                controller: "stakeController"
             })
             .state('main.settings', {
                 url: "/settings",
@@ -81,6 +81,12 @@ ETPApp.config([
                 templateUrl: "/partials/existing-etps-user.html",
                 controller: "existingETPSUserController"
             })
+            .state('referal', {
+                url: "/referal/:id",
+                reloadOnSearch: false,
+                templateUrl: "/partials/referal.html",
+                controller: "referalController"
+            })
             .state('passphrase', {
                 url: "/login",
                 templateUrl: "/partials/passphrase.html",
@@ -89,41 +95,45 @@ ETPApp.config([
             .state('loading', {
                 url: "/",
                 templateUrl: "/partials/loading.html"
-            }); 
+            });
     }
-]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout) {
+]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout, $stateParams) {
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'http://159.65.139.248:7000';
+    $rootScope.serverUrl = 'http://localhost:7000';
     $rootScope.defaultLoaderScreen = false;
+
     // render current logged-in user upon page refresh if currently logged-in
-    AuthService.getUserStatus()
-    .then(function () {
-        if (AuthService.isLoggedIn()) {
-             $timeout(function(){
-                    $state.go('main.dashboard');
-            },1000);
-        } else {
-            $timeout(function(){
-                $state.go('passphrase');
-            },1000);          
-        }
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        AuthService.getUserStatus()
+            .then(function () {
+                if (AuthService.isLoggedIn()) {
+                    $timeout(function () {
+                        if (toState.name != 'loading')
+                            $state.go(toState.name);
+                        else
+                            $state.go('main.dashboard');
+                    }, 1000);
+                } else {
+                    if (toState.name == 'referal') {
+                        $state.go('referal');
+                    } else if (toState.name == 'existingETPSUser') {
+                        $state.go('existingETPSUser');
+                    } else
+                        $state.go('passphrase');
+                }
+            });
     });
-    
+
     // user authentication upon page forward/back for currently logged-in user
     $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+
         AuthService.getUserStatus()
-        .then(function () {
-            if(toState.url == '/existingETPSUser'){
-                $state.go('existingETPSUser');
-            }else{
-                if (AuthService.isLoggedIn()) {
-                    $state.go(toState.name);
-                } else {
+            .then(function () {
+                if (!AuthService.isLoggedIn() && toState.url != '/referal/:id' && toState.url != '/existingETPSUser') {
                     $state.go('passphrase');
                 }
-            } 
-        });
-    }); 
+            });
+    });
 });

@@ -106,19 +106,19 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
         'main.multi',
         'main.explorer',
         'main.stake',
-
+        'referal'
     ];
 
-    $scope.getPriceTicker = function () {
+    /* $scope.getPriceTicker = function () {
         $http.get("https://explorer.ETP.io/api/getPriceTicker")
             .then(function (response) {
                 $scope.btc_usd = Math.floor(response.data.tickers.BTC.USD * 1000000) / 1000000;
                 $scope.ETP_btc = Math.floor(response.data.tickers.ETP.BTC * 1000000) / 1000000;
                 $scope.ETP_usd = Math.floor(response.data.tickers.ETP.USD * 1000000) / 1000000;
             });
-    };
+    }; */
 
-    $scope.getVersion = function () {
+  /*   $scope.getVersion = function () {
         $http.get($rootScope.serverUrl + "/api/peers/version").then(function (response) {
             if (response.data.success) {
                 $scope.version = response.data.version;
@@ -131,7 +131,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
                 $scope.version = 'version error';
             }
         });
-    };
+    }; */
 
     $scope.convertToUSD = function (ETP) {
         return (ETP / 100000000) * $scope.ETP_usd;
@@ -565,8 +565,8 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getAppData();
-    $scope.getPriceTicker();
-    $scope.getVersion();
+   /*  $scope.getPriceTicker(); */
+   /*  $scope.getVersion(); */
     $scope.getMasterPassphrase();
     $timeout(function () {
         $scope.getVersion();

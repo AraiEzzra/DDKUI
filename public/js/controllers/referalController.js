@@ -1,15 +1,19 @@
 require('angular');
 
-/* var config = require('../../../../config');
+/* var config = require('../../../config');
 var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort; */
 
-angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$http", "$rootScope", "newUserMigration", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, $rootScope, newUserMigration, userService, $state, viewFactory, gettextCatalog, $window) {
+angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams) {
 
+
+    console.log("stateParams", $stateParams.id);
+    var _referalId = $stateParams.id;
     $scope.step = 1;
     $scope.noMatch = false;
     $scope.view = viewFactory;
     $scope.view.loadingText = gettextCatalog.getString('Registering user');
     $scope.view.inLoading = false;
+
 
     $scope.activeLabel = function (pass) {
         return pass != '';
@@ -33,34 +37,21 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
         FS.saveAs(blob, "ETPPassphrase.txt");
     }
 
-    $scope.migrateData = function (data, address) {
-        //update database tables : mem_accounts and stakeOrder table
-        $http.post($rootScope.serverUrl + "/api/accounts/migrateData/", {
-            data: data,
-            address: address
-        }).then(function (resp) {
-
-        });
-
-    }
-
     $scope.login = function (pass) {
-        
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
-                    newUserMigration.deactivate();
+                    newUser.deactivate();
                     userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token, resp.data.account.totalFrozeAmount);
                     userService.setForging(resp.data.account.forging);
                     userService.setSecondPassphrase(resp.data.account.secondSignature);
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
-                    $scope.migrateData($scope.dataVar,resp.data.account.address);
                     $state.go('main.dashboard');
                 } else {
                     console.error("Login failed. Failed to open account.");
@@ -70,9 +61,42 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
     }
 
     $scope.close = function () {
-        newUserMigration.deactivate();
+        newUser.deactivate();
     }
 
     $scope.generatePassphrase();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }]);

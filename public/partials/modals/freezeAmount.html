@@ -22,7 +22,7 @@
                                     <input id="fAmount" type="text" ng-change="calFees(fAmount)" ng-model="fAmount" ng-focus="focus == 'fAmount'" ng-class="{'invalid': errorMessage.fAmount}">
                                     <label for="fAmount"><translate>Stake ETP Amount </translate></label>
                                 </div>
-                                <span class="fee-text flat-text pull-right" ng-show="fAmount"><translate>Fee: {{fee | ETPFilter}} ETP</span>
+                                <span class="fee-text flat-text pull-right" ng-show="fAmount"><translate>Fee: {{fee }} ETP</span>
                                 <span class="pass-error" ng-show="errorMessage.fAmount">{{errorMessage.fAmount}}</span>
                             </div>
                             <p class="error-container" ng-show="errorMessage.recipient">
