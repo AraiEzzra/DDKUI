@@ -1,7 +1,5 @@
 require('angular');
 
-/* var config = require('../../../../config');
-var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort; */
 
 angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$http", "$rootScope", "newUserMigration", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, $rootScope, newUserMigration, userService, $state, viewFactory, gettextCatalog, $window) {
 

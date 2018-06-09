@@ -1,7 +1,5 @@
 require('angular');
 
-/* var config = require('../../../config');
-var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort; */
 
 angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams) {
 

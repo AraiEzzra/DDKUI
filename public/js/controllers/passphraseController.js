@@ -1,7 +1,5 @@
 require('angular');
 
-/* var config = require('../../../config');
-var url = config.serverProtocol + '://' + config.serverHost + ':' + config.serverPort; */
 
 angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUser", 'gettextCatalog', '$cookies', '$window', function ($scope, $rootScope, $http, $state, userService, newUser, gettextCatalog, $cookies, $window) {
 
