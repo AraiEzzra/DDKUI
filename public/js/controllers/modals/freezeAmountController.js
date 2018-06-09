@@ -86,26 +86,12 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         return $scope.isCorrectValue(currency, true);
     }
 
-    function validateForm (onValid) {
-    //    var isAddress = /^[0-9]+[E|e]$/g;
-    //    var correctAddress = isAddress.test($scope.to);
-      //  $scope.errorMessage = {};
-
-        // if ($scope.to.trim() == '') {
-        //     $scope.errorMessage.recipient = 'Empty recipient';
-        //     $scope.presendError = true;
-        // } else {
-        //     if (correctAddress) {
-                if ($scope.isCorrectValue($scope.fAmount)) {
-                    return onValid();
-                } else {
-                    $scope.presendError = true;
-                }
-      //      } else {
-         //       $scope.errorMessage.recipient = 'Invalid recipient';
-            //    $scope.presendError = true;
-      //      }
-      //  }
+    function validateForm(onValid) {
+        if ($scope.isCorrectValue($scope.fAmount)) {
+            return onValid();
+        } else {
+            $scope.presendError = true;
+        }
     }
 
     $scope.passcheck = function (fromSecondPass) {
@@ -178,11 +164,10 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         }
     }
 
-    $scope.calFees = function(fAmount) {
-        
+    $scope.calFees = function (fAmount) {
+
         feeService(function (fees) {
-            $scope.fee = ( fAmount * (fees.froze))/(100);
-            console.log($scope.fee);
+            $scope.fee = ((parseFloat(fAmount) * (fees.froze)) / 100).toFixed(8);
         });
     };
 
