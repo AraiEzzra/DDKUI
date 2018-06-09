@@ -1,7 +1,5 @@
 require('angular');
 
-/* var config = require('../../../config');
-var url = config.serverProtocol + '://' + config.serverHost + ':' + config.serverPort; */
 
 angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUser", 'gettextCatalog', '$cookies', '$window', function ($scope, $rootScope, $http, $state, userService, newUser, gettextCatalog, $cookies, $window) {
 
@@ -49,7 +47,7 @@ angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootSco
         $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
             if (resp.data.success) {
                 $window.localStorage.setItem('token', resp.data.account.token);
-                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token);
+                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token, resp.data.account.totalFrozeAmount);
                 userService.setForging(resp.data.account.forging);
                 userService.setSecondPassphrase(resp.data.account.secondSignature || resp.data.account.unconfirmedSignature);
                 userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;

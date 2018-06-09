@@ -7,7 +7,7 @@
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only"><translate>Close modal</translate></span>
                         </div>
-                        <span class="modal-log">ETP</span>
+                        <span class="modal-log">DDK</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -19,7 +19,7 @@
                     <div class="scrolling" style="margin-left: 10px">
                         <div class="modal-body">
                             <div class="multi-info-text flat-text">
-                                <p translate>This walkthrough will guide you through the necessary steps to create a multi-signature group. It's very important that you know what multi-signatures are, else you risk loosing your ETP balance.<br><br>A multi-signature group consists of N accounts, the one who created the group is the group owner. When the owner wants to make a transaction, M of N accounts within the group need to confirm it, otherwise the transaction will not be processed. The values M and N are specified in this walkthrough.<br><br><b>Things you need to know for the multi-signature group setup:</b><br><br>• The number of group members (N).<br>• The number of needed confirmations (M).<br>• The addresses of the ETP accounts you want to add to the group.</p>
+                                <p translate>This walkthrough will guide you through the necessary steps to create a multi-signature group. It's very important that you know what multi-signatures are, else you risk loosing your DDK balance.<br><br>A multi-signature group consists of N accounts, the one who created the group is the group owner. When the owner wants to make a transaction, M of N accounts within the group need to confirm it, otherwise the transaction will not be processed. The values M and N are specified in this walkthrough.<br><br><b>Things you need to know for the multi-signature group setup:</b><br><br>• The number of group members (N).<br>• The number of needed confirmations (M).<br>• The addresses of the DDK accounts you want to add to the group.</p>
                             </div>
                         </div>
                     </div>
@@ -44,13 +44,13 @@
                     <div>
                         <h2>{{'Step 2/3 - Specify Group Members'|translate}}</h2>
                     </div>
-                    <div><translate>Add group members by typing in their ETP address and pressing enter.</translate></div>
+                    <div><translate>Add group members by typing in their DDK address and pressing enter.</translate></div>
                 </div>
                 <div class="modal-body">
                     <form ng-submit="addMember(member)">
                         <div class="input-group app-addon">
                             <span class="input-group-addon search"></span>
-                            <input ng-focus="focus == 'member'" id="member" type="text" class="form-control" placeholder="{{'ETP Address'|translate}}" ng-model="member">
+                            <input ng-focus="focus == 'member'" id="member" type="text" class="form-control" placeholder="{{'DDK Address'|translate}}" ng-model="member">
                             <span class="input-group-addon clear" ng-click="member='';"></span>
                         </div>
                         <span class="app-addon-error" style="margin-top: 3px;" ng-show="addingError">{{addingError}}</span>
@@ -105,7 +105,7 @@
                     <div>
                         <h2>{{'Step 3/3 - Confirmation'|translate}}</h2>
                     </div>
-                    <div><translate>Please check your input below and go back if necessary. Double-check the group members, else you risk losing your ETP balance!</translate></div>
+                    <div><translate>Please check your input below and go back if necessary. Double-check the group members, else you risk losing your DDK balance!</translate></div>
                 </div>
                 <div class="modal-body">
                     <ul class="owners-list" ng-class="{'add-border': totalCount}">
@@ -127,7 +127,7 @@
                             <span>{{sign}}</span>
                         </li>
                         <li>{{'Fee'|translate}}:
-                            <span>{{fee * (totalCount + 1) | ETPFilter}} ETP</span>
+                            <span>{{fee * (totalCount + 1) | ETPFilter}} DDK</span>
                     </ul>
                 </div>
                 <div class="modal-body" ng-show="errorMessage">

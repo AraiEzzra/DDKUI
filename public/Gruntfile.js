@@ -44,6 +44,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     "static/css/app.css": [
+                        "node_modules/imhere-angular-wizard/dist/css/imhere-angular-wizard.css",
                         "node_modules/angular-chart.js/dist/angular-chart.css",
                         "bower_components/materialize/dist/css/materialize.css",
                         "bower_components/bootstrap/dist/css/bootstrap.css",

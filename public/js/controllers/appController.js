@@ -106,23 +106,24 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
         'main.multi',
         'main.explorer',
         'main.stake',
+        'main.withdrawl',
 
     ];
-
+/*
     $scope.getPriceTicker = function () {
-        $http.get("https://explorer.ETP.io/api/getPriceTicker")
+        $http.get("https://explorer.DDK.io/api/getPriceTicker")
             .then(function (response) {
                 $scope.btc_usd = Math.floor(response.data.tickers.BTC.USD * 1000000) / 1000000;
-                $scope.ETP_btc = Math.floor(response.data.tickers.ETP.BTC * 1000000) / 1000000;
-                $scope.ETP_usd = Math.floor(response.data.tickers.ETP.USD * 1000000) / 1000000;
+                $scope.ETP_btc = Math.floor(response.data.tickers.DDK.BTC * 1000000) / 1000000;
+                $scope.ETP_usd = Math.floor(response.data.tickers.DDK.USD * 1000000) / 1000000;
             });
-    };
+    }; */
 
-    $scope.getVersion = function () {
+  /*   $scope.getVersion = function () {
         $http.get($rootScope.serverUrl + "/api/peers/version").then(function (response) {
             if (response.data.success) {
                 $scope.version = response.data.version;
-                $http.get("https://login.ETP.io/api/peers/version").then(function (response) {
+                $http.get("https://login.DDK.io/api/peers/version").then(function (response) {
                     $scope.latest = response.data.version;
                     $scope.diffVersion = compareVersion($scope.version, $scope.latest);
                 });
@@ -131,10 +132,10 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
                 $scope.version = 'version error';
             }
         });
-    };
+    }; */
 
-    $scope.convertToUSD = function (ETP) {
-        return (ETP / 100000000) * $scope.ETP_usd;
+    $scope.convertToUSD = function (DDK) {
+        return (DDK / 100000000) * $scope.ETP_usd;
     };
 
     $scope.clearSearch = function () {
@@ -565,8 +566,8 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getAppData();
-    $scope.getPriceTicker();
-    $scope.getVersion();
+   /*  $scope.getPriceTicker(); */
+   /*  $scope.getVersion(); */
     $scope.getMasterPassphrase();
     $timeout(function () {
         $scope.getVersion();
@@ -584,8 +585,11 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
         if ($scope.myClass.length != 0) {
             $scope.classRemove();
         } else {
+            if($state.current.name=='main.dashboard') return;
             $scope.classAdd();
         }
-    };
+    }
 
 }]);
+
+

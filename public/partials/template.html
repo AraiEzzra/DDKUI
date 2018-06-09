@@ -61,7 +61,7 @@
     <div class="header-wrapper top-header-section">
         <div class="nav-bar clearfix" id="header">
             <a ui-sref="main.account" class="log-box">
-                <div id="logo">ETP</div>
+                <div id="logo">DDK</div>
             </a>
             <div class="logo">
                 <button type="button" class="toggle-menu" ng-click="toggleMenu()">
@@ -72,7 +72,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 id="title">
+                <h1 id="title" class="des-title">
                     <span class="title-icon" ng-show="view.page.previous" ng-click="goToPrevious()">
                         <span class="sr-only">
                             <translate>Go to previous page</translate>
@@ -84,11 +84,11 @@
             </div>
             <div id="top-menu">
                 <span id="balance" class="margin-right-10">
-                    <span>Available ETP</span>
+                    <span>Available DDK</span>
                     {{availableBalance | ETPFilter}}
                 </span>
                 <span id="balance" class="margin-right-10">
-                    {{unconfirmedBalance | ETPFilter}} ETP
+                    {{unconfirmedBalance | ETPFilter}} DDK
                 </span>
                 <a class="btn btn-blue-nav waves-effect waves-light margin-right-10" ng-click="freezeAmount()">
                     <translate>Stake</translate>
@@ -143,6 +143,14 @@
             </div>
 
         </div>
+        <h1 id="title" class="mob-title">
+            <span class="title-icon" ng-show="view.page.previous" ng-click="goToPrevious()">
+               <span class="sr-only">
+                    <translate>Go to previous page</translate>
+               </span>
+            </span>
+            {{view.page.title}}
+        </h1>
         <!--div class="search-bar" ng-show="view.bar.showTransactionsSearchBar">
            <div class="search-toggle" ng-if="searchTransactions.searchForTransaction">
               <i ng-click="clearSearch()" class="mdi-content-clear small"></i>
@@ -232,7 +240,7 @@
         </div>
         <!-- Sidebar -->
         <!-- <div id="sidebar-wrapper" ng-class="{test: obj.value1 == 'someothervalue'}"> -->
-        <div id="sidebar-wrapper" ng-class="myClass">
+        <div id="sidebar-wrapper" class="abc" ng-class="myClass">
             <div class="account-block">
                 <div class="icon">
                     <img src="/images/account.png" alt="Account">
@@ -319,6 +327,14 @@
                         <div class="nav-icon" id="stake-icon"></div>
                         <span class="menu-text">
                             <translate>Stake</translate>
+                        </span>
+                    </a>
+                </li>
+                <li ng-show="showMenuItem('main.withdrawl')" ui-sref-active="active">
+                    <a ui-sref="main.withdrawl" class="waves-effect waves-blue">
+                        <div class="nav-icon" id="stake-icon"></div>
+                        <span class="menu-text" ng-click="getWithdrawlStatus()">
+                            <translate>Withdrawl</translate>
                         </span>
                     </a>
                 </li>

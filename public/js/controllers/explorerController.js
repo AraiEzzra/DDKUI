@@ -121,7 +121,6 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
                 },
             }
         }, function (err, res) {
-            console.log('block res : ', res.hits.total);
             if(!err) {
                 $scope.blockchainHeight = res.hits.total;
             }
@@ -140,7 +139,6 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
                 },
             }
         }, function (err, res) {
-            console.log('trs res : ', res.hits.total);
             if(!err) {
                 $scope.totalTransaction = res.hits.total;
             }
@@ -201,7 +199,7 @@ angular.module('ETPApp').controller('explorerController', ['$scope', '$timeout',
     // end Transactions
 
 
-    /* For ETP Tansaction Per Day and ETP Price */
+    /* For DDK Tansaction Per Day and DDK Price */
     $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
     $scope.series = ['Series A'];
     $scope.data = [

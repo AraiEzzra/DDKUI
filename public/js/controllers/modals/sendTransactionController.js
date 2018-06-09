@@ -13,10 +13,6 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.focus = $scope.to ? 'amount' : 'to';
     $scope.presendError = false;
 
-    $scope.submit = function () {
-        console.log('Transaction sent');
-    };
-
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
 
     Number.prototype.roundTo = function (digitsCount) {
@@ -42,8 +38,8 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         return number.roundTo(digitsCount).valueOf();
     }
 
-    function validateForm (onValid) {
-        var isAddress = /^[0-9]+[E|e]$/g;
+    function validateForm(onValid) {
+        var isAddress = /^[DDK|ddk]+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.to);
         $scope.errorMessage = {};
 
@@ -64,7 +60,17 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         }
     }
 
-    $scope.passcheck = function (fromSecondPass) {
+    function validateOTP(onValid) {
+        $scope.errorMessage = {};
+        if ($scope.otpNumber == '') {
+            $scope.errorMessage.otpNumber = 'No OTP supplied';
+            $scope.presendError = true;
+        }
+        return onValid();
+    }
+
+
+    $scope.passcheck = function (fromSecondPass, otp) {
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -76,7 +82,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
             return;
         }
         if ($scope.rememberedPassphrase) {
-            validateForm(function () {
+            validateOTP(function () {
                 $scope.presendError = false;
                 $scope.errorMessage = {};
                 $scope.sendTransaction($scope.rememberedPassphrase);
@@ -92,6 +98,35 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         }
     }
 
+    $scope.OTPModalPopup = function () {
+        validateForm(function () { });
+
+        if (!$scope.presendError) {
+            $scope.OTP = true;
+        }
+    }
+
+    $scope.checkStatus = function () {
+        $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {
+            params: {
+                publicKey: userService.publicKey
+            }
+        })
+            .then(function (resp) {
+                if (resp.data.success) {
+                    $scope.OTPModalPopup();
+                } else {
+                    $scope.OTP = false;
+                    $scope.passcheck();
+                }
+            })
+
+
+    }
+
+
+
+
     $scope.close = function () {
         if ($scope.destroy) {
             $scope.destroy();
@@ -101,14 +136,12 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
     $scope.accountChanged = function (e) {
         var string = $scope.to;
-
         if (!string) {
             return;
         }
-
-        if (string[string.length - 1] == 'E') {
-            var isnum = /^\d+$/.test(string.substring(0, string.length - 1));
-            if (isnum && string.length - 1 >= 1 && string.length - 1 <= 20) {
+        if (string[0] == 'D') {
+            var isnum = /^\d+$/.test(string.substring(3, string.length));
+            if (isnum && string.length - 1 >= 1 && string.length - 3 <= 20) {
                 $scope.accountValid = true;
             } else {
                 $scope.accountValid = false;
@@ -120,9 +153,9 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
     $scope.getCurrentFee = function () {
         $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
-                $scope.currentFee = resp.data.fee;
-                $scope.fee = resp.data.fee;
-            });
+            $scope.currentFee = resp.data.fee;
+            $scope.fee = resp.data.fee;
+        });
     }
 
     $scope.isCorrectValue = function (currency, throwError) {
@@ -132,19 +165,19 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
         if (!throwError) throwError = false;
 
-        function error (message) {
+        function error(message) {
             $scope.errorMessage.amount = message;
 
             if (throwError) {
-              throw $scope.errorMessage.amount;
+                throw $scope.errorMessage.amount;
             } else {
-              console.error(message);
-              return false;
+                console.error(message);
+                return false;
             }
         }
 
         if (currency == null) {
-            return error('ETP amount can not be blank');
+            return error('DDK amount can not be blank');
         }
 
         if (parts.length == 1) {
@@ -152,7 +185,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
             fraction = '00000000';
         } else if (parts.length == 2) {
             if (parts[1].length > 8) {
-                return error('ETP amount must not have more than 8 decimal places');
+                return error('DDK amount must not have more than 8 decimal places');
             } else if (parts[1].length <= 8) {
                 // Less than eight decimal places
                 fraction = parts[1];
@@ -161,7 +194,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
                 fraction = parts[1].substring(0, 8);
             }
         } else {
-            return error('ETP amount must have only one decimal point');
+            return error('DDK amount must have only one decimal point');
         }
 
         // Pad to eight decimal places
@@ -171,7 +204,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
         // Check for zero amount
         if (amount == '0' && fraction == '00000000') {
-            return error('ETP amount can not be zero');
+            return error('DDK amount can not be zero');
         }
 
         // Combine whole with fractional part
@@ -180,12 +213,11 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         // In case there's a comma or something else in there.
         // At this point there should only be numbers.
         if (!/^\d+$/.test(result)) {
-            return error('ETP amount contains non-numeric characters');
+            return error('DDK amount contains non-numeric characters');
         }
 
         // Remove leading zeroes
         result = result.replace(/^0+/, '');
-
         return parseInt(result);
     }
 
@@ -198,20 +230,18 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.sendTransaction = function (secretPhrase, withSecond) {
-
         if ($scope.secondPassphrase && !withSecond) {
             $scope.checkSecondPass = true;
             $scope.focus = 'secondPhrase';
             return;
         }
-
         $scope.errorMessage = {};
-
         var data = {
             secret: secretPhrase,
             amount: $scope.convertETP($scope.amount),
             recipientId: $scope.to,
-            publicKey: userService.publicKey
+            publicKey: userService.publicKey,
+            otp: $scope.otp
         };
 
         if ($scope.secondPassphrase) {
@@ -223,10 +253,8 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
         if (!$scope.sending) {
             $scope.sending = true;
-
             $http.put($rootScope.serverUrl + '/api/transactions', data).then(function (resp) {
                 $scope.sending = false;
-
                 if (resp.data.error) {
                     Materialize.toast('Transaction error', 3000, 'red white-text');
                     $scope.errorMessage.fromServer = resp.data.error;
@@ -244,14 +272,13 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.calFees = function (amount) {
 
         feeService(function (fees) {
-            if (amount < 101) {
-                $scope.fee = (amount * fees.send.level1 * 100000000) / 100;
-            } else if (amount > 100 && amount < 1001) {
-                $scope.fee = (amount * fees.send.level2 * 100000000) / 100;
+            if (amount <= 100) {
+                $scope.fee = (amount * (fees.send.level1 * 100000000)) / 100;
+            } else if (amount > 100 && amount <= 1000) {
+                $scope.fee = (amount * (fees.send.level2 * 100000000)) / 100;
             } else {
-                $scope.fee = (amount * fees.send.level3 * 100000000) / 100;
+                $scope.fee = (amount * (fees.send.level3 * 100000000)) / 100;
             }
-
         });
     };
 

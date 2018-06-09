@@ -12,6 +12,7 @@ require('../node_modules/ng-table/dist/ng-table.js');
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
 
 
+
 Mnemonic = require('bitcore-mnemonic');
 
 ETPApp = angular.module('ETPApp', ['ui.router', 'btford.modal', 'ngCookies', 'ngTable', 'ngAnimate', 'chart.js', 'btford.socket-io', 'ui.bootstrap', 'angular.filter', 'gettext', 'elasticsearch']);
@@ -76,13 +77,19 @@ ETPApp.config([
                 templateUrl: "/partials/blockchain.html",
                 controller: "blockchainController"
             })
+            .state('main.withdrawl', {
+                url: "/withdrawl",
+                templateUrl: "/partials/withdrawl.html",
+                controller: "withdrawlController"
+            })
             .state('existingETPSUser', {
                 url: "/existingETPSUser",
                 templateUrl: "/partials/existing-etps-user.html",
                 controller: "existingETPSUserController"
             })
             .state('referal', {
-                url: "/referal",
+                url: "/referal/:id",
+                reloadOnSearch: false,
                 templateUrl: "/partials/referal.html",
                 controller: "referalController"
             })
@@ -96,10 +103,11 @@ ETPApp.config([
                 templateUrl: "/partials/loading.html"
             });
     }
-]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout) {
+]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout, $stateParams) {
     languageService();
     clipboardService();
     $rootScope.$state = $state;
+    //$rootScope.serverUrl = 'http://159.65.139.248:7000';
     $rootScope.serverUrl = 'http://localhost:7000';
     $rootScope.defaultLoaderScreen = false;
 
@@ -115,12 +123,12 @@ ETPApp.config([
                             $state.go('main.dashboard');
                     }, 1000);
                 } else {
-                    $timeout(function () {
-                        if (toState.name == 'referal')
-                            $state.go('referal');
-                        else
-                            $state.go('passphrase');
-                    }, 1000);
+                    if (toState.name == 'referal') {
+                        $state.go('referal');
+                    } else if (toState.name == 'existingETPSUser') {
+                        $state.go('existingETPSUser');
+                    } else
+                        $state.go('passphrase');
                 }
             });
     });
@@ -130,7 +138,7 @@ ETPApp.config([
 
         AuthService.getUserStatus()
             .then(function () {
-                if (!AuthService.isLoggedIn() && toState.url != '/referal' && toState.url != '/existingETPSUser') {
+                if (!AuthService.isLoggedIn() && toState.url != '/referal/:id' && toState.url != '/existingETPSUser') {
                     $state.go('passphrase');
                 }
             });

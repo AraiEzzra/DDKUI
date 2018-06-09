@@ -127,7 +127,7 @@ angular.module('ETPApp').controller('votedDelegatesController', ['$scope', '$roo
     $scope.tableMyDelegates.cols = {
         rate : gettextCatalog.getString('Rank'),
         username : gettextCatalog.getString('Name'),
-        address : gettextCatalog.getString('ETP Address'),
+        address : gettextCatalog.getString('DDK Address'),
         productivity : gettextCatalog.getString('Uptime'),
         vote : gettextCatalog.getString('Approval')
     };

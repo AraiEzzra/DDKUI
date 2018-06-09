@@ -1,0 +1,23 @@
+<div class="container" ng-controller="templateController">
+    <div class="row">
+        <div class="error-notice">
+            <div ng-repeat="rule in rules" class="oaerror info">
+                <div ng-if="rule < errCode - 1">
+                    <strong>Rule {{rule + 1}}</strong> {{errDescription[rule]}}
+                    <span class="checkedwithdrawl"></span>
+                </div>
+                <div ng-if="rule >= errCode - 1">
+                    <strong>Rule {{rule + 1}}</strong> {{errDescription[rule]}}
+                    <span class="uncheckedwithdrawl"></span>
+                </div>
+            </div>
+        </div>
+        <p class="error-container" ng-show="errorMessage.failedRule">
+            <span class="pass-error">{{errorMessage.failedRule}}</span>
+        </p>
+        <p class="error-container" ng-show="errorMessage.fromServer">
+            <span class="pass-error">{{errorMessage.fromServer}}</span>
+        </p>
+        <button ng-click="validateGroupBonusRules(allChecked)" class="button button-primary">Withdrawl</button>
+    </div>
+</div>

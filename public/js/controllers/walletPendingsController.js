@@ -40,7 +40,7 @@ angular.module('ETPApp').controller('walletPendingsController', ['$scope', '$roo
     });
 
     $scope.tableTransactions.cols = {
-        wallet : gettextCatalog.getString('ETP Address'),
+        wallet : gettextCatalog.getString('DDK Address'),
         transactionId : gettextCatalog.getString('Transaction ID'),
         recipientId : gettextCatalog.getString('Recipient'),
         timestamp : gettextCatalog.getString('Time'),
