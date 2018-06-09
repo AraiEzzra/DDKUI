@@ -39,7 +39,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     function validateForm(onValid) {
-        var isAddress = /^[0-9]+[E|e]$/g;
+        var isAddress = /^[DDK|ddk]+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.to);
         $scope.errorMessage = {};
 
@@ -272,14 +272,13 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.calFees = function (amount) {
 
         feeService(function (fees) {
-            if (amount < 101) {
+            if (amount <= 100) {
                 $scope.fee = (amount * (fees.send.level1 * 100000000)) / 100;
-            } else if (amount > 100 && amount < 1001) {
+            } else if (amount > 100 && amount <= 1000) {
                 $scope.fee = (amount * (fees.send.level2 * 100000000)) / 100;
             } else {
                 $scope.fee = (amount * (fees.send.level3 * 100000000)) / 100;
             }
-
         });
     };
 
