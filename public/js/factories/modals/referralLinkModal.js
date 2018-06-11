@@ -1,7 +1,4 @@
 
-
-
-
 require('angular');
 
 angular.module('ETPApp').factory('referralLinkModal', function (btfModal) {
