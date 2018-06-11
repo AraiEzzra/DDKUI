@@ -410,11 +410,10 @@
                                 <div class="modal-body clearfix">
                                     <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                         <div class="input-field passphraseGeneration">
-                                                <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
                                             <textarea id="repeatPassphrase" class="materialize-textarea" ng-trim="false" ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}" autofocus></textarea>
                                             <label for="repeatPassphrase" ng-class="{'active':activeLabel(repeatPassphrase)}"><translate>Passphrase</translate></label>
                                         </div>
-                                        <span class="pass-error" style="margin-top: 0;" ng-show="noMatch"><translate>The passphrase entered doesn't match with the one generated before. Please go back and generate a new one.</translate></span>                                        
+                                        <span class="pass-error" style="margin-top: 0;" ng-show="errorMessage"><translate>{{errorMessage}}</translate></span>
                                     </div>
                                 </div>
                                     

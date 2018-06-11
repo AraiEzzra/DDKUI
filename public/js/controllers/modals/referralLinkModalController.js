@@ -29,15 +29,21 @@ angular.module('ETPApp').controller("referralLinkModalController", ["$scope","$r
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
         console.log("email"+email);
-        if (email == undefined) {
+        if (email == undefined || email == '') {
             $scope.errorMessage = 'Email is required';
             $scope.noMatch = true;
             return;
         }
 
-        if(email == '' || !regex.test(email))
+        if(!regex.test(email))
         {
             $scope.errorMessage = 'Please enter a valid email address.';
+            $scope.noMatch = true;
+            return;
+        }
+
+        if(email.length < 10 || email.length > 50) {
+            $scope.errorMessage = 'Email length must be between 10 to 50 characters.';
             $scope.noMatch = true;
             return;
         }
