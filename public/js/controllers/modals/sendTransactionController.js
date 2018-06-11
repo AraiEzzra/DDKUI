@@ -276,18 +276,14 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.calFees = function (amount) {
 
         feeService(function (fees) {
-            if (amount <= 100) {
-                $scope.fee = (amount * (fees.send.level1 * 100000000)) / 100;
-            } else if (amount > 100 && amount <= 1000) {
-                $scope.fee = (amount * (fees.send.level2 * 100000000)) / 100;
+            if (parseFloat(amount) <= 100) {
+                $scope.fee = ((parseFloat(amount) * fees.send.level1) / 100).toFixed(8);
+            } else if (parseFloat(amount) > 100 && parseFloat(amount) <= 1000) {
+                $scope.fee = ((parseFloat(amount) * fees.send.level2 * 100000000) / 100).toFixed(8);
             } else {
-                $scope.fee = (amount * (fees.send.level3 * 100000000)) / 100;
+                $scope.fee = ((parseFloat(amount) * fees.send.level3 * 100000000) / 100).toFixed(8);
             }
         });
     };
-
-    /* feeService(function (fees) {
-        $scope.fee = fees.send.level1 * 100000000;
-    }); */
 
 }]);
