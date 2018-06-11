@@ -71,6 +71,10 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
 
     $scope.passcheck = function (fromSecondPass, otp) {
+        if(otp) {
+            $scope.otp = otp;
+        }
+        
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -82,13 +86,13 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
             return;
         }
         if ($scope.rememberedPassphrase) {
-            validateOTP(function () {
+            validateForm(function () {
                 $scope.presendError = false;
                 $scope.errorMessage = {};
                 $scope.sendTransaction($scope.rememberedPassphrase);
             });
         } else {
-            validateForm(function () {
+            validateOTP(function () {
                 $scope.presendError = false;
                 $scope.errorMessage = {};
                 $scope.passmode = !$scope.passmode;
