@@ -11,8 +11,7 @@ angular.module('ETPApp').controller("referralLinkModalController", ["$scope","$r
 
         $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userService.getAddress() }).then(function (resp) {
             if (resp.data.success) {
-
-            $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+resp.data.referralLink;
+                $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+resp.data.referralLink;
             } else {
                 $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
             }
@@ -50,7 +49,8 @@ angular.module('ETPApp').controller("referralLinkModalController", ["$scope","$r
 
         $http.post($rootScope.serverUrl + "/referral/sendEmail/", { referlink: refLink, email:email }).then(function (resp) {
             if (resp.data.success) {
-                alert('Mail sent Successfully');
+                Materialize.toast(resp.data.info, 3000, 'green white-text');
+                referralLinkModal.deactivate();
             } else {
                 $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
             }
