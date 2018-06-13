@@ -24,7 +24,7 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
     }
     
     // get user's status
-    function getUserStatus() {;
+    function getUserStatus() {
         return $http({
             method: 'GET',
             url: url + '/user/status',
