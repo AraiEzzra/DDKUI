@@ -273,21 +273,23 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         }
     }
 
+    $scope.setFees = function (rawFee) {
+        var regEx2 = /[0]+$/;
+        
+        $scope.fee = rawFee.toFixed(8).toString().replace(regEx2, '');
+    };
+
     $scope.calFees = function (amount) {
 
         feeService(function (fees) {
-            if (amount <= 100) {
-                $scope.fee = (amount * (fees.send.level1 * 100000000)) / 100;
-            } else if (amount > 100 && amount <= 1000) {
-                $scope.fee = (amount * (fees.send.level2 * 100000000)) / 100;
+            if (parseFloat(amount) <= 100) {
+                $scope.setFees((parseFloat(amount) * fees.send.level1) / 100);
+            } else if (parseFloat(amount) > 100 && parseFloat(amount) <= 1000) {
+                $scope.setFees((parseFloat(amount) * fees.send.level2) / 100);
             } else {
-                $scope.fee = (amount * (fees.send.level3 * 100000000)) / 100;
+                $scope.setFees((parseFloat(amount) * fees.send.level3) / 100);
             }
         });
     };
-
-    /* feeService(function (fees) {
-        $scope.fee = fees.send.level1 * 100000000;
-    }); */
 
 }]);
