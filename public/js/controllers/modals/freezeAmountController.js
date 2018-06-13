@@ -165,9 +165,9 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
     }
 
     $scope.calFees = function (fAmount) {
-
+        var regEx2 = /[0]+$/;
         feeService(function (fees) {
-            $scope.fee = ((parseFloat(fAmount) * (fees.froze)) / 100).toFixed(8);
+            $scope.fee = ((parseFloat(fAmount) * (fees.froze)) / 100).toFixed(8).toString().replace(regEx2, '');;
         });
     };
 

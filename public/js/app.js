@@ -116,12 +116,11 @@ ETPApp.config([
         AuthService.getUserStatus()
             .then(function () {
                 if (AuthService.isLoggedIn()) {
-                    $timeout(function () {
                         if (toState.name != 'loading')
                             $state.go(toState.name);
                         else
                             $state.go('main.dashboard');
-                    }, 1000);
+                    
                 } else {
                     if (toState.name == 'referal') {
                         $state.go('referal');
@@ -134,7 +133,7 @@ ETPApp.config([
     });
 
     // user authentication upon page forward/back for currently logged-in user
-    $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+   /*  $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
 
         AuthService.getUserStatus()
             .then(function () {
@@ -142,5 +141,5 @@ ETPApp.config([
                     $state.go('passphrase');
                 }
             });
-    });
+    }); */
 });

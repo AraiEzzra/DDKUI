@@ -158,12 +158,11 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
  
     /* For Your DDK Frozen */
     $scope.getMyETPFrozen = function () {
-
-                $scope.myETPFrozen = userService.totalFrozeAmount / 100000000;
-                $scope.stakeBalanceToShow = $filter('decimalFilter')(userService.totalFrozeAmount);
-                if ($scope.stakeBalanceToShow[1]) {
-                    $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
-                } 
+        $scope.myETPFrozen = userService.totalFrozeAmount / 100000000;
+        $scope.stakeBalanceToShow = $filter('decimalFilter')(userService.totalFrozeAmount);
+        if ($scope.stakeBalanceToShow[1]) {
+            $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
+        }
     }
 
 
