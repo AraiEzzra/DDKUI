@@ -167,7 +167,8 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
     $scope.calFees = function (fAmount) {
         var regEx2 = /[0]+$/;
         feeService(function (fees) {
-            $scope.fee = ((parseFloat(fAmount) * (fees.froze)) / 100).toFixed(8).toString().replace(regEx2, '');;
+            var rawFee = (parseFloat(fAmount) * (fees.froze)) / 100;
+            $scope.fee = (rawFee % 1) != 0 ? rawFee.toFixed(8).toString().replace(regEx2, '') : rawFee.toString();
         });
     };
 
@@ -175,9 +176,8 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         if ($scope.destroy) {
             $scope.destroy();
         }
-    
+
         freezeAmountModal.deactivate();
     }
-
 
 }]);
