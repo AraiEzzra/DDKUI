@@ -1,9 +1,4 @@
-// added new service to check status of an user
-
-var config = require('../../../config');
-var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort;
-
-angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$window', '$location', function ($http, userService, $window, $location) {
+angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$window', '$location', '$rootScope', function ($http, userService, $window, $location, $rootScope) {
 
     // create user variable to track user's status
     var user = null;
@@ -27,7 +22,7 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
     function getUserStatus() {
         return $http({
             method: 'GET',
-            url: url + '/user/status',
+            url: $rootScope.serverUrl + '/user/status',
 	    params: {
                 token: $window.localStorage.getItem('token')
             }
