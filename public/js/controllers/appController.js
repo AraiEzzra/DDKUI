@@ -582,10 +582,11 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }
 
     window.onpopstate = function (event) {
+        var check = $scope.myClass;
         if ($scope.myClass.length != 0) {
             $scope.classRemove();
         } else {
-            if($state.current.name=='main.dashboard') return;
+            if($state.current.name != 'main.explorer' ) return;
             $scope.classAdd();
         }
     }
