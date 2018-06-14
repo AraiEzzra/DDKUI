@@ -12,6 +12,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.address = userService.address;
     $scope.focus = $scope.to ? 'amount' : 'to';
     $scope.presendError = false;
+    $scope.twofactor = false;
 
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
 
@@ -62,13 +63,24 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
     function validateOTP(onValid) {
         $scope.errorMessage = {};
-        if ($scope.otpNumber == '') {
+        if ($scope.otpNumber === '' || $scope.otpNumber === undefined) {
             $scope.errorMessage.otpNumber = 'No OTP supplied';
             $scope.presendError = true;
+            return;
         }
         return onValid();
     }
 
+    $scope.getPass = function () {
+        $scope.checkSecondPass = false;
+        $scope.passmode = $scope.rememberedPassphrase ? false : true;
+        if ($scope.passmode) {
+            $scope.focus = 'secretPhrase';
+        }
+        $scope.secondPhrase = '';
+        $scope.secretPhrase = '';
+        return;
+    }
 
     $scope.passcheck = function (fromSecondPass, otp) {
         if(otp) {
@@ -93,11 +105,8 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
             });
         } else {
             validateOTP(function () {
-                $scope.presendError = false;
-                $scope.errorMessage = {};
-                $scope.passmode = !$scope.passmode;
-                $scope.focus = 'secretPhrase';
-                $scope.secretPhrase = '';
+                $scope.OTP = false;
+                $scope.getPass();
             });
         }
     }
@@ -116,16 +125,19 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
                 publicKey: userService.publicKey
             }
         })
-            .then(function (resp) {
-                if (resp.data.success) {
-                    $scope.OTPModalPopup();
-                } else {
-                    $scope.OTP = false;
+        .then(function (resp) {
+            if (resp.data.success) {
+                $scope.twofactor = true;
+                $scope.OTPModalPopup();
+            } else {
+                $scope.OTP = false;
+                if ($scope.rememberedPassphrase) {
                     $scope.passcheck();
+                } else {
+                    $scope.passcheck(true);
                 }
-            })
-
-
+            }
+        })
     }
 
 
