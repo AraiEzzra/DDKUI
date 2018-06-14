@@ -9,6 +9,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
     $scope.errorMessage = {};
     $scope.checkSecondPass = false;
     $scope.secondPassphrase = userService.secondPassphrase;
+    $scope.publicKey = userService.getPublicKey();
 
 
     $scope.getCurrentFee = function () {
@@ -95,6 +96,8 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
     }
 
     $scope.passcheck = function (fromSecondPass) {
+        $scope.publicKey = userService.getPublicKey();
+        console.log('$scope.userService : ', $scope.publickey);
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -116,7 +119,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
                 $scope.presendError = false;
                 $scope.errorMessage = {};
                 $scope.passmode = !$scope.passmode;
-            //    $scope.focus = 'secretPhrase';
+                //$scope.focus = 'secretPhrase';
                 $scope.secretPhrase = '';
             });
         }
@@ -135,7 +138,8 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
 
         var data = {
             secret: secretPhrase,
-            freezedAmount: $scope.convertETP($scope.fAmount)
+            freezedAmount: $scope.convertETP($scope.fAmount),
+            publicKey: $scope.publicKey
         };
 
         if ($scope.secondPassphrase) {
@@ -147,7 +151,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
 
         if (!$scope.sending) {
             $scope.sending = true;
-
+            console.log('data : ', data);
             $http.post($rootScope.serverUrl + "/api/frogings/freeze", data)
                 .then(function (resp) {
                     if (resp.data.success) {

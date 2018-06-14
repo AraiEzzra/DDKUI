@@ -17,6 +17,10 @@ angular.module('ETPApp').service('userService', function () {
         this.totalFrozeAmount= totalFrozeAmount;
     }
 
+    this.getPublicKey = function() {
+        return this.publicKey;
+    }
+
     this.getAddress = function () {
        return this.address;
     }
