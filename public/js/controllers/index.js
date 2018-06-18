@@ -26,6 +26,7 @@ require('../../js/controllers/referalController');
 // Modals
 require('../../js/controllers/modals/blockModalController');
 require('../../js/controllers/modals/forgingModalController');
+require('../../js/controllers/modals/referralLinkModalController');
 require('../../js/controllers/modals/freeModalController');
 require('../../js/controllers/modals/secondPassphraseController');
 require('../../js/controllers/modals/sendTransactionController');

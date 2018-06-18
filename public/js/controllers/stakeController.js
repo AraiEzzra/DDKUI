@@ -6,7 +6,7 @@ angular.module('ETPApp').controller('stakeController', ['$scope', '$rootScope', 
   $scope.rememberedPassphrase = userService.rememberedPassphrase;
   var resultData = [];
   var data = stakeService.data;
-  $scope.view.loadingText = gettextCatalog.getString('Staking blockchain');
+  $scope.view.loadingText = gettextCatalog.getString('Loading stake orders');
   $scope.view.page = { title: gettextCatalog.getString('Staking'), previous: null };
   $scope.countFreezeOrders = 0;
   $scope.loading = true;

@@ -12,7 +12,7 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
     $scope.view.loadingText = gettextCatalog.getString('Registering user');
     $scope.view.inLoading = false;
 
-
+ 
     $scope.activeLabel = function (pass) {
         return pass != '';
     }
@@ -36,6 +36,21 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
     }
 
     $scope.login = function (pass) {
+        /* if(!$scope.referal){
+            $scope.referal = $location.search().referal;
+        } */
+        if (!pass || pass.trim().split(/\s+/g).length < 12) {
+            $scope.errorMessage = 'Passphrase must consist of 12 or more words.';
+            return;
+        }
+        if (pass.length > 100) {
+            $scope.errorMessage = 'Passphrase must contain less than 100 characters.';
+            return;
+        }
+        if (!Mnemonic.isValid(pass)) {
+            $scope.errorMessage = 'Passphrase must be a valid BIP39 mnemonic code.';
+            return;
+        }
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
             $scope.noMatch = true;
@@ -52,8 +67,11 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
                     $state.go('main.dashboard');
                 } else {
+                    $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';                    
                     console.error("Login failed. Failed to open account.");
                 }
+            }, function (error) {
+                $scope.errorMessage = error.data.error ? error.data.error : error.data;
             });
         }
     }
@@ -62,13 +80,13 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
         newUser.deactivate();
     }
 
-    $scope.generatePassphrase();
+   $scope.generatePassphrase();
 
 
 
 
 
-
+    
 
 
 

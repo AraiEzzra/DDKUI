@@ -1,13 +1,10 @@
 require('angular');
 
-var config = require('../../../config');
-var url = config.serverProtocol + '://' +config.serverHost + ':' + config.serverPort;
-
-angular.module('ETPApp').factory('serverSocket', ["socketFactory", "$location", function (socketFactory, $location) {
+angular.module('ETPApp').factory('serverSocket', ["socketFactory", "$location", '$rootScope', function (socketFactory, $location, $rootScope) {
     //FIXME: Use @newIoSocket if front-end and back-end running on same server
     //var newIoSocket = io.connect($location.protocol() + '://' + $location.host() + ($location.port() ? ':' + $location.port() : ''));
     
-    var newIoSocket = io.connect(url);
+    var newIoSocket = io.connect($rootScope.serverUrl);
     serverSocket = socketFactory({
         ioSocket: newIoSocket
     });

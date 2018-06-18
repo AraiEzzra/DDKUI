@@ -1,7 +1,7 @@
 
 require('angular');
 
-angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', function ($state, $rootScope, $scope, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog) {
+angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "referralLinkModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', function ($state, $rootScope, $scope, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, referralLinkModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -44,15 +44,11 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     $scope.resetAppData = function () {
         $scope.balance = userService.balance = 0;
         $scope.unconfirmedBalance = userService.unconfirmedBalance = 0;
-
         $scope.balanceToShow = [0]
-
         $scope.secondPassphrase = userService.secondPassphrase = 0;
         $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase = 0;
-
         userService.multisignatures = userService.u_multisignatures = null;
         $scope.multisignature = false;
-
         $scope.delegateInRegistration = userService.delegateInRegistration = null;
         $scope.delegate = userService.delegate = null;
         $scope.username = userService.username = null;
@@ -227,6 +223,20 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
             }
         });
     }
+
+    $scope.referralLink = function () {
+        $scope.referralLinkModal = referralLinkModal.activate({
+            destroy: function () {
+            }
+        });
+    }
+
+
+
+
+
+
+
 
     $scope.updateAppView = function () {
         $scope.getAccount();
