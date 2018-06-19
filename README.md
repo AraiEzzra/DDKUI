@@ -1,5 +1,5 @@
 # DDK UI
-## Prerequisite for ETP system
+## Prerequisite for DDK-UI system
 This sections provides details on what you need install on your system in order to run DDK.
 
 - ### Tool chain components -- Used for compiling dependencies
@@ -7,7 +7,7 @@ This sections provides details on what you need install on your system in order 
 sudo apt-get install -y python build-essential curl automake autoconf libtool
 ```
 
-- ### Git -- Used for cloning and updating ETP
+- ### Git -- Used for cloning and updating DDK-UI
 ```
 sudo apt-get install -y git
 ```
@@ -17,7 +17,7 @@ sudo apt-get install -y git
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
-## Set up UI for ETP
+## Set up UI for DDK
 ### 1. Clone code
 ```
 $ git clone https://github.com/oodlestechnologies/DDK-UI
