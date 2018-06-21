@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').filter('timeAgoFilter', function ($filter) {
+angular.module('DDKApp').filter('timeAgoFilter', function ($filter) {
     return function (time, fullTime) {
         if (fullTime) {
             return $filter('timestampFilter')(time);

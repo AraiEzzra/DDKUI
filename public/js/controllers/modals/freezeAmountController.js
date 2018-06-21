@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootScope', 'userService', 'feeService','freezeAmountModal', '$http', function ($scope, $rootScope, userService,feeService,freezeAmountModal,$http) {
+angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootScope', 'userService', 'feeService','freezeAmountModal', '$http', function ($scope, $rootScope, userService,feeService,freezeAmountModal,$http) {
 
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.sending = false;
@@ -83,7 +83,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
         return parseInt(result);
     }
 
-    $scope.convertETP = function (currency) {
+    $scope.convertDDK = function (currency) {
         return $scope.isCorrectValue(currency, true);
     }
 
@@ -138,7 +138,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
 
         var data = {
             secret: secretPhrase,
-            freezedAmount: $scope.convertETP($scope.fAmount),
+            freezedAmount: $scope.convertDDK($scope.fAmount),
             publicKey: $scope.publicKey
         };
 

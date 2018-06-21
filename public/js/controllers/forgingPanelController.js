@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('forgingPanelController', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
+angular.module('DDKApp').controller('forgingPanelController', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
 
     $scope.buttonType = "submit";
 

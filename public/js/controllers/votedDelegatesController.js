@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('votedDelegatesController', ['$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "$filter", "ngTableParams", "delegateService", "voteModal", "viewFactory", 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, $timeout, $filter, ngTableParams, delegateService, voteModal, viewFactory, gettextCatalog) {
+angular.module('DDKApp').controller('votedDelegatesController', ['$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "$filter", "ngTableParams", "delegateService", "voteModal", "viewFactory", 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, $timeout, $filter, ngTableParams, delegateService, voteModal, viewFactory, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;

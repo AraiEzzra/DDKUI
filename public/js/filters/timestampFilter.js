@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').filter('timestampFilter', function () {
+angular.module('DDKApp').filter('timestampFilter', function () {
     return function (timestamp) {
         // Epoch time
         var d = new Date(Date.UTC(2016, 0, 1, 17, 0, 0, 0));

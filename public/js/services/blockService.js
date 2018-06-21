@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('blockService', function ($http, esClient, $filter) {
+angular.module('DDKApp').service('blockService', function ($http, esClient, $filter) {
     function filterData(data, filter) {
         return $filter('filter')(data, filter)
       }

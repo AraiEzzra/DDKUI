@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('blockModalController', ["$scope", "$http", "$rootScope", "blockModal", "userInfo", function ($scope, $http, $rootScope, blockModal, userInfo) {
+angular.module('DDKApp').controller('blockModalController', ["$scope", "$http", "$rootScope", "blockModal", "userInfo", function ($scope, $http, $rootScope, blockModal, userInfo) {
 
     $scope.loading = true;
     $scope.transactions = [];

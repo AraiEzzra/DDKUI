@@ -17,10 +17,10 @@
                     <span class="pull-right small-text">{{block.confirmations}}</span>
                 </li>
                 <li class="list-group-item"><translate>Amount</translate>
-                    <span class="pull-right small-text">{{block.amount | ETPFilter}} DDK</span>
+                    <span class="pull-right small-text">{{block.amount | DDKFilter}} DDK</span>
                 </li>
                 <li class="list-group-item bordered"><translate>Fee</translate>
-                    <span class="pull-right small-text">{{block.fee | ETPFilter}} DDK</span>
+                    <span class="pull-right small-text">{{block.fee | DDKFilter}} DDK</span>
                 </li>
                 <li class="list-group-item"><translate>USD Equivalent</translate>
                     <span class="pull-right small-text">${{convertToUSD(block.amount) || 0 | number: 2}}</span>
@@ -38,17 +38,17 @@
                     <div class="transaction-path">
                         <div class="transaction-part pull-left">
                             <a href="#" class="blue-link" ng-click="userInfo(block.recipientId)">{{block.senderId}}</a>
-                            <span class="DDK">{{block.amount | ETPFilter}} DDK</span>
+                            <span class="DDK">{{block.amount | DDKFilter}} DDK</span>
                         </div>
                         <div class="transaction-direction"></div>
                         <div class="transaction-part pull-right">
                             <a href="#" class="blue-link" ng-click="userInfo(block.recipientId)">{{block.recipientId || ""}}</a>
-                            <span class="DDK">{{block.amount | ETPFilter}} DDK</span>
+                            <span class="DDK">{{block.amount | DDKFilter}} DDK</span>
                         </div>
                     </div>
                     <div class="transaction-bottom">
-                        <div class="fee"><translate>FEE</translate>: {{block.fee | ETPFilter}} DDK</div>
-                        <div class="DDK">{{block.amount | ETPFilter}} DDK
+                        <div class="fee"><translate>FEE</translate>: {{block.fee | DDKFilter}} DDK</div>
+                        <div class="DDK">{{block.amount | DDKFilter}} DDK
                         </div>
                         <div class="confirmations">{{block.confirmations || 0}} <translate>CONFIRMATIONS</translate></div>
                     </div>

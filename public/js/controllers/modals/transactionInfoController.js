@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('transactionInfoController', ["$scope", "$http", "transactionInfo", "userInfo", function ($scope, $http, transactionInfo, userInfo) {
+angular.module('DDKApp').controller('transactionInfoController', ["$scope", "$http", "transactionInfo", "userInfo", function ($scope, $http, transactionInfo, userInfo) {
 
     $scope.userInfo = function (userId) {
         transactionInfo.deactivate();

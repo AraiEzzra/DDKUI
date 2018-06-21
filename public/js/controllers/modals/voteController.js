@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$rootScope", "$http", "userService", "feeService", "$timeout", "$filter", function ($scope, voteModal, $rootScope, $http, userService, feeService, $timeout, $filter) {
+angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$rootScope", "$http", "userService", "feeService", "$timeout", "$filter", function ($scope, voteModal, $rootScope, $http, userService, feeService, $timeout, $filter) {
 
     $scope.sending = false;
     $scope.passmode = false;
@@ -102,20 +102,20 @@ angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$
 
     feeService(function (fees) {
 
-        $http.post($rootScope.serverUrl + "/api/frogings/getMyETPFrozen", { secret: $scope.rememberedPassphrase })
+        $http.post($rootScope.serverUrl + "/api/frogings/getMyDDKFrozen", { secret: $scope.rememberedPassphrase })
         .then(function (resp) {
             if (resp.data.success) {
-                var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
+                var myDDKFrozen = resp.data.totalDDKStaked.sum / 100000000;
 
-                $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
+                $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalDDKStaked.sum);
                 if ($scope.stakeBalanceToShow[1]) {
                     $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
                 }
-                $scope.myETPFrozen = (myETPFrozen);
-                $scope.fee = (resp.data.totalETPStaked.sum * fees.vote)/100;
+                $scope.myDDKFrozen = (myDDKFrozen);
+                $scope.fee = (resp.data.totalDDKStaked.sum * fees.vote)/100;
             } else {
                 console.log(resp.data.error);
-                $scope.myETPFrozen = 0;
+                $scope.myDDKFrozen = 0;
             }
         });
  

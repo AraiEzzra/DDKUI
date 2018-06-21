@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$rootScope', 'sendTransactionModal', '$http', 'userService', 'feeService', '$timeout', '$filter', function ($scope, $rootScope, sendTransactionModal, $http, userService, feeService, $timeout, $filter) {
+angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$rootScope', 'sendTransactionModal', '$http', 'userService', 'feeService', '$timeout', '$filter', function ($scope, $rootScope, sendTransactionModal, $http, userService, feeService, $timeout, $filter) {
 
     $scope.sending = false;
     $scope.passmode = false;
@@ -237,7 +237,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         return parseInt(result);
     }
 
-    $scope.convertETP = function (currency) {
+    $scope.convertDDK = function (currency) {
         return $scope.isCorrectValue(currency, true);
     }
 
@@ -254,7 +254,7 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
         $scope.errorMessage = {};
         var data = {
             secret: secretPhrase,
-            amount: $scope.convertETP($scope.amount),
+            amount: $scope.convertDDK($scope.amount),
             recipientId: $scope.to,
             publicKey: userService.publicKey,
             otp: $scope.otp

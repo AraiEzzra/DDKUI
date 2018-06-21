@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('forgingModalController', ["$scope", "$rootScope", "forgingModal", "$http", "userService", 'gettextCatalog', function ($scope, $rootScope, forgingModal, $http, userService, gettextCatalog) {
+angular.module('DDKApp').controller('forgingModalController', ["$scope", "$rootScope", "forgingModal", "$http", "userService", 'gettextCatalog', function ($scope, $rootScope, forgingModal, $http, userService, gettextCatalog) {
 
     $scope.error = null;
     $scope.sending = false;

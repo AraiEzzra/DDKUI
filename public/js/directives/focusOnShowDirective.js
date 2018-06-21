@@ -1,5 +1,5 @@
 require('angular');
-angular.module('ETPApp').directive('focusOn', function ($timeout) {
+angular.module('DDKApp').directive('focusOn', function ($timeout) {
     return {
         restrict: 'A',
         link: function ($scope, $element, $attr) {

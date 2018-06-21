@@ -81,7 +81,7 @@
         <div class="info-box-content">
           <span class="info-box-number">{{stakeBalanceToShow[0] || 0}}<span class="small">{{stakeBalanceToShow[1]}}</span></span>&nbsp; DDK</span>
           <br>
-          <span>({{totalETPStaked?((myETPFrozen/totalETPStaked)*100).toFixed(2):0}}%)</span>
+          <span>({{totalDDKStaked?((myDDKFrozen/totalDDKStaked)*100).toFixed(2):0}}%)</span>
           <span class="info-box-text">{{'Your DDK Frozen'|translate}}</span>
         </div>
       </div>
@@ -190,7 +190,7 @@
                 <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                 <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
                 <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                {{transaction.amount | ETPFilter}} ({{transaction.fee | ETPFilter}})
+                {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
               </td>
             </tr>
           </tbody>

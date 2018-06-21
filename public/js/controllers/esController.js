@@ -2,7 +2,7 @@
 
 require('angular');
 
-angular.module('ETPApp').controller('esController', ['$scope', '$http', 'esClient', function ($scope, $http, esClient) {
+angular.module('DDKApp').controller('esController', ['$scope', '$http', 'esClient', function ($scope, $http, esClient) {
     esClient.cluster.state({
         metric: [
             'cluster_name',

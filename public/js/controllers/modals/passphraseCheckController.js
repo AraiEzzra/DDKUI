@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('passphraseCheckController.js', ["$scope", "passphraseCheckController", "$http", "userService", function ($scope, passphraseCheckController, $http, userService) {
+angular.module('DDKApp').controller('passphraseCheckController.js', ["$scope", "passphraseCheckController", "$http", "userService", function ($scope, passphraseCheckController, $http, userService) {
 
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.secondPassphrase = userService.secondPassphrase;

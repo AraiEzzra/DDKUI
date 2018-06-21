@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').filter('cut', function () {
+angular.module('DDKApp').filter('cut', function () {
     return function (value, wordwise, max, tail) {
         if (!value) return '';
 

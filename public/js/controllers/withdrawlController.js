@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('withdrawlController', ['$scope', '$rootScope', '$http', "userService", function ($rootScope, $scope, $http, userService) {
+angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScope', '$http', "userService", function ($rootScope, $scope, $http, userService) {
     $scope.address = userService.address;
     $scope.rules = [0, 1, 2, 3];
     $scope.errorMessage = {};

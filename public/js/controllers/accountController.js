@@ -1,7 +1,7 @@
 
 require('angular');
 
-angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', function ($state, $rootScope, $scope, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog) {
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', function ($state, $rootScope, $scope, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -20,7 +20,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
  
     $scope.graphs = {
-        ETPPrice: {
+        DDKPrice: {
             labels: ['1', '2'],
             series: ['Series B'],
             data: [
@@ -157,8 +157,8 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     }
  
     /* For Your DDK Frozen */
-    $scope.getMyETPFrozen = function () {
-        $scope.myETPFrozen = userService.totalFrozeAmount / 100000000;
+    $scope.getMyDDKFrozen = function () {
+        $scope.myDDKFrozen = userService.totalFrozeAmount / 100000000;
         $scope.stakeBalanceToShow = $filter('decimalFilter')(userService.totalFrozeAmount);
         if ($scope.stakeBalanceToShow[1]) {
             $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
@@ -180,13 +180,13 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     }
 
     /* For total DDK staked by stakeholders */
-    $scope.getTotalETPStaked = function () {
-        $http.get($rootScope.serverUrl + "/api/frogings/getTotalETPStaked")
+    $scope.getTotalDDKStaked = function () {
+        $http.get($rootScope.serverUrl + "/api/frogings/getTotalDDKStaked")
         .then(function (resp) {
             if (resp.data.success) {
-                var totalETPStaked = resp.data.totalETPStaked.sum / 100000000;
-                $scope.totalETPStaked = (totalETPStaked);
-                $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
+                var totalDDKStaked = resp.data.totalDDKStaked.sum / 100000000;
+                $scope.totalDDKStaked = (totalDDKStaked);
+                $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalDDKStaked.sum);
                 if ($scope.totalStakeBalanceToShow[1]) {
                     $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
                 }
@@ -197,9 +197,9 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     }
 
   /*   $scope.getCandles = function () {
-        $http.get("https://explorer.ETP.io/api/candles/getCandles")
+        $http.get("https://explorer.DDK.io/api/candles/getCandles")
         .then(function (response) {
-            $scope.graphs.ETPPrice.data = (response.data && response.data.candles) ? [
+            $scope.graphs.DDKPrice.data = (response.data && response.data.candles) ? [
                 response.data.candles.map(
                     function (candle) {
                         return candle.close;
@@ -234,9 +234,9 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
         $scope.getStakeholdersCount();
         $scope.getCirculatingSupply();
         $scope.getAccountHolders();
-        $scope.getMyETPFrozen();
+        $scope.getMyDDKFrozen();
         $scope.getTotalSupply();
-        $scope.getTotalETPStaked();
+        $scope.getTotalDDKStaked();
         delegateService.getDelegate($scope.publicKey, function (response) {
             $timeout(function () {
                 $scope.delegate = response;
@@ -260,7 +260,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
 
     $scope.$on('updateTotalStakeAmount', function (ev, data) {
         $scope.getAccount();
-        $scope.getTotalETPStaked();
+        $scope.getTotalDDKStaked();
     });
 
     $scope.updateAppView();

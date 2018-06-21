@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('clipboardService', function ($rootScope, gettextCatalog) {
+angular.module('DDKApp').service('clipboardService', function ($rootScope, gettextCatalog) {
 
     $rootScope.clipboardSuccess = function (e) {
         Materialize.toast(gettextCatalog.getString('Copied!'), 1500, 'green white-text');

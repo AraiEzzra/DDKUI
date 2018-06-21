@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('errorModalController', ["$scope", "errorModal", "userService", 'gettextCatalog', function ($scope, errorModal, userService, gettextCatalog) {
+angular.module('DDKApp').controller('errorModalController', ["$scope", "errorModal", "userService", 'gettextCatalog', function ($scope, errorModal, userService, gettextCatalog) {
 
     $scope.forging =  userService.forging;
     $scope.fee = 0;

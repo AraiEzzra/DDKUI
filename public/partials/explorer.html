@@ -79,8 +79,8 @@
                     <td data-title="tableBlocks.cols.transactions"><a href="#" ng-click="userInfo(block.generatorId)">{{block.generatorId}}</a></td>
                     <td data-title="tableBlocks.cols.generatedBy"><a href="#" ng-click="userInfo(block.generatorId)">{{block.generatorId}}</a></td>
                     <td data-title="tableBlocks.cols.amount"><a href="#">{{block.numberOfTransactions}}</a></td>
-                    <td data-title="tableBlocks.cols.fee">{{block.totalAmount  | ETPFilter}}</td>
-                    <td data-title="tableBlocks.cols.Reward" sortable="'reward'">{{block.reward | ETPFilter}}</td>
+                    <td data-title="tableBlocks.cols.fee">{{block.totalAmount  | DDKFilter}}</td>
+                    <td data-title="tableBlocks.cols.Reward" sortable="'reward'">{{block.reward | DDKFilter}}</td>
                </tr>
                 <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
                     <td colspan="8">
@@ -153,9 +153,9 @@
                     <td data-title="tableBlocks.cols.numberOfTransactions" ng-click="showBlock(block)" class="pointer">
                         <a href="#">{{block.numberOfTransactions}}</a>
                     </td>
-                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.totalAmount | ETPFilter}}</td>
-                    <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.totalFee | ETPFilter}}</td>
-                  <!--  <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.reward | ETPFilter}}</td>  -->
+                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.totalAmount | DDKFilter}}</td>
+                    <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.totalFee | DDKFilter}}</td>
+                  <!--  <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.reward | DDKFilter}}</td>  -->
                     <td data-title="''" class="width-80"></td>
                 </tr>
                 <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
@@ -227,9 +227,9 @@
                     <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                         <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                        {{transaction.amount | ETPFilter}}
+                        {{transaction.amount | DDKFilter}}
                     </td>
-                    <td data-title="tableTransactions.cols.fee">{{transaction.fee | ETPFilter}}</td>
+                    <td data-title="tableTransactions.cols.fee">{{transaction.fee | DDKFilter}}</td>
                     <td data-title="''"></td>
                 </tr>
                 <tr ng-repeat="transaction in $data">
@@ -248,9 +248,9 @@
                     <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                         <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                        {{transaction.amount | ETPFilter}}
+                        {{transaction.amount | DDKFilter}}
                     </td>
-                    <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | ETPFilter}}
+                    <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | DDKFilter}}
                     </td>
                     <td data-title="''"></td>
                 </tr>

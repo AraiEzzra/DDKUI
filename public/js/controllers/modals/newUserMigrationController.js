@@ -1,7 +1,7 @@
 require('angular');
 
 
-angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$http", "$rootScope", "newUserMigration", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, $rootScope, newUserMigration, userService, $state, viewFactory, gettextCatalog, $window) {
+angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$http", "$rootScope", "newUserMigration", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, $rootScope, newUserMigration, userService, $state, viewFactory, gettextCatalog, $window) {
 
     $scope.step = 1;
     $scope.noMatch = false;
@@ -28,7 +28,7 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
 
     $scope.savePassToFile = function (pass) {
         var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
-        FS.saveAs(blob, "ETPPassphrase.txt");
+        FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
     $scope.migrateData = function (data, address) {

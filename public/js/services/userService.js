@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('userService', function () {
+angular.module('DDKApp').service('userService', function () {
 
     this.rememberPassphrase = false;
     this.rememberedPassphrase = '';

@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('transactionsService', function ($http, $rootScope, userService) {
+angular.module('DDKApp').service('transactionsService', function ($http, $rootScope, userService) {
 
     var transactionsList = {
         requestTransactions: function (params, cb) {

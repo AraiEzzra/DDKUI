@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').directive('clipboard', function () {
+angular.module('DDKApp').directive('clipboard', function () {
     return {
         restrict: 'A',
         scope: {

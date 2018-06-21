@@ -1,5 +1,5 @@
 require('angular');
-angular.module('ETPApp').directive('input', function () {
+angular.module('DDKApp').directive('input', function () {
     return {
         restrict: 'E',
         require: '?ngModel',

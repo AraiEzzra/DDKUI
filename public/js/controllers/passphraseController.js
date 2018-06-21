@@ -1,7 +1,7 @@
 require('angular');
 
 
-angular.module('ETPApp').controller('passphraseController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUser", 'gettextCatalog', '$cookies', '$window', function ($scope, $rootScope, $http, $state, userService, newUser, gettextCatalog, $cookies, $window) {
+angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUser", 'gettextCatalog', '$cookies', '$window', function ($scope, $rootScope, $http, $state, userService, newUser, gettextCatalog, $cookies, $window) {
 
     userService.setData();
     userService.rememberPassphrase = false;

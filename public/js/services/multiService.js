@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('multiService', function ($http, $rootScope, userService, $filter) {
+angular.module('DDKApp').service('multiService', function ($http, $rootScope, userService, $filter) {
 
     var service = {
         gettingPendings: false,

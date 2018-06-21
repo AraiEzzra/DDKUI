@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('userInfoController', ["$scope", "$http", "$rootScope", "userInfo", "userService","sendTransactionModal", function ($scope, $http, $rootScope, userInfo, userService, sendTransactionModal) {
+angular.module('DDKApp').controller('userInfoController', ["$scope", "$http", "$rootScope", "userInfo", "userService","sendTransactionModal", function ($scope, $http, $rootScope, userInfo, userService, sendTransactionModal) {
 
     $scope.userIdOld = '';
     $scope.thisUser = userService;

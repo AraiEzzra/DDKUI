@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('exitETPSUserController', ['$rootScope','$scope', function ($rootScope, $scope) {
+angular.module('DDKApp').controller('exitETPSUserController', ['$rootScope','$scope', function ($rootScope, $scope) {
 
   
 

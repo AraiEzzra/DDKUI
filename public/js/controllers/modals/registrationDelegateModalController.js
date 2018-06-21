@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('registrationDelegateModalController', ["$scope", "$rootScope", "registrationDelegateModal", "$http", "userService", "feeService", "delegateService", function ($scope, $rootScope, registrationDelegateModal, $http, userService, feeService, delegateService) {
+angular.module('DDKApp').controller('registrationDelegateModalController', ["$scope", "$rootScope", "registrationDelegateModal", "$http", "userService", "feeService", "delegateService", function ($scope, $rootScope, registrationDelegateModal, $http, userService, feeService, delegateService) {
 
     $scope.error = null;
     $scope.sending = false;

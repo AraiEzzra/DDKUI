@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').filter('decimalFilter', function () {
+angular.module('DDKApp').filter('decimalFilter', function () {
     return function (fee) {
         if (!fee) {
             return [0][0];

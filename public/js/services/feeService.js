@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('feeService', function ($http, $rootScope) {
+angular.module('DDKApp').service('feeService', function ($http, $rootScope) {
 
     return function (cb) {
         $http.get($rootScope.serverUrl + '/api/blocks/getFees').then(function (response) {

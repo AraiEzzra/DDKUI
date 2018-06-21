@@ -1,5 +1,5 @@
 require('angular');
-angular.module('ETPApp').directive('stopEvent', function () {
+angular.module('DDKApp').directive('stopEvent', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {

@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('forgingController', ['$scope', '$rootScope', '$http', "userService", "$interval", "forgingModal", "delegateService", "viewFactory", "blockInfo", "ngTableParams", "blockService", 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, forgingModal, delegateService, viewFactory, blockInfo, ngTableParams, blockService, gettextCatalog) {
+angular.module('DDKApp').controller('forgingController', ['$scope', '$rootScope', '$http', "userService", "$interval", "forgingModal", "delegateService", "viewFactory", "blockInfo", "ngTableParams", "blockService", 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, forgingModal, delegateService, viewFactory, blockInfo, ngTableParams, blockService, gettextCatalog) {
 
     $scope.showAllColumns = false;
     $scope.showFullTime = false;

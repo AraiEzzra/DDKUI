@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('delegateService', function ($http, $rootScope, $filter, $q) {
+angular.module('DDKApp').service('delegateService', function ($http, $rootScope, $filter, $q) {
 
     function filterData(data, filter) {
         return $filter('filter')(data, filter);
