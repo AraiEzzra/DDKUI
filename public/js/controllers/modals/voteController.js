@@ -114,7 +114,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
                 $scope.myDDKFrozen = (myDDKFrozen);
                 $scope.fee = (resp.data.totalDDKStaked.sum * fees.vote)/100;
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
                 $scope.myDDKFrozen = 0;
             }
         });

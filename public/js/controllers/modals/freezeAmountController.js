@@ -97,7 +97,6 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
 
     $scope.passcheck = function (fromSecondPass) {
         $scope.publicKey = userService.getPublicKey();
-        console.log('$scope.userService : ', $scope.publickey);
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -151,7 +150,6 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
 
         if (!$scope.sending) {
             $scope.sending = true;
-            console.log('data : ', data);
             $http.post($rootScope.serverUrl + "/api/frogings/freeze", data)
                 .then(function (resp) {
                     if (resp.data.success) {

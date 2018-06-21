@@ -30,7 +30,7 @@ angular.module('DDKApp').service('languageService', function ($rootScope, $windo
             $rootScope.lang = lang;
             $rootScope.selectedLang = $rootScope.lang.id;
             gettextCatalog.setCurrentLanguage(lang.id);
-            console.log('Language changed to:', lang.name);
+            Materialize.toast('Language changed to:', lang.name, 3000, 'green white-text');
         }
     }
 

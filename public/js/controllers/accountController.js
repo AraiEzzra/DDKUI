@@ -125,7 +125,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 var countStakeholders = resp.data.countStakeholders.count;
                 $scope.countStakeholders = JSON.parse(countStakeholders);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -138,7 +138,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 var circulatingSupply = resp.data.circulatingSupply / 100000000;
                 $scope.circulatingSupply = parseInt(circulatingSupply);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -151,7 +151,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 var totalCount = resp.data.count;
                 $scope.totalCount = JSON.parse(totalCount);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -174,7 +174,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 var totalSupply = resp.data.totalSupply / 100000000;
                 $scope.totalSupply = JSON.parse(totalSupply);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -191,7 +191,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                     $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
                 }
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
