@@ -53,7 +53,7 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
             return;
         }
         if(_referalId == "") {
-            $scope.errorMessage = 'Referal Id can\'t be blank';
+            $scope.errorMessage = 'Referal Id in the URL can\'t be blank';
             $scope.noMatch = true;
             return;
         }
