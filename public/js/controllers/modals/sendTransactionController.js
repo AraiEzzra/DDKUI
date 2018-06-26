@@ -275,8 +275,8 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
 
     $scope.setFees = function (rawFee) {
         var regEx2 = /[0]+$/;
-        
-        $scope.fee = rawFee.toFixed(8).toString().replace(regEx2, '');
+        //Convert fee according to whole/decimal number
+        $scope.fee = (rawFee % 1) != 0 ?  rawFee.toFixed(8).toString().replace(regEx2, ''): rawFee.toString();
     };
 
     $scope.calFees = function (amount) {
