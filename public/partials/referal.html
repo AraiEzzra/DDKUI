@@ -414,7 +414,7 @@
                                             <textarea id="repeatPassphrase" class="materialize-textarea" ng-trim="false" ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}" autofocus></textarea>
                                             <label for="repeatPassphrase" ng-class="{'active':activeLabel(repeatPassphrase)}"><translate>Passphrase</translate></label>
                                         </div>
-                                        <span class="pass-error" style="margin-top: 0;" ng-show="errorMessage"><translate>{{errorMessage}}</translate></span>
+                                        <span class="pass-error" style="margin-top: 0;" ng-show="noMatch"><translate>{{errorMessage}}</translate></span>
                                     </div>
                                 </div>
                                     

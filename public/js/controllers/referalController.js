@@ -36,19 +36,25 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
     }
 
     $scope.login = function (pass) {
-        /* if(!$scope.referal){
-            $scope.referal = $location.search().referal;
-        } */
+
         if (!pass || pass.trim().split(/\s+/g).length < 12) {
             $scope.errorMessage = 'Passphrase must consist of 12 or more words.';
+            $scope.noMatch = true;
             return;
         }
         if (pass.length > 100) {
             $scope.errorMessage = 'Passphrase must contain less than 100 characters.';
+            $scope.noMatch = true;
             return;
         }
         if (!Mnemonic.isValid(pass)) {
             $scope.errorMessage = 'Passphrase must be a valid BIP39 mnemonic code.';
+            $scope.noMatch = true;
+            return;
+        }
+        if(_referalId == "") {
+            $scope.errorMessage = 'Referal Id in the URL can\'t be blank';
+            $scope.noMatch = true;
             return;
         }
         var data = { secret: pass };
@@ -67,8 +73,8 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
                     $state.go('main.dashboard');
                 } else {
-                    $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';                    
-                    console.error("Login failed. Failed to open account.");
+                    $scope.errorMessage = resp.data.error;
+                    $scope.noMatch = true;                    
                 }
             }, function (error) {
                 $scope.errorMessage = error.data.error ? error.data.error : error.data;
