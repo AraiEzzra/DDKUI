@@ -43,7 +43,7 @@ angular.module('ETPApp').controller('multisignatureModalController', ["$scope", 
 
     $scope.addMember = function (member) {
         $scope.addingError = '';
-        var isAddress = /^[0-9]+[L|l]$/g;
+        var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test(member);
         if ($scope.member.trim() == '') {
             $scope.addingError = 'Empty address';

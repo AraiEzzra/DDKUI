@@ -15,7 +15,7 @@ angular.module('ETPApp').controller('sendFreezeOrderController', ['$scope', '$ro
     
 
     function validateForm(onValid) {
-        var isAddress = /^[DDK|ddk]+[0-9]+$/ig;
+        var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.recipientAddress);
         $scope.errorMessage = {};
 

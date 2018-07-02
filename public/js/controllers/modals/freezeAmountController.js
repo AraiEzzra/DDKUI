@@ -41,6 +41,10 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
             return error('DDK amount can not be blank');
         }
 
+        if(parts.length != 1){
+            return error('DDK amount can not be decimal');
+        }
+
         if (parts.length == 1) {
             // No fractional part
             fraction = '00000000';
@@ -97,7 +101,6 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
 
     $scope.passcheck = function (fromSecondPass) {
         $scope.publicKey = userService.getPublicKey();
-        console.log('$scope.userService : ', $scope.publickey);
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -151,7 +154,6 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
 
         if (!$scope.sending) {
             $scope.sending = true;
-            console.log('data : ', data);
             $http.post($rootScope.serverUrl + "/api/frogings/freeze", data)
                 .then(function (resp) {
                     if (resp.data.success) {
@@ -169,11 +171,15 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
     }
 
     $scope.calFees = function (fAmount) {
-        var regEx2 = /[0]+$/;
-        feeService(function (fees) {
-            var rawFee = (parseFloat(fAmount) * (fees.froze)) / 100;
-            $scope.fee = (rawFee % 1) != 0 ? rawFee.toFixed(8).toString().replace(regEx2, '') : rawFee.toString();
-        });
+        if (parseFloat(fAmount) > 0) {
+            var regEx2 = /[0]+$/;
+            feeService(function (fees) {
+                var rawFee = (parseFloat(fAmount) * (fees.froze)) / 100;
+                $scope.fee = (rawFee % 1) != 0 ? rawFee.toFixed(8).toString().replace(regEx2, '') : rawFee.toString();
+            });
+        } else {
+            $scope.fee = 0;
+        }
     };
 
     $scope.close = function () {

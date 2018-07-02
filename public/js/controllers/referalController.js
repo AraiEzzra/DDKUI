@@ -4,7 +4,6 @@ require('angular');
 angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams) {
 
 
-    console.log("stateParams", $stateParams.id);
     var _referalId = $stateParams.id;
     $scope.step = 1;
     $scope.noMatch = false;
