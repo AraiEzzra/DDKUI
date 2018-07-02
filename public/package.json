@@ -50,10 +50,11 @@
     "compare-version": "=0.1.2",
     "elasticsearch": "^14.0.0",
     "elasticsearch-browser": "^14.1.0",
+    "express": "^4.16.3",
     "lisk-js": "=0.2.3",
     "ng-table": "=0.5.4",
     "requests": "0.1.7",
-    "socket.io": "=1.4.8",
+    "socket.io": "^1.4.8",
     "ui-select": "^0.19.8"
   }
 }

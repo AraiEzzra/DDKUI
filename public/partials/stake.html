@@ -43,7 +43,8 @@
                     <td data-title="tableStakes.cols.status" sortable="'status'">{{fo.status ? 'Active' : 'Inactive'}}</td>
                     <td data-title="tableStakes.cols.startTime" sortable="'startTime'">{{ fo.startTime | timestampFilter}}</td>
                     <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone >0 ? (fo.nextVoteMilestone | timestampFilter):0}}</td>
-                    <td data-title="tableStakes.cols.monthRemain" sortable="'monthRemain'">{{6-fo.milestoneCount}}</td>
+                    <td data-title="tableStakes.cols.monthRemain" sortable="'monthRemain'">{{2-fo.milestoneCount}}</td>
+                    <td data-title="tableStakes.cols.voteIndicator" sortable="'voteIndicator'">{{fo.voteCount}}/4</td>
                     <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
                     <td data-title="tableStakes.cols.action">
                         <a class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.stakeId,fo.freezedAmount)">

@@ -101,24 +101,10 @@ angular.module('ETPApp').controller('voteController', ["$scope", "voteModal", "$
     }
 
     feeService(function (fees) {
-
-        $http.post($rootScope.serverUrl + "/api/frogings/getMyETPFrozen", { secret: $scope.rememberedPassphrase })
-        .then(function (resp) {
-            if (resp.data.success) {
-                var myETPFrozen = resp.data.totalETPStaked.sum / 100000000;
-
-                $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalETPStaked.sum);
-                if ($scope.stakeBalanceToShow[1]) {
-                    $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
-                }
-                $scope.myETPFrozen = (myETPFrozen);
-                $scope.fee = (resp.data.totalETPStaked.sum * fees.vote)/100;
-            } else {
-                console.log(resp.data.error);
-                $scope.myETPFrozen = 0;
-            }
-        });
- 
+        var regEx2 = /[0]+$/;
+        var myETPFrozen = userService.totalFrozeAmount / 100000000;
+        var rawFee = (parseFloat(myETPFrozen) * (fees.vote)) / 100;
+        $scope.fee = (rawFee % 1) != 0 ? rawFee.toFixed(8).toString().replace(regEx2, '') : rawFee.toString();
     });
 
 }]);

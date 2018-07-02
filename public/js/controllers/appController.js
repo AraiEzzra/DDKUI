@@ -569,9 +569,9 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
    /*  $scope.getPriceTicker(); */
    /*  $scope.getVersion(); */
     $scope.getMasterPassphrase();
-    $timeout(function () {
+   /*  $timeout(function () {
         $scope.getVersion();
-    }, 60 * 10 * 1000);
+    }, 60 * 10 * 1000); */
 
     $scope.myClass = [];
     $scope.classAdd = function () {

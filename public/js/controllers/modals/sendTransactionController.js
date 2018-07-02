@@ -39,10 +39,10 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     function validateForm(onValid) {
-        var isAddress = /^[DDK|ddk]+[0-9]+$/ig;
+        var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.to);
         $scope.errorMessage = {};
-
+        
         if ($scope.to.trim() == '') {
             $scope.errorMessage.recipient = 'Empty recipient';
             $scope.presendError = true;
@@ -280,16 +280,18 @@ angular.module('ETPApp').controller('sendTransactionController', ['$scope', '$ro
     };
 
     $scope.calFees = function (amount) {
-
-        feeService(function (fees) {
-            if (parseFloat(amount) <= 100) {
-                $scope.setFees((parseFloat(amount) * fees.send.level1) / 100);
-            } else if (parseFloat(amount) > 100 && parseFloat(amount) <= 1000) {
-                $scope.setFees((parseFloat(amount) * fees.send.level2) / 100);
-            } else {
-                $scope.setFees((parseFloat(amount) * fees.send.level3) / 100);
-            }
-        });
+        if (parseFloat(amount) > 0) {
+            feeService(function (fees) {
+                if (parseFloat(amount) <= 100) {
+                    $scope.setFees((parseFloat(amount) * fees.send.level1) / 100);
+                } else if (parseFloat(amount) > 100 && parseFloat(amount) <= 1000) {
+                    $scope.setFees((parseFloat(amount) * fees.send.level2) / 100);
+                } else {
+                    $scope.setFees((parseFloat(amount) * fees.send.level3) / 100);
+                }
+            });
+        } else {
+            $scope.fee = 0;
+        }
     };
-
 }]);

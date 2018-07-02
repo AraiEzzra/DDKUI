@@ -45,6 +45,7 @@ angular.module('ETPApp').controller('stakeController', ['$scope', '$rootScope', 
     startTime: gettextCatalog.getString('StartTime'),
     VoteTimeRemain: gettextCatalog.getString('VoteTimeRemain'),
     monthRemain: gettextCatalog.getString('MonthRemain'),
+    voteIndicator: gettextCatalog.getString('VoteIndicator'),
     recipient: gettextCatalog.getString('Recipient'),
     action: gettextCatalog.getString('Action')
   };
