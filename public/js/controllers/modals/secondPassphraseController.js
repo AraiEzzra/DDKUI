@@ -30,8 +30,8 @@ angular.module('ETPApp').controller('secondPassphraseModalController', ["$scope"
     $scope.generatePassphrase();
 
     $scope.savePassToFile = function (pass) {
-        var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
-        FS.saveAs(blob, "ETPSecondPassphrase.txt");
+        var blob = new Blob([pass], { type: "text/plain" });
+        FS.saveAs(blob, "DDKSecondPassphrase.txt");
     }
 
     $scope.confirmNewPassphrase = function () {
