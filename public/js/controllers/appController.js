@@ -187,7 +187,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
                 $scope.delegateInRegistration = userService.delegateInRegistration;
 
-                $scope.availableBalance = userService.balance - account.totalFrozeAmount;
+                $scope.availableBalance = userService.balance - userService.totalFrozeAmount;
 
                 if ($state.current.name != 'passphrase') {
                     $scope.getMultisignatureAccounts(function (multisignature) {
