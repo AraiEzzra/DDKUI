@@ -32,6 +32,7 @@ angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$windo
             }
             if (resp.status && resp.data.success) {
                 user = true;
+                $rootScope.enableReferOption = resp.data.referStatus;
                 userService.setData();
                 userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, null,resp.data.account.totalFrozeAmount);
                 userService.setForging(resp.data.account.forging);
