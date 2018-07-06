@@ -41,8 +41,8 @@ angular.module('ETPApp').controller("referralLinkModalController", ["$scope","$r
             return;
         }
 
-        if(email.length < 10 || email.length > 50) {
-            $scope.errorMessage = 'Email length must be between 10 to 50 characters.';
+        if(email.length < 6 || email.length > 50) {
+            $scope.errorMessage = 'Email length must be between 6 to 50 characters.';
             $scope.noMatch = true;
             return;
         }
