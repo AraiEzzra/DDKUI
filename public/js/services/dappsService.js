@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('dappsService', function () {
+angular.module('DDKApp').service('dappsService', function () {
 
     var dapp = {
         searchForDapp: '',

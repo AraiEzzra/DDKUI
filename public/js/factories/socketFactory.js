@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').factory('serverSocket', ["socketFactory", "$location", '$rootScope', function (socketFactory, $location, $rootScope) {
+angular.module('DDKApp').factory('serverSocket', ["socketFactory", "$location", '$rootScope', function (socketFactory, $location, $rootScope) {
     //FIXME: Use @newIoSocket if front-end and back-end running on same server
     //var newIoSocket = io.connect($location.protocol() + '://' + $location.host() + ($location.port() ? ':' + $location.port() : ''));
     

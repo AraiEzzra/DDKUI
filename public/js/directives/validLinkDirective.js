@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').directive('validLink', function () {
+angular.module('DDKApp').directive('validLink', function () {
     return {
         require: 'ngModel',
         restrict: 'A',

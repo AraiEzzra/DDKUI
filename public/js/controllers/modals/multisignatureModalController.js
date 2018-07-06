@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('multisignatureModalController', ["$scope", "$http", "$rootScope", "multisignatureModal", "viewFactory", "userService", "feeService", "gettextCatalog", function ($scope, $http, $rootScope, multisignatureModal, viewFactory, userService, feeService, gettextCatalog) {
+angular.module('DDKApp').controller('multisignatureModalController', ["$scope", "$http", "$rootScope", "multisignatureModal", "viewFactory", "userService", "feeService", "gettextCatalog", function ($scope, $http, $rootScope, multisignatureModal, viewFactory, userService, feeService, gettextCatalog) {
 
     $scope.sending = false;
     $scope.view = viewFactory;

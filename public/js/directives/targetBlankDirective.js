@@ -1,5 +1,5 @@
 require('angular');
-angular.module('ETPApp').directive('targetBlank', function () {
+angular.module('DDKApp').directive('targetBlank', function () {
     return {
         compile: function (element) {
             var elems = (element.prop("tagName") === 'A') ? element : element.find('a');

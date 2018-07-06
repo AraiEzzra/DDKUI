@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').factory('passphraseCheck', function (btfModal) {
+angular.module('DDKApp').factory('passphraseCheck', function (btfModal) {
     return btfModal({
         controller: 'passphraseCheckController',
         templateUrl: '/partials/modals/passphraseCheck.html'

@@ -1,7 +1,7 @@
 
 require('angular');
 
-angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "referralLinkModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', function ($state, $rootScope, $scope, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, referralLinkModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog) {
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', function ($state, $rootScope, $scope, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -20,7 +20,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
  
     $scope.graphs = {
-        ETPPrice: {
+        DDKPrice: {
             labels: ['1', '2'],
             series: ['Series B'],
             data: [
@@ -121,7 +121,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 var countStakeholders = resp.data.countStakeholders.count;
                 $scope.countStakeholders = JSON.parse(countStakeholders);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -134,7 +134,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 var circulatingSupply = resp.data.circulatingSupply / 100000000;
                 $scope.circulatingSupply = parseInt(circulatingSupply);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -147,7 +147,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 var totalCount = resp.data.count;
                 $scope.totalCount = JSON.parse(totalCount);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -170,7 +170,7 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                 var totalSupply = resp.data.totalSupply / 100000000;
                 $scope.totalSupply = JSON.parse(totalSupply);
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
@@ -187,15 +187,15 @@ angular.module('ETPApp').controller('accountController', ['$state', '$scope', '$
                     $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
                 }
             } else {
-                console.log(resp.data.error);
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
             }
         });
     }
 
   /*   $scope.getCandles = function () {
-        $http.get("https://explorer.ETP.io/api/candles/getCandles")
+        $http.get("https://explorer.DDK.io/api/candles/getCandles")
         .then(function (response) {
-            $scope.graphs.ETPPrice.data = (response.data && response.data.candles) ? [
+            $scope.graphs.DDKPrice.data = (response.data && response.data.candles) ? [
                 response.data.candles.map(
                     function (candle) {
                         return candle.close;

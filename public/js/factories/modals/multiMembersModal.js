@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').factory('multiMembersModal', function (btfModal) {
+angular.module('DDKApp').factory('multiMembersModal', function (btfModal) {
     return btfModal({
         controller: 'multiMembersModalController',
         templateUrl: '/partials/modals/multiMembersModal.html'

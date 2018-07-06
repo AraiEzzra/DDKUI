@@ -1,7 +1,7 @@
 require('angular');
 
 
-angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window) {
+angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window) {
 
 	
 
@@ -29,7 +29,7 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
     }
 
     $scope.savePassToFile = function (pass) {
-        var blob = new Blob([pass], { type: "text/plain" });
+        var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 

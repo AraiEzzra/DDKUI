@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('walletTransactionsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionsService', 'ngTableParams', 'transactionInfo', '$timeout', 'userInfo', '$filter', 'multiMembersModal', '$stateParams', 'multiService', 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionsService, ngTableParams, transactionInfo, $timeout, userInfo, $filter, multiMembersModal, $stateParams, multiService, gettextCatalog) {
+angular.module('DDKApp').controller('walletTransactionsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionsService', 'ngTableParams', 'transactionInfo', '$timeout', 'userInfo', '$filter', 'multiMembersModal', '$stateParams', 'multiService', 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionsService, ngTableParams, transactionInfo, $timeout, userInfo, $filter, multiMembersModal, $stateParams, multiService, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.page = {title: gettextCatalog.getString('Transactions'), previous: 'main.multi'};

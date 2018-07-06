@@ -15,9 +15,9 @@ require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
 
 Mnemonic = require('bitcore-mnemonic');
 
-ETPApp = angular.module('ETPApp', ['ui.router', 'btford.modal', 'ngCookies', 'ngTable', 'ngAnimate', 'chart.js', 'btford.socket-io', 'ui.bootstrap', 'angular.filter', 'gettext', 'elasticsearch']);
+DDKApp = angular.module('DDKApp', ['ui.router', 'btford.modal', 'ngCookies', 'ngTable', 'ngAnimate', 'chart.js', 'btford.socket-io', 'ui.bootstrap', 'angular.filter', 'gettext', 'elasticsearch']);
 
-ETPApp.config([
+DDKApp.config([
     "$locationProvider",
     "$stateProvider",
     "$urlRouterProvider",
@@ -107,8 +107,8 @@ ETPApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'http://159.65.139.248:7000';
-    //$rootScope.serverUrl = 'http://localhost:7000';
+    //$rootScope.serverUrl = 'http://159.65.139.248:7000';
+    $rootScope.serverUrl = 'http://localhost:7000';
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in

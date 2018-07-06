@@ -1,4 +1,4 @@
-angular.module('ETPApp').service('AuthService', ['$http', 'userService', '$window', '$location', '$rootScope', function ($http, userService, $window, $location, $rootScope) {
+angular.module('DDKApp').service('AuthService', ['$http', 'userService', '$window', '$location', '$rootScope', function ($http, userService, $window, $location, $rootScope) {
 
     // create user variable to track user's status
     var user = null;

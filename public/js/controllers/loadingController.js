@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller("loadingController", ["$scope", "$http", "$rootScope", "$interval", "$window", function ($scope, $http, $rootScope, $interval, $window) {
+angular.module('DDKApp').controller("loadingController", ["$scope", "$http", "$rootScope", "$interval", "$window", function ($scope, $http, $rootScope, $interval, $window) {
 
     $scope.height = null;
     $scope.height = 0;

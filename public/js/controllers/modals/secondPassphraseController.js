@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('secondPassphraseModalController', ["$scope", '$rootScope', "secondPassphraseModal", "$http", "userService", "feeService", function ($scope, $rootScope, secondPassphraseModal, $http, userService, feeService) {
+angular.module('DDKApp').controller('secondPassphraseModalController', ["$scope", '$rootScope', "secondPassphraseModal", "$http", "userService", "feeService", function ($scope, $rootScope, secondPassphraseModal, $http, userService, feeService) {
 
     $scope.sending = false;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
@@ -30,7 +30,7 @@ angular.module('ETPApp').controller('secondPassphraseModalController', ["$scope"
     $scope.generatePassphrase();
 
     $scope.savePassToFile = function (pass) {
-        var blob = new Blob([pass], { type: "text/plain" });
+        var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
         FS.saveAs(blob, "DDKSecondPassphrase.txt");
     }
 

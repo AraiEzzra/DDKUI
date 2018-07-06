@@ -2,7 +2,7 @@
 
 require('angular');
 
-angular.module('ETPApp').controller('authController', ['$scope', '$http', function ($scope, $http) {
+angular.module('DDKApp').controller('authController', ['$scope', '$http', function ($scope, $http) {
     $scope.error = null;
     
 }]);

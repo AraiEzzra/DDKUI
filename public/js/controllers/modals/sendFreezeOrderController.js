@@ -2,7 +2,7 @@
 
 require('angular');
 
-angular.module('ETPApp').controller('sendFreezeOrderController', ['$scope', '$rootScope', 'userService', 'sendTransactionModal', 'sendFreezeOrderModal', '$http','feeService', function ($scope, $rootScope, userService, sendTransactionModal,sendFreezeOrderModal,$http,feeService) {
+angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$rootScope', 'userService', 'sendTransactionModal', 'sendFreezeOrderModal', '$http','feeService', function ($scope, $rootScope, userService, sendTransactionModal,sendFreezeOrderModal,$http,feeService) {
 
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.sending = false;

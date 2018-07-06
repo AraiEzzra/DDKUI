@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('addDappModalController', ["$scope", "$http", "$rootScope", "addDappModal", "userService", "feeService", "viewFactory", 'gettextCatalog', function ($scope, $http, $rootScope, addDappModal, userService, feeService, viewFactory, gettextCatalog) {
+angular.module('DDKApp').controller('addDappModalController', ["$scope", "$http", "$rootScope", "addDappModal", "userService", "feeService", "viewFactory", 'gettextCatalog', function ($scope, $http, $rootScope, addDappModal, userService, feeService, viewFactory, gettextCatalog) {
 
     $scope.sending = false;
     $scope.view = viewFactory;

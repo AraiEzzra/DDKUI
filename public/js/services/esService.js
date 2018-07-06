@@ -4,7 +4,7 @@
 var config = require('../../../config');
 var connectionHost = config.elasticsearchHost + ':9200' || 'localhost:9200';
 
-angular.module('ETPApp').service('esClient', function (esFactory) {
+angular.module('DDKApp').service('esClient', function (esFactory) {
     return esFactory({
         host: connectionHost,
         log: 'error'

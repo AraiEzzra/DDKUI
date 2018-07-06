@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('settingsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "multisignatureModal", 'gettextCatalog', '$location', function ($rootScope, $scope, $http, userService, $interval, multisignatureModal, gettextCatalog, $location) {
+angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "multisignatureModal", 'gettextCatalog', '$location', function ($rootScope, $scope, $http, userService, $interval, multisignatureModal, gettextCatalog, $location) {
 
     $scope.checkTwoFactorStatus = function () {
         $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {

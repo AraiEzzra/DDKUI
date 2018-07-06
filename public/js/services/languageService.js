@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').service('languageService', function ($rootScope, $window, gettextCatalog) {
+angular.module('DDKApp').service('languageService', function ($rootScope, $window, gettextCatalog) {
 
     $rootScope.languages = [
         { id: 'en', name: 'English' },
@@ -16,7 +16,7 @@ angular.module('ETPApp').service('languageService', function ($rootScope, $windo
         { id: 'nl', name: 'Nederlands' },
         // { id: 'nb_NO', name: 'Norsk' },
         // { id: 'pt_BR', name: 'Português' },
-        { id: 'pl', name: 'PoETPi' },
+        { id: 'pl', name: 'Poi' },
         { id: 'ro', name: 'Română' },
         { id: 'uk_UA', name: 'Yкраїнський' }
     ];
@@ -30,7 +30,7 @@ angular.module('ETPApp').service('languageService', function ($rootScope, $windo
             $rootScope.lang = lang;
             $rootScope.selectedLang = $rootScope.lang.id;
             gettextCatalog.setCurrentLanguage(lang.id);
-            console.log('Language changed to:', lang.name);
+            Materialize.toast('Language changed to:', lang.name, 3000, 'green white-text');
         }
     }
 

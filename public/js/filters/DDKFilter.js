@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').filter('ETPFilter', function () {
+angular.module('DDKApp').filter('DDKFilter', function () {
     return function (fee) {
         if (!fee) {
             return 0;

@@ -1,8 +1,7 @@
 require('angular');
 
 
-angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams) {
-
+angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams) {
 
     var _referalId = $stateParams.id;
     $scope.step = 1;
@@ -30,7 +29,7 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
     }
 
     $scope.savePassToFile = function (pass) {
-        var blob = new Blob([pass], { type: "text/plain" });
+        var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 

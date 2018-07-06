@@ -189,7 +189,8 @@
               <td ng-show="transaction.type != 8">
                 <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                 <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                {{transaction.amount | ETPFilter}} ({{transaction.fee | ETPFilter}})
+                <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
               </td>
               <td ng-show="transaction.type == 8">
                 <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>

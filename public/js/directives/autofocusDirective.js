@@ -1,5 +1,5 @@
 require('angular');
-angular.module('ETPApp').directive('ngFocus', function ($timeout) {
+angular.module('DDKApp').directive('ngFocus', function ($timeout) {
     return {
         link: function (scope, element, attrs) {
             scope.$watch(attrs.ngFocus, function (val) {
@@ -20,7 +20,7 @@ angular.module('ETPApp').directive('ngFocus', function ($timeout) {
 });
 
 
-angular.module('ETPApp').directive('focusOn', function() {
+angular.module('DDKApp').directive('focusOn', function() {
     return function(scope, elem, attr) {
        scope.$on('focusOn', function(e, name) {
          if(name === attr.focusOn) {

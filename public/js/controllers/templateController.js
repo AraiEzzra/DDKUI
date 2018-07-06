@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('templateController', ['$scope', '$rootScope', '$http', 'userService', "$interval", 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, gettextCatalog) {
+angular.module('DDKApp').controller('templateController', ['$scope', '$rootScope', '$http', 'userService', "$interval", 'gettextCatalog', function ($rootScope, $scope, $http, userService, $interval, gettextCatalog) {
     $scope.address = userService.address;
     $scope.allChecked = false;
     $scope.errorMessage = {};

@@ -19,10 +19,10 @@
                         {{item.transaction.timestamp | timeAgoFilter:false}}
                     </td>
                     <td data-title="tableMultiTransactions.cols.amount" sortable="'transaction.amount'">
-                        {{item.transaction.amount | ETPFilter}}
+                        {{item.transaction.amount | DDKFilter}}
                     </td>
                     <td data-title="tableMultiTransactions.cols.fee" sortable="'transaction.fee'">
-                        {{item.transaction.fee | ETPFilter}}
+                        {{item.transaction.fee | DDKFilter}}
                     </td>
                     <td data-title="tableMultiTransactions.cols.confirmations" sortable="'countSing(transaction)'">
                         {{countSign(item.transaction)}}/{{confirmationsNeeded(item)}}

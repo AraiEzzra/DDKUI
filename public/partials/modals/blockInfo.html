@@ -27,13 +27,13 @@
                                     <span class="pull-right small-text">{{block.height}}</span>
                                 </li>
                                 <li class="list-group-item bordered"><translate>Reward</translate>
-                                    <span class="pull-right small-text">{{block.reward | ETPFilter}}</span>
+                                    <span class="pull-right small-text">{{block.reward | DDKFilter}}</span>
                                 </li>
                                 <li class="list-group-item bordered"><translate>Total Fee</translate>
-                                    <span class="pull-right small-text">{{block.totalFee | ETPFilter}}</span>
+                                    <span class="pull-right small-text">{{block.totalFee | DDKFilter}}</span>
                                 </li>
                                 <li class="list-group-item"><translate>Total Amount</translate>
-                                    <span class="pull-right small-text">{{block.totalAmount | ETPFilter}}</span>
+                                    <span class="pull-right small-text">{{block.totalAmount | DDKFilter}}</span>
                                 </li>
                                 <li class="list-group-item"><translate>USD Equivalent</translate>
                                     <span class="pull-right small-text">${{convertToUSD(block.totalAmount) || 0 | number: 2}}</span>
@@ -63,17 +63,17 @@
                                     <div class="transaction-path">
                                         <div class="transaction-part pull-left">
                                             <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                            <span class="DDK">{{transaction.amount | ETPFilter}} DDK</span>
+                                            <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                                         </div>
                                         <div class="transaction-direction"></div>
                                         <div class="transaction-part pull-right">
                                             <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId || "-"}}</a>
-                                            <span class="DDK">{{transaction.amount | ETPFilter}} DDK</span>
+                                            <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                                         </div>
                                     </div>
                                     <div class="transaction-bottom">
-                                        <div class="fee"><translate>FEE</translate>: {{transaction.fee | ETPFilter}} DDK</div>
-                                        <div class="DDK">{{transaction.amount | ETPFilter}} DDK </div>
+                                        <div class="fee"><translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>
+                                        <div class="DDK">{{transaction.amount | DDKFilter}} DDK </div>
                                         <div class="confirmations">{{transaction.confirmations || 0}} <translate>CONFIRMATIONS</translate></div>
                                     </div>
                                 </li>

@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('dappController', ['$scope', 'viewFactory', '$rootScope', '$stateParams', '$http', "$interval", "userService", "errorModal", "masterPassphraseModal", "openDappModal", "confirmDeletionModal", 'gettextCatalog', function ($scope, viewFactory, $rootScope, $stateParams, $http, $interval, userService, errorModal, masterPassphraseModal, openDappModal, confirmDeletionModal, gettextCatalog) {
+angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', '$rootScope', '$stateParams', '$http', "$interval", "userService", "errorModal", "masterPassphraseModal", "openDappModal", "confirmDeletionModal", 'gettextCatalog', function ($scope, viewFactory, $rootScope, $stateParams, $http, $interval, userService, errorModal, masterPassphraseModal, openDappModal, confirmDeletionModal, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;

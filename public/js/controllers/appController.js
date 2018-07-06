@@ -1,14 +1,14 @@
 require('angular');
 var compareVersion = require('../../node_modules/compare-version/index.js');
 
-angular.module('ETPApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal', function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal) {
+angular.module('DDKApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal', function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal) {
 
     $scope.searchTransactions = transactionsService;
     $scope.searchDapp = dappsService;
     $scope.searchBlocks = blockService;
     $scope.toggled = false;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
-    $scope.ETP_usd = 0;
+    $scope.DDK_usd = 0;
     $scope.version = 'version load';
     $scope.diffVersion = 0;
     $scope.subForgingCollapsed = true;
@@ -111,11 +111,11 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     ];
 /*
     $scope.getPriceTicker = function () {
-        $http.get("https://explorer.DDK.io/api/getPriceTicker")
+        $http.get("https://explorer.ddk.io/api/getPriceTicker")
             .then(function (response) {
                 $scope.btc_usd = Math.floor(response.data.tickers.BTC.USD * 1000000) / 1000000;
-                $scope.ETP_btc = Math.floor(response.data.tickers.DDK.BTC * 1000000) / 1000000;
-                $scope.ETP_usd = Math.floor(response.data.tickers.DDK.USD * 1000000) / 1000000;
+                $scope.DDK_btc = Math.floor(response.data.tickers.DDK.BTC * 1000000) / 1000000;
+                $scope.DDK_usd = Math.floor(response.data.tickers.DDK.USD * 1000000) / 1000000;
             });
     }; */
 
@@ -135,7 +135,7 @@ angular.module('ETPApp').controller('appController', ['dappsService', '$scope', 
     }; */
 
     $scope.convertToUSD = function (DDK) {
-        return (DDK / 100000000) * $scope.ETP_usd;
+        return (DDK / 100000000) * $scope.DDK_usd;
     };
 
     $scope.clearSearch = function () {

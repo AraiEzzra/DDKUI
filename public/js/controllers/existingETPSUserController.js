@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUserMigration", 'gettextCatalog', '$cookies', 'focus', function ($scope, $rootScope, $http, $state, userService, newUserMigration, gettextCatalog, $cookies, focus) {
+angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUserMigration", 'gettextCatalog', '$cookies', 'focus', function ($scope, $rootScope, $http, $state, userService, newUserMigration, gettextCatalog, $cookies, focus) {
 
     userService.setData();
     userService.rememberPassphrase = false;
@@ -20,7 +20,7 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
         });
     }
 
-    // function to validate existing ETPS user from ETP_test database
+    // function to validate existing ETPS user from DDK_test database
     $scope.validateExistingUser = function (username, password) {
         var post = "username=" + btoa(username) + "&password=" + btoa(password);
 

@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         nggettext_compile: {
             all: {
                 options: {
-                    module: 'ETPApp'
+                    module: 'DDKApp'
                 },
                 files: {
                     'static/js/translations.js': ['i18n/*.po']

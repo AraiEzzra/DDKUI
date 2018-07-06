@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').directive('voteAction', function (gettextCatalog) {
+angular.module('DDKApp').directive('voteAction', function (gettextCatalog) {
     return {
         restrict: 'A',
         scope: {

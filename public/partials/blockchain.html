@@ -80,9 +80,9 @@
                     <td data-title="tableBlocks.cols.numberOfTransactions" ng-click="showBlock(block)" class="pointer">
                         <a href="#">{{block.numberOfTransactions}}</a>
                     </td>
-                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.totalAmount | ETPFilter}}</td>
-                    <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.totalFee | ETPFilter}}</td>
-                   <!-- <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.reward | ETPFilter}}</td> -->
+                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.totalAmount | DDKFilter}}</td>
+                    <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.totalFee | DDKFilter}}</td>
+                   <!-- <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.reward | DDKFilter}}</td> -->
                     <td data-title="''" class="width-80"></td>
                 </tr>
                 <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">

@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('confirmDeletionModalController', ["$scope", "confirmDeletionModal", function ($scope, confirmDeletionModal) {
+angular.module('DDKApp').controller('confirmDeletionModalController', ["$scope", "confirmDeletionModal", function ($scope, confirmDeletionModal) {
 
     $scope.close = function (yesDelete) {
         if ($scope.destroy) {

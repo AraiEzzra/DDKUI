@@ -1,5 +1,5 @@
 require('angular');
 
-angular.module('ETPApp').factory('viewFactory', [function () {
+angular.module('DDKApp').factory('viewFactory', [function () {
     return { page: { title: '' } };
 }]);

@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('blockInfoController', ["$scope", "$http", "$rootScope", "blockInfo", "userInfo", function ($scope, $http, $rootScope, blockInfo, userInfo) {
+angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "$rootScope", "blockInfo", "userInfo", function ($scope, $http, $rootScope, blockInfo, userInfo) {
 
     $scope.transactions = [];
     $scope.transactionsLength = 0;

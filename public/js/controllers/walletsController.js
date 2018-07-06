@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('walletsController', ['$scope', '$rootScope', '$http', 'viewFactory', 'ngTableParams', '$filter', 'multiMembersModal', 'multiService', 'userService', "errorModal", 'masterPassphraseModal', 'gettextCatalog', function ($rootScope, $scope, $http, viewFactory, ngTableParams, $filter, multiMembersModal, multiService, userService, errorModal, masterPassphraseModal, gettextCatalog) {
+angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope', '$http', 'viewFactory', 'ngTableParams', '$filter', 'multiMembersModal', 'multiService', 'userService', "errorModal", 'masterPassphraseModal', 'gettextCatalog', function ($rootScope, $scope, $http, viewFactory, ngTableParams, $filter, multiMembersModal, multiService, userService, errorModal, masterPassphraseModal, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = false;

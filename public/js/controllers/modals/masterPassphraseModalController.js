@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('masterPassphraseModalController', ["$scope", "masterPassphraseModal", 'gettextCatalog', function ($scope, masterPassphraseModal, gettextCatalog) {
+angular.module('DDKApp').controller('masterPassphraseModalController', ["$scope", "masterPassphraseModal", 'gettextCatalog', function ($scope, masterPassphraseModal, gettextCatalog) {
 
     $scope.masterPass = '';
     $scope.emptyPass = false;

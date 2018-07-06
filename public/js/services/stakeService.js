@@ -2,7 +2,7 @@
 require('angular');
 
 
-angular.module('ETPApp').service("stakeService", function ($http, $filter, esClient, userService) {
+angular.module('DDKApp').service("stakeService", function ($http, $filter, esClient, userService) {
 
   function filterData(data, filter) {
     return $filter('filter')(data, filter)

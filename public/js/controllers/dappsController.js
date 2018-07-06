@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('dappsController', ['$scope', 'viewFactory', '$rootScope', '$http', 'dappsService', '$timeout', 'addDappModal', "$interval", 'gettextCatalog', function ($scope, viewFactory, $rootScope, $http, dappsService, $timeout, addDappModal, $interval, gettextCatalog) {
+angular.module('DDKApp').controller('dappsController', ['$scope', 'viewFactory', '$rootScope', '$http', 'dappsService', '$timeout', 'addDappModal', "$interval", 'gettextCatalog', function ($scope, viewFactory, $rootScope, $http, dappsService, $timeout, addDappModal, $interval, gettextCatalog) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
