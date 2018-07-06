@@ -30,7 +30,7 @@ angular.module('ETPApp').controller('newUserController', ["$scope", "$http", "$r
 
     $scope.savePassToFile = function (pass) {
         var blob = new Blob([pass], { type: "text/plain" });
-        FS.saveAs(blob, "ETPPassphrase.txt");
+        FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
     $scope.login = function (pass) {

@@ -156,6 +156,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
             $scope.sending = true;
             $http.post($rootScope.serverUrl + "/api/frogings/freeze", data)
                 .then(function (resp) {
+                    $scope.sending = false;
                     if (resp.data.success) {
                         Materialize.toast('Freeze Success', 3000, 'green white-text');
                         freezeAmountModal.deactivate();

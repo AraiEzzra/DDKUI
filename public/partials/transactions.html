@@ -34,11 +34,15 @@
                     </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>
-                    <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
+                    <td ng-show="transaction.type != 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                         <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
                         {{transaction.amount | ETPFilter}}
                     </td>
+                    <td ng-show="transaction.type == 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
+                        <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                        {{transaction.stakedAmount | ETPFilter}}
+                      </td>
                     <td data-title="tableTransactions.cols.fee">{{transaction.fee | ETPFilter}}</td>
                     <td data-title="''"></td>
                 </tr>
@@ -55,11 +59,15 @@
                     </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>
-                    <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
+                    <td ng-show="transaction.type != 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                         <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
                         {{transaction.amount | ETPFilter}}
                     </td>
+                    <td ng-show="transaction.type == 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
+                        <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                        {{transaction.stakedAmount | ETPFilter}} 
+                      </td>
                     <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | ETPFilter}}
                     </td>
                     <td data-title="''"></td>

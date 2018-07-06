@@ -30,8 +30,8 @@ angular.module('ETPApp').controller('referalController', ["$scope", "$http", "$r
     }
 
     $scope.savePassToFile = function (pass) {
-        var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
-        FS.saveAs(blob, "ETPPassphrase.txt");
+        var blob = new Blob([pass], { type: "text/plain" });
+        FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
     $scope.login = function (pass) {

@@ -27,8 +27,8 @@ angular.module('ETPApp').controller('newUserMigrationController', ["$scope", "$h
     }
 
     $scope.savePassToFile = function (pass) {
-        var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
-        FS.saveAs(blob, "ETPPassphrase.txt");
+        var blob = new Blob([pass], { type: "text/plain" });
+        FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
     $scope.migrateData = function (data, address) {
