@@ -160,7 +160,7 @@ angular.module('ETPApp').controller('freezeAmountController', ['$scope', '$rootS
                     if (resp.data.success) {
                         Materialize.toast('Freeze Success', 3000, 'green white-text');
                         freezeAmountModal.deactivate();
-
+                        $rootScope.enableReferOption = resp.data.referStatus;
                     } else {
                         Materialize.toast('Freeze Error', 3000, 'red white-text');
                         $scope.errorMessage.fromServer = resp.data.error;
