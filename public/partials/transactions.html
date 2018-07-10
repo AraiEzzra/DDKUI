@@ -44,9 +44,9 @@
                     </td>
                     <td ng-show="transaction.type == 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                        {{transaction.stakedAmount | ETPFilter}}
+                        {{transaction.stakedAmount | DDKFilter}}
                     </td>
-                    <td data-title="tableTransactions.cols.fee">{{transaction.fee | ETPFilter}}</td>
+                    <td data-title="tableTransactions.cols.fee">{{transaction.fee | DDKFilter}}</td>
                     <td data-title="''"></td>
                 </tr>
                 <tr ng-repeat="transaction in $data">
@@ -72,9 +72,9 @@
                     </td>
                     <td ng-show="transaction.type == 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                        {{transaction.stakedAmount | ETPFilter}} 
+                        {{transaction.stakedAmount | DDKFilter}} 
                     </td>
-                    <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | ETPFilter}}
+                    <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | DDKFilter}}
                     </td>
                     <td data-title="''"></td>
                 </tr>
