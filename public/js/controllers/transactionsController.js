@@ -18,8 +18,9 @@ angular.module('ETPApp').controller('transactionsController', ['$scope', '$rootS
         $scope.modal = userInfo.activate({userId: userId});
     }
 
-    $scope.transactionInfo = function (block) {
-        $scope.modal = transactionInfo.activate({block: block});
+    $scope.transactionInfo = function (transaction) {
+        console.log(JSON.stringify(transaction));
+        $scope.modal = transactionInfo.activate({transaction: transaction});
     }
 
     // Transactions
