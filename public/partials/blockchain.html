@@ -77,8 +77,13 @@
                         <span ng-show="block.timestamp > 0">{{block.timestamp | timeAgoFilter : showFullTime}}</span>
                         <span ng-show="block.timestamp == 0">-</span>
                     </td>
-                    <td data-title="tableBlocks.cols.numberOfTransactions" ng-click="showBlock(block)" class="pointer">
-                        <a href="#">{{block.numberOfTransactions}}</a>
+                    <td data-title="tableBlocks.cols.numberOfTransactions">
+                        <div ng-show="block.numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block)">
+                            <a href="#">{{block.numberOfTransactions}}</a>
+                        </div>
+                        <div ng-show="block.numberOfTransactions == 0">
+                            {{block.numberOfTransactions}}
+                        </div>
                     </td>
                     <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.totalAmount | ETPFilter}}</td>
                     <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.totalFee | ETPFilter}}</td>

@@ -32,6 +32,9 @@
                     <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
                         <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
+                    <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
+                        {{transaction.trsName}}
+                    </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>
                     <td ng-show="transaction.type != 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
@@ -56,6 +59,9 @@
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
                         <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
+                    </td>
+                    <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
+                        {{transaction.trsName}}
                     </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>

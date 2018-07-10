@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('ETPApp').controller('transactionsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionsService', 'ngTableParams', 'transactionInfo', '$timeout', 'userInfo', 'gettextCatalog', 'esClient', function ($rootScope, $scope, $http, userService, $interval, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionsService, ngTableParams, transactionInfo, $timeout, userInfo, gettextCatalog, esClient) {
+angular.module('ETPApp').controller('transactionsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionsService', 'ngTableParams', 'transactionInfo', '$timeout', 'userInfo', 'gettextCatalog', 'esClient', 'blockInfo', function ($rootScope, $scope, $http, userService, $interval, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionsService, ngTableParams, transactionInfo, $timeout, userInfo, gettextCatalog, esClient, blockInfo) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -19,8 +19,19 @@ angular.module('ETPApp').controller('transactionsController', ['$scope', '$rootS
     }
 
     $scope.transactionInfo = function (transaction) {
-        console.log(JSON.stringify(transaction));
-        $scope.modal = transactionInfo.activate({transaction: transaction});
+        $scope.modal = transactionInfo.activate({ transaction: transaction });
+    }
+
+    $scope.blockInfo = function (blockID) {
+        $http.get($rootScope.serverUrl + "/api/blocks/get", {
+            params: {
+                id: blockID
+            }
+        }).then(function (response) {
+            transactionInfo.deactivate();
+            $scope.modal = blockInfo.activate({ block: response.data.block });
+        }
+            );
     }
 
     // Transactions
@@ -63,6 +74,7 @@ angular.module('ETPApp').controller('transactionsController', ['$scope', '$rootS
         id : gettextCatalog.getString('Transaction ID'),
         senderId : gettextCatalog.getString('Sender'),
         recipientId : gettextCatalog.getString('Recipient'),
+        type: gettextCatalog.getString('Type'),
         timestamp : gettextCatalog.getString('Time'),
         amount : gettextCatalog.getString('Amount'),
         fee : gettextCatalog.getString('Fee')

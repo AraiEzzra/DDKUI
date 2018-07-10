@@ -16,23 +16,33 @@
                 <li class="list-group-item bordered"><translate>Confirmations</translate>
                     <span class="pull-right small-text">{{transaction.confirmations}}</span>
                 </li>
-                <li ng-show="transaction.type != 8" class="list-group-item"><translate>Amount</translate>
-                    <span class="pull-right small-text">{{transaction.amount | ETPFilter}} DDK</span>
+                <li class="list-group-item">
+                    <translate>Amount</translate>
+                    <div class="pull-right small-text" ng-show="transaction.type != 8">
+                        {{transaction.amount | ETPFilter}} DDK
+                    </div>
+                    <div class="pull-right small-text" ng-show="transaction.type == 8">
+                        {{transaction.stakedAmount | ETPFilter}} DDK
+                    </div>
+                
                 </li>
-                <li ng-show="transaction.type == 8" class="list-group-item"><translate>Amount</translate>
-                    <span class="pull-right small-text">{{transaction.stakedAmount | ETPFilter}} DDK</span>
+                <li class="list-group-item"><translate>Type</translate>
+                    <span class="pull-right small-text">{{transaction.trsName}}</span>
                 </li>
-                <li class="list-group-item bordered"><translate>Fee</translate>
+                <li class="list-group-item"><translate>Fee</translate>
                     <span class="pull-right small-text">{{transaction.fee | ETPFilter}} DDK</span>
                 </li>
-                <li class="list-group-item"><translate>USD Equivalent</translate>
+                <li class="list-group-item "><translate>USD Equivalent</translate>
                     <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
+                </li>
+                <li class="list-group-item"><translate>Time</translate>
+                    <span class="pull-right small-text">{{transaction.timestamp | timestampFilter}}</span>
                 </li>
                 <li class="list-group-item"><translate>Block Height</translate>
                     <span class="pull-right small-text">{{transaction.height}}</span>
                 </li>
-                <li class="list-group-item bordered"><translate>Time</translate>
-                    <span class="pull-right small-text">{{transaction.timestamp | timestampFilter}}</span>
+                <li class="list-group-item"><translate>Block ID</translate>
+                    <span ng-click="blockInfo(transaction.blockId)" class="pull-right small-text"><a href="#">{{transaction.blockId}}</a></span>
                 </li>
             </ul>
             <ul class="list-group transactions">

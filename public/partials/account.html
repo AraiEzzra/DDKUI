@@ -164,6 +164,9 @@
                 <translate>Recipient</translate>
               </th>
               <th>
+                <translate>Type</translate>
+              </th>
+              <th>
                 <translate>Time</translate>
               </th>
               <th>
@@ -183,6 +186,9 @@
                 <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
               </td>
               <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
+              <td class="padding-in-1400">
+                {{transaction.trsName}}
+              </td>
               <td>
                 {{transaction.timestamp | timeAgoFilter: false}}
               </td>
