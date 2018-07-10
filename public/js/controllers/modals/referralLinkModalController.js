@@ -1,7 +1,7 @@
 require('angular');
 var config = require('../../../../config');
 
-angular.module('ETPApp').controller("referralLinkModalController", ["$scope","$rootScope","referralLinkModal", "userService","$http", function ($scope,$rootScope,referralLinkModal,userService,$http) {
+angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$rootScope","referralLinkModal", "userService","$http", function ($scope,$rootScope,referralLinkModal,userService,$http) {
 
     $scope.close = function () {
         referralLinkModal.deactivate();
