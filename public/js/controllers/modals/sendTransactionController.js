@@ -200,8 +200,8 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             // No fractional part
             fraction = '00000000';
         } else if (parts.length == 2) {
-            if (parts[1].length > 8) {
-                return error('DDK amount must not have more than 8 decimal places');
+            if (parts[1].length > 4) {
+                return error('DDK amount must not have more than 4 decimal places');
             } else if (parts[1].length <= 8) {
                 // Less than eight decimal places
                 fraction = parts[1];
@@ -292,7 +292,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     };
 
     $scope.calFees = function (amount) {
-        if (parseFloat(amount) > 0) {
+        if (parseFloat(amount) >= 0.0001) {
             feeService(function (fees) {
                 if (parseFloat(amount) <= 100) {
                     $scope.setFees((parseFloat(amount) * fees.send.level1) / 100);

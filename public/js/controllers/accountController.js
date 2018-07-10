@@ -37,8 +37,8 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         }
     };
 
-    $scope.transactionInfo = function (block) {
-        $scope.modal = transactionInfo.activate({ block: block });
+    $scope.transactionInfo = function (transaction) {
+        $scope.modal = transactionInfo.activate({ transaction: transaction });
     }
 
     $scope.resetAppData = function () {
