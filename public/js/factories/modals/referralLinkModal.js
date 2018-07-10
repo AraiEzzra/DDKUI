@@ -1,7 +1,7 @@
 
 require('angular');
 
-angular.module('ETPApp').factory('referralLinkModal', function (btfModal) {
+angular.module('DDKApp').factory('referralLinkModal', function (btfModal) {
     return btfModal({
         controller: 'referralLinkModalController',
         templateUrl: '/partials/modals/referralLink.html'
