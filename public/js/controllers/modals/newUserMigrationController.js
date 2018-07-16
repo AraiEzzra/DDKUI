@@ -71,6 +71,6 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
         newUserMigration.deactivate();
     }
 
-    $scope.generatePassphrase();
+    // $scope.generatePassphrase();
 
 }]);
