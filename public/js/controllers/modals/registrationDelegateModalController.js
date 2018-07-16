@@ -20,10 +20,10 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         registrationDelegateModal.deactivate();
     }
 
-    function validate (onValid) {
+    function validate(onValid) {
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var allowSymbols = /^[a-z0-9!@$&_.]+$/g;
-        var isCorrectURL = /^(http|https)+$/g;                     
+        var isCorrectURL = /^(http|https)+.*$/ig;
 
         $scope.delegateData.username = $scope.delegateData.username.trim();
 
@@ -34,9 +34,11 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         } else {
             if (!isAddress.test($scope.delegateData.username)) {
                 if (allowSymbols.test($scope.delegateData.username.toLowerCase())) {
-                    if($scope.delegateData.URL && !isCorrectURL.test($scope.delegateData.URL)){
-                        $scope.error = "Please start URL with http or https."; 
-                    }else{
+                    if ($scope.delegateData.URL && !isCorrectURL.test($scope.delegateData.URL)) {
+                        $scope.error = "Please start URL with http or https.";
+                    } else if ($scope.delegateData.URL.length > 20) {
+                        $scope.error = "URL is too long. Maximum is 30 characters";
+                    } else {
                         return onValid();
                     }
                 } else {
