@@ -80,6 +80,9 @@
                     <td data-title="tableMyDelegates.cols.address">
                         <a href="#" ng-click="userInfo(delegate.address)">{{delegate.address}}</a>
                     </td>
+                    <td data-title="tableTopDelegates.cols.url">
+                        <a href="{{delegate.url}}" target="_blank" >{{delegate.url}}</a>
+                    </td>
                     <td data-title="tableMyDelegates.cols.productivity" sortable="'productivity'">{{(delegate.productivity) || '0.00'}}%</td>
                     <td data-title="tableMyDelegates.cols.vote" sortable="'vote'">{{delegate.approval | number: 2}}%</td>
                     <td data-title="''">

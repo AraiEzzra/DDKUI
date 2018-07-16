@@ -39,7 +39,7 @@
                                     <span class="pull-right small-text">${{convertToUSD(block.totalAmount) || 0 | number: 2}}</span>
                                 </li>
                                 <li class="list-group-item bordered"><translate>Time</translate>
-                                    <span class="pull-right small-text">{{block.timestamp | timestampFilter}}</span>
+                                    <span class="pull-right small-text">{{block.timestamp | timeAgoFilter}} ({{block.timestamp | timestampFilter}})</span>
                                 </li>
                                 <li class="list-group-item"><translate>Previous Block</translate>
                                     <span class="pull-right small-text">
@@ -58,7 +58,7 @@
                                 <!-- ngRepeat: transaction in transactions -->
                                 <li class="list-group-item" ng-repeat="transaction in transactions">
                                     <div class="transaction-data">{{transaction.id}}
-                                        <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
+                                        <span class="pull-right">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
                                     </div>
                                     <div class="transaction-path">
                                         <div class="transaction-part pull-left">
