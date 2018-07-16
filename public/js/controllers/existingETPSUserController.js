@@ -18,6 +18,7 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
             destroy: function () {
             }
         });
+        $rootScope.migrateUserPassphrase = data.passphrase;
     }
 
     // function to validate existing ETPS user from ETP_test database
