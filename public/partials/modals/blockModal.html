@@ -15,7 +15,7 @@
                                 <!-- ngRepeat: transaction in transactions -->
                                 <li class="list-group-item" ng-repeat="transaction in transactions">
                                     <div class="transaction-data"><strong><translate>Transaction ID</translate>:</strong> {{transaction.id}}
-                                        <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
+                                        <span class="pull-right">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
                                     </div>
                                     <div class="transaction-path">
                                         <div class="transaction-part pull-left">

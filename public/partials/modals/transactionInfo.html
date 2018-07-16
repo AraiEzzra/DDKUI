@@ -24,7 +24,6 @@
                     <div class="pull-right small-text" ng-show="transaction.type == 8">
                         {{transaction.stakedAmount | DDKFilter}} DDK
                     </div>
-                
                 </li>
                 <li class="list-group-item"><translate>Type</translate>
                     <span class="pull-right small-text">{{transaction.trsName}}</span>
@@ -36,7 +35,7 @@
                     <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
                 </li>
                 <li class="list-group-item"><translate>Time</translate>
-                    <span class="pull-right small-text">{{transaction.timestamp | timestampFilter}}</span>
+                    <span class="pull-right small-text">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
                 </li>
                 <li class="list-group-item"><translate>Block Height</translate>
                     <span class="pull-right small-text">{{transaction.height}}</span>
@@ -65,6 +64,7 @@
                             <a href="#" class="blue-link" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId || ""}}</a>
                             <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                         </div>
+                        <div ng-show="transaction.type == 8" class="transaction-part pull-right"></div>
                     </div>
                     <div class="transaction-bottom">
                         <div class="fee"><translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>

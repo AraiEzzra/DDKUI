@@ -142,6 +142,9 @@
                     <td data-title="tableTopDelegates.cols.address">
                         <a href="#" ng-click="userInfo(delegate.address)">{{delegate.address}}</a>
                     </td>
+                    <td data-title="tableTopDelegates.cols.url">
+                        <a href="delegate.url" >{{delegate.url}}</a>
+                    </td>
                     <td data-title="tableTopDelegates.cols.productivity" sortable="'productivity'">
                         <span ng-show="delegate.productivity">{{(delegate.productivity)}}%</span>
                         <span ng-show="!delegate.productivity">-</span>
@@ -210,6 +213,9 @@
                     <td data-title="tableStandbyDelegates.cols.username" sortable="'username'" class="username">{{delegate.username}}</td>
                     <td data-title="tableStandbyDelegates.cols.address">
                         <a href="#" ng-click="userInfo(delegate.address)">{{delegate.address}}</a>
+                    </td>
+                    <td data-title="tableTopDelegates.cols.url">
+                        <a href="{{delegate.url}}" target="_blank" >{{delegate.url}}</a>
                     </td>
                     <td data-title="tableStandbyDelegates.cols.productivity" sortable="'productivity'">
                         <span ng-show="delegate.productivity">{{(delegate.productivity)}}%</span>
