@@ -13,7 +13,6 @@ angular.module('DDKApp').filter('timestampFilter', function () {
        // console.log("--",d.getUTCMonth(),"-",d.getUTCDate(),"-",d.getUTCFullYear()," ",d.getUTCHours());
        // return d.toUTCString();
        var month = monthNames[d.getUTCMonth()];
-       console.log("month",month);
 
         var day = d.getUTCDate();
 

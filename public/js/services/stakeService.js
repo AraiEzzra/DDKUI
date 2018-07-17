@@ -110,7 +110,9 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                   "should": []
                 }
               },
-              "sort": [],
+              "from": 0,
+              "size": 10,
+              "sort": [{ insertTime: { order: 'desc' } }],
               "aggs": {}
             }
           }, function (error, stakeResponse, status) {
@@ -139,7 +141,6 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
             sort: [],
         }
         }, function (error, stakeResponse, status) {
-
           if (stakeResponse.hits.total > 0) {
             esClient.search({
               index: 'stake_orders',
@@ -148,6 +149,10 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                 "query": {
                   "bool": {
                     "must": [
+                      {
+                        "match_all": {}
+                      },
+
                       {
                         "term": {
                           "senderId.keyword": address
@@ -158,9 +163,9 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                     "should": []
                   }
                 },
-                "from": 0,
-                "size": stakeResponse.hits.total,
-                "sort": [{ startTime: { order: 'desc' } }],
+                "from": (params.page() - 1) * params.count(),
+                "size": params.count(),
+                "sort": [{ insertTime: { order: 'desc' } }],
                 "aggs": {}
               }
             }, function (error, stakeRes, status) {
@@ -169,10 +174,8 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                 resultData.push(stakeOrder._source);
               });
               if (resultData != null) {
-                params.total(resultData.length)
-                var filteredData = $filter('filter')(resultData, filter);
-                var transformedData = transformData(resultData, filter, params)
-                $defer.resolve(transformedData);
+                params.total(stakeRes.hits.total);
+                $defer.resolve(resultData);
               }
               cb(null);
             });
