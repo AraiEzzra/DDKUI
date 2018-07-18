@@ -49,6 +49,11 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             $scope.presendError = true;
         } else {
             if (correctAddress) {
+                if($scope.to == $scope.address){
+                    $scope.errorMessage.recipient = 'Sender and Recipient can\'t be same';
+                    $scope.presendError = true;
+                    return;
+                }
                 if ($scope.isCorrectValue($scope.amount)) {
                     return onValid();
                 } else {
