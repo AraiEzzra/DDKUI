@@ -71,7 +71,7 @@
                                         <span class="pull-right small-text">{{transaction.trsName}}</span>
                                     </li>
                                     <li class="list-group-item bordered"><translate>Fee</translate>
-                                        <span class="pull-right small-text">{{transaction.fee / 100000000}} DDK</span>
+                                        <span class="pull-right small-text">{{transaction.fee | DDKFilter}} DDK</span>
                                     </li>
                                     <li class="list-group-item"><translate>USD Equivalent</translate>
                                         <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
