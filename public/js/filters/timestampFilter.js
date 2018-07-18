@@ -10,9 +10,8 @@ angular.module('DDKApp').filter('timestampFilter', function () {
         var t = parseInt(d.getTime() / 1000);
 
         var d = new Date((timestamp + t) * 1000);
-       // console.log("--",d.getUTCMonth(),"-",d.getUTCDate(),"-",d.getUTCFullYear()," ",d.getUTCHours());
-       // return d.toUTCString();
-       var month = monthNames[d.getUTCMonth()];
+       
+        var month = monthNames[d.getUTCMonth()];
 
         var day = d.getUTCDate();
 
