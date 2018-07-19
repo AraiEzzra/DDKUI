@@ -18,7 +18,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
             destroy: function () {
             }
         });
-        $rootScope.migrateUserPassphrase = data.passphrase;
+        $rootScope.newPassphrase = data.passphrase;
     }
 
     // function to validate existing ETPS user from DDK_test database
