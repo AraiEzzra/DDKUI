@@ -27,6 +27,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
             $scope.errorMessageAdmin = 'Only For Admin : Migration is under Testing.';
             return;
         }
+         $scope.errorMessageAdmin = false;
         var post = "username=" + btoa(username) + "&password=" + btoa(password);
 
         $http.post($rootScope.serverUrl +"/api/accounts/existingETPSUser/validate", {
