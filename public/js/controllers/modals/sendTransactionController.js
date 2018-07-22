@@ -55,6 +55,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                     return;
                 }
                 if ($scope.isCorrectValue($scope.amount)) {
+                    $scope.presendError = false;
                     return onValid();
                 } else {
                     $scope.presendError = true;
@@ -68,7 +69,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
 
     function validateOTP(onValid) {
         $scope.errorMessage = {};
-        if ($scope.otpNumber === '' || $scope.otpNumber === undefined) {
+        if ($scope.otpNumber == '' || $scope.otpNumber == undefined) {
             $scope.errorMessage.otpNumber = 'No OTP supplied';
             $scope.presendError = true;
             return;
@@ -76,22 +77,18 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         return onValid();
     }
 
-    $scope.getPass = function () {
-        $scope.checkSecondPass = false;
-        $scope.passmode = $scope.rememberedPassphrase ? false : true;
-        if ($scope.passmode) {
-            $scope.focus = 'secretPhrase';
-        }
-        $scope.secondPhrase = '';
-        $scope.secretPhrase = '';
-        return;
-    }
-
     $scope.passcheck = function (fromSecondPass, otp) {
-        if(otp) {
+        if ($scope.OTP) {
             $scope.otp = otp;
+            validateOTP(function () {
+                $scope.OTP = false;
+                $scope.presendError = false;
+                $scope.errorMessage = {};
+            });
+            if($scope.presendError){
+                return;
+            }
         }
-        
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -103,15 +100,21 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             return;
         }
         if ($scope.rememberedPassphrase) {
+            if($scope.otp){
+                $scope.OTP = true;
+            }
             validateForm(function () {
                 $scope.presendError = false;
                 $scope.errorMessage = {};
                 $scope.sendTransaction($scope.rememberedPassphrase);
             });
         } else {
-            validateOTP(function () {
-                $scope.OTP = false;
-                $scope.getPass();
+            validateForm(function () {
+                $scope.presendError = false;
+                $scope.errorMessage = {};
+                $scope.passmode = !$scope.passmode;
+                $scope.focus = 'secretPhrase';
+                $scope.secretPhrase = '';
             });
         }
     }
@@ -130,23 +133,16 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                 publicKey: userService.publicKey
             }
         })
-        .then(function (resp) {
-            if (resp.data.success) {
-                $scope.twofactor = true;
-                $scope.OTPModalPopup();
-            } else {
-                $scope.OTP = false;
-                if ($scope.rememberedPassphrase) {
-                    $scope.passcheck();
+            .then(function (resp) {
+                if (resp.data.success) {
+                    $scope.twofactor = true;
+                    $scope.OTPModalPopup();
                 } else {
-                    $scope.passcheck(true);
+                    $scope.OTP = false;
+                    $scope.passcheck();
                 }
-            }
-        })
+            })
     }
-
-
-
 
     $scope.close = function () {
         if ($scope.destroy) {
@@ -252,6 +248,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
 
     $scope.sendTransaction = function (secretPhrase, withSecond) {
         if ($scope.secondPassphrase && !withSecond) {
+            $scope.OTP = false;
             $scope.checkSecondPass = true;
             $scope.focus = 'secondPhrase';
             return;
