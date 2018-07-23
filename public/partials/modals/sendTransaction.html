@@ -60,7 +60,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show="passmode && !checkSecondPass && !OTP">
+                <div class="modal-content" ng-show=" passmode && !checkSecondPass && !OTP">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
@@ -94,7 +94,7 @@
                     <div class="modal-body bordered">
                         <ul class="nav modal-buttons pull-right">
                             <li>
-                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="OTPModalPopup()" class="btn-flat" />
+                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
                                 <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase)" class="btn-flat waves-blue"

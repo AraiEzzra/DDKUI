@@ -48,6 +48,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     voteIndicator: gettextCatalog.getString('VoteIndicator'),
     voteDone: gettextCatalog.getString('Vote'),
     recipient: gettextCatalog.getString('Recipient'),
+    transIndicator: gettextCatalog.getString('Transferred'),
     action: gettextCatalog.getString('Action')
   };
 
