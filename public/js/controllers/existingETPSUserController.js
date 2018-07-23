@@ -39,18 +39,8 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
 
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        if (!username && !email) {
+        if (!username || !email) {
             $scope.errorMessage = 'Username & Email are Mandatory';
-            return;
-        }
-
-        if (!username) {
-            $scope.errorMessage = 'Username is required';
-            return;
-        }
-
-        if (!email) {
-            $scope.errorMessage = 'Email is required';
             return;
         }
 
