@@ -28,11 +28,13 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
     $scope.forgotWindow = function() {
         $scope.loginPage = false;
         $scope.forgotPasswordPage = true;
+        $scope.errorMessage = false;
     }
 
     $scope.back = function() {
         $scope.forgotPasswordPage = false;
         $scope.loginPage = true;
+        $scope.forgotErrorMessage = false;
     }
 
     $scope.forgotPassword = function (username, email) {
@@ -40,27 +42,27 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
         if (!username || !email) {
-            $scope.errorMessage = 'Username & Email are Mandatory';
+            $scope.forgotErrorMessage = 'Username & Email are Mandatory';
             return;
         }
 
         if (!regex.test(email)) {
-            $scope.errorMessage = 'Please enter a valid email address.';
+            $scope.forgotErrorMessage = 'Please enter a valid email address.';
             return;
         }
 
         let post = "username=" + btoa(username) + "&email=" + btoa(email);
-        $scope.errorMessage = false;
+        $scope.forgotErrorMessage = false;
         $http.post($rootScope.serverUrl + "/api/accounts/forgotEtpsPassword", {
             data: post
         }).success(function (resp) {
             if (!resp.success) {
-                $scope.errorMessage = resp.error;
+                $scope.forgotErrorMessage = resp.error;
             } else {
                 Materialize.toast(resp.info, 1000, 'green white-text');
             }
         }).error(function (err) {
-            $scope.errorMessage = err;
+            $scope.forgotErrorMessage = err;
         });
     }
 
