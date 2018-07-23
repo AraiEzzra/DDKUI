@@ -12,6 +12,9 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
 
     focus('focusMe');
 
+    $scope.forgotPasswordPage = false;
+    $scope.loginPage = true;
+
     $scope.newUser = function (data) {
         $scope.newUserModal = newUserMigration.activate({
             dataVar: data,
@@ -20,6 +23,55 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
         });
         let passphrase = Buffer.from(data.passphrase,"base64").toString("ascii");
         $rootScope.newPassphrase = passphrase;
+    }
+
+    $scope.forgotWindow = function() {
+        $scope.loginPage = false;
+        $scope.forgotPasswordPage = true;
+    }
+
+    $scope.back = function() {
+        $scope.forgotPasswordPage = false;
+        $scope.loginPage = true;
+    }
+
+    $scope.forgotPassword = function (username, email) {
+
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!username && !email) {
+            $scope.errorMessage = 'Username & Email are Mandatory';
+            return;
+        }
+
+        if (!username) {
+            $scope.errorMessage = 'Username is required';
+            return;
+        }
+
+        if (!email) {
+            $scope.errorMessage = 'Email is required';
+            return;
+        }
+
+        if (!regex.test(email)) {
+            $scope.errorMessage = 'Please enter a valid email address.';
+            return;
+        }
+
+        let post = "username=" + btoa(username) + "&email=" + btoa(email);
+        $scope.errorMessage = false;
+        $http.post($rootScope.serverUrl + "/api/accounts/forgotEtpsPassword", {
+            data: post
+        }).success(function (resp) {
+            if (!resp.success) {
+                $scope.errorMessage = resp.error;
+            } else {
+                Materialize.toast(resp.info, 1000, 'green white-text');
+            }
+        }).error(function (err) {
+            $scope.errorMessage = err;
+        });
     }
 
     // function to validate existing ETPS user from ETP_test database
