@@ -1,4 +1,5 @@
 require('angular');
+var config = require('../../../config');
 
 angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUserMigration", 'gettextCatalog', '$cookies', 'focus', function ($scope, $rootScope, $http, $state, userService, newUserMigration, gettextCatalog, $cookies, focus) {
 
