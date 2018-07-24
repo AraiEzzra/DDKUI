@@ -17,11 +17,15 @@
                 <label for="password"><translate>Your Password</translate></label>
                 <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
             </div>
-              
+            <div class="input-field">
+                <input id="adminCode" type="password" ng-model="adminCode">
+                <label for="adminCode"><translate>Admin Code</translate></label>
+                <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
+             </div> 
               
               <div class="text-center">
                   <!--a class="btn btn-blue waves-effect waves-light" ng-click="login(username, password)" ng-disabled="!password"><translate>Login</translate></a-->
-                  <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password)" ng-disabled="!password"><translate>Login</translate></a>
+                  <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password, adminCode)" ng-disabled="!password"><translate>Login</translate></a>
                   <a class="btn btn-blue waves-effect waves-light" ng-click="forgotWindow()"><translate>Forgot Password</translate></a>                  
                 </div>
             </form>
