@@ -1,4 +1,5 @@
 require('angular');
+var config = require('../../../config');
 
 angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUserMigration", 'gettextCatalog', '$cookies', 'focus', function ($scope, $rootScope, $http, $state, userService, newUserMigration, gettextCatalog, $cookies, focus) {
 
@@ -52,9 +53,11 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
         }
 
         let post = "username=" + btoa(username) + "&email=" + btoa(email);
+        let url  = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/existingETPSUser';
         $scope.forgotErrorMessage = false;
         $http.post($rootScope.serverUrl + "/api/accounts/forgotEtpsPassword", {
-            data: post
+            data: post,
+            link: url
         }).success(function (resp) {
             if (!resp.success) {
                 $scope.forgotErrorMessage = resp.error;
