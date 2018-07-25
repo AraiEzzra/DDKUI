@@ -102,7 +102,9 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
 
     feeService(function (fees) {
 
-        $http.post($rootScope.serverUrl + "/api/frogings/getMyDDKFrozen", { secret: $scope.rememberedPassphrase })
+        $scope.fee = (userService.totalFrozeAmount * fees.vote)/100;
+
+        /* $http.post($rootScope.serverUrl + "/api/frogings/getMyDDKFrozen", { secret: $scope.rememberedPassphrase })
         .then(function (resp) {
             if (resp.data.success) {
                 var myDDKFrozen = resp.data.totalDDKStaked.sum / 100000000;
@@ -117,7 +119,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
                 Materialize.toast(resp.data.error, 3000, 'red white-text');
                 $scope.myDDKFrozen = 0;
             }
-        });
+        }); */
  
     });
 

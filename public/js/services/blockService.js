@@ -147,26 +147,19 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                                             "should": []
                                         }
                                     },
-                                    "from": 0,
-                                    "size": blocksResponse.hits.total,
+                                    "from": (params.page() - 1) * params.count(),
+                                    "size": params.count(),
                                     "sort": [{ height: { order: 'desc' } }],
                                     "aggs": {}
                                 }
                             }, function (err, res) {
-
-                                
-
-                                
-                                
                                 var blocksData = [];
                                 res.hits.hits.forEach(function (block) {
                                     blocksData.push(block._source);
                                   });
                                   if (blocksData != null) {
-                                    params.total(blocksData.length);
-                                    var filteredData = $filter('filter')(blocksData, filter);
-                                    var transformedData = transformData(blocksData, filter, params)
-                                    $defer.resolve(transformedData);
+                                    params.total(res.hits.total);
+                                    $defer.resolve(blocksData);
                                   }
                                   cb(null);
 

@@ -15,13 +15,13 @@
                                 <!-- ngRepeat: transaction in transactions -->
                                 <li class="list-group-item" ng-repeat="transaction in transactions">
                                     <div class="transaction-data"><strong><translate>Transaction ID</translate>:</strong> {{transaction.id}}
-                                        <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
+                                        <span class="pull-right">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
                                     </div>
                                     <div class="transaction-path">
                                         <div class="transaction-part pull-left">
                                             <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                            <span ng-show="transaction.type != 8" class="DDK">{{transaction.amount | ETPFilter}} DDK</span>
-                                            <span ng-show="transaction.type == 8" class="DDK">{{transaction.stakedAmount | ETPFilter}} DDK</span>
+                                            <span ng-show="transaction.type != 8" class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
+                                            <span ng-show="transaction.type == 8" class="DDK">{{transaction.stakedAmount | DDKFilter}} DDK</span>
                                         </div>
                                         <div class="transaction-direction"></div>
                                         <div class="transaction-part pull-right">
@@ -30,9 +30,9 @@
                                         </div>
                                     </div>
                                     <div class="transaction-bottom">
-                                        <div class="fee"><translate>FEE</translate>: {{transaction.fee | ETPFilter}} DDK</div>
+                                        <div class="fee"><translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>
                                         <div class="fee"><translate>Type</translate>: {{transaction.trsName}}</div>
-                                        <div class="DDK">{{transaction.amount | ETPFilter}} DDK</div>
+                                        <div class="DDK">{{transaction.amount | DDKFilter}} DDK</div>
                                         <div class="confirmations">{{transaction.confirmations || 0}} <translate>CONFIRMATIONS</translate></div>
                                     </div>
                                 </li>

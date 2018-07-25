@@ -187,7 +187,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
                 $scope.delegateInRegistration = userService.delegateInRegistration;
 
-                $scope.availableBalance = userService.balance - userService.totalFrozeAmount;
+                $scope.availableBalance = userService.unconfirmedBalance - userService.totalFrozeAmount;
 
                 if ($state.current.name != 'passphrase') {
                     $scope.getMultisignatureAccounts(function (multisignature) {

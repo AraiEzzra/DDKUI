@@ -1,7 +1,7 @@
 
 require('angular');
 
-angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog) {
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -39,6 +39,18 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
 
     $scope.transactionInfo = function (transaction) {
         $scope.modal = transactionInfo.activate({ transaction: transaction });
+    }
+
+    $scope.blockInfo = function (blockID) {
+        $http.get($rootScope.serverUrl + "/api/blocks/get", {
+            params: {
+                id: blockID
+            }
+        }).then(function (response) {
+            transactionInfo.deactivate();
+            $scope.modal = blockInfo.activate({ block: response.data.block });
+        }
+            );
     }
 
     $scope.resetAppData = function () {

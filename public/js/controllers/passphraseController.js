@@ -23,10 +23,11 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.cleanUpUserData();
 
     $scope.newUser = function () {
-        $scope.newUserModal = newUser.activate({
-            destroy: function () {
-            }
-        });
+        alert("Register has been disable for a while for upgrading");
+        /*  $scope.newUserModal = newUser.activate({
+             destroy: function () {
+             }
+         }); */
     }
 
     $scope.login = function (pass, remember) {

@@ -189,6 +189,7 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         rate : gettextCatalog.getString('Rank'),
         username : gettextCatalog.getString('Name'),
         address : gettextCatalog.getString('DDK Address'),
+        url : gettextCatalog.getString('Url'),
         productivity : gettextCatalog.getString('Uptime'),
         vote : gettextCatalog.getString('Approval')
     };

@@ -20,9 +20,10 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         registrationDelegateModal.deactivate();
     }
 
-    function validateUsername (onValid) {
+    function validate(onValid) {
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var allowSymbols = /^[a-z0-9!@$&_.]+$/g;
+        var isCorrectURL = /^(http|https)+.*$/ig;
 
         $scope.delegateData.username = $scope.delegateData.username.trim();
 
@@ -33,7 +34,13 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         } else {
             if (!isAddress.test($scope.delegateData.username)) {
                 if (allowSymbols.test($scope.delegateData.username.toLowerCase())) {
-                    return onValid();
+                    if ($scope.delegateData.URL && !isCorrectURL.test($scope.delegateData.URL)) {
+                        $scope.error = "Please start URL with http or https.";
+                    } else if ($scope.delegateData.URL.length > 100) {
+                        $scope.error = "URL is too long. Maximum 100 characters allowed";
+                    } else {
+                        return onValid();
+                    }
                 } else {
                     $scope.error = "Username can only contain alphanumeric characters with the exception of !@$&_.";
                 }
@@ -59,12 +66,12 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         }
 
         if ($scope.rememberedPassphrase) {
-            validateUsername(function () {
+            validate(function () {
                 $scope.error = null;
                 $scope.registrationDelegate($scope.rememberedPassphrase);
             });
         } else {
-            validateUsername(function () {
+            validate(function () {
                 $scope.error = null;
                 $scope.focus = 'secretPhrase';
                 $scope.passmode = !$scope.passmode;
@@ -99,6 +106,10 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
             if ($scope.rememberedPassphrase) {
                 data.secret = $scope.rememberedPassphrase;
             }
+        }
+
+        if ($scope.delegateData.URL) {
+            data.URL = $scope.delegateData.URL;
         }
 
         if (!$scope.sending) {

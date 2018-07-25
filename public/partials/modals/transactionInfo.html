@@ -19,24 +19,23 @@
                 <li class="list-group-item">
                     <translate>Amount</translate>
                     <div class="pull-right small-text" ng-show="transaction.type != 8">
-                        {{transaction.amount | ETPFilter}} DDK
+                        {{transaction.amount | DDKFilter}} DDK
                     </div>
                     <div class="pull-right small-text" ng-show="transaction.type == 8">
-                        {{transaction.stakedAmount | ETPFilter}} DDK
+                        {{transaction.stakedAmount | DDKFilter}} DDK
                     </div>
-                
                 </li>
                 <li class="list-group-item"><translate>Type</translate>
                     <span class="pull-right small-text">{{transaction.trsName}}</span>
                 </li>
                 <li class="list-group-item"><translate>Fee</translate>
-                    <span class="pull-right small-text">{{transaction.fee | ETPFilter}} DDK</span>
+                    <span class="pull-right small-text">{{transaction.fee | DDKFilter}} DDK</span>
                 </li>
                 <li class="list-group-item "><translate>USD Equivalent</translate>
                     <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
                 </li>
                 <li class="list-group-item"><translate>Time</translate>
-                    <span class="pull-right small-text">{{transaction.timestamp | timestampFilter}}</span>
+                    <span class="pull-right small-text">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
                 </li>
                 <li class="list-group-item"><translate>Block Height</translate>
                     <span class="pull-right small-text">{{transaction.height}}</span>
@@ -54,21 +53,22 @@
                     <div class="transaction-path">
                         <div ng-show="transaction.type != 8" class="transaction-part pull-left">
                             <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                            <span class="DDK">{{transaction.amount | ETPFilter}} DDK</span>
+                            <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                         </div>
                         <div ng-show="transaction.type == 8" class="transaction-part pull-left">
                             <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                            <span class="DDK">{{transaction.stakedAmount | ETPFilter}} DDK</span>
+                            <span class="DDK">{{transaction.stakedAmount | DDKFilter}} DDK</span>
                         </div>
                         <div class="transaction-direction"></div>
                         <div ng-show="transaction.type != 8" class="transaction-part pull-right">
                             <a href="#" class="blue-link" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId || ""}}</a>
-                            <span class="DDK">{{transaction.amount | ETPFilter}} DDK</span>
+                            <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                         </div>
+                        <div ng-show="transaction.type == 8" class="transaction-part pull-right"></div>
                     </div>
                     <div class="transaction-bottom">
-                        <div class="fee"><translate>FEE</translate>: {{transaction.fee | ETPFilter}} DDK</div>
-                        <div class="DDK">{{transaction.amount | ETPFilter}} DDK
+                        <div class="fee"><translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>
+                        <div class="DDK">{{transaction.amount | DDKFilter}} DDK
                         </div>
                         <div class="confirmations">{{transaction.confirmations || 0}} <translate>CONFIRMATIONS</translate></div>
                     </div>
