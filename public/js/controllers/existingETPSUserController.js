@@ -62,8 +62,9 @@ angular.module('ETPApp').controller('existingETPSUserController', ['$scope', '$r
             if (!resp.success) {
                 $scope.forgotErrorMessage = resp.error;
             } else {
-                $scope.etps_username = null;
-                $scope.email = null;
+                $scope.etps_username = '';
+                $scope.email = '';
+                $("label").removeClass("active");
                 Materialize.toast(resp.info, 1000, 'green white-text');
             }
         }).error(function (err) {
