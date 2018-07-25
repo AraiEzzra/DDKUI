@@ -182,7 +182,10 @@
               <td class="padding-in-1400">
                 <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
               </td>
-              <td ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+              <td ng-if="transaction.username" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.username}}</a>
+              </td>
+              <td ng-if="!transaction.username" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
                 <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
               </td>
               <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>

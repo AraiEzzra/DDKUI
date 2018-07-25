@@ -68,7 +68,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             }
         }).then(function (resp) {
             var transactions = resp.data.transactions;
-
             $http.get($rootScope.serverUrl + '/api/transactions/unconfirmed', {
                 params: {
                     senderPublicKey: userService.publicKey,
@@ -91,6 +90,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             $scope.view.inLoading = false;
             if (resp.data.account) {
                 var account = resp.data.account;
+                userService.username = account.username;
                 userService.balance = account.balance;
                 userService.multisignatures = account.multisignatures;
                 userService.u_multisignatures = account.u_multisignatures;
