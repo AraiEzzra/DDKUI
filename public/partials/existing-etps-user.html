@@ -2,30 +2,71 @@
     <!-- <div class="pass-banner"></div> -->
     <div class="overlay"></div>
     <div class="pass-bottom">
-        <div class="pass-window">
+        <div class="pass-window" ng-show="loginPage">
             <div class="pass-window-icon">
                 <span>Existing ETPS User</span>
             </div>
             <form class="clearfix pass-window-form">
-              <div class="input-field">
-                  <input id="userName" type="text" ng-model="username" focus-on="focusMe">
-                  <label for="userName"><translate>Your User Name</translate></label>
-              </div>
+                <div class="input-field">
+                    <input id="userName" type="text" ng-model="username" focus-on="focusMe">
+                    <label for="userName">
+                        <translate>Your User Name</translate>
+                    </label>
+                </div>
 
-              <div class="input-field">
-                <input id="password" type="password" ng-model="password">
-                <label for="password"><translate>Your Password</translate></label>
-                <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
-              </div>
-              <div class="input-field">
-                <input id="adminCode" type="password" ng-model="adminCode">
-                <label for="adminCode"><translate>Admin Code</translate></label>
-                <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
-             </div>              
-              
-              <div class="text-center">
-                  <!--a class="btn btn-blue waves-effect waves-light" ng-click="login(username, password)" ng-disabled="!password"><translate>Login</translate></a-->
-                  <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password, adminCode)" ng-disabled="!password"><translate>Login</translate></a>
+                <div class="input-field">
+                    <input id="password" type="password" ng-model="password">
+                    <label for="password">
+                        <translate>Your Password</translate>
+                    </label>
+                    <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
+                </div>
+
+                <div class="input-field">
+                    <input id="adminCode" type="password" ng-model="adminCode">
+                    <label for="adminCode"><translate>Admin Code</translate></label>
+                    <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
+                </div> 
+
+                <div class="text-center">
+                    <!--a class="btn btn-blue waves-effect waves-light" ng-click="login(username, password)" ng-disabled="!password"><translate>Login</translate></a-->
+                    <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password, adminCode)" ng-disabled="!password">
+                        <translate>Login</translate>
+                    </a>
+                    <a class="btn btn-blue waves-effect waves-light" ng-click="forgotWindow()">
+                        <translate>Forgot Password</translate>
+                    </a>
+                </div>
+            </form>
+        </div>
+        <div class="pass-window" ng-show="forgotPasswordPage">
+            <div class="pass-window-icon">
+                <span>Forgot Password</span>
+            </div>
+            <form class="clearfix pass-window-form">
+                <div class="input-field">
+                    <input id="username" type="text" ng-model="etps_username" focus-on="focusMe">
+                    <label for="username">
+                        <translate>Your User Name</translate>
+                    </label>
+                </div>
+
+                <div class="input-field">
+                    <input id="email" type="text" ng-model="email">
+                    <label for="email">
+                        <translate>Your Email Id</translate>
+                    </label>
+                    <span class="pass-error" ng-show="forgotErrorMessage">{{forgotErrorMessage}}</span>
+                </div>
+
+
+                <div class="text-center">
+                    <a class="btn btn-blue waves-effect waves-light" ng-click="back()">
+                        <translate>Back To Login</translate>
+                    </a>
+                    <a class="btn btn-blue waves-effect waves-light" ng-click="forgotPassword(etps_username, email)" ng-disabled="((!etps_username) || (!email))">
+                        <translate>Send Email</translate>
+                    </a>
                 </div>
             </form>
         </div>
