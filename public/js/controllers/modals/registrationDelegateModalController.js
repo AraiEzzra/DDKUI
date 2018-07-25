@@ -36,8 +36,8 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
                 if (allowSymbols.test($scope.delegateData.username.toLowerCase())) {
                     if ($scope.delegateData.URL && !isCorrectURL.test($scope.delegateData.URL)) {
                         $scope.error = "Please start URL with http or https.";
-                    } else if ($scope.delegateData.URL.length > 20) {
-                        $scope.error = "URL is too long. Maximum is 30 characters";
+                    } else if ($scope.delegateData.URL.length > 100) {
+                        $scope.error = "URL is too long. Maximum 100 characters allowed";
                     } else {
                         return onValid();
                     }

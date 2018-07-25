@@ -11,7 +11,7 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
     $scope.loading = true;
     $scope.showAllColumns = false;
     $scope.showFullTime = false;
-    $scope.searchBlocks = blockService;
+    $scope.searchBlocks.searchForBlock='';
     $scope.countForgingBlocks = 0;
 
     // Blocks
