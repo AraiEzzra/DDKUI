@@ -27,11 +27,20 @@ angular.module('DDKApp').controller('transactionsController', ['$scope', '$rootS
             params: {
                 id: blockID
             }
-        }).then(function (response) {
+        }).then(function (resp) {
             transactionInfo.deactivate();
-            $scope.modal = blockInfo.activate({ block: response.data.block });
-        }
-            );
+            var tmp = [];
+            var keys = Object.keys(resp.data.block);
+            for (var j = 0; j < keys.length; j++) {
+                if (keys[j] === 'username') {
+                    var key = keys[j].replace(keys[j], 'm_' + keys[j]);
+                } else {
+                    var key = keys[j].replace(keys[j], 'b_' + keys[j]);
+                }
+                tmp[key] = resp.data.block[keys[j]];
+            }
+            $scope.modal = blockInfo.activate({ block: tmp });
+        });
     }
 
     // Transactions

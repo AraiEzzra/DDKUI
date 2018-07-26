@@ -6,7 +6,7 @@
                     <div class="modal-header">
                         <h2>{{'Block'|translate}}</h2>
 
-                        <input id="blockId" class="clipboard" value="{{block.id}}" readonly>
+                        <input id="blockId" class="clipboard" value="{{block.b_id}}" readonly>
                         <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-target="#blockId" clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);"><i class="small material-icons">assignment</i><translate>Copy Block ID</translate></button>
 
                         <div class="close-modal" ng-click="close()">
@@ -18,37 +18,37 @@
                             <ul class="list-group">
                                 <li class="list-group-item summary"><translate>Summary</translate></li>
                                 <li class="list-group-item"><translate>Transactions</translate>
-                                    <span class="pull-right small-text">{{block.numberOfTransactions}}</span>
+                                    <span class="pull-right small-text">{{block.b_numberOfTransactions}}</span>
                                 </li>
                                 <li class="list-group-item bordered"><translate>Confirmations</translate>
-                                    <span class="pull-right small-text">{{block.confirmations}}</span>
+                                    <span class="pull-right small-text">{{block.b_confirmations}}</span>
                                 </li>
                                 <li class="list-group-item"><translate>Height</translate>
-                                    <span class="pull-right small-text">{{block.height}}</span>
+                                    <span class="pull-right small-text">{{block.b_height}}</span>
                                 </li>
                                 <li class="list-group-item bordered"><translate>Reward</translate>
-                                    <span class="pull-right small-text">{{block.reward | DDKFilter}}</span>
+                                    <span class="pull-right small-text">{{block.b_reward | DDKFilter}}</span>
                                 </li>
                                 <li class="list-group-item bordered"><translate>Total Fee</translate>
-                                    <span class="pull-right small-text">{{block.totalFee | DDKFilter}}</span>
+                                    <span class="pull-right small-text">{{block.b_totalFee | DDKFilter}}</span>
                                 </li>
                                 <li class="list-group-item"><translate>Total Amount</translate>
-                                    <span class="pull-right small-text">{{block.totalAmount | DDKFilter}}</span>
+                                    <span class="pull-right small-text">{{block.b_totalAmount | DDKFilter}}</span>
                                 </li>
                                 <li class="list-group-item"><translate>USD Equivalent</translate>
-                                    <span class="pull-right small-text">${{convertToUSD(block.totalAmount) || 0 | number: 2}}</span>
+                                    <span class="pull-right small-text">${{convertToUSD(block.b_totalAmount) || 0 | number: 2}}</span>
                                 </li>
                                 <li class="list-group-item bordered"><translate>Time</translate>
-                                    <span class="pull-right small-text">{{block.timestamp | timeAgoFilter}} ({{block.timestamp | timestampFilter}})</span>
+                                    <span class="pull-right small-text">{{block.b_timestamp | timeAgoFilter}} ({{block.b_timestamp | timestampFilter}})</span>
                                 </li>
                                 <li class="list-group-item"><translate>Previous Block</translate>
                                     <span class="pull-right small-text">
-                                        <a ng-click="previousBlock(block.previousBlock)">{{block.previousBlock}}</a>
+                                        <a ng-click="previousBlock(block.b_previousBlock)">{{block.b_previousBlock}}</a>
                                     </span>
                                 </li>
                                 <li class="list-group-item"><translate>Generator</translate>
                                     <span class="pull-right small-text">
-                                        <a ng-click="showGenerator(block.generatorId)">{{block.generatorId}}</a>
+                                        <a ng-click="showGenerator(block.b_generatorId)">{{block.m_username}}</a>
                                     </span>
                                 </li>
                             </ul>

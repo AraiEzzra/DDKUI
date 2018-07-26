@@ -83,6 +83,26 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
         $scope.modal = blockInfo.activate({ block: block });
     }
 
+    $scope.blockIdInfo = function (blockID) {
+        $http.get($rootScope.serverUrl + "/api/blocks/get", {
+            params: {
+                id: blockID
+            }
+        }).then(function (resp) {
+            var tmp = [];
+            var keys = Object.keys(resp.data.block);
+            for (var j = 0; j < keys.length; j++) {
+                if (keys[j] === 'username') {
+                    var key = keys[j].replace(keys[j], 'm_' + keys[j]);
+                } else {
+                    var key = keys[j].replace(keys[j], 'b_' + keys[j]);
+                }
+                tmp[key] = resp.data.block[keys[j]];
+            }
+            $scope.modal = blockInfo.activate({ block: tmp });
+        });
+    }
+
     $scope.userInfo = function (userId) {
         $scope.modal = userInfo.activate({ userId: userId });
     }
@@ -113,8 +133,8 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     // For ChainHeight
     $scope.chainHeight = function() {
         esClient.search({
-            index: 'blocks',
-            type: 'blocks',
+            index: 'blocks_list',
+            type: 'blocks_list',
             body: {
                 query: {
                     match_all: {}
