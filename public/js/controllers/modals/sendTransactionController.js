@@ -43,7 +43,6 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.to);
         $scope.errorMessage = {};
-        
         if ($scope.to.trim() == '') {
             $scope.errorMessage.recipient = 'Empty recipient';
             $scope.presendError = true;

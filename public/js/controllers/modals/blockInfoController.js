@@ -31,24 +31,23 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
     }
 
     $scope.previousBlock = function (blockId) {
-        $http.get($rootScope.serverUrl + "/api/blocks/get?id=" +
-        blockId)
-            .then(function (resp) {
-                var tmp = [];
-                var keys = Object.keys(resp.data.block);
-                for (var j = 0; j < keys.length; j++) {
-                    if(keys[j] === 'username') {
-                        var key = keys[j].replace(keys[j], 'm_'+ keys[j]);
-                    } else {
-                        var key = keys[j].replace(keys[j], 'b_'+ keys[j]);
-                    }
-                    tmp[key] = resp.data.block[keys[j]];
+        $http.get($rootScope.serverUrl + "/api/blocks/get?id=" + blockId)
+        .then(function (resp) {
+            var tmp = [];
+            var keys = Object.keys(resp.data.block);
+            for (var j = 0; j < keys.length; j++) {
+                if (keys[j] === 'username') {
+                    var key = keys[j].replace(keys[j], 'm_' + keys[j]);
+                } else {
+                    var key = keys[j].replace(keys[j], 'b_' + keys[j]);
                 }
-                $scope.block = tmp;
-                $scope.transactions = [];
-                $scope.transactionsLength = 0;
-                $scope.getTransactionsOfBlock($scope.block.id);
-            });
+                tmp[key] = resp.data.block[keys[j]];
+            }
+            $scope.block = tmp;
+            $scope.transactions = [];
+            $scope.transactionsLength = 0;
+            $scope.getTransactionsOfBlock($scope.block.id);
+        });
     }
 
 }]);
