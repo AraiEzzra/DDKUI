@@ -12,7 +12,7 @@ angular.module('DDKApp').controller('blockModalController', ["$scope", "$http", 
             });
     };
 
-    $scope.getTransactionsOfBlock($scope.block.id);
+    $scope.getTransactionsOfBlock($scope.block.b_id);
 
     $scope.close = function () {
         blockModal.deactivate();

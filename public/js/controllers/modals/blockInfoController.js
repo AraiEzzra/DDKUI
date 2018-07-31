@@ -13,7 +13,7 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
             });
     };
 
-    $scope.getTransactionsOfBlock($scope.block.id);
+    $scope.getTransactionsOfBlock($scope.block.b_id);
 
     $scope.close = function () {
         blockInfo.deactivate();
@@ -46,7 +46,7 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
             $scope.block = tmp;
             $scope.transactions = [];
             $scope.transactionsLength = 0;
-            $scope.getTransactionsOfBlock($scope.block.id);
+            $scope.getTransactionsOfBlock($scope.block.b_id);
         });
     }
 
