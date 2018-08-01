@@ -15,7 +15,6 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
     
 
     function validateForm(onValid) {
-        console.log("1111");
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.recipientAddress);
         $scope.errorMessage = {};
@@ -28,7 +27,6 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
                 $scope.errorMessage.recipient = 'Invalid recipient';
                 $scope.presendError = true;
             } else {
-                console.log("1.$scope.recipientAddress = ",$scope.recipientAddress ,' and userService.address = ',userService.address);
                 if ($scope.recipientAddress == userService.address) {
                     $scope.errorMessage.recipient = 'Sender and Recipient can\'t be same';
                     $scope.presendError = true;
@@ -67,7 +65,6 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
 
     /* For Total Count*/
     $scope.sendFreezeOrder = function (secretPhrase, withSecond) {
-        console.log("222221");
         if ($scope.secondPassphrase && !withSecond) {
             $scope.checkSecondPass = true;
             $scope.focus = 'secondPhrase';
