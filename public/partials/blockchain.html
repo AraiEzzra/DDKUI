@@ -4,11 +4,11 @@
         <!-- For stake search bar -->
         <div class="search-bar" ng-show="view.bar.showBlockSearchBar">
             <div class="search-toggle" ng-if="searchBlocks.searchForBlock">
-                <i ng-click="clearSearch()" class="mdi-content-clear small"></i>
+                <i ng-click="clearSearch()" class="fa fa-times small"></i>
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="mdi-action-search"></i>
+                    <i class="fa fa-search"></i>
                 </span>
                 <input type="text" class="form-control" placeholder="{{'Search for blocks'|translate}}" ng-model="searchBlocks.searchForBlock">
                 <span class="input-group-addon spinner-addon">
@@ -28,17 +28,9 @@
                 </span>
             </div>
         </div>
-        
-        
-
-
-
-        
-        <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
+        <div class="panel-default custom-panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
             <div class="panel-heading">
-                <h2>
-                    {{'Latest Blocks'|translate}}
-                </h2>
+                <h2>{{'Latest Blocks'|translate}}</h2>
             </div>
             <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableBlocks" border="0" width="100%" cellpadding="0"
                 cellspacing="0" template-pagination="custom/pager">

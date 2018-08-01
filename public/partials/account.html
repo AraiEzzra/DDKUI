@@ -1,149 +1,139 @@
 <div class="top-margin"></div>
+<!-- For Top Information -->
 <div class="row clearfix">
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/plug.png" width="32">
-          </span>
-        </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalSupply || 0}} DDK</span>
-          <br>
-          <span class="info-box-text">{{'Total Supply'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{totalSupply || 0}} DDK</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-addons st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Supply'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 pl7 dashboard-info pr15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/power-cord.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{circulatingSupply || 0}} DDK</span>
-          <br>
-          <span class="info-box-text">{{'Circulating Supply'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{circulatingSupply || 0}} DDK</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-pie-chart st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Circulating Supply'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 pr7 dashboard-info pl15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/users-group.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalCount}}</span>
-          <br>
-          <span class="info-box-text">{{'Token Holders'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{totalCount}}</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-users st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Token Holders'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 pr0 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/money-bag-with-dollar-symbol.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">
-            <span class="strong">{{balanceToShow[0] || 0}}
-              <span class="small">{{balanceToShow[1]}}</span>
-            </span>&nbsp;DDK</span>
-          <br>
-          <span>({{((unconfirmedBalanceDec/circulatingSupply)*100).toFixed(2)}}%)</span>
-          <span class="info-box-text">{{'Your DDK Balance'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{balanceToShow[0] || 0}}
+            <span class="small">{{balanceToShow[1]}}</span> DDK</h5>
+          <span class="f-left pos-absolute p-0 m-0">({{((unconfirmedBalanceDec/circulatingSupply)*100).toFixed(2)}}%)</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-money-bag st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Your DDK Balance'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/snowflake.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{stakeBalanceToShow[0] || 0}}<span class="small">{{stakeBalanceToShow[1]}}</span></span>&nbsp; DDK</span>
-          <br>
-          <span>({{totalDDKStaked?((myDDKFrozen/totalDDKStaked)*100).toFixed(2):0}}%)</span>
-          <span class="info-box-text">{{'Your DDK Frozen'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{stakeBalanceToShow[0] || 0}}
+            <span class="small">{{stakeBalanceToShow[1]}}</span> DDK</h5>
+          <span class="f-left pos-absolute p-0 m-0">({{totalDDKStaked?((myDDKFrozen/totalDDKStaked)*100).toFixed(2):0}}%)</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-snow-alt st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Your DDK Frozen'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 pl7 dashboard-info pr15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/share-connection-sing.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalConnected}}</span>
-          <br>
-          <span class="info-box-text">{{'Total Connected'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{totalConnected}}</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-brand-slideshare st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Connected'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 pl7 dashboard-info pl15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/icon.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{countStakeholders}}</span>
-          <br>
-          <span class="info-box-text">{{'Total Stakeholders'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{countStakeholders}}</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-holding-hands st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Stakeholders'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/moneylock.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalStakeBalanceToShow[0] || 0}}<span class="small">{{totalStakeBalanceToShow[1]}}</span></span>&nbsp; DDK</span>
-          <br>
-          <span class="info-box-text">{{'Total Stake Amount'|translate}}</span>
+  <div class="col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{totalStakeBalanceToShow[0] || 0}}
+            <span class="small">{{totalStakeBalanceToShow[1]}}</span>DDK</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-ui-lock st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Stake Amount'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- End Top Information -->
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="panel panel-default">
+    <div class="panel-default custom-panel-default">
       <div class="panel-heading" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
-        <h2>
-          {{'Latest Transactions'|translate}}
-        </h2>
+        <h2>{{'Latest Transactions'|translate}}</h2>
         <div class="more" ng-show="transactions.length">
           <span class="sr-only">
             <translate>More</translate>
@@ -186,12 +176,8 @@
                 <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
               </td>
               <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
-              <td class="padding-in-1400">
-                {{transaction.trsName}}
-              </td>
-              <td>
-                {{transaction.timestamp | timeAgoFilter: false}}
-              </td>
+              <td class="padding-in-1400">{{transaction.trsName}}</td>
+              <td>{{transaction.timestamp | timeAgoFilter: false}}</td>
               <td ng-show="transaction.type != 8">
                 <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                 <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
@@ -207,7 +193,6 @@
         </table>
       </div>
       <div class="panel-body empty-body" ng-if="!transactions.length">
-        <!-- <div class="logo-grey"></div> -->
         <p class="empty-state-text">
           {{'You have not made any transactions yet.'|translate}}
         </p>

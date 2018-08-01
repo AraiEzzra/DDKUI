@@ -1,6 +1,4 @@
 .panel-default {
-  border-radius: @border-radius;
-  border-color: @border-grey;
   -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   &.panel-list {
@@ -58,7 +56,7 @@
     .plain-text {
       position: absolute;
       font-size: 14px;
-      color: #393939;
+      color: #fff;
       top: 20px;
       font-weight: 500;
       right: 26px;
@@ -82,7 +80,6 @@
     }
   }
   table {
-    //border: 0;
     width: 100%;
     cellpadding: 0;
     cellspacing: 0;
@@ -104,16 +101,6 @@
 
     }
     tr {
-      &:first-child {
-        td {
-          // padding-top: 25px;
-        }
-      }
-      &:last-child {
-        td {
-          //  padding-bottom: 25px;
-        }
-      }
       &:hover {
         background-color: @background;
       }
@@ -142,7 +129,6 @@
       @media (max-width: @screen-xs-max) {
         tr {
           .word-break-xs {
-              //width: 70px !important;
               display: inline-block;
               word-break: break-word;
           }
@@ -326,32 +312,23 @@
 .info-panel {
   height: 50px;
   line-height: 50px;
-  background-color: @white;
+  background-color: #4c5965;
+  color: @white;
   border-color: @light-cloud;
   -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   border-radius: @border-radius;
-  padding: 0 26px;
-  margin-bottom: 20px;
-
-  &.white {
-
-  }
+  padding: 0;
+  margin-bottom: 30px;
   &.info-panel-grey {
     height: 54px;
     line-height: 54px;
-    //background-color: @white;
     border-color: @light-cloud;
-    //-webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
-    //box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
     border-radius: @border-radius;
     padding: 0 16px;
     margin-bottom: 20px;
-    border-bottom: 2px solid #cecece;
-    background-color: #fafafa;
-    border-top: 1px solid #cecece;
-    border-right: 1px solid #cecece;
-    border-left: 1px solid #cecece;
+    border-bottom: 2px solid #3f4b55;
+    background-color: #4c5965;
     -webkit-box-shadow: 0 0 3px 1px rgba(0, 0, 0, .12);
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, .12);
     overflow: hidden;
@@ -361,7 +338,6 @@
       line-height: inherit;
     }
     .title {
-      //font-size: @widget-text;
       display: block;
       float: left;
       vertical-align: middle;
@@ -402,14 +378,10 @@
         padding: 0 !important;
       }
     }
-
     span {
-      // width: 100%;
-      // float: left;
       padding: 18px 0;
       vertical-align: baseline;
     }
-
     .plain-text {
       padding-top: 18px;
     }

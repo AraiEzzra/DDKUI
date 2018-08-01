@@ -1,6 +1,3 @@
-
-
-
 <div ng-show="view.inLoading" ng-class="{'fadeInAnimation': view.inLoading}" class="loading-wrapper ng-scope" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999999; background: rgba(225,225,225,.6);">
     <div class="valign-wrapper" style="height: 100%;">
         <div class="valign" style="margin: 0 auto;">
@@ -57,11 +54,14 @@
 
 
 
-<div id="wrapper" ng-controller="appController" ng-class="{'toggled': !toggled,'pl-none':$state.current.name=='main.explorer'}">
+<!-- <div id="wrapper" ng-controller="appController" ng-class="{'toggled': !toggled,'pl-none':$state.current.name=='main.explorer'}"> -->
+<div id="wrapper" ng-controller="appController">
     <div class="header-wrapper top-header-section">
         <div class="nav-bar clearfix" id="header">
             <a ui-sref="main.account" class="log-box">
-                <div id="logo"><img src="../images/logo.png" alt="logo"></div>
+                <div id="logo">
+                    <img src="../images/logo.png" alt="logo">
+                </div>
             </a>
             <div class="logo">
                 <button type="button" class="toggle-menu" ng-click="toggleMenu()">
@@ -83,27 +83,24 @@
                 <span class="forging-state" ng-class="{'disabled': !forgingEnabled}" ng-if="forgingStatus && view.bar.forgingMenu">{{forgingStatus}}</span>
             </div>
             <div id="top-menu">
-                <span id="balance" class="margin-right-10">
+                <span id="balance" class="margin-right-10 btn btn-blue-nav">
                     <span>Available DDK</span>
                     {{availableBalance | DDKFilter}}
                 </span>
-                <span id="balance" class="margin-right-10">
+                <span id="balance" class="margin-right-10 btn btn-blue-nav">
                     {{unconfirmedBalance | DDKFilter}} DDK
                 </span>
                 <a class="btn btn-blue-nav waves-effect waves-light margin-right-10" ng-click="freezeAmount()">
                     <translate>Stake</translate>
                 </a>
-                
+
                 <a class="btn btn-blue-nav waves-effect waves-light" ng-click="sendTransaction()">
-                    <i class="mdi-content-send left"></i>
                     <translate>SEND</translate>
                 </a>
-                <a class="btn btn-blue-nav waves-effect waves-light margin-left-10" ui-sref="main.dashboard" ng-click="classRemove()" ng-if="$state.current.name === 'main.explorer'">
+                <!-- <a class="btn btn-blue-nav waves-effect waves-light margin-left-10" ui-sref="main.dashboard" ng-click="classRemove()" ng-if="$state.current.name === 'main.explorer'">
                     <i class="material-icons left back-btn-icon backBackBtn">navigate_before</i>
                     <translate>Back</translate>
-                </a>
-
-
+                </a> -->
                 <div class="mini-chart valign-wrapper" ng-show="syncState != undefined">
                     <div class="mini-chart-label" style="color:#000">{{syncState}}%</div>
                     <canvas id="total-forged" class="chart chart-doughnut" chart-data="loading.values" chart-labels="loading.labels" chart-options="loading.options"
@@ -127,7 +124,6 @@
                                 <translate>Referral Link</translate>
                             </a>
                         </li>
-
                         <li>
                             <a ui-sref="main.settings">
                                 <translate>Settings</translate>
@@ -145,9 +141,9 @@
         </div>
         <h1 id="title" class="mob-title">
             <span class="title-icon" ng-show="view.page.previous" ng-click="goToPrevious()">
-               <span class="sr-only">
+                <span class="sr-only">
                     <translate>Go to previous page</translate>
-               </span>
+                </span>
             </span>
             {{view.page.title}}
         </h1>
@@ -203,8 +199,6 @@
                         <translate>HOME</translate>
                     </a>
                 </li>
-                <!-- <li><a href="#">TOP RATED</a></li> -->
-                <!-- <li><a href="#">MOST USED</a></li> -->
                 <li>
                     <a ui-sref='main.dappsCategory({categoryId:"Installed"})'>
                         <translate>INSTALLED</translate>
@@ -239,8 +233,8 @@
             </div>
         </div>
         <!-- Sidebar -->
-        <!-- <div id="sidebar-wrapper" ng-class="{test: obj.value1 == 'someothervalue'}"> -->
-        <div id="sidebar-wrapper" class="abc" ng-class="myClass">
+        <!-- <div id="sidebar-wrapper" class="abc" ng-class="myClass"> -->
+        <div id="sidebar-wrapper">
             <div class="account-block">
                 <div class="icon">
                     <img src="/images/account.png" alt="Account">
@@ -250,37 +244,22 @@
                 </span>
                 <span class="address">{{address}}</span>
             </div>
-            <!-- <div class="white-glow"></div> -->
             <ul id="menu">
                 <li ng-show="showMenuItem('main.dashboard')" ui-sref-active="active">
                     <a ui-sref="main.dashboard" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="dashboard-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-home"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>Dashboard</translate>
                         </span>
                     </a>
                 </li>
-                <!-- <li ng-show="showMenuItem('main.multi') && multisignature" ui-sref-active="active">
-                 <a ui-sref="main.multi" class="waves-effect waves-blue">
-                     <div class="nav-icon" id="multi-icon"></div>
-                     <span class="menu-text"><translate>Multi-Signature</translate></span>
-                 </a>
-                 </li> -->
-                <!-- <li ng-show="showMenuItem('main.conversations')" ui-sref-active="active">
-                 <a ui-sref="main.conversations" class="waves-effect waves-blue">
-                     <div class="nav-icon" id="conversations-icon"></div>
-                     <span class="menu-text"><translate>Conversations</translate></span>
-                 </a>
-                 </li> -->
-                <!-- <li ng-show="showMenuItem('main.dappstore')" ui-sref-active="active">
-                 <a ui-sref="main.dappstore" class="waves-effect waves-blue">
-                     <div class="nav-icon" id="dappstore-icon"></div>
-                     <span class="menu-text"><translate>Applications</translate></span>
-                 </a>
-                 </li> -->
                 <li ng-show="showMenuItem('main.forging')" ui-sref-active="active">
                     <a ui-sref="main.forging" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="forging-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-thumbs-up"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>Forging</translate>
                         </span>
@@ -290,7 +269,9 @@
                 <ul id="submenu" ng-hide="subForgingCollapsed">
                     <li ng-show="showMenuItem('main.delegates')" ui-sref-active="active">
                         <a ui-sref="main.delegates" class="waves-effect waves-blue">
-                            <div class="nav-icon" id="delegates-icon"></div>
+                            <div class="nav-icon">
+                                <i class="fa fa-thumbs-up"></i>
+                            </div>
                             <span class="menu-text">
                                 <translate>Delegates</translate>
                             </span>
@@ -298,7 +279,9 @@
                     </li>
                     <li ng-show="showMenuItem('main.votes')" ui-sref-active="active">
                         <a ui-sref="main.votes" class="waves-effect waves-blue">
-                            <div class="nav-icon" id="myvotes-icon"></div>
+                            <div class="nav-icon">
+                                <i class="fa fa-thumbs-up"></i>
+                            </div>
                             <span class="menu-text">
                                 <translate>My Votes</translate>
                             </span>
@@ -307,7 +290,9 @@
                 </ul>
                 <li ng-show="showMenuItem('main.blockchain')" ui-sref-active="active">
                     <a ui-sref="main.blockchain" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="blockchain-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-link"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>Blockchain</translate>
                         </span>
@@ -316,7 +301,9 @@
                 <li ng-show="showMenuItem('main.explorer')" ui-sref-active="active">
                     <!-- <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="obj.value1 = 'someothervalue'; clickedh=!clickedh"> -->
                     <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
-                        <div class="nav-icon" id="explorer-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-folder-open"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>Explorer</translate>
                         </span>
@@ -324,7 +311,9 @@
                 </li>
                 <li ng-show="showMenuItem('main.stake')" ui-sref-active="active">
                     <a ui-sref="main.stake" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="stake-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-database"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>Stake</translate>
                         </span>
@@ -332,9 +321,11 @@
                 </li>
                 <li ng-show="showMenuItem('main.withdrawl')" ui-sref-active="active">
                     <a ui-sref="main.withdrawl" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="stake-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-money"></i>
+                        </div>
                         <span class="menu-text" ng-click="getWithdrawlStatus()">
-                            <translate>Withdrawl</translate>
+                            <translate>Withdrawal</translate>
                         </span>
                     </a>
                 </li>

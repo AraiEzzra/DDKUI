@@ -1,22 +1,31 @@
 <div ng-controller="templateController">
-        <div class="error-notice">
-            <div ng-repeat="rule in rules" class="oaerror">
-                <div ng-if="rule < errCode - 1">
-                    <strong>Rule {{rule + 1}}</strong> {{errDescription[rule]}}
-                    <span class="checkedwithdrawl"></span>
+    <div class="error-notice row">
+        <div class="col-md-6 col-sm-6" ng-repeat="rule in rules">
+            <div class="oaerror">
+                <div ng-if="rule < errCode - 1" class="rule-info rule-sucess-border">
+                    <div class="rule-sucess">
+                        <h5>Rule {{rule + 1}}</h5>
+                        <p><span>{{errDescription[rule]}}</span></p>
+                        <i class="fa fa-check-circle text-success d-block f-40"></i>
+                    </div>
                 </div>
-                <div ng-if="rule >= errCode - 1">
-                    <strong>Rule {{rule + 1}}</strong> {{errDescription[rule]}}
-                    <span class="uncheckedwithdrawl"></span>
+                <div ng-if="rule >= errCode - 1" class="rule-info rule-danger-border">
+                    <div class="rule-danger">
+                        <h5>Rule {{rule + 1}}</h5> 
+                        <p><span>{{errDescription[rule]}}</span></p>
+                        <i class="fa fa-times-circle text-danger d-block f-40"></i>
+                    </div>
                 </div>
             </div>
         </div>
-        <p class="error-container" ng-show="errorMessage.failedRule">
-            <span class="pass-error">{{errorMessage.failedRule}}</span>
-        </p>
-        <p class="error-container" ng-show="errorMessage.fromServer">
-            <span class="pass-error">{{errorMessage.fromServer}}</span>
-        </p>
-        <button ng-click="validateGroupBonusRules(allChecked)" class="btn btn-blue-nav waves-effect waves-light">Withdrawl</button>
+    </div>
+
+    <p class="error-container" ng-show="errorMessage.failedRule">
+        <span class="pass-error">{{errorMessage.failedRule}}</span>
+    </p>
+    <p class="error-container" ng-show="errorMessage.fromServer">
+        <span class="pass-error">{{errorMessage.fromServer}}</span>
+    </p>
+    <button ng-click="validateGroupBonusRules(allChecked)" class="btn btn-primary l-h-n">Withdrawal</button>
 
 </div>

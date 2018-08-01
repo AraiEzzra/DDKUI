@@ -28,18 +28,21 @@
   li {
     position: relative;
     list-style: none;
-    color: #fff;
+    color:@white;
     height: inherit;
     &:hover {
     }
     &.active {
       opacity: 1;
       background-color: @gray3;
+      a{
+        border-left: #0187d1 5px solid;
+      }
     }
     > a {
       display: block;
       padding: 14px 0 14px 16px;
-      color: #fff;
+      color:@white;
     }
   }
   #submenu {
@@ -56,28 +59,26 @@
 
 span.menu-text {
   display: inline-block;
-  padding-top: 6px;
-  padding-left: 40px;
+  padding-top: 2px;
+  padding-left: 15px;
   color: @grey-white;
   font-size: @content-text;
   font-weight: 400;
 }
 
 .nav-icon {
-  background-image: url('@{images}/sprites/navicons.png');
-  height: 22px;
-  width: 22px;
+  height: 18px;
+  width: 18px;
   float: left;
-  margin-top: 2px;
-  margin-bottom: -2px;
+  font-size: 18px;
+  color:@white;
 }
 
-#dashboard-icon {
-  background-position: -88px 0;
+/* #dashboard-icon {
   .active & {
-    background-position: -88px -22px;
+    color: #0288d1;
   }
-}
+} */
 
 #multi-icon {
   background-position: -110px 0;
@@ -134,6 +135,23 @@ span.menu-text {
     background-position: -22px -22px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #logout-item {
   width: 198px;
@@ -321,7 +339,7 @@ span.menu-text {
   #balance {
     position: relative;
     top: 1px;
-    line-height: 36px;
+    line-height: 36px!important;
     padding: 0px 16px;
     border-radius: @border-radius;
     color: @white;

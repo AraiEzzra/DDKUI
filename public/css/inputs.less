@@ -34,6 +34,7 @@ input.clipboard.publicKey {
   }
 }
 
+
 .switch.margin {
   margin-top: 10px;
 }
@@ -43,12 +44,12 @@ input.clipboard.publicKey {
 }
 
 .switch.blue-switch label input[type=checkbox]:checked + .lever:after {
-  background-color: lighten(@blue, 20%);
+  background-color: lighten(@white, 20%);
 }
 
 [type=checkbox].filled-in.violet:checked + label:after {
-  border: 2px solid @blue;
-  background-color: @blue;
+  /* border: 2px solid @white;
+  background-color: @blue; */
 }
 
 label {
@@ -60,6 +61,8 @@ label {
 .passphraseGeneration.input-field {
   textarea.materialize-textarea {
     margin: 0;
+    height: auto;
+    min-height: inherit;
     &.invalid:focus {
       border-bottom: 1px solid #F44336;
     }
@@ -79,7 +82,7 @@ textarea.materialize-textarea {
   overflow-y: hidden;
   padding: 0;
   resize: none;
-  min-height: 3rem
+  /* min-height: 3rem */
 }
 
 .input-field label {

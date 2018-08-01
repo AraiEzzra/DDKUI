@@ -1,29 +1,41 @@
 <div id="pass">
-    <!-- <div class="pass-banner"></div> -->
     <div class="overlay"></div>
     <div class="pass-bottom">
-        <div class="pass-window">
-            <div class="pass-window-icon">
-                <span>Existing ETPS User</span>
+        <div class="login-card card-block auth-body mr-auto ml-auto">
+            <div class="text-center">
+                <img src="../images/logo.png" alt="DDK COIN" width="150">
             </div>
-            <form class="clearfix pass-window-form">
-              <div class="input-field">
-                  <input id="userName" type="text" ng-model="username" focus-on="focusMe">
-                  <label for="userName"><translate>Your User Name</translate></label>
-              </div>
-
-              <div class="input-field">
-                <input id="password" type="password" ng-model="password">
-                <label for="password"><translate>Your Password</translate></label>
-                <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
-            </div>
-              
-              
-              <div class="text-center">
-                  <!--a class="btn btn-blue waves-effect waves-light" ng-click="login(username, password)" ng-disabled="!password"><translate>Login</translate></a-->
-                  <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password)" ng-disabled="!password"><translate>Login</translate></a>
+            <div class="auth-box">
+                <div class="row m-b-20">
+                    <div class="col-md-12">
+                        <h3 class="text-left txt-primary">Existing ETPS User</h3>
+                    </div>
                 </div>
-            </form>
+                <hr/>
+                <form class="clearfix" _lpchecked="1" ng-submit="login(pass, rememberPassphrase)">
+                    <div class="input-field">
+                        <input id="userName" type="text" ng-model="username" class="form-control" focus-on="focusMe">
+                        <label for="userName">
+                            <translate>Your User Name</translate>
+                        </label>
+                    </div>
+                    <div class="input-field">
+                        <input id="password" type="password" ng-model="password" class="form-control">
+                        <label for="password">
+                            <translate>Your Password</translate>
+                        </label>
+                        <span class="pass-error" ng-show="errorMessage"><i aria-hidden="true" class="fa fa-exclamation-circle"></i> {{errorMessage}}</span>
+                    </div>
+                    <!-- <div class="buttons-panel row"> -->
+                    <div class="auth-btn">
+                        <div class="col-md-12">
+                            <a class="btn btn-primary waves-light" ng-click="validateExistingUser(username, password)" ng-disabled="!password">
+                                <translate>Login</translate>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="pass-footer clearfix">DDK © 2017. All Rights Reserved.</div>
     </div>

@@ -28,16 +28,12 @@
                 </span>
             </div>
         </div>
-
-
-        <div class="panel panel-default" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
+        <div class="panel-default custom-panel-default" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
             <div class="panel-heading">
-                <h2>
-                    {{'Latest Orders'|translate}}
-                </h2>
+                <h2>{{'Latest Orders'|translate}}</h2>
             </div>
-            <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
-            cellspacing="0" template-pagination="custom/pager">
+            <div class="table-responsive">
+            <table class="table" ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
                 <tr ng-repeat="fo in $data">
                     <td data-title="tableStakes.cols.stakedAmount" sortable="'stakedAmount'">{{fo.freezedAmount / 100000000}}</td>
                     <td data-title="tableStakes.cols.status" sortable="'status'">{{fo.status ? 'Active' : 'Inactive'}}</td>
@@ -59,12 +55,12 @@
                     </td>
                 </tr>
             </table>
+        </div>
             <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders">
                 <p class="empty-state-text">
                     <translate>No results for this search.</translate>
                 </p>
             </div>
-            
         </div>
     </div>
 </div>

@@ -61,7 +61,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-default paginated">
+        <div class="panel-default custom-panel-default paginated">
             <form class="panel-heading" ng-submit="selectFirstSearchResult()">
                 <div class="input-field">
                     <input type="text" id="search" class="delegates-search form-control" autocomplete="off" ng-focus="true" ng-model="searchDelegates" ng-change="updateSearch(searchDelegates)">
@@ -124,7 +124,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-default paginated">
+        <div class="panel-default custom-panel-default paginated">
             <div class="panel-heading">
                 <h2>{{'Top Delegates'|translate}}</h2>
                 <div class="plain-text"><translate>{{countTop}} in Total</translate></div>
@@ -134,8 +134,6 @@
                     <td data-title="''" class="no-select checkbox-col">
                         <input ng-click="voteList.vote(delegate.publicKey, delegate.username)" type="checkbox" class="filled-in violet" id="filled-in-box-{{delegate.publicKey}}" ng-checked="voteList.inList(delegate.publicKey)" ng-disabled="delegates.voted(delegate.publicKey) || unconfirmedTransactions.inList(delegate.publicKey)"/>
                         <label for="filled-in-box-{{delegate.publicKey}}"></label>
-                        <!-- <span class="app-chekbox" ng-show="delegates.voted(delegate.publicKey) || unconfirmedTransactions.inList(delegate.publicKey)"></span>
-                        <span class="app-chekbox" ng-click="voteList.vote(delegate.publicKey, delegate.username)" ng-hide="delegates.voted(delegate.publicKey) || unconfirmedTransactions.inList(delegate.publicKey)" ng-class="{'unchecked':!voteList.inList(delegate.publicKey), 'checked':voteList.inList(delegate.publicKey)}"></span> -->
                     </td>
                     <td data-title="tableTopDelegates.cols.rate" sortable="'rate'">{{delegate.rate}}</td>
                     <td data-title="tableTopDelegates.cols.username" sortable="'username'" class="username">{{delegate.username}}</td>
@@ -159,7 +157,6 @@
                                 <li class="list-group-item">
                                     <a href="#" class="send-DDK" ng-click="sendTransaction(delegate.address)"><translate>Send DDK</translate></a>
                                 </li>
-                                <!-- <li class="list-group-item"><a href="#">Send Message</a></li> -->
                                 <div class="divider-wrap">
                                     <li class="divider"></li>
                                 </div>
@@ -169,13 +166,6 @@
                                 <li class="list-group-item">
                                     <a href="#" clipboard data-clipboard-text="{{delegate.username}}" clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardError(e);"><translate>Copy Name</translate></a>
                                 </li>
-                                <!-- <div class="divider-wrap">
-                                    <li class="divider"></li>
-                                </div>
-                                <li class="list-group-item">
-                                    <a href="#" ng-click="addContact(delegate.address)"><translate>Add as Contact</translate></a>
-                                </li>
-                                <li class="list-group-item"><a href="#">See Voters</a></li> -->
                             </ul>
                         </div>
                     </td>
@@ -196,7 +186,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-default paginated">
+        <div class="panel-default custom-panel-default paginated">
             <div class="panel-heading">
                 <h2>{{'Standby Delegates'|translate}}</h2>
                 <div class="plain-text"><translate>{{countStandby}} in Total</translate></div>
@@ -206,8 +196,6 @@
                     <td data-title="''" class="no-select checkbox-col">
                         <input ng-click="voteList.vote(delegate.publicKey, delegate.username)" type="checkbox" class="filled-in violet" id="filled-in-box-{{delegate.publicKey}}" ng-checked="voteList.inList(delegate.publicKey)" ng-disabled="delegates.voted(delegate.publicKey) || unconfirmedTransactions.inList(delegate.publicKey)"/>
                         <label for="filled-in-box-{{delegate.publicKey}}"></label>
-                        <!-- <span class="app-chekbox" ng-show="delegates.voted(delegate.publicKey) || unconfirmedTransactions.inList(delegate.publicKey)"></span>
-                        <span class="app-chekbox" ng-click="voteList.vote(delegate.publicKey, delegate.username)" ng-hide="delegates.voted(delegate.publicKey) || unconfirmedTransactions.inList(delegate.publicKey)" ng-class="{'unchecked':!voteList.inList(delegate.publicKey), 'checked':voteList.inList(delegate.publicKey)}"></span> -->
                     </td>
                     <td data-title="tableStandbyDelegates.cols.rate" sortable="'rate'">{{delegate.rate}}</td>
                     <td data-title="tableStandbyDelegates.cols.username" sortable="'username'" class="username">{{delegate.username}}</td>
@@ -231,7 +219,6 @@
                                 <li class="list-group-item">
                                     <a href="#" ng-click="sendTransaction(delegate.address)"><translate>Send DDK</translate></a>
                                 </li>
-                                <!-- <li class="list-group-item"><a href="#">Send Message</a></li> -->
                                 <div class="divider-wrap">
                                     <li class="divider"></li>
                                 </div>
@@ -244,10 +231,6 @@
                                 <div class="divider-wrap">
                                     <li class="divider"></li>
                                 </div>
-                                <!-- <li class="list-group-item">
-                                    <a href="#" ng-click="addContact(delegate.address)"><translate>Add as Contact</translate></a>
-                                </li> -->
-                                <!-- <li class="list-group-item"><a href="#">See Voters</a></li> -->
                             </ul>
                         </div>
                     </td>

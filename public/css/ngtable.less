@@ -1,10 +1,8 @@
 .paginated {
   position: relative;
-
   .ng-table-pager {
     background-color: @background;
   }
-
   .ng-table {
     border-left: 1px solid @border-grey;
     border-right: 1px solid @border-grey;
@@ -36,9 +34,9 @@
     margin-right: 12px;
     border-radius: 4px;
     line-height: 1.42857143;
-    color: @grey-text;
+    color: @white;
     text-decoration: none;
-    background-color: @background;
+    background-color: #424e5a;
     border: none;
     font-size: @content-text;
   }
@@ -78,7 +76,7 @@
     color: @border-grey;
     font-weight: normal;
     cursor: not-allowed;
-    background-color: @background;
+    background-color: #424e5a;
     border-color: none
   }
 }
@@ -158,19 +156,19 @@
   display: none;
 }
 
-.ng-table tr.voted {
+/* .ng-table tr.voted {
   background-color: @orange1;
   &:hover {
     background-color: @orange2;
   }
-}
+} */
 
-.ng-table tr.checked {
+/* .ng-table tr.checked {
   background-color: @blue1;
   &:hover {
     background-color: @blue2;
   }
-}
+} */
 
 .ng-table tr.pending:not(.checked) {
   opacity: 0.4;
@@ -183,10 +181,9 @@
   font-size: @content-text;
   color: @black;
   font-weight: 500;
-  padding: 0 5px;
-  &:first-child {
+ /*  &:first-child {
     padding-left: 16px;
-  }
+  } */
   &.sortable.sort-desc, &.sortable.sort-asc {
     background-color: @grey;
     text-align: left;
@@ -228,7 +225,7 @@ td {
       line-height: 21px;
     }
     &.active {
-      background-color: @background;
+      background-color: #46535f;
       color: @white !important;
       a {
         color: @white !important;

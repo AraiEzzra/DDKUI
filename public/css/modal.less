@@ -14,6 +14,7 @@
   .material-modal-content {
     background: @grey;
     border-radius: @border-radius;
+    overflow: inherit;
     .modal-header {
       &.modal-iconed {
         background-color: @gray2;
@@ -29,16 +30,19 @@
       }
       font-size: 14px;
       padding: 20px 50px 40px;
-      margin: 25px 0 0;
+      margin: 20px 0 0;
       text-align: center;
       line-height: 24px;
       position: relative;
+      color: #666;
       .multiline {
         width: 100%;
         text-align: left;
       }
       h2 {
         display: inline;
+        font-size: @graph-heading;
+        font-weight: 500;
       }
       .close-modal {
         position: absolute;
@@ -50,10 +54,6 @@
         background-repeat: no-repeat;
         cursor: pointer;
         background-position: -54px -14px;
-      }
-      h2 {
-        font-size: @graph-heading;
-        font-weight: 500;
       }
     }
     .modal-chapter {
