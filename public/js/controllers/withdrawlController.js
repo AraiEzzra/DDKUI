@@ -18,7 +18,8 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
             return;
         }
         $http.post($rootScope.serverUrl + "/api/accounts/sendWithdrawlAmount", {
-            address: $scope.address
+            address: $scope.address,
+            publicKey: userService.publicKey
         })
         .then(function(resp) {
             if(resp.data.success) {
