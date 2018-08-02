@@ -8,8 +8,16 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
     }
 
     $scope.generateReferLink = function(){
+        
+        let userAddress = userService.getAddress();
 
-        $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userService.getAddress() }).then(function (resp) {
+        if(!userAddress) {
+            $scope.noMatch = true;
+            $scope.errorMessage = "Currently not able to generate the referral link";
+            return;
+        }
+
+        $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
             if (resp.data.success) {
                 $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+resp.data.referralLink;
             } else {
