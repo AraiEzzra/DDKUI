@@ -9,13 +9,23 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
 
     $scope.generateReferLink = function(){
 
-        $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userService.getAddress() }).then(function (resp) {
+        let userAddress = userService.getAddress();
+
+        if(!userAddress) {
+            $scope.noMatch = true;
+            $scope.errorMessage = "Currently not able to generate the referral link";
+            return;
+        }
+
+        $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
             if (resp.data.success) {
                 $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+resp.data.referralLink;
             } else {
+                $scope.noMatch = true;
                 $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
             }
         }, function (error) {
+            $scope.noMatch = true;
             $scope.errorMessage = error.data.error ? error.data.error : error.data;
         });
 
@@ -27,7 +37,12 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
 
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        console.log("email"+email);
+        if(!refLink) {
+            $scope.errorMessage = "Mail can't be sent with blank refer link";
+            $scope.noMatch = true;
+            return;
+        }
+
         if (email == undefined || email == '') {
             $scope.errorMessage = 'Email is required';
             $scope.noMatch = true;
