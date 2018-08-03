@@ -307,4 +307,14 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             $scope.fee = 0;
         }
     };
+
+    $scope.iconShow = function (to) {
+        if (to.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+
 }]);

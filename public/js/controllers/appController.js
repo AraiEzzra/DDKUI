@@ -107,6 +107,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         'main.explorer',
         'main.stake',
         'main.withdrawl',
+        'main.referralStatistics',
 
     ];
 /*

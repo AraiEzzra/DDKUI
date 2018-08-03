@@ -21,10 +21,10 @@
                     </div>
                     <div class="modal-body">
                         <form ng-submit="passcheck()">
-                            <div class="input-group app-addon">
+                            <div class="input-group app-addon send-input">
                                 <input id="to" ng-focus="focus == 'to'" type="text" class="form-control" placeholder="{{'Recipient Address'|translate}}"
-                                    ng-model="to">
-                                <span class="input-group-addon clear" ng-click="clearRecipient()"></span>
+                                    ng-model="to" ng-change="iconShow(to)">
+                                <span class="input-group-addon clear" ng-click="clearRecipient()" ng-show="to"></span>
                             </div>
                             <p class="error-container" ng-show="errorMessage.recipient">
                                 <span class="pass-error">{{errorMessage.recipient}}</span>

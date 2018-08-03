@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-3 col-sm-6 pr7">
         <div class="widget smart-standard-widget ch-title-border-top">
-            <div class="widget-caption info">
+            <div class="widget-caption">
                 <div class="widget-detail">
                     <h3 class="cl-info ch-title">{{blockchainHeight}}</h3>
                     <span class="info-heading">Chain Height</span>
@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-3 col-sm-6 pr7 pl7">
         <div class="widget smart-standard-widget red-border-top">
-            <div class="widget-caption info">
+            <div class="widget-caption">
                 <div class="widget-detail">
                     <h3 class="cl-info ch-title red-color">$63.5</h3>
                     <span class="info-heading">Price</span>
@@ -26,7 +26,7 @@
 
     <div class="col-md-3 col-sm-6 pr7 pl7">
         <div class="widget smart-standard-widget orange-border-top">
-            <div class="widget-caption info">
+            <div class="widget-caption">
                 <div class="widget-detail">
                     <h3 class="cl-info ch-title orange-color">$7877539.05</h3>
                     <span class="info-heading">Market Top</span>
@@ -38,7 +38,7 @@
 
     <div class="col-md-3 col-sm-6 pl7">
         <div class="widget smart-standard-widget green-border-top">
-            <div class="widget-caption info">
+            <div class="widget-caption">
                 <div class="widget-detail">
                     <h3 class="cl-info ch-title green-color">{{totalTransaction}}</h3>
                     <span class="info-heading">Transactions</span>
@@ -109,9 +109,7 @@
 
         <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
             <div class="panel-heading">
-                <h2>
-                        {{'Latest Block Details'|translate}}
-                </h2>
+                <h2>{{'Latest Block Details'|translate}}</h2>
             </div>
             <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableBlocks" border="0" width="100%" cellpadding="0"
                 cellspacing="0" template-pagination="custom/pager">

@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html ng-app="DDKApp">
-    <head>
-        <base href="/">
-        <title>DDK</title>
 
-        
-     
-        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+<head>
+    <base href="/">
+    <title>DDK</title>
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
 
-        <meta charset="UTF-8">
-        <meta name="application-name" content="{{'DDK - Blockchain Application Platform'|translate}}"/>
-        <meta name="msapplication-TileColor" content="#F3F3E1" />
-       
+    <meta charset="UTF-8">
+    <meta name="application-name" content="{{'DDK - Blockchain Application Platform'|translate}}" />
+    <meta name="msapplication-TileColor" content="#F3F3E1" />
+    <link rel="stylesheet" href="/static/css/app.css">
+    <script src="/static/js/vendor_app.js"></script>
+    <script src="./node_modules/socket.io/socket.io.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
 
-        <link rel="stylesheet" href="/static/css/app.css">
-       
+<body>
+    <div>
+        <div ui-view ng-class="lang.id" class="container-app"></div>
+    </div>
+</body>
 
-        <script src="/static/js/vendor_app.js"></script>
-        <script src="./node_modules/socket.io/socket.io.js"></script>
-    </head>
-    <body>
-        <div>
-            
-            <div ui-view ng-class="lang.id" class="container-app"></div>
-        </div>
-    </body>
 </html>

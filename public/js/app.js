@@ -11,8 +11,6 @@ require('../node_modules/angular-socket-io/socket.js');
 require('../node_modules/ng-table/dist/ng-table.js');
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
 
-
-
 Mnemonic = require('bitcore-mnemonic');
 
 DDKApp = angular.module('DDKApp', ['ui.router', 'btford.modal', 'ngCookies', 'ngTable', 'ngAnimate', 'chart.js', 'btford.socket-io', 'ui.bootstrap', 'angular.filter', 'gettext', 'elasticsearch']);
@@ -98,6 +96,11 @@ DDKApp.config([
                 templateUrl: "/partials/passphrase.html",
                 controller: "passphraseController"
             })
+            .state('main.referralStatistics', {
+                url: "/referralStatistics",
+                templateUrl: "/partials/referral-statistics.html",
+                controller: "referralStatisticsController"
+            })
             .state('loading', {
                 url: "/",
                 templateUrl: "/partials/loading.html"
@@ -107,8 +110,8 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'http://159.65.139.248:7000';
-    //$rootScope.serverUrl = 'http://localhost:7000';
+    //$rootScope.serverUrl = 'http://159.65.139.248:7000';
+    $rootScope.serverUrl = 'http://localhost:7000';
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in
