@@ -273,13 +273,13 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             $http.put($rootScope.serverUrl + '/api/transactions', data).then(function (resp) {
                 $scope.sending = false;
                 if (resp.data.error) {
-                    Materialize.toast('Transaction error', 3000, 'red white-text');
+                    Materialize.toast('Sent Error', 3000, 'red white-text');
                     $scope.errorMessage.fromServer = resp.data.error;
                 } else {
                     if ($scope.destroy) {
                         $scope.destroy();
                     }
-                    Materialize.toast('Transaction sent', 3000, 'green white-text');
+                    Materialize.toast('Sent Success', 3000, 'green white-text');
                     sendTransactionModal.deactivate();
                 }
             });

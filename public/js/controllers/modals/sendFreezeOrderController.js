@@ -93,11 +93,11 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
             $http.post($rootScope.serverUrl + "/api/shiftOrder/sendFreezeOrder", data)
                 .then(function (resp) {
                     if (resp.data.success) {
-                        Materialize.toast('Send freeze order successfully', 3000, 'green white-text');
+                        Materialize.toast('Sent Success', 3000, 'green white-text');
                         sendFreezeOrderModal.deactivate();
 
                     } else {
-                        Materialize.toast('Send freeze order failed', 3000, 'red white-text');
+                        Materialize.toast('Sent Error', 3000, 'red white-text');
                         $scope.errorMessage.fromServer = resp.data.error;
                     }
                 });
