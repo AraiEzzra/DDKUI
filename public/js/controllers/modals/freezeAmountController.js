@@ -9,8 +9,6 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
     $scope.errorMessage = {};
     $scope.checkSecondPass = false;
     $scope.secondPassphrase = userService.secondPassphrase;
-    $scope.publicKey = userService.getPublicKey();
-
 
     $scope.getCurrentFee = function () {
         $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
@@ -100,7 +98,6 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
     }
 
     $scope.passcheck = function (fromSecondPass) {
-        $scope.publicKey = userService.getPublicKey();
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -142,7 +139,7 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
         var data = {
             secret: secretPhrase,
             freezedAmount: $scope.convertDDK($scope.fAmount),
-            publicKey: $scope.publicKey
+            publicKey: userService.publicKey
         };
 
         if ($scope.secondPassphrase) {
@@ -158,11 +155,11 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
                 .then(function (resp) {
                     $scope.sending = false;
                     if (resp.data.success) {
-                        Materialize.toast('Freeze Success', 3000, 'green white-text');
+                        Materialize.toast('Stake Success', 3000, 'green white-text');
                         freezeAmountModal.deactivate();
                         $rootScope.enableReferOption = resp.data.referStatus;
                     } else {
-                        Materialize.toast('Freeze Error', 3000, 'red white-text');
+                        Materialize.toast('Stake Error', 3000, 'red white-text');
                         $scope.errorMessage.fromServer = resp.data.error;
 
                     }
