@@ -26,8 +26,13 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
             if (!correctAddress) {
                 $scope.errorMessage.recipient = 'Invalid recipient';
                 $scope.presendError = true;
-            }else{
-                return onValid();
+            } else {
+                if ($scope.recipientAddress == userService.address) {
+                    $scope.errorMessage.recipient = 'Sender and Recipient can\'t be same';
+                    $scope.presendError = true;
+                } else {
+                    return onValid();
+                }
             }
         }
     }

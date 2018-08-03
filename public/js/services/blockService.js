@@ -47,6 +47,50 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
         },
         getBlocks: function (searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
             blocks.searchForBlock = searchForBlock.trim();
+
+            function addressSearch(generatorId) {
+                esClient.search({
+                    index: 'blocks_list',
+                    type: 'blocks_list',
+                    body: {
+                        "query": {
+                            "bool": {
+                                "must": [
+                                    {
+                                        "match_all": {}
+                                    },
+
+                                    {
+                                        "term": {
+                                            "b_generatorId.keyword": generatorId
+                                        }
+                                    }
+                                ],
+                                "must_not": [],
+                                "should": []
+                            }
+                        },
+                        "from": (params.page() - 1) * params.count(),
+                        "size": params.count(),
+                        "sort": [{ b_height: { order: 'desc' } }],
+                        "aggs": {}
+                    }
+                }, function (err, res) {
+                    if(err) {
+                        console.log('Elasticsearch Address Search Error: ', err);
+                    } else {
+                        var blocksData = [];
+                        res.hits.hits.forEach(function (block) {
+                            blocksData.push(block._source);
+                        });
+                        if (blocksData != null) {
+                            params.total(res.hits.total);
+                            $defer.resolve(blocksData);
+                        }
+                        cb(null);
+                    }
+                });
+            }
             if (blocks.searchForBlock != '') {
                 this.getBlock(blocks.searchForBlock, function (response) {
                     if (response.count) {
@@ -55,37 +99,41 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                         cb(null);
                     }
                     else {
-                        esClient.search({
-                            index: 'blocks_list',
-                            type: 'blocks_list',
-                            body: {
-                                query: {
-                                    match: {
-                                        "b_height": blocks.searchForBlock
+                        if (!isNaN(blocks.searchForBlock)) {
+                            esClient.search({
+                                index: 'blocks_list',
+                                type: 'blocks_list',
+                                body: {
+                                    query: {
+                                        match: {
+                                            "b_height": blocks.searchForBlock
+                                        }
                                     }
                                 }
-                            }
-                        }, function (error, blockResponse, status) {
-                            if(error) {
-                                console.log('Elasticsearch Height Search Error: ', error);
-                            } else {
-                                if (error) {
-                                    params.total(0);
-                                    $defer.resolve();
-                                    cb({ blocks: [], count: 0 });
+                            }, function (error, blockResponse, status) {
+                                if(error) {
+                                    console.log('Elasticsearch Height Search Error: ', error);
                                 } else {
-                                    if (blockResponse.hits.hits.length > 0) {
-                                        params.total(1);
-                                        $defer.resolve([blockResponse.hits.hits[0]._source]);
-                                        cb(null);
-                                    } else {
+                                    if (error) {
                                         params.total(0);
                                         $defer.resolve();
                                         cb({ blocks: [], count: 0 });
+                                    } else {
+                                        if (blockResponse.hits.hits.length > 0) {
+                                            params.total(1);
+                                            $defer.resolve([blockResponse.hits.hits[0]._source]);
+                                            cb(null);
+                                        } else {
+                                            params.total(0);
+                                            $defer.resolve();
+                                            cb({ blocks: [], count: 0 });
+                                        }
                                     }
                                 }
-                            }
-                        });
+                            });
+                        } else {
+                            addressSearch(blocks.searchForBlock)
+                        }
                     }
                 });
             }
@@ -141,47 +189,7 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                                     }
                                 });
                             } else {
-                                esClient.search({
-                                    index: 'blocks_list',
-                                    type: 'blocks_list',
-                                    body: {
-                                        "query": {
-                                            "bool": {
-                                                "must": [
-                                                    {
-                                                        "match_all": {}
-                                                    },
-    
-                                                    {
-                                                        "term": {
-                                                            "b_generatorId.keyword": address
-                                                        }
-                                                    }
-                                                ],
-                                                "must_not": [],
-                                                "should": []
-                                            }
-                                        },
-                                        "from": (params.page() - 1) * params.count(),
-                                        "size": params.count(),
-                                        "sort": [{ b_height: { order: 'desc' } }],
-                                        "aggs": {}
-                                    }
-                                }, function (err, res) {
-                                    if(err) {
-                                        console.log('Elasticsearch Address Search Error: ', err);
-                                    } else {
-                                        var blocksData = [];
-                                        res.hits.hits.forEach(function (block) {
-                                            blocksData.push(block._source);
-                                        });
-                                        if (blocksData != null) {
-                                            params.total(res.hits.total);
-                                            $defer.resolve(blocksData);
-                                        }
-                                        cb(null);
-                                    }
-                                });
+                                addressSearch(address);
                             }
                         }
                     });
