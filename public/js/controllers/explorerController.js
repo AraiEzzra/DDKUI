@@ -67,7 +67,19 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
             $scope.updateBlocks();
         }
     });
+   
+    $scope.showDDKPrice = function () {
+        $scope.DDK_Price = $200;
 
+        /* $http.get("http://ddkoin.com/price/price-ddk-api.php?com=sell")
+            .then(function (price) {
+                console.log("resp"+price);
+                $scope.DDK_Price = price;
+            }); */
+
+    }
+
+    $scope.showDDKPrice();
     $scope.updateBlocks();
 
     $scope.$on('$destroy', function () {
@@ -81,6 +93,26 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
 
     $scope.blockInfo = function (block) {
         $scope.modal = blockInfo.activate({ block: block });
+    }
+
+    $scope.blockIdInfo = function (blockID) {
+        $http.get($rootScope.serverUrl + "/api/blocks/get", {
+            params: {
+                id: blockID
+            }
+        }).then(function (resp) {
+            var tmp = [];
+            var keys = Object.keys(resp.data.block);
+            for (var j = 0; j < keys.length; j++) {
+                if (keys[j] === 'username') {
+                    var key = keys[j].replace(keys[j], 'm_' + keys[j]);
+                } else {
+                    var key = keys[j].replace(keys[j], 'b_' + keys[j]);
+                }
+                tmp[key] = resp.data.block[keys[j]];
+            }
+            $scope.modal = blockInfo.activate({ block: tmp });
+        });
     }
 
     $scope.userInfo = function (userId) {
@@ -113,8 +145,8 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     // For ChainHeight
     $scope.chainHeight = function() {
         esClient.search({
-            index: 'blocks',
-            type: 'blocks',
+            index: 'blocks_list',
+            type: 'blocks_list',
             body: {
                 query: {
                     match_all: {}

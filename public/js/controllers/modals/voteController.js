@@ -87,13 +87,13 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
                 $scope.sending = false;
 
                 if (resp.data.error) {
-                    Materialize.toast('Transaction error', 3000, 'red white-text');
+                    Materialize.toast(($scope.adding?'Vote Error':'DownVote Error'), 3000, 'red white-text');
                     $scope.fromServer = resp.data.error;
                 } else {
                     if ($scope.destroy) {
                         $scope.destroy();
                     }
-                    Materialize.toast('Transaction sent', 3000, 'green white-text');
+                    Materialize.toast(($scope.adding?'Vote Success':'DownVote Success'), 3000, 'green white-text');
                     voteModal.deactivate();
                 }
             });
@@ -102,25 +102,8 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
 
     feeService(function (fees) {
 
-        $scope.fee = (userService.totalFrozeAmount * fees.vote)/100;
+        $scope.fee = (userService.totalFrozeAmount * fees.vote) / 100;
 
-        /* $http.post($rootScope.serverUrl + "/api/frogings/getMyDDKFrozen", { secret: $scope.rememberedPassphrase })
-        .then(function (resp) {
-            if (resp.data.success) {
-                var myDDKFrozen = resp.data.totalDDKStaked.sum / 100000000;
-
-                $scope.stakeBalanceToShow = $filter('decimalFilter')(resp.data.totalDDKStaked.sum);
-                if ($scope.stakeBalanceToShow[1]) {
-                    $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
-                }
-                $scope.myDDKFrozen = (myDDKFrozen);
-                $scope.fee = (resp.data.totalDDKStaked.sum * fees.vote)/100;
-            } else {
-                Materialize.toast(resp.data.error, 3000, 'red white-text');
-                $scope.myDDKFrozen = 0;
-            }
-        }); */
- 
     });
 
 }]);

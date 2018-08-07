@@ -24,25 +24,73 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
         cached: { data: [], time: new Date() },
         getBlock: function (blockId, cb) {
             esClient.search({
-                index: 'blocks',
-                type: 'blocks',
+                index: 'blocks_list',
+                type: 'blocks_list',
                 body: {
                     query: {
                         match: {
-                            "id": blockId
+                            "b_id": blockId
                         }
                     },
                 }
             }, function (error, blockResponse, status) {
-                if (blockResponse.hits.hits.length == 0) {
-                    cb({ blocks: [], count: 0 });
+                if(error) {
+                    console.log('Elasticsearch ID Search Error: ', error);
                 } else {
-                    cb({ blocks: [blockResponse.hits.hits[0]._source], count: 1 });
+                    if (blockResponse.hits.hits.length == 0) {
+                        cb({ blocks: [], count: 0 });
+                    } else {
+                        cb({ blocks: [blockResponse.hits.hits[0]._source], count: 1 });
+                    }
                 }
             });
         },
         getBlocks: function (searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
             blocks.searchForBlock = searchForBlock.trim();
+
+            function addressSearch(generatorId) {
+                esClient.search({
+                    index: 'blocks_list',
+                    type: 'blocks_list',
+                    body: {
+                        "query": {
+                            "bool": {
+                                "must": [
+                                    {
+                                        "match_all": {}
+                                    },
+
+                                    {
+                                        "term": {
+                                            "b_generatorId.keyword": generatorId
+                                        }
+                                    }
+                                ],
+                                "must_not": [],
+                                "should": []
+                            }
+                        },
+                        "from": (params.page() - 1) * params.count(),
+                        "size": params.count(),
+                        "sort": [{ b_height: { order: 'desc' } }],
+                        "aggs": {}
+                    }
+                }, function (err, res) {
+                    if(err) {
+                        console.log('Elasticsearch Address Search Error: ', err);
+                    } else {
+                        var blocksData = [];
+                        res.hits.hits.forEach(function (block) {
+                            blocksData.push(block._source);
+                        });
+                        if (blocksData != null) {
+                            params.total(res.hits.total);
+                            $defer.resolve(blocksData);
+                        }
+                        cb(null);
+                    }
+                });
+            }
             if (blocks.searchForBlock != '') {
                 this.getBlock(blocks.searchForBlock, function (response) {
                     if (response.count) {
@@ -51,119 +99,98 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                         cb(null);
                     }
                     else {
-                        esClient.search({
-                            index: 'blocks',
-                            type: 'blocks',
-                            body: {
-                                query: {
-                                    match: {
-                                        "height": blocks.searchForBlock
+                        if (!isNaN(blocks.searchForBlock)) {
+                            esClient.search({
+                                index: 'blocks_list',
+                                type: 'blocks_list',
+                                body: {
+                                    query: {
+                                        match: {
+                                            "b_height": blocks.searchForBlock
+                                        }
                                     }
                                 }
-                            }
-                        }, function (error, blockResponse, status) {
-                            if (error) {
-                                params.total(0);
-                                $defer.resolve();
-                                cb({ blocks: [], count: 0 });
-                            } else {
-                                if (blockResponse.hits.hits.length > 0) {
-                                    params.total(1);
-                                    $defer.resolve([blockResponse.hits.hits[0]._source]);
-                                    cb(null);
+                            }, function (error, blockResponse, status) {
+                                if(error) {
+                                    console.log('Elasticsearch Height Search Error: ', error);
                                 } else {
-                                    params.total(0);
-                                    $defer.resolve();
-                                    cb({ blocks: [], count: 0 });
+                                    if (error) {
+                                        params.total(0);
+                                        $defer.resolve();
+                                        cb({ blocks: [], count: 0 });
+                                    } else {
+                                        if (blockResponse.hits.hits.length > 0) {
+                                            params.total(1);
+                                            $defer.resolve([blockResponse.hits.hits[0]._source]);
+                                            cb(null);
+                                        } else {
+                                            params.total(0);
+                                            $defer.resolve();
+                                            cb({ blocks: [], count: 0 });
+                                        }
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        } else {
+                            addressSearch(blocks.searchForBlock)
+                        }
                     }
                 });
             }
             else {
                 if (true) {
                     esClient.search({
-                        index: 'blocks',
-                        type: 'blocks',
+                        index: 'blocks_list',
+                        type: 'blocks_list',
                         body: {
                             from: (params.page() - 1) * params.count(),
                             size: params.count(),
                             query: {
                                 match_all: {}
                             },
-                            sort: [{ height: { order: 'desc' } }],
+                            sort: [{ b_height: { order: 'desc' } }],
                         }
                     }, function (error, blocksResponse, status) {
-                        if (fromBlocks) {
-                            esClient.search({
-                                index: 'blocks',
-                                type: 'blocks',
-                                body: {
-                                    query: {
-                                        match_all: {}
-                                    },
-                                    sort: [{ height: { order: 'desc' } }],
-                                }
-                            }, function (err, res) {
-                                if (res.hits.hits[0]._source.height) {
-                                    params.total(res.hits.hits[0]._source.height);
-                                } else {
-                                    params.total(0);
-                                }
-                                if (blocksResponse.hits.hits.length > 0) {
-                                    blocksData = [];
-                                    blocks.lastBlockId = blocksResponse.hits.hits[0]._source.id;
-                                    cb();
-                                    blocksResponse.hits.hits.forEach(function (block) {
-                                        blocksData.push(block._source);
-                                    });
-                                    $defer.resolve(blocksData);
-                                } else {
-                                    blocks.lastBlockId = 0;
-                                    cb();
-                                    $defer.resolve([]);
-                                }
-                            });
+                        if(error) {
+                            console.log('Elasticsearch Error: ', error);
                         } else {
-                            esClient.search({
-                                index: 'blocks',
-                                type: 'blocks',
-                                body: {
-                                    "query": {
-                                        "bool": {
-                                            "must": [
-                                                {
-                                                    "match_all": {}
-                                                },
-
-                                                {
-                                                    "term": {
-                                                        "generatorId.keyword": address
-                                                    }
-                                                }
-                                            ],
-                                            "must_not": [],
-                                            "should": []
+                            if (fromBlocks) {
+                                esClient.search({
+                                    index: 'blocks_list',
+                                    type: 'blocks_list',
+                                    body: {
+                                        query: {
+                                            match_all: {}
+                                        },
+                                        sort: [{ b_height: { order: 'desc' } }],
+                                    }
+                                }, function (err, res) {
+                                    if(err) {
+                                        console.log('Elasticsearch Error:err ', err);
+                                    } else {
+                                        if (res.hits.hits[0]._source.b_height) {
+                                            params.total(res.hits.hits[0]._source.b_height);
+                                        } else {
+                                            params.total(0);
                                         }
-                                    },
-                                    "from": (params.page() - 1) * params.count(),
-                                    "size": params.count(),
-                                    "sort": [{ height: { order: 'desc' } }],
-                                    "aggs": {}
-                                }
-                            }, function (err, res) {
-                                var blocksData = [];
-                                res.hits.hits.forEach(function (block) {
-                                    blocksData.push(block._source);
-                                  });
-                                  if (blocksData != null) {
-                                    params.total(res.hits.total);
-                                    $defer.resolve(blocksData);
-                                  }
-                                  cb(null);
-
-                            });
+                                        if (blocksResponse.hits.hits.length > 0) {
+                                            blocksData = [];
+                                            blocks.lastBlockId = blocksResponse.hits.hits[0]._source.b_id;
+                                            cb();
+                                            blocksResponse.hits.hits.forEach(function (block) {
+                                                blocksData.push(block._source);
+                                            });
+                                            $defer.resolve(blocksData);
+                                        } else {
+                                            blocks.lastBlockId = 0;
+                                            cb();
+                                            $defer.resolve([]);
+                                        }
+                                    }
+                                });
+                            } else {
+                                addressSearch(address);
+                            }
                         }
                     });
                 }

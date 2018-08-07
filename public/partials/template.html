@@ -245,13 +245,16 @@
                 <div class="icon">
                     <img src="/images/account.png" alt="Account">
                 </div>
+               <!--  <span ng-if="publicUsername" class="name">
+                    <translate>Public User, {{publicUsername}}</translate>
+                </span> -->
                 <span class="name" ng-show="username">
                     <translate>Welcome back, {{username}}</translate>
                 </span>
                 <span class="address">{{address}}</span>
-            </div>
-            <!-- <div class="white-glow"></div> -->
-            <ul id="menu">
+                </div>
+                <!-- <div class="white-glow"></div> -->
+                <ul id="menu">
                 <li ng-show="showMenuItem('main.dashboard')" ui-sref-active="active">
                     <a ui-sref="main.dashboard" class="waves-effect waves-blue">
                         <div class="nav-icon" id="dashboard-icon"></div>
@@ -282,7 +285,7 @@
                     <a ui-sref="main.forging" class="waves-effect waves-blue">
                         <div class="nav-icon" id="forging-icon"></div>
                         <span class="menu-text">
-                            <translate>Forging</translate>
+                            <translate>DDK Delegates</translate>
                         </span>
                         <i ng-click="collapseMenu()" stop-event class="vertical-text right submenu-collapsing" ng-class="{'mdi-hardware-keyboard-arrow-down': subForgingCollapsed, 'mdi-hardware-keyboard-arrow-up':!subForgingCollapsed}"></i>
                     </a>
@@ -318,7 +321,7 @@
                     <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
                         <div class="nav-icon" id="explorer-icon"></div>
                         <span class="menu-text">
-                            <translate>Explorer</translate>
+                            <translate>DDK Explorer</translate>
                         </span>
                     </a>
                 </li>
@@ -326,7 +329,7 @@
                     <a ui-sref="main.stake" class="waves-effect waves-blue">
                         <div class="nav-icon" id="stake-icon"></div>
                         <span class="menu-text">
-                            <translate>Stake</translate>
+                            <translate>DDK Staking</translate>
                         </span>
                     </a>
                 </li>
@@ -334,7 +337,7 @@
                     <a ui-sref="main.withdrawl" class="waves-effect waves-blue">
                         <div class="nav-icon" id="stake-icon"></div>
                         <span class="menu-text" ng-click="getWithdrawlStatus()">
-                            <translate>Withdrawl</translate>
+                            <translate>PendingGB</translate>
                         </span>
                     </a>
                 </li>
@@ -372,6 +375,25 @@
         </div>
     </div>
     <div class="container-fluid" ui-view></div>
+    
+    
+    <!-- Footer -->
+    <div class="footer">
+    
+    <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+    <p style="margin-bottom: 4px;margin-top: 5px;">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+     <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank"><img src="../images/facebook.png" alt="facebook"></a>&nbsp
+     <a href="http://forums.ddkoin.com/" target="_blank"><img src="../images/forum.png" alt="forum"></a>
+     
+     
+    </div>
+    
+    </div>
+   
+   </div>
     <!-- /#page-content-wrapper -->
     <script type="text/ng-template" id="custom/pager">
         <ul class="pagination ng-table-pagination">

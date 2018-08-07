@@ -62,32 +62,35 @@
                         </div>
                     </div>
                 </div>
-               <!--  <tr ng-repeat="block in $data" ng-class="{'voted': address == block.generatorId}"></tr> -->
+               <!--  <tr ng-repeat="block in $data" ng-class="{'voted': address == block.b_generatorId}"></tr> -->
                 <tr ng-repeat="block in $data">
                     <td data-title="tableBlocks.cols.height" sortable="'height'" ng-click="blockInfo(block)" class="pointer">
-                        <a href="#">{{block.height}}</a>
+                        <a href="#">{{block.b_height}}</a>
                     </td>
                     <td data-title="tableBlocks.cols.blockId" ng-click="blockInfo(block)" class="pointer" ng-show="showAllColumns">
-                        <a href="#">{{block.id}}</a>
+                        <a href="#">{{block.b_id}}</a>
                     </td>
-                    <td data-title="tableBlocks.cols.generator" ng-show="showAllColumns">
-                        <a href="#" ng-click="userInfo(block.generatorId)">{{block.generatorId}}</a>
+                    <td ng-if="block.m_username" data-title="tableBlocks.cols.generator" ng-show="showAllColumns">
+                        <a href="#" ng-click="userInfo(block.b_generatorId)">{{block.m_username}}</a>
                     </td>
+                    <!-- <td ng-if="!block.b_username"data-title="tableBlocks.cols.generator" ng-show="showAllColumns">
+                        <a href="#" ng-click="userInfo(block.b_generatorId)">{{block.b_generatorId}}</a>
+                    </td> -->
                     <td data-title="tableBlocks.cols.timestamp" sortable="'timestamp'">
-                        <span ng-show="block.timestamp > 0">{{block.timestamp | timeAgoFilter : showFullTime}}</span>
-                        <span ng-show="block.timestamp == 0">-</span>
+                        <span ng-show="block.b_timestamp > 0">{{block.b_timestamp | timeAgoFilter : showFullTime}}</span>
+                        <span ng-show="block.b_timestamp == 0">-</span>
                     </td>
                     <td data-title="tableBlocks.cols.numberOfTransactions">
-                        <div ng-show="block.numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block)">
-                            <a href="#">{{block.numberOfTransactions}}</a>
+                        <div ng-show="block.b_numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block)">
+                            <a href="#">{{block.b_numberOfTransactions}}</a>
                         </div>
-                        <div ng-show="block.numberOfTransactions == 0">
-                            {{block.numberOfTransactions}}
+                        <div ng-show="block.b_numberOfTransactions == 0">
+                            {{block.b_numberOfTransactions}}
                         </div>
                     </td>
-                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.totalAmount | DDKFilter}}</td>
-                    <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.totalFee | DDKFilter}}</td>
-                   <!-- <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.reward | DDKFilter}}</td> -->
+                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.b_totalAmount | DDKFilter}}</td>
+                    <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.b_totalFee | DDKFilter}}</td>
+                   <!-- <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.b_reward | DDKFilter}}</td> -->
                     <td data-title="''" class="width-80"></td>
                 </tr>
                 <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">

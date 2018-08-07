@@ -8,7 +8,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
     }
 
     $scope.generateReferLink = function(){
-
+        
         let userAddress = userService.getAddress();
 
         if(!userAddress) {
@@ -36,7 +36,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         $scope.noMatch = false;
 
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
+        
         if(!refLink) {
             $scope.errorMessage = "Mail can't be sent with blank refer link";
             $scope.noMatch = true;
