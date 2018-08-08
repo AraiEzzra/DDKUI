@@ -69,13 +69,13 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     });
    
     $scope.showDDKPrice = function () {
-        $scope.DDK_Price = $200;
+        $scope.DDK_Price = 200;
 
         /* $http.get("http://ddkoin.com/price/price-ddk-api.php?com=sell")
             .then(function (price) {
                 console.log("resp"+price);
                 $scope.DDK_Price = price;
-            }); */
+            });*/ 
 
     }
 
