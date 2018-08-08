@@ -1,7 +1,7 @@
 
 require('angular');
 
-angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo) {
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo','$document', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo, $document) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -18,7 +18,8 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.transactionsLoading = true;
     $scope.allVotes = 100 * 1000 * 1000 * 1000 * 1000 * 100;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
- 
+    
+
     $scope.graphs = {
         DDKPrice: {
             labels: ['1', '2'],
@@ -39,6 +40,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
 
     $scope.transactionInfo = function (transaction) {
         $scope.modal = transactionInfo.activate({ transaction: transaction });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.blockInfo = function (blockID) {
@@ -49,8 +51,9 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         }).then(function (response) {
             transactionInfo.deactivate();
             $scope.modal = blockInfo.activate({ block: response.data.block });
+            angular.element(document.querySelector("body")).addClass("ovh");
         }
-            );
+        );
     }
 
     $scope.resetAppData = function () {
@@ -68,6 +71,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
 
     $scope.userInfo = function (userId) {
         $scope.modal = userInfo.activate({ userId: userId });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.getTransactions = function () {
@@ -128,42 +132,42 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     /* For total stakeholders */
     $scope.getStakeholdersCount = function () {
         $http.get($rootScope.serverUrl + "/api/frogings/countStakeholders")
-        .then(function (resp) {
-            if (resp.data.success) {
-                var countStakeholders = resp.data.countStakeholders.count;
-                $scope.countStakeholders = JSON.parse(countStakeholders);
-            } else {
-                Materialize.toast(resp.data.error, 3000, 'red white-text');
-            }
-        });
+            .then(function (resp) {
+                if (resp.data.success) {
+                    var countStakeholders = resp.data.countStakeholders.count;
+                    $scope.countStakeholders = JSON.parse(countStakeholders);
+                } else {
+                    Materialize.toast(resp.data.error, 3000, 'red white-text');
+                }
+            });
     }
 
     /* For Circulating Supply */
     $scope.getCirculatingSupply = function () {
         $http.get($rootScope.serverUrl + "/api/accounts/getCirculatingSupply")
-        .then(function (resp) {
-            if (resp.data.success) {
-                var circulatingSupply = resp.data.circulatingSupply / 100000000;
-                $scope.circulatingSupply = parseInt(circulatingSupply);
-            } else {
-                Materialize.toast(resp.data.error, 3000, 'red white-text');
-            }
-        });
+            .then(function (resp) {
+                if (resp.data.success) {
+                    var circulatingSupply = resp.data.circulatingSupply / 100000000;
+                    $scope.circulatingSupply = parseInt(circulatingSupply);
+                } else {
+                    Materialize.toast(resp.data.error, 3000, 'red white-text');
+                }
+            });
     }
 
     /* For Total Count*/
     $scope.getAccountHolders = function () {
         $http.get($rootScope.serverUrl + "/api/accounts/count")
-        .then(function (resp) {
-            if (resp.data.success) {
-                var totalCount = resp.data.count;
-                $scope.totalCount = JSON.parse(totalCount);
-            } else {
-                Materialize.toast(resp.data.error, 3000, 'red white-text');
-            }
-        });
+            .then(function (resp) {
+                if (resp.data.success) {
+                    var totalCount = resp.data.count;
+                    $scope.totalCount = JSON.parse(totalCount);
+                } else {
+                    Materialize.toast(resp.data.error, 3000, 'red white-text');
+                }
+            });
     }
- 
+
     /* For Your DDK Frozen */
     $scope.getMyDDKFrozen = function () {
         $scope.myDDKFrozen = userService.totalFrozeAmount / 100000000;
@@ -177,45 +181,32 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     /* For Your total supply */
     $scope.getTotalSupply = function () {
         $http.get($rootScope.serverUrl + "/api/accounts/totalSupply")
-        .then(function (resp) {
-            if (resp.data.success) {
-                var totalSupply = resp.data.totalSupply / 100000000;
-                $scope.totalSupply = JSON.parse(totalSupply);
-            } else {
-                Materialize.toast(resp.data.error, 3000, 'red white-text');
-            }
-        });
+            .then(function (resp) {
+                if (resp.data.success) {
+                    var totalSupply = resp.data.totalSupply / 100000000;
+                    $scope.totalSupply = JSON.parse(totalSupply);
+                } else {
+                    Materialize.toast(resp.data.error, 3000, 'red white-text');
+                }
+            });
     }
 
     /* For total DDK staked by stakeholders */
     $scope.getTotalDDKStaked = function () {
         $http.get($rootScope.serverUrl + "/api/frogings/getTotalDDKStaked")
-        .then(function (resp) {
-            if (resp.data.success) {
-                var totalDDKStaked = resp.data.totalDDKStaked.sum / 100000000;
-                $scope.totalDDKStaked = (totalDDKStaked);
-                $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalDDKStaked.sum);
-                if ($scope.totalStakeBalanceToShow[1]) {
-                    $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
-                }
-            } else {
-                Materialize.toast(resp.data.error, 3000, 'red white-text');
-            }
-        });
-    }
-
-  /*   $scope.getCandles = function () {
-        $http.get("https://explorer.DDK.io/api/candles/getCandles")
-        .then(function (response) {
-            $scope.graphs.DDKPrice.data = (response.data && response.data.candles) ? [
-                response.data.candles.map(
-                    function (candle) {
-                        return candle.close;
+            .then(function (resp) {
+                if (resp.data.success) {
+                    var totalDDKStaked = resp.data.totalDDKStaked.sum / 100000000;
+                    $scope.totalDDKStaked = (totalDDKStaked);
+                    $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalDDKStaked.sum);
+                    if ($scope.totalStakeBalanceToShow[1]) {
+                        $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
                     }
-                )
-            ] : [];
-        });
-    } */
+                } else {
+                    Materialize.toast(resp.data.error, 3000, 'red white-text');
+                }
+            });
+    }
 
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.balanceInterval);
@@ -241,14 +232,8 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             destroy: function () {
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
-
-
-
-
-
-
-
 
     $scope.updateAppView = function () {
         $scope.getAccount();
@@ -286,7 +271,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     });
 
     $scope.updateAppView();
-  /*   $scope.getCandles(); */
+    /*   $scope.getCandles(); */
 
 
 }]);

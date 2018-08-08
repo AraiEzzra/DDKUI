@@ -19,122 +19,62 @@
                     <a href="#2" data-toggle="tab">Reward History</a>
                 </li>
             </ul>
-            <div class="tab-content ">
+            
+            <div class="tab-content panel panel-default">
                 <div class="tab-pane active" id="1">
-                    <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">                
-                        <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions" border="0" width="100%" cellpadding="0" cellspacing="0">
-                            <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
-                            </div>
-                            <tr ng-repeat="transaction in unconfirmedTransactions" class="checked">
-                                <td data-title="tableTransactions.cols.height" sortable="'height'"></td>
-                                <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
-                                    <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                                    <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                                    <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
-                                </td>
-                                <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
-                                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                                    <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                                    {{transaction.amount | DDKFilter}}
-                                </td>
-                                <td data-title="tableTransactions.cols.fee">{{transaction.fee | DDKFilter}}</td>
-                                <td data-title="''"></td>
+                    <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
+                        <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0">
+                           <!--  <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
+                            </div> -->
+                            <tr ng-repeat="referral in $data">
+                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.level}}</td>
+                                <td data-title="tableReferral.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.address}}</td>
                             </tr>
-                            <tr ng-repeat="transaction in $data">
-                                <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockIdInfo(transaction.blockId)" class="pointer">
-                                    <a href="#">{{transaction.height}}</a>
+                            <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
+                                    <td colspan="2">
+                                        <translate>No Referral</translate>
+                                    </td>
+                                </tr>
+                            <tr ng-show="loading">
+                                <td class="gray2 white-text" colspan="8">
+                                    <translate>Loading...</translate>
                                 </td>
-                                <!-- <td data-title="tableTransactions.cols.height" sortable="'height'">{{transaction.height}}</td> -->
-                                <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
-                                    <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                                    <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                                    <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
-                                </td>
-                                <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
-                                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                                    <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                                    {{transaction.amount | DDKFilter}}
-                                </td>
-                                <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | DDKFilter}}
-                                </td>
-                                <td data-title="''"></td>
                             </tr>
                         </table>
-                        <div class="panel-body empty-body empty-table without-margin-top" ng-if="!countForgingBlocks && searchTransactions.searchForTransaction">
-                            <div class="logo-grey"></div>
-                            <p class="empty-state-text">{{'No results for this search.'|translate}}</p>
+                        <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
+                            <p class="empty-state-text">
+                                <translate>No results for this search.</translate>
+                            </p>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="tab-pane" id="2">
-                    <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">                
-                        <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions" border="0" width="100%" cellpadding="0" cellspacing="0">
-                            <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
-                            </div>
-                            <tr ng-repeat="transaction in unconfirmedTransactions" class="checked">
-                                <td data-title="tableTransactions.cols.height" sortable="'height'"></td>
-                                <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
-                                    <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                                    <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                                    <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
-                                </td>
-                                <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
-                                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                                    <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                                    {{transaction.amount | DDKFilter}}
-                                </td>
-                                <td data-title="tableTransactions.cols.fee">{{transaction.fee | DDKFilter}}</td>
-                                <td data-title="''"></td>
+                    <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
+                        <table ng-table="tableRewards" border="0" width="100%" cellpadding="0" cellspacing="0">
+                           <!--  <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
+                            </div> -->
+                            <tr ng-repeat="referral in $data">
+                                <td data-title="tableRewards.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.sponsor_address}}</td>
+                                <td data-title="tableRewards.cols.reward" sortable="'reward'">{{referral.reward/100000000}}</td>
+                                <td data-title="tableRewards.cols.sponsorLevel" sortable="'sponsorLevel'">{{referral.sponsor_level}}</td>
+                                <td data-title="tableRewards.cols.transactionType" sortable="'transactionType'">{{referral.transaction_type}}</td>
+                                <td data-title="tableRewards.cols.rewardTime" sortable="'rewardTime'">{{referral.reward_time | timeAgoFilter : showFullTime}}</td>
                             </tr>
-                            <tr ng-repeat="transaction in $data">
-                                <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockIdInfo(transaction.blockId)" class="pointer">
-                                    <a href="#">{{transaction.height}}</a>
+                            <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
+                                <td colspan="5">
+                                    <translate>No Referral</translate>
                                 </td>
-                                <!-- <td data-title="tableTransactions.cols.height" sortable="'height'">{{transaction.height}}</td> -->
-                                <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
-                                    <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
+                            </tr>
+                            <tr ng-show="loading">
+                                <td class="gray2 white-text" colspan="8">
+                                    <translate>Loading...</translate>
                                 </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                                    <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                                    <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
-                                </td>
-                                <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
-                                </td>
-                                <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
-                                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                                    <i ng-if="transaction.recipientId!=transaction.senderId" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                                    {{transaction.amount | DDKFilter}}
-                                </td>
-                                <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | DDKFilter}}
-                                </td>
-                                <td data-title="''"></td>
                             </tr>
                         </table>
-                        <div class="panel-body empty-body empty-table without-margin-top" ng-if="!countForgingBlocks && searchTransactions.searchForTransaction">
-                            <div class="logo-grey"></div>
-                            <p class="empty-state-text">{{'No results for this search.'|translate}}</p>
+                        <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
+                            <p class="empty-state-text">
+                                <translate>No results for this search.</translate>
+                            </p>
                         </div>
                     </div>
                 </div>

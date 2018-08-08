@@ -66,6 +66,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
       destroy: function () {
       }
     });
+    angular.element(document.querySelector("body")).addClass("ovh");
   }
 
   $scope.updateStakes = function () {

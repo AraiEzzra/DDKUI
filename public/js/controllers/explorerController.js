@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout', '$rootScope', '$http', "userService", "$interval", 'blockService', 'blockModal', 'blockInfo', 'userInfo', 'ngTableParams', 'viewFactory', 'gettextCatalog', 'transactionsService','esClient', function ($scope, $timeout, $rootScope, $http, userService, $interval, blockService, blockModal, blockInfo, userInfo, ngTableParams, viewFactory, gettextCatalog, transactionsService, esClient) {
+angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout', '$rootScope', '$http', "userService", "$interval", 'blockService', 'blockModal', 'blockInfo', 'userInfo', 'ngTableParams', 'viewFactory', 'gettextCatalog', 'transactionsService', 'esClient', function ($scope, $timeout, $rootScope, $http, userService, $interval, blockService, blockModal, blockInfo, userInfo, ngTableParams, viewFactory, gettextCatalog, transactionsService, esClient) {
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
@@ -77,10 +77,13 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
 
     $scope.showBlock = function (block) {
         $scope.modal = blockModal.activate({ block: block });
+        angular.element(document.querySelector("body")).addClass("ovh");
+        
     }
 
     $scope.blockInfo = function (block) {
         $scope.modal = blockInfo.activate({ block: block });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.blockIdInfo = function (blockID) {
@@ -100,11 +103,14 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
                 tmp[key] = resp.data.block[keys[j]];
             }
             $scope.modal = blockInfo.activate({ block: tmp });
+            angular.element(document.querySelector("body")).addClass("ovh");
         });
     }
 
     $scope.userInfo = function (userId) {
         $scope.modal = userInfo.activate({ userId: userId });
+        angular.element(document.querySelector("body")).addClass("ovh");
+
     }
 
     // Search blocks watcher
@@ -131,7 +137,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     });
 
     // For ChainHeight
-    $scope.chainHeight = function() {
+    $scope.chainHeight = function () {
         esClient.search({
             index: 'blocks_list',
             type: 'blocks_list',
@@ -141,7 +147,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
                 },
             }
         }, function (err, res) {
-            if(!err) {
+            if (!err) {
                 $scope.blockchainHeight = res.hits.total;
             }
         });
@@ -149,7 +155,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     $scope.chainHeight();
 
     // For TransactionsCount
-    $scope.transactionsCount = function() {
+    $scope.transactionsCount = function () {
         esClient.search({
             index: 'trs',
             type: 'trs',
@@ -159,7 +165,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
                 },
             }
         }, function (err, res) {
-            if(!err) {
+            if (!err) {
                 $scope.totalTransaction = res.hits.total;
             }
         });
@@ -189,14 +195,14 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
                                 address: userService.address
                             }
                         })
-                        .then(function (resp) {
-                            var unconfirmedTransactions = resp.data.transactions;
-                            $scope.view.inLoading = false;
-                            $timeout(function () {
-                                $scope.unconfirmedTransactions = unconfirmedTransactions;
-                                $scope.$apply();
-                            }, 1);
-                        });
+                            .then(function (resp) {
+                                var unconfirmedTransactions = resp.data.transactions;
+                                $scope.view.inLoading = false;
+                                $timeout(function () {
+                                    $scope.unconfirmedTransactions = unconfirmedTransactions;
+                                    $scope.$apply();
+                                }, 1);
+                            });
                     });
             }
         });

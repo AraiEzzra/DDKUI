@@ -9,6 +9,7 @@ angular.module('DDKApp').controller('multiMembersModalController', ["$scope", "m
             $scope.destroy();
         }
         multiMembersModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
 }]);

@@ -9,6 +9,8 @@ require('../node_modules/angular-gettext/dist/angular-gettext.min.js');
 require('../node_modules/angular-chart.js/dist/angular-chart.js');
 require('../node_modules/angular-socket-io/socket.js');
 require('../node_modules/ng-table/dist/ng-table.js');
+require('../bower_components/bootstrap/dist/js/bootstrap.min.js');
+
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
 
 Mnemonic = require('bitcore-mnemonic');

@@ -148,6 +148,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             $scope.destroy();
         }
         sendTransactionModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.accountChanged = function (e) {
