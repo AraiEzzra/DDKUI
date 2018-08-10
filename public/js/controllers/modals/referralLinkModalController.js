@@ -5,6 +5,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
 
     $scope.close = function () {
         referralLinkModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.generateReferLink = function(){

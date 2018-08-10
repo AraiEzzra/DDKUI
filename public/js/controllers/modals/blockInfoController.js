@@ -17,17 +17,20 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
 
     $scope.close = function () {
         blockInfo.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");   
     }
 
     $scope.userInfo = function (userId) {
         blockInfo.deactivate();
         $scope.userInfo = userInfo.activate({userId: userId});
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
 
     $scope.showGenerator = function (generatorId) {
         blockInfo.deactivate();
         $scope.userInfo = userInfo.activate({userId: generatorId});
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.previousBlock = function (blockId) {

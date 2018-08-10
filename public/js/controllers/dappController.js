@@ -96,7 +96,8 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
                     destroy: function () {
 
                     }
-                })
+                });
+                angular.element(document.querySelector("body")).addClass("ovh");
             }
         });
     }
@@ -118,7 +119,8 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
                     }
                 }
             }
-        })
+        });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.installRequest = function (masterPassphrase) {
@@ -146,6 +148,7 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
 
                     }
                 })
+                angular.element(document.querySelector("body")).addClass("ovh");
             }
         });
     }
@@ -158,7 +161,8 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
                         $scope.installRequest(masterPass);
                     }
                 }
-            })
+            });
+            angular.element(document.querySelector("body")).addClass("ovh");
         } else {
             $scope.installRequest();
         }

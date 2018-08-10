@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 'ngTableParams', 'stakeService', '$http', "userService", 'gettextCatalog', 'sendFreezeOrderModal','$timeout', 'esClient', function ($scope, $rootScope, ngTableParams, stakeService, $http, userService, gettextCatalog, sendFreezeOrderModal,$timeout, esClient) {
+angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 'ngTableParams', 'stakeService', '$http', "userService", 'gettextCatalog', 'sendFreezeOrderModal', '$timeout', 'esClient', 'referralService', '$location', '$window', function ($scope, $rootScope, ngTableParams, stakeService, $http, userService, gettextCatalog, sendFreezeOrderModal, $timeout, esClient, referralService, $location, $window) {
 
   $scope.view.inLoading = true;
   $scope.rememberedPassphrase = userService.rememberedPassphrase;
@@ -12,10 +12,46 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   $scope.loading = true;
   $scope.searchStake = stakeService;
   $scope.view.bar = { showStakeSearchBar: true };
-  
+  $scope.mixBalance = 41400000;
+
+  $scope.options = {
+    tooltipEvents: [],
+    showTooltips: true,
+    tooltipCaretSize: 0,
+    onAnimationComplete: function () {
+      this.showTooltip(this.segments, true);
+    },
+  };
+
+  let address = 'DDK4995063339468361088';
+  referralService.getAirdropBalance(address, function (data) {
+    data = parseFloat(data);
+    $scope.labels = ["Consume", "Available"];
+    let stakeLeftPercentage = (($scope.mixBalance - data / 100000000) / ($scope.mixBalance)) * 100;
+    let airdropData = [stakeLeftPercentage, 100 - stakeLeftPercentage];
+
+    $scope.airdropData = airdropData.map(function(each_element){
+      return Number(each_element.toFixed(3));
+  });
+
+    let con = $scope.mixBalance - data / 100000000;
+    let consume = con.toFixed(4);
+    $scope.consumeValue = consume;
+    
+    let avlaible = data / 100000000;
+    let avlaibleNum = avlaible.toFixed(4);
+    $scope.avlaibleValue = avlaibleNum;
 
 
+    let diskDataJson = {
+      "data": $scope.airdropData,
+      "labels": ["Consume", "Available"],
+      "colours": ["#cc3d3d", "#c0bebe"]
+    };
 
+    $scope.pieDiskData = diskDataJson;
+
+  });
   $scope.tableStakes = new ngTableParams(
     {
       page: 1,            // show first page
@@ -27,7 +63,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
       counts: [],
       getData: function ($defer, params) {
         $scope.loading = true;
-        if($scope.rememberedPassphrase == ''){
+        if ($scope.rememberedPassphrase == '') {
           $scope.rememberedPassphrase = $rootScope.secretPhrase;
         }
         stakeService.getData($scope.searchStake.searchForStake, $defer, params, $scope.filter, $scope.rememberedPassphrase, function () {
@@ -58,19 +94,19 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     $scope.tableStakes.reload();
   });
 
-
-  $scope.sendFreezeOrder = function (id,freezedAmount) {
+  $scope.sendFreezeOrder = function (id, freezedAmount) {
     $scope.sendFreezeOrderModal = sendFreezeOrderModal.activate({
       stakeId: id,
-      freezedAmount:freezedAmount,
+      freezedAmount: freezedAmount,
       destroy: function () {
       }
     });
+    angular.element(document.querySelector("body")).addClass("ovh");
   }
 
   $scope.updateStakes = function () {
     $scope.tableStakes.reload();
-};
+  };
 
   $scope.$on('updateControllerData', function (event, data) {
     if (data.indexOf('main.stake') != -1) {
@@ -80,64 +116,33 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
 
   $scope.clearSearch = function () {
     $scope.searchStake.searchForStake = '';
-}
-
-
+  }
 
   $scope.updateStakes();
 
+  // Search blocks watcher
+  var tempSearchBlockID = '',
+    searchBlockIDTimeout;
 
-
-
-// Search blocks watcher
-var tempSearchBlockID = '',
-searchBlockIDTimeout;
-
-$scope.$watch('searchStake.searchForStake', function (val) {
+  $scope.$watch('searchStake.searchForStake', function (val) {
     if (searchBlockIDTimeout) $timeout.cancel(searchBlockIDTimeout);
-    
+
     if (val.trim() != '') {
-        $scope.searchStake.inSearch = true;
+      $scope.searchStake.inSearch = true;
     } else {
-        $scope.searchStake.inSearch = false;
-        if (tempSearchBlockID != val) {
-            tempSearchBlockID = val;
-            $scope.updateStakes();
-            return;
-        }
+      $scope.searchStake.inSearch = false;
+      if (tempSearchBlockID != val) {
+        tempSearchBlockID = val;
+        $scope.updateStakes();
+        return;
+      }
     }
     tempSearchBlockID = val;
     searchBlockIDTimeout = $timeout(function () {
-        $scope.searchStake.searchForStake = tempSearchBlockID;
-        $scope.updateStakes();
+      $scope.searchStake.searchForStake = tempSearchBlockID;
+      $scope.updateStakes();
     }, 2000); // Delay 2000 ms
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  });
 }]);
 
 

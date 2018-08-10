@@ -21,6 +21,7 @@ angular.module('DDKApp').controller('blockModalController', ["$scope", "$http", 
     $scope.userInfo = function (userId) {
         blockModal.deactivate();
         $scope.userInfo = userInfo.activate({userId: userId});
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
 }]);
