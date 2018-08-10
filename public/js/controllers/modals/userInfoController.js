@@ -13,6 +13,7 @@ angular.module('DDKApp').controller('userInfoController', ["$scope", "$http", "$
             destroy: function () {
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.getAccountDetail = function (userId) {
@@ -61,6 +62,7 @@ angular.module('DDKApp').controller('userInfoController', ["$scope", "$http", "$
 
     $scope.close = function () {
         userInfo.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.getAccountDetail($scope.userId);

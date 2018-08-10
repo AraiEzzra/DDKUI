@@ -186,6 +186,7 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
         }
 
         freezeAmountModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
 }]);

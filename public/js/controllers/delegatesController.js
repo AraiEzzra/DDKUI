@@ -78,12 +78,15 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
                 }
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
+        
     };
 
     $scope.balance = userService._unconfirmedBalance;
 
     $scope.userInfo = function (userId) {
         $scope.modal = userInfo.activate({userId: userId});
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     // Unconfirmed transactions

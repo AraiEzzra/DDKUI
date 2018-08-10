@@ -219,6 +219,8 @@ angular.module('DDKApp').controller('forgingController', ['$scope', '$rootScope'
 
     $scope.blockInfo = function (block) {
         $scope.modal = blockInfo.activate({block: block});
+        angular.element(document.querySelector("body")).addClass("ovh");
+        
     }
 
 }]);

@@ -10,6 +10,7 @@ angular.module('DDKApp').controller('passphraseCheckController.js', ["$scope", "
             $scope.destroy();
         }
         passphraseCheckController.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
 }]);

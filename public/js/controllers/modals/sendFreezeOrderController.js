@@ -119,8 +119,8 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
         if ($scope.destroy) {
             $scope.destroy();
         }
-       
         sendFreezeOrderModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
     
     $scope.recipAddress = function () {
