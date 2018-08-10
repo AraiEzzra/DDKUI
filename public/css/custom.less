@@ -778,22 +778,6 @@ body::-webkit-scrollbar-thumb:hover,#sidebar-wrapper::-webkit-scrollbar-thumb:ho
   display: table-cell;
   vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .imhere-step-nav-container{
   text-align: center;
 }
@@ -1062,14 +1046,49 @@ a.imhere-pre{
     padding: 15px;
     background: #fff;
   }
-  canvas{
+  /* canvas{
     width:300px !important;
     height:300px !important;
     margin: auto;
+  } */
+}
+.stake-pie-container,.airdrop-container{
+  padding: 15px;
+  position:relative;
+  .chart-container{
+    width:550px !important;
+    margin: auto;
+    padding: 0;
   }
 }
-
-
+.pie-legend{
+  margin-top: 15px;
+  li{
+    font-size: unset;
+    line-height: normal;
+    span{
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+    }
+  }
+}
+.pieChart-values{
+  position: absolute;
+  top: 35%;
+  left: 8%;
+  bottom: 0;
+  span{
+    margin-bottom: 10px;
+    display: block;
+    line-height: 25px;
+    position: relative;
+  }
+}
 
 
 
