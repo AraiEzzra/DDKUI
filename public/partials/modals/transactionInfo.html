@@ -5,176 +5,105 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2>{{'Transaction'|translate}}:</h2>
-
-
                         <input id="transactionId" class="clipboard" value="{{transaction.id}}" readonly>
                         <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-target="#transactionId" clipboard-success="clipboardSuccess(e);"
                             clipboard-error="clipboardCommand(e);">
                             <i class="small material-icons">assignment</i>
                             <translate>Copy Transaction ID</translate>
-                        </button>
-                        <br>
-                        <button class="btn-flat btn-copy blue-link">
-                            <a href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/transaction-info/transactionId/{{transaction.id}}"
-                                target="_blank">
-                                <translate>View Transaction Detail in Explorer</translate>
-                            </a>
-                        </button>
+                        </button><br>
+                        <button class="btn-flat btn-copy blue-link"><a href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/transaction-info/transactionId/{{transaction.id}}" target="_blank"><translate>View Transaction Detail in Explorer</translate></a></button>
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
                                 <translate>Close modal</translate>
                             </span>
                         </div>
                     </div>
-                    <div class="modal-body">
-                        <ul class="list-group">
-                            <li class="list-group-item summary">
-                                <translate>Summary</translate>
-                            </li>
-                            <li class="list-group-item bordered">
-                                <translate>Confirmations</translate>
-                                <span class="pull-right small-text">{{transaction.confirmations}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <translate>Amount</translate>
-                                <div class="pull-right small-text" ng-show="transaction.type != 8">
-                                    {{transaction.amount | DDKFilter}} DDK
-                                </div>
-                                <div class="pull-right small-text" ng-show="transaction.type == 8">
-                                    {{transaction.stakedAmount | DDKFilter}} DDK
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <translate>Type</translate>
-                                <span class="pull-right small-text">{{transaction.trsName}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <translate>Fee</translate>
-                                <span class="pull-right small-text">{{transaction.fee | DDKFilter}} DDK</span>
-                            </li>
-                            <li class="list-group-item ">
-                                <translate>USD Equivalent</translate>
-                                <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <translate>Time</translate>
-                                <span class="pull-right small-text">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
-                            </li>
-                            <li class="list-group-item">
-                                <translate>Block Height</translate>
-                                <span class="pull-right small-text">{{transaction.height}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <translate>Block ID</translate>
-                                <span ng-click="blockInfo(transaction.blockId)" class="pull-right small-text">
-                                    <a href="#">{{transaction.blockId}}</a>
-                                </span>
-                            </li>
-                        </ul>
-                        <ul class="list-group transactions">
-                            <!-- ngRepeat: transaction in transactions -->
-                            <li class="list-group-item">
-                                <div class="transaction-data">
-                                    <strong>
-                                        <translate>Transaction ID</translate>:</strong> {{transaction.id}}
-                                    <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
-                                </div>
-                                <div class="transaction-path">
-                                    <div ng-show="transaction.type != 8" class="transaction-part pull-left">
-                                        <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                        <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
+                    <div class="scrolling">
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item summary">
+                                    <translate>Summary</translate>
+                                </li>
+                                <li class="list-group-item bordered">
+                                    <translate>Confirmations</translate>
+                                    <span class="pull-right small-text">{{transaction.confirmations}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <translate>Amount</translate>
+                                    <div class="pull-right small-text" ng-show="transaction.type != 8">
+                                        {{transaction.amount | DDKFilter}} DDK
                                     </div>
-                                    <div ng-show="transaction.type == 8" class="transaction-part pull-left">
-                                        <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                        <span class="DDK">{{transaction.stakedAmount | DDKFilter}} DDK</span>
+                                    <div class="pull-right small-text" ng-show="transaction.type == 8">
+                                        {{transaction.stakedAmount | DDKFilter}} DDK
                                     </div>
-                                </div>
-                                <div class="scrolling">
-                                    <div class="modal-body">
-                                        <ul class="list-group">
-                                            <li class="list-group-item summary">
-                                                <translate>Summary</translate>
-                                            </li>
-                                            <li class="list-group-item bordered">
-                                                <translate>Confirmations</translate>
-                                                <span class="pull-right small-text">{{transaction.confirmations}}</span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <translate>Amount</translate>
-                                                <div class="pull-right small-text" ng-show="transaction.type != 8">
-                                                    {{transaction.amount | DDKFilter}} DDK
-                                                </div>
-                                                <div class="pull-right small-text" ng-show="transaction.type == 8">
-                                                    {{transaction.stakedAmount | DDKFilter}} DDK
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <translate>Type</translate>
-                                                <span class="pull-right small-text">{{transaction.trsName}}</span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <translate>Fee</translate>
-                                                <span class="pull-right small-text">{{transaction.fee | DDKFilter}} DDK</span>
-                                            </li>
-                                            <li class="list-group-item ">
-                                                <translate>USD Equivalent</translate>
-                                                <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <translate>Time</translate>
-                                                <span class="pull-right small-text">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <translate>Block Height</translate>
-                                                <span class="pull-right small-text">{{transaction.height}}</span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <translate>Block ID</translate>
-                                                <span ng-click="blockInfo(transaction.blockId)" class="pull-right small-text">
-                                                    <a href="#">{{transaction.blockId}}</a>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-group transactions">
-                                            <!-- ngRepeat: transaction in transactions -->
-                                            <li class="list-group-item">
-                                                <div class="transaction-data">
-                                                    <strong>
-                                                        <translate>Transaction ID</translate>:</strong> {{transaction.id}}
-                                                    <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
-                                                </div>
-                                                <div class="transaction-path">
-                                                    <div ng-show="transaction.type != 8" class="transaction-part pull-left">
-                                                        <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                                        <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
-                                                    </div>
-                                                    <div ng-show="transaction.type == 8" class="transaction-part pull-left">
-                                                        <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                                        <span class="DDK">{{transaction.stakedAmount | DDKFilter}} DDK</span>
-                                                    </div>
-                                                    <div class="transaction-direction"></div>
-                                                    <div ng-show="transaction.type != 8" class="transaction-part pull-right">
-                                                        <a href="#" class="blue-link" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId || ""}}</a>
-                                                        <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
-                                                    </div>
-                                                    <div ng-show="transaction.type == 8" class="transaction-part pull-right"></div>
-                                                </div>
-                                                <div class="transaction-bottom">
-                                                    <div class="fee">
-                                                        <translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>
-                                                    <div class="DDK">{{transaction.amount | DDKFilter}} DDK
-                                                    </div>
-                                                    <div class="confirmations">{{transaction.confirmations || 0}}
-                                                        <translate>CONFIRMATIONS</translate>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- end ngRepeat: transaction in transactions -->
-                                        </ul>
+                                </li>
+                                <li class="list-group-item">
+                                    <translate>Type</translate>
+                                    <span class="pull-right small-text">{{transaction.trsName}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <translate>Fee</translate>
+                                    <span class="pull-right small-text">{{transaction.fee | DDKFilter}} DDK</span>
+                                </li>
+                                <li class="list-group-item ">
+                                    <translate>USD Equivalent</translate>
+                                    <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <translate>Time</translate>
+                                    <span class="pull-right small-text">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <translate>Block Height</translate>
+                                    <span class="pull-right small-text">{{transaction.height}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <translate>Block ID</translate>
+                                    <span ng-click="blockInfo(transaction.blockId)" class="pull-right small-text">
+                                        <a href="#">{{transaction.blockId}}</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="list-group transactions">
+                                <!-- ngRepeat: transaction in transactions -->
+                                <li class="list-group-item">
+                                    <div class="transaction-data">
+                                        <strong>
+                                            <translate>Transaction ID</translate>:</strong> {{transaction.id}}
+                                        <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
                                     </div>
-                                </div>
+                                    <div class="transaction-path">
+                                        <div ng-show="transaction.type != 8" class="transaction-part pull-left">
+                                            <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
+                                            <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
+                                        </div>
+                                        <div ng-show="transaction.type == 8" class="transaction-part pull-left">
+                                            <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
+                                            <span class="DDK">{{transaction.stakedAmount | DDKFilter}} DDK</span>
+                                        </div>
+                                        <div class="transaction-direction"></div>
+                                        <div ng-show="transaction.type != 8" class="transaction-part pull-right">
+                                            <a href="#" class="blue-link" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId || ""}}</a>
+                                            <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
+                                        </div>
+                                        <div ng-show="transaction.type == 8" class="transaction-part pull-right"></div>
+                                    </div>
+                                    <div class="transaction-bottom">
+                                        <div class="fee">
+                                            <translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>
+                                        <div class="DDK">{{transaction.amount | DDKFilter}} DDK
+                                        </div>
+                                        <div class="confirmations">{{transaction.confirmations || 0}}
+                                            <translate>CONFIRMATIONS</translate>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- end ngRepeat: transaction in transactions -->
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
