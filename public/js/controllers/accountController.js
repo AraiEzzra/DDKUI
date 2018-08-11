@@ -119,13 +119,14 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 userService.totalFrozeAmount = account.totalFrozeAmount;
                 $scope.balance = userService.balance;
                 $scope.unconfirmedBalance = userService.unconfirmedBalance;
-                $scope.balanceToShow = $filter('decimalFilter')(userService.unconfirmedBalance);
+                
+                $scope.balanceToShow = $filter('decimalFilter')(userService.unconfirmedBalance - userService.totalFrozeAmount);
                 if ($scope.balanceToShow[1]) {
                     $scope.balanceToShow[1] = '.' + $scope.balanceToShow[1];
                 }
                 $scope.secondPassphrase = userService.secondPassphrase;
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
-                $scope.unconfirmedBalanceDec = $scope.unconfirmedBalance / 100000000;
+                $scope.availableBalanceDec = ($scope.unconfirmedBalance - userService.totalFrozeAmount) / 100000000;
             } else {
                 $scope.resetAppData();
             }

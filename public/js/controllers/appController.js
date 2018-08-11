@@ -147,6 +147,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     $scope.resetAppData = function () {
         $scope.balance = userService.balance = 0;
         $scope.unconfirmedBalance = userService.unconfirmedBalance = 0;
+        userService.totalFrozeAmount = 0;
 
         $scope.secondPassphrase = userService.secondPassphrase = 0;
         $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase = 0;
@@ -172,6 +173,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                     userService.unconfirmedBalance = 0;
                     userService.secondPassphrase = '';
                     userService.unconfirmedPassphrase = '';
+                    userService.totalFrozeAmount = 0;
                 } else {
                     userService.balance = account.balance;
                     userService.unconfirmedBalance = account.unconfirmedBalance;
