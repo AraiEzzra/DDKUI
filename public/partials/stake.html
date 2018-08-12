@@ -1,6 +1,39 @@
 <div class="top-margin"></div>
 <div class="row">
     <div class="col-xs-12">
+        <div class="panel panel-default airdrop-balance">
+            <div class="panel-heading">
+                <h2>{{'Staking/Unmined Balance'|translate}}</h2>
+            </div>
+            <!-- <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true">
+            </canvas> -->
+
+            <div class="stake-pie-container">
+                <div class="pieChart-values">
+                    <span>
+                        <span style="background-color:rgba(204,61,61,1);width: 20px;height: 20px;display: inline-block;position: absolute;left: -30px;top: 6px;border-radius: 4px;/* border: #c0bebe 1px solid; *//* padding: 1px; */"></span>
+                        <h3>Consume Value :</h3>{{consumeValue}}
+                    </span>
+                    <span>
+                        <span style="background-color: rgb(192, 190, 190);width: 20px;height: 20px;display: inline-block;position: absolute;left: -30px;top: 6px;border-radius: 4px;"></span>
+                        <h3>Available Value :</h3> {{avlaibleValue}}
+                    </span>
+                </div>
+                <canvas id="pie33" options="options" class="chart chart-pie chart-xs ng-isolate-scope" height="120" width="240" data="pieDiskData.data"
+                    labels="pieDiskData.labels" colours="pieDiskData.colours" legend="true"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="col-xs-12">
         <!-- For stake search bar -->
         <div class="search-bar" ng-show="view.bar.showStakeSearchBar">
             <div class="search-toggle" ng-if="searchStake.searchForStake">
@@ -36,8 +69,7 @@
                     {{'Latest Orders'|translate}}
                 </h2>
             </div>
-            <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
-            cellspacing="0" template-pagination="custom/pager">
+            <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
                 <tr ng-repeat="fo in $data">
                     <td data-title="tableStakes.cols.stakedAmount" sortable="'stakedAmount'">{{fo.freezedAmount / 100000000}}</td>
                     <td data-title="tableStakes.cols.status" sortable="'status'">{{fo.status ? 'Active' : 'Inactive'}}</td>
@@ -65,7 +97,7 @@
                     <translate>No results for this search.</translate>
                 </p>
             </div>
-            
+
         </div>
     </div>
 </div>

@@ -19,6 +19,7 @@ angular.module('DDKApp').controller('multisignatureModalController', ["$scope", 
             $scope.destroy(false);
         }
         multisignatureModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.step = 1;

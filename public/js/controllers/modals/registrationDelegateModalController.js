@@ -18,6 +18,7 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         }
 
         registrationDelegateModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     function validate(onValid) {

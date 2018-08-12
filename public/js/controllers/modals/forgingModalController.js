@@ -19,6 +19,7 @@ angular.module('DDKApp').controller('forgingModalController', ["$scope", "$rootS
         }
 
         forgingModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.forgingState = function () {

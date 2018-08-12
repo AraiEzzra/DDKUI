@@ -70,6 +70,7 @@ angular.module('DDKApp').controller('votedDelegatesController', ['$scope', '$roo
                 $scope.unconfirmedTransactions.getList();
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
     };
 
     $scope.balance = userService._unconfirmedBalance;

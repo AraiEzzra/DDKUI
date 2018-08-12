@@ -58,9 +58,11 @@ angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$r
 
     $scope.close = function () {
         newUser.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.generatePassphrase();
+
 
 
 

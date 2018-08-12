@@ -47,6 +47,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
             $scope.destroy(true);
         }
         voteModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.removeVote = function (publicKey) {
