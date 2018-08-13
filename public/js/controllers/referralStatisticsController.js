@@ -4,7 +4,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
 
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
-    $scope.view.page = { title: gettextCatalog.getString('Referral Statistics'), previous: null };
+    $scope.view.page = { title: gettextCatalog.getString('Airdrop Statistics'), previous: null };
     $scope.loading = true;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.mixBalance = 900000;

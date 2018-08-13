@@ -3,8 +3,8 @@ require('angular');
 angular.module('DDKApp').filter('timestampFilter', function () {
     return function (timestamp) {
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
-];
+            "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
+        ];
         // Epoch time
         var d = new Date(Date.UTC(2016, 0, 1, 17, 0, 0, 0));
         var t = parseInt(d.getTime() / 1000);
