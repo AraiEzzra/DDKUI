@@ -296,13 +296,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.calFees = function (amount) {
         if (parseFloat(amount) >= 0.0001) {
             feeService(function (fees) {
-                if (parseFloat(amount) <= 100) {
-                    $scope.setFees((parseFloat(amount) * fees.send.level1) / 100);
-                } else if (parseFloat(amount) > 100 && parseFloat(amount) <= 1000) {
-                    $scope.setFees((parseFloat(amount) * fees.send.level2) / 100);
-                } else {
-                    $scope.setFees((parseFloat(amount) * fees.send.level3) / 100);
-                }
+                $scope.setFees((parseFloat(amount) * fees.send) / 100);
             });
         } else {
             $scope.fee = 0;

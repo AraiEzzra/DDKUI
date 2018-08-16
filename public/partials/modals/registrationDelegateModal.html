@@ -15,7 +15,8 @@
                         </div>
                         <div><translate>Please choose a delegate name.</translate></div>
                     </div>
-                    <div class="modal-body field-padding" ng-if="!username">
+                    <!-- <div class="modal-body field-padding" ng-if="!username"></div> -->
+                    <div class="modal-body field-padding" ng-if="ddkfoundation">
                         <form ng-submit="passcheck()">
                             <div class="input-field">
                                 <input ng-focus="focus == 'username'" id="delegateUsername" type="text" ng-model="delegateData.username" autofocus ng-class="{'invalid': error}">
@@ -40,7 +41,8 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
                             </li>
                             <li>
-                                <!-- <input type="submit" value="{{'register' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> -->Disabled
+                                    <input ng-if="ddkfoundation" type="submit" value="{{'register' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <!-- <input type="submit" value="{{'register' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> --><h2 ng-if="!ddkfoundation">Disabled</h2>
                             </li>
                         </ul>
                     </div>
@@ -73,7 +75,8 @@
                                         <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                                     </li>
                                     <li>
-                                    <!--    <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> -->  Disabled
+                                            <input ng-if="ddkfoundation" type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                    <!--    <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> --> <h2 ng-if="!ddkfoundation">Disabled</h2>  
                                     </li>
                                 </ul>
                             </div>
@@ -112,7 +115,8 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                             <!--   <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> -->Disabled
+                                    <input ng-if="ddkfoundation" type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                             <!--   <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> --><h2 ng-if="!ddkfoundation">Disabled</h2>
                             </li>
                         </ul>
                     </div>
