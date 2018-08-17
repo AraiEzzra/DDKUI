@@ -14,6 +14,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   $scope.view.bar = { showStakeSearchBar: true };
   $scope.mixBalance = 41400000;
 
+  /* For Air Drop Balance */
   $scope.options = {
     tooltipEvents: [],
     showTooltips: true,
@@ -29,7 +30,6 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     $scope.labels = ["Consume", "Available"];
     let stakeLeftPercentage = (($scope.mixBalance - data / 100000000) / ($scope.mixBalance)) * 100;
     let airdropData = [stakeLeftPercentage, 100 - stakeLeftPercentage];
-
     $scope.airdropData = airdropData.map(function(each_element){
       return Number(each_element.toFixed(3));
   });
@@ -37,21 +37,19 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     let con = $scope.mixBalance - data / 100000000;
     let consume = con.toFixed(4);
     $scope.consumeValue = consume;
-    
     let avlaible = data / 100000000;
     let avlaibleNum = avlaible.toFixed(4);
     $scope.avlaibleValue = avlaibleNum;
-
 
     let diskDataJson = {
       "data": $scope.airdropData,
       "labels": ["Consume", "Available"],
       "colours": ["#cc3d3d", "#c0bebe"]
     };
-
     $scope.pieDiskData = diskDataJson;
-
   });
+  /* End Air Drop Balance */
+
   $scope.tableStakes = new ngTableParams(
     {
       page: 1,            // show first page

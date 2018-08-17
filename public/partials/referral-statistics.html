@@ -3,8 +3,7 @@
     <div class="col-xs-12">
         <div class="panel panel-default airdrop-balance">
             <div class="panel-heading">
-                   
-                <h2>{{'Airdrop Balance'|translate}} </h2>
+                   <h2>{{'Airdrop Balance'|translate}} </h2>
             </div>
             <div class="airdrop-container">
                 <div class="pieChart-values">
@@ -35,9 +34,22 @@
                             cellspacing="0">
                             <!--  <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
                             </div> -->
-                            <tr ng-repeat="referral in $data">
-                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.level}}</td>
-                                <td data-title="tableReferral.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.address}}</td>
+                            <tr ng-repeat-start="referral in $data">
+                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.Level}}</td>
+                                <td data-title="tableReferral.cols.sponsorInfo" sortable="'sponsorInfo'">{{referral.count}} Address</td>
+                                <td data-title="tableReferral.cols.action">
+                                    <button class="action-referral" ng-click="expanded = !expanded">
+                                        <span ng-bind="expanded ? '-' : '+'"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr ng-repeat-end ng-show="expanded">
+                                <td colspan="6">
+                                    <span ng-repeat="address in referral.addressList" class="multiple-address">
+                                        <a ng-click="sponsorsStakeStatus(address)" tooltip="Stake order is {{stakeStatus}} " 
+                                        tooltip-trigger="click">{{address}}</a>
+                                    </span>
+                                </td>
                             </tr>
                             <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
                                 <td colspan="2">

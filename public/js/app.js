@@ -21,9 +21,14 @@ DDKApp.config([
     "$locationProvider",
     "$stateProvider",
     "$urlRouterProvider",
-    function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    "$tooltipProvider",
+    function ($locationProvider, $stateProvider, $urlRouterProvider, $tooltipProvider) {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
+
+        $tooltipProvider.setTriggers({
+            'click': 'mouseleave',     
+        });
 
         // Now set up the states
         $stateProvider

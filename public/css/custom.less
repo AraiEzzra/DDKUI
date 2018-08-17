@@ -1018,7 +1018,7 @@ a.imhere-pre{
 
 .main-container-fluid{
   /* height: calc(100% - 100px); */
-  padding-bottom: 90px;
+  padding-bottom: 65px;
 }
 
 .referral-tab{
@@ -1096,7 +1096,51 @@ a.imhere-pre{
   }
 }
 
-
+.multiple-address{
+  display: inline-block;
+  position: relative;
+  background: #cc3d3d;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin: 0 12px 0 0px; 
+  a{
+    color: @white!important;
+  }
+  .tooltip{
+    width: 100%;
+    border-radius: 4px;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+    left: 0!important;
+    margin-top: -10px!important;
+    &:after{
+      content: " ";
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #000;
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      margin-left: -10px;
+    }
+  }
+}
+.action-referral{
+  background: #fbfbfb;
+  color: #cc3d3d;
+  width: 21px;
+  height: 20px;
+  border: #d9dfe3 1px solid;
+  text-align: center;
+  border-radius: 2px;
+  &:focus{
+    background: #fbfbfb;
+  }
+}
 
 
 
