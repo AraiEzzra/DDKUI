@@ -90,7 +90,11 @@ angular.module('DDKApp').controller('forgingController', ['$scope', '$rootScope'
     $scope.loadingBlocks = true;
     $scope.statistics = {};
     $scope.setForgingText(userService.forging);
+    $scope.ddkfoundation=false;
 
+    if(userService.address === "DDK8999840344646463126"){
+        $scope.ddkfoundation =true;
+    }
 
     // Blocks
     $scope.tableBlocks = new ngTableParams({
