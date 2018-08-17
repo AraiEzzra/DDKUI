@@ -1,7 +1,8 @@
 require('angular');
-
+var config = require('../../../../config');
 angular.module('DDKApp').controller('userInfoController', ["$scope", "$http", "$rootScope", "userInfo", "userService","sendTransactionModal", function ($scope, $http, $rootScope, userInfo, userService, sendTransactionModal) {
-
+    $scope.ExplorerHost = config.explorerServerHost;
+    $scope.ExplorerPort = config.explorerServerPort;
     $scope.userIdOld = '';
     $scope.thisUser = userService;
 

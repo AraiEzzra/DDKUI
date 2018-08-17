@@ -6,10 +6,10 @@ angular.module('DDKApp').controller('blockModalController', ["$scope", "$http", 
     $scope.transactions = [];
     $scope.getTransactionsOfBlock = function (blockId) {
         $http.get($rootScope.serverUrl + "/api/transactions/", {params: {blockId: blockId}})
-            .then(function (resp) {
-                $scope.transactions = resp.data.transactions;
-                $scope.loading = false;
-            });
+        .then(function (resp) {
+            $scope.transactions = resp.data.transactions;
+            $scope.loading = false;
+        });
     };
 
     $scope.getTransactionsOfBlock($scope.block.b_id);

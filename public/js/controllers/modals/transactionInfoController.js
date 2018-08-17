@@ -1,7 +1,10 @@
 require('angular');
+var config = require('../../../../config');
 
 angular.module('DDKApp').controller('transactionInfoController', ["$scope", "$http", "transactionInfo", "userInfo", function ($scope, $http, transactionInfo, userInfo) {
-
+    $scope.ExplorerHost = config.explorerServerHost;
+    $scope.ExplorerPort = config.explorerServerPort;
+    console.log("host : ",$scope.ExplorerHost," and port : ", $scope.ExplorerPort)
     $scope.userInfo = function (userId) {
         transactionInfo.deactivate();
         $scope.modal = userInfo.activate({userId: userId});

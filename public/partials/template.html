@@ -83,11 +83,7 @@
             </div>
             <div id="top-menu">
                 <span id="balance" class="margin-right-10">
-                    <span>Available DDK</span>
-                    {{availableBalance | DDKFilter}}
-                </span>
-                <span id="balance" class="margin-right-10">
-                    {{unconfirmedBalance | DDKFilter}} DDK
+                    {{availableBalance | DDKFilter}} DDK
                 </span>
                 <a class="btn btn-blue-nav waves-effect waves-light margin-right-10" ng-click="freezeAmount()">
                     <translate>Stake</translate>
@@ -344,7 +340,7 @@
                     <a ui-sref="main.referralStatistics" class="waves-effect waves-blue">
                         <div class="nav-icon" id="referral-icon"></div>
                         <span class="menu-text">
-                            <translate>Referral Statistics</translate>
+                            <translate>Airdrop Statistics</translate>
                         </span>
                     </a>
                 </li>

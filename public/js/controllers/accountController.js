@@ -1,8 +1,11 @@
 
 require('angular');
+var config = require('../../../config');
 
-angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo','$document', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo, $document) {
-
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo) {
+    
+    $scope.ExplorerHost = config.explorerServerHost;
+    $scope.ExplorerPort = config.explorerServerPort;
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
     $scope.view.loadingText = gettextCatalog.getString('Loading dashboard');
@@ -116,13 +119,14 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 userService.totalFrozeAmount = account.totalFrozeAmount;
                 $scope.balance = userService.balance;
                 $scope.unconfirmedBalance = userService.unconfirmedBalance;
-                $scope.balanceToShow = $filter('decimalFilter')(userService.unconfirmedBalance);
+                
+                $scope.balanceToShow = $filter('decimalFilter')(userService.unconfirmedBalance - userService.totalFrozeAmount);
                 if ($scope.balanceToShow[1]) {
                     $scope.balanceToShow[1] = '.' + $scope.balanceToShow[1];
                 }
                 $scope.secondPassphrase = userService.secondPassphrase;
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
-                $scope.unconfirmedBalanceDec = $scope.unconfirmedBalance / 100000000;
+                $scope.availableBalanceDec = ($scope.unconfirmedBalance - userService.totalFrozeAmount) / 100000000;
             } else {
                 $scope.resetAppData();
             }

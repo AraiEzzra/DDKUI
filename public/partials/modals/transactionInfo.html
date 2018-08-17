@@ -10,8 +10,8 @@
                             clipboard-error="clipboardCommand(e);">
                             <i class="small material-icons">assignment</i>
                             <translate>Copy Transaction ID</translate>
-                        </button>
-
+                        </button><br>
+                        <button class="btn-flat btn-copy blue-link"><a href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/transaction-info/transactionId/{{transaction.id}}" target="_blank"><translate>View Transaction Detail in Explorer</translate></a></button>
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
                                 <translate>Close modal</translate>
