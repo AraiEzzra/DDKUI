@@ -5,7 +5,7 @@
       <div class="panel-body">
         <span class="icon-container">
           <span class="info-box-icon bg-blue">
-            <img src="images/plug.png" width="40">
+            <img src="images/plug.png" width="32">
           </span>
         </span>
         </span>
@@ -23,7 +23,7 @@
       <div class="panel-body">
         <span class="icon-container">
           <span class="info-box-icon bg-blue">
-            <img src="images/power-cord.png" width="40">
+            <img src="images/power-cord.png" width="32">
           </span>
         </span>
         <div class="info-box-content">
@@ -39,7 +39,7 @@
       <div class="panel-body">
         <span class="icon-container">
           <span class="info-box-icon bg-blue">
-            <img src="images/users-group.png" width="40">
+            <img src="images/users-group.png" width="32">
           </span>
         </span>
         <div class="info-box-content">
@@ -55,7 +55,7 @@
       <div class="panel-body">
         <span class="icon-container">
           <span class="info-box-icon bg-blue">
-            <img src="images/ddk_balance.png" width="40">
+            <img src="images/money-bag-with-dollar-symbol.png" width="32">
           </span>
         </span>
         <div class="info-box-content">
@@ -75,7 +75,7 @@
       <div class="panel-body">
         <span class="icon-container">
           <span class="info-box-icon bg-blue">
-            <img src="images/snowflake.png" width="40">
+            <img src="images/snowflake.png" width="32">
           </span>
         </span>
         <div class="info-box-content">
@@ -92,7 +92,7 @@
       <div class="panel-body">
         <span class="icon-container">
           <span class="info-box-icon bg-blue">
-            <img src="images/total_connected.png" width="40">
+            <img src="images/share-connection-sing.png" width="32">
           </span>
         </span>
         <div class="info-box-content">
@@ -108,7 +108,7 @@
       <div class="panel-body">
         <span class="icon-container">
           <span class="info-box-icon bg-blue">
-            <img src="images/icon.png" width="40">
+            <img src="images/icon.png" width="32">
           </span>
         </span>
         <div class="info-box-content">
@@ -140,7 +140,7 @@
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-default">
-      <div class="panel-heading" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
+      <div class="panel-heading pr" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
         <h2>
           {{'Latest Transactions'|translate}}
         </h2>
@@ -216,9 +216,14 @@
             </tr>
           </tbody>
         </table>
-        <div align="right">
-            <button ><a href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/user-info/{{address}}" target="_blank"><translate>View in Explorer</translate></a></button>
+        <div class="text-center">
+            <a class="btn btn-blue-nav waves-effect waves-light m15" href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/user-info/{{address}}" target="_blank">
+              <translate>View in Explorer</translate>
+            </a> 
         </div>
+        
+
+
       </div>
       <div class="panel-body empty-body" ng-if="!transactions.length">
         <!-- <div class="logo-grey"></div> -->
