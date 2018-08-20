@@ -11,6 +11,7 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
     $scope.secondPassphrase = userService.secondPassphrase;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.focus = 'username';
+    $scope.ddkfoundation=false;
 
     $scope.close = function () {
         if ($scope.destroy) {
@@ -18,6 +19,11 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         }
 
         registrationDelegateModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
+    }
+    console.log("userService.address : ",userService.address);
+    if(userService.address === "DDK8999840344646463126"){
+        $scope.ddkfoundation = true;
     }
 
     function validate(onValid) {

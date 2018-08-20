@@ -69,6 +69,7 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
 
     $scope.close = function () {
         newUserMigration.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     // $scope.generatePassphrase();

@@ -1,6 +1,3 @@
-
-
-
 <div ng-show="view.inLoading" ng-class="{'fadeInAnimation': view.inLoading}" class="loading-wrapper ng-scope" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999999; background: rgba(225,225,225,.6);">
     <div class="valign-wrapper" style="height: 100%;">
         <div class="valign" style="margin: 0 auto;">
@@ -61,7 +58,9 @@
     <div class="header-wrapper top-header-section">
         <div class="nav-bar clearfix" id="header">
             <a ui-sref="main.account" class="log-box">
-                <div id="logo"><img src="../images/logo.png" alt="logo"></div>
+                <div id="logo">
+                    <img src="../images/logo.png" alt="logo">
+                </div>
             </a>
             <div class="logo">
                 <button type="button" class="toggle-menu" ng-click="toggleMenu()">
@@ -84,16 +83,12 @@
             </div>
             <div id="top-menu">
                 <span id="balance" class="margin-right-10">
-                    <span>Available DDK</span>
-                    {{availableBalance | DDKFilter}}
-                </span>
-                <span id="balance" class="margin-right-10">
-                    {{unconfirmedBalance | DDKFilter}} DDK
+                    {{availableBalance | DDKFilter}} DDK
                 </span>
                 <a class="btn btn-blue-nav waves-effect waves-light margin-right-10" ng-click="freezeAmount()">
                     <translate>Stake</translate>
                 </a>
-                
+
                 <a class="btn btn-blue-nav waves-effect waves-light" ng-click="sendTransaction()">
                     <i class="mdi-content-send left"></i>
                     <translate>SEND</translate>
@@ -145,9 +140,9 @@
         </div>
         <h1 id="title" class="mob-title">
             <span class="title-icon" ng-show="view.page.previous" ng-click="goToPrevious()">
-               <span class="sr-only">
+                <span class="sr-only">
                     <translate>Go to previous page</translate>
-               </span>
+                </span>
             </span>
             {{view.page.title}}
         </h1>
@@ -252,9 +247,9 @@
                     <translate>Welcome back, {{username}}</translate>
                 </span>
                 <span class="address">{{address}}</span>
-                </div>
-                <!-- <div class="white-glow"></div> -->
-                <ul id="menu">
+            </div>
+            <!-- <div class="white-glow"></div> -->
+            <ul id="menu">
                 <li ng-show="showMenuItem('main.dashboard')" ui-sref-active="active">
                     <a ui-sref="main.dashboard" class="waves-effect waves-blue">
                         <div class="nav-icon" id="dashboard-icon"></div>
@@ -312,7 +307,7 @@
                     <a ui-sref="main.blockchain" class="waves-effect waves-blue">
                         <div class="nav-icon" id="blockchain-icon"></div>
                         <span class="menu-text">
-                            <translate>Blockchain</translate>
+                            <translate>DDK Blockchain</translate>
                         </span>
                     </a>
                 </li>
@@ -333,11 +328,19 @@
                         </span>
                     </a>
                 </li>
-                <li ng-show="showMenuItem('main.withdrawl')" ui-sref-active="active">
+<!--                <li ng-show="showMenuItem('main.withdrawl')" ui-sref-active="active">
                     <a ui-sref="main.withdrawl" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="stake-icon"></div>
+                        <div class="nav-icon" id="pendingGB-icon"></div>
                         <span class="menu-text" ng-click="getWithdrawlStatus()">
                             <translate>PendingGB</translate>
+                        </span>
+                    </a>
+                </li>   -->
+                <li ng-show="showMenuItem('main.referralStatistics')" ui-sref-active="active">
+                    <a ui-sref="main.referralStatistics" class="waves-effect waves-blue">
+                        <div class="nav-icon" id="referral-icon"></div>
+                        <span class="menu-text">
+                            <translate>Airdrop Statistics</translate>
                         </span>
                     </a>
                 </li>
@@ -374,26 +377,21 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" ui-view></div>
-    
-    
+    <div class="container-fluid main-container-fluid" ui-view></div>
     <!-- Footer -->
     <div class="footer">
-    
-    <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
-    <p style="margin-bottom: 4px;margin-top: 5px;">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="m-b-5 font12">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+                <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
+                    <img src="../images/facebook.png" alt="facebook">
+                </a>&nbsp
+                <a href="http://forums.ddkoin.com/" target="_blank">
+                    <img src="../images/forum.png" alt="forum">
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
-     <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank"><img src="../images/facebook.png" alt="facebook"></a>&nbsp
-     <a href="http://forums.ddkoin.com/" target="_blank"><img src="../images/forum.png" alt="forum"></a>
-     
-     
-    </div>
-    
-    </div>
-   
-   </div>
     <!-- /#page-content-wrapper -->
     <script type="text/ng-template" id="custom/pager">
         <ul class="pagination ng-table-pagination">

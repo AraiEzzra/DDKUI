@@ -20,6 +20,7 @@ angular.module('DDKApp').controller('secondPassphraseModalController', ["$scope"
             $scope.destroy();
         }
         secondPassphraseModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.generatePassphrase = function () {

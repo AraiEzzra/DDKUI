@@ -64,7 +64,7 @@
               <span class="small">{{balanceToShow[1]}}</span>
             </span>&nbsp;DDK</span>
           <br>
-          <span>({{((unconfirmedBalanceDec/circulatingSupply)*100).toFixed(2)}}%)</span>
+          <span>({{((availableBalanceDec/circulatingSupply)*100).toFixed(2)}}%)</span>
           <span class="info-box-text">{{'Your DDK Balance'|translate}}</span>
         </div>
       </div>
@@ -140,15 +140,20 @@
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-default">
-      <div class="panel-heading" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
+      <div class="panel-heading pr" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
         <h2>
           {{'Latest Transactions'|translate}}
         </h2>
-        <div class="more" ng-show="transactions.length">
+        <!-- <div class="more" ng-show="transactions.length">
           <span class="sr-only">
             <translate>More</translate>
           </span>
-        </div>
+          {{'View History'|translate}}
+        </div> -->
+
+        <div class="plain-text" ng-show="transactions.length">{{'View History'|translate}}</div>
+
+
       </div>
       <div class="table-responsive">
         <table class="table" id="transactions" ng-if="transactions.length">
@@ -211,6 +216,14 @@
             </tr>
           </tbody>
         </table>
+        <div class="text-center">
+            <a class="btn btn-blue-nav waves-effect waves-light m15" href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/user-info/{{address}}" target="_blank">
+              <translate>View in Explorer</translate>
+            </a> 
+        </div>
+        
+
+
       </div>
       <div class="panel-body empty-body" ng-if="!transactions.length">
         <!-- <div class="logo-grey"></div> -->

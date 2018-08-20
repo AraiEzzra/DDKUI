@@ -18,8 +18,8 @@ angular.module('DDKApp').controller('errorModalController', ["$scope", "errorMod
         if ($scope.destroy) {
             $scope.destroy();
         }
-
         errorModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
 }]);

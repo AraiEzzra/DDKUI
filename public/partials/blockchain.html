@@ -28,12 +28,7 @@
                 </span>
             </div>
         </div>
-        
-        
 
-
-
-        
         <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
             <div class="panel-heading">
                 <h2>
@@ -62,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-               <!--  <tr ng-repeat="block in $data" ng-class="{'voted': address == block.b_generatorId}"></tr> -->
+                <!--  <tr ng-repeat="block in $data" ng-class="{'voted': address == block.b_generatorId}"></tr> -->
                 <tr ng-repeat="block in $data">
                     <td data-title="tableBlocks.cols.height" sortable="'height'" ng-click="blockInfo(block)" class="pointer">
                         <a href="#">{{block.b_height}}</a>
@@ -81,7 +76,7 @@
                         <span ng-show="block.b_timestamp == 0">-</span>
                     </td>
                     <td data-title="tableBlocks.cols.numberOfTransactions">
-                        <div ng-show="block.b_numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block)">
+                        <div ng-show="block.b_numberOfTransactions > 0" class="pointer" ng-click="showBlock(block)">
                             <a href="#">{{block.b_numberOfTransactions}}</a>
                         </div>
                         <div ng-show="block.b_numberOfTransactions == 0">
@@ -90,7 +85,7 @@
                     </td>
                     <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.b_totalAmount | DDKFilter}}</td>
                     <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.b_totalFee | DDKFilter}}</td>
-                   <!-- <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.b_reward | DDKFilter}}</td> -->
+                    <!-- <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.b_reward | DDKFilter}}</td> -->
                     <td data-title="''" class="width-80"></td>
                 </tr>
                 <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
