@@ -168,12 +168,13 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         }
     }
 
-    $scope.getCurrentFee = function () {
+    /* $scope.getCurrentFee = function () {
         $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
             $scope.currentFee = resp.data.fee;
             $scope.fee = resp.data.fee;
+            console.log('$scope.fee :',$scope.fee);
         });
-    }
+    } */
 
     $scope.isCorrectValue = function (currency, throwError) {
         var parts = String(currency).trim().split('.');
@@ -291,6 +292,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         var regEx2 = /[0]+$/;
         //Convert fee according to whole/decimal number
         $scope.fee = (rawFee % 1) != 0 ?  rawFee.toFixed(8).toString().replace(regEx2, ''): rawFee.toString();
+    
     };
 
     $scope.calFees = function (amount) {

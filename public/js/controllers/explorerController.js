@@ -35,7 +35,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
                     $scope.view.inLoading = false;
-
+                    
                 }, null, true);
             }
         });

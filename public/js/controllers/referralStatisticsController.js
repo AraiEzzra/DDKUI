@@ -11,7 +11,19 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     $scope.searchBlocks.searchForBlock = '';
     $scope.countForgingBlocks = 0;
 
+    // $scope.class = "red";
+
     
+    $scope.exp = function (sponsorAddress) {
+        $http.post($rootScope.serverUrl + "/sponsor/stakeStatus",{ address: sponsorAddress } )
+        .then(function (resp) {
+            if (resp.data.success) {
+                $scope.stakeStatus = resp.data.sponsorStatus;              
+            } else {
+                Materialize.toast(resp.data.error, 3000, 'red white-text');
+            }
+        });
+    }
 
 
     /* For Referral sponsors stake status */
@@ -25,11 +37,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                 }
             });
     }
-
-
-
-
-
 
     // Referral List
     $scope.tableReferral = new ngTableParams({
@@ -54,7 +61,8 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
 
     $scope.tableReferral.cols = {
         level: gettextCatalog.getString('Level'),
-        sponsorInfo: gettextCatalog.getString('Sponsor Info'),
+        referralInfo: gettextCatalog.getString('Referral Info'),
+        totalVolume: gettextCatalog.getString('Total Volume'),
         action: gettextCatalog.getString('Action')
     };
 

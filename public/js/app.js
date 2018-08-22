@@ -117,8 +117,8 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'http://159.65.139.248:7000';
-    //$rootScope.serverUrl = 'http://localhost:7000';
+    //$rootScope.serverUrl = 'http://159.65.139.248:7000';
+    $rootScope.serverUrl = 'http://localhost:7000';
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in

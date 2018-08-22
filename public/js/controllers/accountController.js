@@ -150,6 +150,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.getCirculatingSupply = function () {
         $http.get($rootScope.serverUrl + "/api/accounts/getCirculatingSupply")
             .then(function (resp) {
+                console.log("bal : ",JSON.stringify(resp))
                 if (resp.data.success) {
                     var circulatingSupply = resp.data.circulatingSupply / 100000000;
                     $scope.circulatingSupply = parseInt(circulatingSupply);
