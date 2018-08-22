@@ -1,0 +1,9 @@
+{
+    "serverProtocol": "http",
+    "serverHost": "localhost",
+    "serverPort": 7000,
+    "elasticsearchHost": "127.0.0.1",
+    "UIPort":7001,
+    "explorerServerHost": "159.65.139.87",
+    "explorerServerPort":7001
+}
