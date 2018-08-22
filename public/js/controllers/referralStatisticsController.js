@@ -19,7 +19,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         $http.post($rootScope.serverUrl + "/sponsor/stakeStatus",{ address: sponsorAddress } )
             .then(function (resp) {
                 if (resp.data.success) {
-                    console.log('resp.data :',resp)
                     $scope.stakeStatus = resp.data.sponsorStatus;
                 } else {
                     Materialize.toast(resp.data.error, 3000, 'red white-text');
@@ -45,7 +44,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             getData: function ($defer, params) {
                 $scope.loading = true;
                 referralService.getReferralList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
-                    console.log('defer: ', $defer);
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
@@ -83,7 +81,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             getData: function ($defer, params) {
                 $scope.loading = true;
                 referralService.getRewardList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
-                    //console.log('defer: ', $defer);
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
@@ -122,12 +119,12 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     let address = 'DDK10720340277000928808';
     referralService.getAirdropBalance(address, function (data) {
         data = parseFloat(data);
-        let airdropLeftPercentage = (($scope.mixBalance - data / 100000000) / ($scope.mixBalance)) * 100;
+        let airdropLeftPercentage = ($scope.mixBalance - (data / 100000000)) / ($scope.mixBalance) * 100;
         let data1 = [airdropLeftPercentage, 100 - airdropLeftPercentage];
         $scope.data1 = data1.map(function(each_element){
-            return Number(each_element.toFixed(3));
+            return Number(each_element.toFixed(4));
         });
-        let con = $scope.mixBalance - data / 100000000;
+        let con = $scope.mixBalance - (data / 100000000);
         let consume = con.toFixed(4);
         $scope.consumeValue = consume;
         let avlaible = data / 100000000;
