@@ -7,9 +7,7 @@ angular.module('DDKApp').factory('serverSocket', ["socketFactory", "$location", 
     var newIoSocket = io.connect($rootScope.serverUrl);
     newIoSocket.on('connect', function() {
         var userAddress = userService.address;
-        console.log('userAddress : ', userAddress);
 		if(userAddress) {
-            console.log('userAddress1 : ', userAddress);
 			newIoSocket.emit('setUserAddress', {
 				'address': userAddress
 			});
