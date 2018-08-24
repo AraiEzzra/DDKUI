@@ -39,7 +39,8 @@
                             cellspacing="0" class="referrals-list">
                             <tr ng-repeat-start="referral in $data">
                                 <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.Level}}</td>
-                                <td data-title="tableReferral.cols.sponsorInfo" sortable="'sponsorInfo'">{{referral.count}} Address</td>
+                                <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{referral.count}} Address</td>
+                                <td data-title="tableReferral.cols.totalVolume" sortable="'totalVolume'">{{referral.totalStakeVolume}}</td>
                                 <td data-title="tableReferral.cols.action">
                                     <button class="action-referral" ng-click="exp($index,referral.addressList)">
                                         <i class="fa fa-chevron-right rotate" ng-class="itemDetails.index === $index ? 'down' : ''"></i>
