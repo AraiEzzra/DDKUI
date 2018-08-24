@@ -168,14 +168,6 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         }
     }
 
-    /* $scope.getCurrentFee = function () {
-        $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
-            $scope.currentFee = resp.data.fee;
-            $scope.fee = resp.data.fee;
-            console.log('$scope.fee :',$scope.fee);
-        });
-    } */
-
     $scope.isCorrectValue = function (currency, throwError) {
         var parts = String(currency).trim().split('.');
         var amount = parts[0];

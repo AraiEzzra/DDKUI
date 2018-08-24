@@ -1090,15 +1090,14 @@ a.imhere-pre{
   }
 }
 .action-referral{
-  background: #fbfbfb;
-  color: #cc3d3d;
-  width: 21px;
-  height: 20px;
-  border: #d9dfe3 1px solid;
+  width: 25px;
+  height: 25px;
+  border: none;
   text-align: center;
   border-radius: 2px;
+  background: none;
   &:focus{
-    background: #fbfbfb;
+    background: none;
   }
 }
 
@@ -1122,11 +1121,50 @@ a.imhere-pre{
   } 
 }
 .activeStatus{
-  background: #2b542c;
+  background: #458246;
 }
 
 .inactiveStatus{
   background: #cc3d3d;
 }
+.rotate{
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
 
+.rotate.down{
+    -ms-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform:rotate(90deg);
+}
 
+.slide {
+    -moz-transition: all 0.1s ease;
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+.slide.open {
+  -webkit-transition: max-height 1s ease;
+  -moz-transition: max-height 1s ease;
+  transition: max-height 1s ease;
+  max-height: 400px;
+}
+td.child {
+  padding:0 !important;
+}
+
+td.child.open {
+    padding:0 !important;
+}
+
+.itemDetails-collapse{
+  span{
+    display: inline-block;
+    margin: 12px 0 12px 12px;
+    a{
+      margin: 0;
+    }
+  }
+}

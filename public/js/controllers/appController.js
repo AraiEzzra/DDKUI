@@ -157,7 +157,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
 
         $scope.delegateInRegistration = userService.delegateInRegistration = null;
         $scope.delegate = userService.delegate = null;
-        $scope.username = userService.username;
+        $scope.username = userService.username = null;
 
         $scope.availableBalance = 0;
     }
