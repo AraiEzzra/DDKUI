@@ -54,6 +54,26 @@
                                         </span>
                                     </div>
                                 </td>
+                            </tr> -->
+
+                            <tr ng-repeat-start="referral in $data">
+                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.Level}}</td>
+                                <td data-title="tableReferral.cols.sponsorInfo" sortable="'sponsorInfo'">{{referral.count}} Address</td>
+                                <td data-title="tableReferral.cols.action">
+                                        <button class="action-referral" ng-click="exp($index,referral.addressList)">
+                                                <i class="fa fa-chevron-right rotate" ng-class="itemDetails.index === $index ? 'down' : ''"></i>
+                                        </button>
+                                </td> 
+
+                            </tr>
+                            <tr ng-repeat-end="">
+                                <td colspan="4" class="child" ng-class="itemDetails.index === $index ? 'open' : ''">
+                                    <div collapse="itemDetails.index !== $index">
+                                            <p ng-repeat="obj in stakeStatus" class="multiple-address">                                           
+                                                <a ng-class="{activeStatus: (obj.status == 'Active'), inactiveStatus: (obj.status == 'Inactive')}">{{obj.address}}</a>
+                                            </p>
+                                    </div>
+                                </td>
                             </tr>
                             <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
                                 <td colspan="2">
