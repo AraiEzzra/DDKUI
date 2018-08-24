@@ -2,7 +2,7 @@
 
 //var config = require('../../../config.json');
 var config = require('../../../config');
-var connectionHost = config.elasticsearchHost + ':9200' || 'localhost:9200';
+var connectionHost = config.elasticsearchHost || 'localhost:9200';
 
 angular.module('DDKApp').service('esClient', function (esFactory) {
     return esFactory({
