@@ -17,8 +17,10 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
             $scope.errorMessage = "Currently not able to generate the referral link";
             return;
         }
+        
+        $scope.refLink = config.domainName + '/referal/' + resp.data.referralLink;
 
-        $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
+  /*      $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
             if (resp.data.success) {
                 $scope.refLink = config.domainName + '/referal/' + resp.data.referralLink;
             } else {
@@ -28,7 +30,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         }, function (error) {
             $scope.noMatch = true;
             $scope.errorMessage = error.data.error ? error.data.error : error.data;
-        });
+        });   */
 
     }
 
