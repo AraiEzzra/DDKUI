@@ -56,7 +56,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
         }
 
         let post = "username=" + btoa(username) + "&email=" + btoa(email);
-        let url  = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/existingETPSUser';
+        let url  = config.domainName+'/existingETPSUser';
         $scope.forgotErrorMessage = false;
         $http.post($rootScope.serverUrl + "/api/accounts/forgotEtpsPassword", {
             data: post,
@@ -102,7 +102,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
         }
 
         let post = "username=" + btoa(username) + "&email=" + btoa(email);
-        let url  = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/existingETPSUser';
+        let url  = config.domainName+'/existingETPSUser';
         $scope.forgotErrorMessage = false;
         $http.post($rootScope.serverUrl + "/api/accounts/forgotEtpsPassword", {
             data: post,
