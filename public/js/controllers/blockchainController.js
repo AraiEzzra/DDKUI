@@ -11,7 +11,7 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
     $scope.loading = true;
     $scope.showAllColumns = false;
     $scope.showFullTime = false;
-    $scope.searchBlocks = blockService;
+    $scope.searchBlocks.searchForBlock='';
     $scope.countForgingBlocks = 0;
 
     // Blocks
@@ -80,14 +80,17 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
 
     $scope.showBlock = function (block) {
         $scope.modal = blockModal.activate({ block: block });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.blockInfo = function (block) {
         $scope.modal = blockInfo.activate({ block: block });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.userInfo = function (userId) {
         $scope.modal = userInfo.activate({ userId: userId });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     // Search blocks watcher

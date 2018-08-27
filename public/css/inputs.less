@@ -60,14 +60,16 @@ label {
 
 .passphraseGeneration.input-field {
   textarea.materialize-textarea {
-    margin: 0;
-    height: auto;
+    /* margin: 0; */
+    height: auto!important;
     min-height: inherit;
+    color: #515151;
+    font-size: 15px;
     &.invalid:focus {
       border-bottom: 1px solid #F44336;
     }
     &:focus {
-      border-bottom: 1px solid #7e57c2;
+      border-bottom: 1px solid #337ab7;
     }
   }
   label {

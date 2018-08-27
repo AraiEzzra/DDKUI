@@ -51,15 +51,18 @@
   }
   .panel-heading {
     background-color: @grey;
-    padding: 16px 16px;
+    padding: 15px;
     border-bottom: 2px solid @border-grey;
+    position: relative;
     .plain-text {
       position: absolute;
-      font-size: 14px;
-      color: #fff;
-      top: 20px;
-      font-weight: 500;
-      right: 26px;
+      color: @white;
+      top: 18px;
+      font-weight: 300;
+      right: 15px;
+      span{
+        font-size: 13px;
+      }
     }
     .more {
       position: absolute;
@@ -75,14 +78,12 @@
     h2 {
       line-height: 20px;
       opacity: @font-opacity;
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
   table {
     width: 100%;
-    cellpadding: 0;
-    cellspacing: 0;
     margin-top: 0;
     .head {
       border-bottom: 2px solid @border-grey;
@@ -92,11 +93,7 @@
         &:first-child {
           padding-left: 16px;
         }
-        color: @black;
-        font-size: @content-text;
-        font-weight: 500;
-        background-color: @grey;
-        border-bottom: 1px solid @border-grey;
+        font-weight: 400;
       }
 
     }
@@ -217,7 +214,7 @@
 }
 
 .light-graph {
-  background-color: @white;
+  background-color: #4c5965;
   border-color: @light-cloud;
   -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
@@ -229,7 +226,7 @@
   }
   &-heading {
     padding: 20px 0;
-    color: @grey-text;
+    color: @white;
     text-align: center;
     font-size: @graph-heading;
     width: 100%;
@@ -280,9 +277,8 @@
       left: 0;
       right: 0;
       margin-top: -20px;
-
       font-size: 32px;
-      color: #404040;
+      color: @white;
       .small-text {
         display: block;
         font-size: @normal-text;

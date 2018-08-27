@@ -1,0 +1,107 @@
+<div class="top-margin"></div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel-default custom-panel-default airdrop-balance">
+            <div class="panel-heading">
+                <h2>{{'Airdrop Balance'|translate}} </h2>
+                <div class="plain-text">
+                    <a class="white-text text-decoration-N verify" href="https://explorertestnet.ddkoin.com/#/user-info/DDK10720340277000928808"
+                        target="_blank">{{'Verify in Explorer'|translate}}</a>
+                </div>
+            </div>
+            <div class="airdrop-container">
+                <div class="pieChart-values">
+                    <span>
+                        <span style="background-color:rgba(2,136,209,1);width: 20px;height: 20px;display: inline-block;position: absolute;left: -30px;top: 0px;border-radius: 4px;/* border: #c0bebe 1px solid; *//* padding: 1px; */"></span>
+                        <h3>Consume Value :</h3>{{consumeValue}}
+                    </span>
+                    <span>
+                        <span style="background-color: rgb(192, 190, 190);width: 20px;height: 20px;display: inline-block;position: absolute;left: -30px;top: 0px;border-radius: 4px;"></span>
+                        <h3>Available Value :</h3> {{avlaibleValue}}
+                    </span>
+                </div>
+                <canvas id="pie32" options="options" class="chart chart-pie chart-xs ng-isolate-scope" height="120" width="240" data="airdropData.data"
+                    labels="airdropData.labels" colours="airdropData.colours" legend="true"></canvas>
+            </div>
+        </div>
+        <div class="referral-tab">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#1" data-toggle="tab">Referrals List</a>
+                </li>
+                <li>
+                    <a href="#2" data-toggle="tab">Reward History</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="1">
+                    <div class="panel-default custom-panel-default referrals-list paginated">
+                        <table ng-table="tableReferral" border="0" width="100%" cellpadding="0"
+                            cellspacing="0" class="referrals-list">
+                            <tr ng-repeat-start="referral in $data" class="referral">
+                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.Level}}</td>
+                                <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{referral.count}} Address</td>
+                                <td data-title="tableReferral.cols.totalVolume" sortable="'totalVolume'">{{referral.totalStakeVolume}}</td>
+                                <td data-title="tableReferral.cols.action">
+                                        <button class="action-referral" ng-click="exp($index,referral.addressList)">
+                                            <i class="fa fa-chevron-right rotate" ng-class="itemDetails.index === $index ? 'down' : ''"></i>
+                                        </button>
+                                    </td>
+                            </tr>
+                            
+                            <tr ng-repeat-end="">
+                                    <td colspan="4" class="child" ng-class="itemDetails.index === $index ? 'open' : ''">
+                                        <div collapse="itemDetails.index !== $index" class="itemDetails-collapse">
+                                            <span ng-repeat="obj in stakeStatus" class="multiple-address">
+                                                <a ng-class="{activeStatus: (obj.status == 'Active'), inactiveStatus: (obj.status == 'Inactive')}">{{obj.address}}</a>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
+                                <td colspan="2">
+                                    <translate>No Referral</translate>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
+                            <p class="empty-state-text">
+                                <translate>No results for this search.</translate>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="2">
+                    <div class="panel-default custom-panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
+                        <table ng-table="tableRewards" border="0" width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
+                            <!--  <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
+                            </div> -->
+                            <tr ng-repeat="referral in $data">
+                                <td data-title="tableRewards.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.sponsor_address}}</td>
+                                <td data-title="tableRewards.cols.reward" sortable="'reward'">{{referral.reward/100000000}}</td>
+                                <td data-title="tableRewards.cols.sponsorLevel" sortable="'sponsorLevel'">{{referral.sponsor_level}}</td>
+                                <td data-title="tableRewards.cols.transactionType" sortable="'transactionType'">{{referral.transaction_type}}</td>
+                                <td data-title="tableRewards.cols.rewardTime" sortable="'rewardTime'">{{referral.reward_time | timeAgoFilter : showFullTime}}</td>
+                            </tr>
+                            <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
+                                <td colspan="5">
+                                    <translate>No Referral</translate>
+                                </td>
+                            </tr>
+                            <tr ng-show="loading">
+                                <td class="gray2 white-text" colspan="8">
+                                    <translate>Loading...</translate>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
+                            <p class="empty-state-text">
+                                <translate>No results for this search.</translate>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

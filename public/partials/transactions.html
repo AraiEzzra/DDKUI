@@ -1,22 +1,28 @@
 <div class="top-margin"></div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">
+        <div class="panel-default custom-panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">
             <div class="panel-heading">
-                <h2>
-                  {{'Latest Transactions'|translate}}
-                </h2>
+                <h2>{{'Latest Transactions'|translate}}</h2>
             </div>
-            <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions" border="0" width="100%" cellpadding="0" cellspacing="0">
+           
+            <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions" border="0" width="100%"
+                cellpadding="0" cellspacing="0" template-pagination="custom/pager">
                 <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
                     <div class="more-down-table" dropdown on-toggle="toggled(open)" is-open="moreDownTable.isopen">
                         <i class="mdi-navigation-more-vert" dropdown-toggle aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" role="menu">
-                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="advanced" ng-model="showAllColumns">
-                                <label for="advanced"><translate>Show All Columns</translate></label>
+                            <p ng-click="check($event)">
+                                <input type="checkbox" class="filled-in violet" id="advanced" ng-model="showAllColumns">
+                                <label for="advanced">
+                                    <translate>Show All Columns</translate>
+                                </label>
                             </p>
-                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="fulltime" ng-model="showFullTime">
-                                <label for="fulltime"><translate>Show Full Time</translate></label>
+                            <p ng-click="check($event)">
+                                <input type="checkbox" class="filled-in violet" id="fulltime" ng-model="showFullTime">
+                                <label for="fulltime">
+                                    <translate>Show Full Time</translate>
+                                </label>
                             </p>
                         </div>
                     </div>
@@ -27,10 +33,12 @@
                         <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                        <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
+                        <a ng-if="transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderName}}</a>
+                        <a ng-if="!transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                        <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
+                        <a ng-if="transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientName}}</a>
+                        <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
                         {{transaction.trsName}}
@@ -50,15 +58,19 @@
                     <td data-title="''"></td>
                 </tr>
                 <tr ng-repeat="transaction in $data">
-                    <td data-title="tableTransactions.cols.height" sortable="'height'">{{transaction.height}}</td>
+                    <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockInfo(transaction.blockId)" class="pointer">
+                        <a href="#">{{transaction.height}}</a>
+                    </td>
                     <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
                         <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                        <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
+                        <a ng-if="transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderName}}</a>
+                        <a ng-if="!transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                        <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
+                        <a ng-if="transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientName}}</a>
+                        <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
                         {{transaction.trsName}}
@@ -79,6 +91,7 @@
                     <td data-title="''"></td>
                 </tr>
             </table>
+        
             <div class="panel-body empty-body empty-table without-margin-top" ng-if="!countForgingBlocks && searchTransactions.searchForTransaction">
                 <div class="logo-grey"></div>
                 <p class="empty-state-text">{{'No results for this search.'|translate}}</p>

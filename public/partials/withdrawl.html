@@ -18,14 +18,14 @@
                 </div>
             </div>
         </div>
+        <div class="error-container">
+            <p ng-show="errorMessage.failedRule">
+                <span class="font-12">{{errorMessage.failedRule}}</span>
+            </p>
+            <p ng-show="errorMessage.fromServer">
+                <span class="font-12">{{errorMessage.fromServer}}</span>
+            </p>
+        </div>
     </div>
-
-    <p class="error-container" ng-show="errorMessage.failedRule">
-        <span class="pass-error">{{errorMessage.failedRule}}</span>
-    </p>
-    <p class="error-container" ng-show="errorMessage.fromServer">
-        <span class="pass-error">{{errorMessage.fromServer}}</span>
-    </p>
     <button ng-click="validateGroupBonusRules(allChecked)" class="btn btn-primary l-h-n">Withdrawal</button>
-
 </div>

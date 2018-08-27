@@ -6,11 +6,9 @@
                     <div class="modal-header clearfix">
                         <img class="account" src="/images/account.png">
                         <h2 class="media-heading">{{'DDK USER'|translate}}</h2>
-
                         <input id="accountAddress" class="clipboard" value="{{account.address}}" readonly>
-
                         <input id="accountPublicKey" class="clipboard publicKey" value="{{account.publicKey}}" readonly>
-
+                        <button class="btn-flat btn-copy blue-link"><a href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/user-info/{{account.address}}" target="_blank"><translate>View Address History in Explorer</translate></a></button>
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only"><translate>Close modal</translate></span>
                         </div>

@@ -43,7 +43,7 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
     }
 
     $scope.login = function (pass) {
-        
+
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
             $scope.noMatch = true;
@@ -54,11 +54,11 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
                     newUserMigration.deactivate();
-                    userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token, resp.data.account.totalFrozeAmount);
+                    userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token, resp.data.account.totalFrozeAmount, resp.data.account.username);
                     userService.setForging(resp.data.account.forging);
                     userService.setSecondPassphrase(resp.data.account.secondSignature);
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
-                    $scope.migrateData($scope.dataVar,resp.data.account.address);
+                    $scope.migrateData($scope.dataVar, resp.data.account.address);
                     $state.go('main.dashboard');
                 } else {
                     console.error("Login failed. Failed to open account.");
@@ -66,11 +66,8 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
             });
         }
     }
-
     $scope.close = function () {
         newUserMigration.deactivate();
     }
-
-    // $scope.generatePassphrase();
 
 }]);

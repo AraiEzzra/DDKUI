@@ -107,6 +107,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         'main.explorer',
         'main.stake',
         'main.withdrawl',
+        'main.airdropStatistics'
 
     ];
 /*
@@ -171,6 +172,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                     userService.unconfirmedBalance = 0;
                     userService.secondPassphrase = '';
                     userService.unconfirmedPassphrase = '';
+                    userService.totalFrozeAmount = 0;
                 } else {
                     userService.balance = account.balance;
                     userService.unconfirmedBalance = account.unconfirmedBalance;
@@ -187,7 +189,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
                 $scope.delegateInRegistration = userService.delegateInRegistration;
 
-                $scope.availableBalance = userService.balance - userService.totalFrozeAmount;
+                $scope.availableBalance = userService.unconfirmedBalance - userService.totalFrozeAmount;
 
                 if ($state.current.name != 'passphrase') {
                     $scope.getMultisignatureAccounts(function (multisignature) {

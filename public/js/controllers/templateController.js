@@ -4,6 +4,8 @@ angular.module('DDKApp').controller('templateController', ['$scope', '$rootScope
     $scope.address = userService.address;
     $scope.allChecked = false;
     $scope.errorMessage = {};
+    $scope.name = userService.username;
+    console.log('$scope.username : ',$scope.name);
 
     $scope.getInitialSync = function () {
         $http.get($rootScope.serverUrl + "/api/loader/status/sync").then(function (resp) {

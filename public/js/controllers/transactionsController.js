@@ -37,7 +37,7 @@ angular.module('DDKApp').controller('transactionsController', ['$scope', '$rootS
     // Transactions
     $scope.tableTransactions = new ngTableParams({
         page: 1,
-        count: 25,
+        count: 10,
         sorting: {
             height: 'desc'
         }
