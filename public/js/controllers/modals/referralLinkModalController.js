@@ -18,7 +18,9 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
             return;
         }
 
-        $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
+        $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+userAddress;
+
+/*         $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
             if (resp.data.success) {
                 $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+resp.data.referralLink;
             } else {
@@ -28,7 +30,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         }, function (error) {
             $scope.noMatch = true;
             $scope.errorMessage = error.data.error ? error.data.error : error.data;
-        });
+        }); */
 
     }
 
