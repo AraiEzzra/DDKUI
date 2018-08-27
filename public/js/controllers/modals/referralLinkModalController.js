@@ -18,7 +18,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
             return;
         }
         
-        $scope.refLink = config.domainName + '/referal/' + resp.data.referralLink;
+        $scope.refLink = config.domainName + '/referal/' + userAddress;
 
   /*      $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
             if (resp.data.success) {
