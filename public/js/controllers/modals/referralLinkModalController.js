@@ -20,7 +20,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
 
         $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
             if (resp.data.success) {
-                $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+resp.data.referralLink;
+                $scope.refLink = config.domainName + '/referal/' + resp.data.referralLink;
             } else {
                 $scope.noMatch = true;
                 $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
