@@ -20,18 +20,6 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         
         $scope.refLink = config.domainName + '/referal/' + userAddress;
 
-  /*      $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
-            if (resp.data.success) {
-                $scope.refLink = config.domainName + '/referal/' + resp.data.referralLink;
-            } else {
-                $scope.noMatch = true;
-                $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
-            }
-        }, function (error) {
-            $scope.noMatch = true;
-            $scope.errorMessage = error.data.error ? error.data.error : error.data;
-        });   */
-
     }
 
     $scope.sendEmail = function(email,refLink)
@@ -41,7 +29,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         
         if(!refLink) {
-            $scope.errorMessage = "Mail can't be sent with blank refer link";
+            $scope.errorMessage = "Mail can't be sent with blank referral link";
             $scope.noMatch = true;
             return;
         }
