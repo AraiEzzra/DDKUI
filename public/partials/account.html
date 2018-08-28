@@ -210,10 +210,11 @@
             </tr>
           </tbody>
         </table>
-        <div class="text-center">
-            <a class="btn btn-blue-nav waves-effect waves-light m15" href="http://{{ExplorerHost}}:{{ExplorerPort}}/#/user-info/{{address}}" target="_blank">
-              <translate>View in Explorer</translate>
-            </a> 
+        <div align="right">
+        <div class="text-center" ng-if="transactions.length">
+          <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
+            <translate>View in Explorer</translate>
+          </a>
         </div>
       </div>
       <div class="panel-body empty-body" ng-if="!transactions.length">

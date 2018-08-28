@@ -1,6 +1,7 @@
 require('angular');
 
-angular.module('DDKApp').service('referralService', function ($http, $rootScope, userService) {
+angular.module('DDKApp').service('referralService', function ($http, $rootScope, userService, $filter) {
+    //var self = this;
 
     var referalStat = {
 
@@ -16,22 +17,39 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
                     cb();
                     $defer.resolve([]);
                 }
-            }
-            );
+            });
         },
         // End Referral List
 
         // Get Rewards List
         getRewardList: function ($searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
+            //var self = this;
             $http.post($rootScope.serverUrl + "/referral/rewardHistory", {
                 address: userService.address
             }).then(function (response) {
+                function filterData(data, filter) {
+                    return $filter('filter')(data, filter)
+                }
+                function orderData(data, params) {
+                    return params.sorting() ? $filter('orderBy')(data, params.orderBy()) : filteredData;
+                }
+                function sliceData(data, params) {
+                    return data.slice((params.page() - 1) * params.count(), params.page() * params.count())
+                }
+                function transformData(data, filter, params) {
+                    return sliceData(orderData(filterData(data, filter), params), params);
+                }
                 if (response.data.success) {
+                    //console.log("response.data : ",response.data)
+                    params.total(response.data.count);
+                    var filteredData = $filter('filter')(response.data.SponsorList, filter);
+                    var transformData = transformData(response.data.SponsorList, filter, params)
+                    $defer.resolve(transformData);
                     cb();
-                    $defer.resolve(response.data.SponsorList);
                 } else {
-                    cb();
                     $defer.resolve([]);
+                    cb();
+                    
                 }
             }
             );
