@@ -10,6 +10,37 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     $scope.mixBalance = 900000;
     $scope.searchBlocks.searchForBlock = '';
     $scope.countForgingBlocks = 0;
+    $scope.itemDetails = {};
+
+
+    $scope.exp = function (index, sponsorAddress) {
+        if (index === $scope.itemDetails.index) {
+            $scope.itemDetails.index = null;
+        } else {
+            $scope.itemDetails.index = index;
+            $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
+                .then(function (resp) {
+                    if (resp.data.success) {
+                        $scope.stakeStatus = resp.data.sponsorStatus;
+                        console.log('index : ', $scope.itemDetails.index);
+                    } else {
+                        Materialize.toast(resp.data.error, 3000, 'red white-text');
+                    }
+                });
+        }
+    }
+
+    /* For Referral sponsors stake status */
+    $scope.sponsorsStakeStatus = function (sponsorAddress) {
+        $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
+            .then(function (resp) {
+                if (resp.data.success) {
+                    $scope.stakeStatus = resp.data.sponsorStatus;
+                } else {
+                    Materialize.toast(resp.data.error, 3000, 'red white-text');
+                }
+            });
+    }
 
     // Referral List
     $scope.tableReferral = new ngTableParams({
@@ -24,7 +55,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             getData: function ($defer, params) {
                 $scope.loading = true;
                 referralService.getReferralList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
-                    console.log('defer: ', $defer);
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
@@ -35,7 +65,9 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
 
     $scope.tableReferral.cols = {
         level: gettextCatalog.getString('Level'),
-        sponsorAddress: gettextCatalog.getString('Sponsor Address')
+        referralInfo: gettextCatalog.getString('Referral Info'),
+        totalVolume: gettextCatalog.getString('Total Volume'),
+        action: gettextCatalog.getString('Action')
     };
 
     $scope.tableReferral.settings().$scope = $scope;
@@ -48,6 +80,12 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     };
     // End Referral
 
+
+
+
+
+
+    
     // Rewards List
     $scope.tableRewards = new ngTableParams({
         page: 1,
@@ -61,11 +99,11 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             getData: function ($defer, params) {
                 $scope.loading = true;
                 referralService.getRewardList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
-                    //console.log('defer: ', $defer);
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
                     $scope.view.inLoading = false;
+                    
                 }, null, true);
             }
         });
@@ -84,6 +122,9 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     });
     // End Rewards
 
+
+
+
     $scope.options = {
         legend: {
             display: true,
@@ -100,12 +141,12 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     let address = 'DDK10720340277000928808';
     referralService.getAirdropBalance(address, function (data) {
         data = parseFloat(data);
-        let airdropLeftPercentage = (($scope.mixBalance - data / 100000000) / ($scope.mixBalance)) * 100;
+        let airdropLeftPercentage = ($scope.mixBalance - (data / 100000000)) / ($scope.mixBalance) * 100;
         let data1 = [airdropLeftPercentage, 100 - airdropLeftPercentage];
-        $scope.data1 = data1.map(function(each_element){
-            return Number(each_element.toFixed(3));
+        $scope.data1 = data1.map(function (each_element) {
+            return Number(each_element.toFixed(4));
         });
-        let con = $scope.mixBalance - data / 100000000;
+        let con = $scope.mixBalance - (data / 100000000);
         let consume = con.toFixed(4);
         $scope.consumeValue = consume;
         let avlaible = data / 100000000;

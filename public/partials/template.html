@@ -239,16 +239,12 @@
             <div class="account-block">
                 <div class="icon">
                     <img src="/images/account.png" alt="Account">
-                </div>
-               <!--  <span ng-if="publicUsername" class="name">
-                    <translate>Public User, {{publicUsername}}</translate>
-                </span> -->
-                <span class="name" ng-show="username">
-                    <translate>Welcome back, {{username}}</translate>
+                </div>               
+                <span class="name" ng-show="name">
+                    <translate>Welcome back, {{name}}</translate>
                 </span>
                 <span class="address">{{address}}</span>
             </div>
-            <!-- <div class="white-glow"></div> -->
             <ul id="menu">
                 <li ng-show="showMenuItem('main.dashboard')" ui-sref-active="active">
                     <a ui-sref="main.dashboard" class="waves-effect waves-blue">
@@ -258,24 +254,6 @@
                         </span>
                     </a>
                 </li>
-                <!-- <li ng-show="showMenuItem('main.multi') && multisignature" ui-sref-active="active">
-                 <a ui-sref="main.multi" class="waves-effect waves-blue">
-                     <div class="nav-icon" id="multi-icon"></div>
-                     <span class="menu-text"><translate>Multi-Signature</translate></span>
-                 </a>
-                 </li> -->
-                <!-- <li ng-show="showMenuItem('main.conversations')" ui-sref-active="active">
-                 <a ui-sref="main.conversations" class="waves-effect waves-blue">
-                     <div class="nav-icon" id="conversations-icon"></div>
-                     <span class="menu-text"><translate>Conversations</translate></span>
-                 </a>
-                 </li> -->
-                <!-- <li ng-show="showMenuItem('main.dappstore')" ui-sref-active="active">
-                 <a ui-sref="main.dappstore" class="waves-effect waves-blue">
-                     <div class="nav-icon" id="dappstore-icon"></div>
-                     <span class="menu-text"><translate>Applications</translate></span>
-                 </a>
-                 </li> -->
                 <li ng-show="showMenuItem('main.forging')" ui-sref-active="active">
                     <a ui-sref="main.forging" class="waves-effect waves-blue">
                         <div class="nav-icon" id="forging-icon"></div>
@@ -307,13 +285,12 @@
                     <a ui-sref="main.blockchain" class="waves-effect waves-blue">
                         <div class="nav-icon" id="blockchain-icon"></div>
                         <span class="menu-text">
-                            <translate>Blockchain</translate>
+                            <translate>DDK Blockchain</translate>
                         </span>
                     </a>
                 </li>
                 <li ng-show="showMenuItem('main.explorer')" ui-sref-active="active">
-                    <!-- <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="obj.value1 = 'someothervalue'; clickedh=!clickedh"> -->
-                    <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
+                   <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
                         <div class="nav-icon" id="explorer-icon"></div>
                         <span class="menu-text">
                             <translate>DDK Explorer</translate>
@@ -325,14 +302,6 @@
                         <div class="nav-icon" id="stake-icon"></div>
                         <span class="menu-text">
                             <translate>DDK Staking</translate>
-                        </span>
-                    </a>
-                </li>
-                <li ng-show="showMenuItem('main.withdrawl')" ui-sref-active="active">
-                    <a ui-sref="main.withdrawl" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="pendingGB-icon"></div>
-                        <span class="menu-text" ng-click="getWithdrawlStatus()">
-                            <translate>PendingGB</translate>
                         </span>
                     </a>
                 </li>
@@ -378,12 +347,11 @@
         </div>
     </div>
     <div class="container-fluid main-container-fluid" ui-view></div>
-
     <!-- Footer -->
     <div class="footer">
         <div class="row">
             <div class="col-xs-12">
-                <p style="margin-bottom: 10px;">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+                <p class="m-b-5 font12">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
                 <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
                     <img src="../images/facebook.png" alt="facebook">
                 </a>&nbsp

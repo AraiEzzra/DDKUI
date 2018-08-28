@@ -21,9 +21,14 @@ DDKApp.config([
     "$locationProvider",
     "$stateProvider",
     "$urlRouterProvider",
-    function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    "$tooltipProvider",
+    function ($locationProvider, $stateProvider, $urlRouterProvider, $tooltipProvider) {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
+
+        $tooltipProvider.setTriggers({
+            'click': 'mouseleave',     
+        });
 
         // Now set up the states
         $stateProvider
@@ -112,8 +117,10 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'http://159.65.139.248:7000';
+    $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
+    //$rootScope.serverUrl = 'http://159.65.139.248:7000';
     //$rootScope.serverUrl = 'http://localhost:7000';
+
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in

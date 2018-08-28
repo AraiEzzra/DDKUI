@@ -2,9 +2,12 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="panel panel-default airdrop-balance">
-            <div class="panel-heading">
-                   
-                <h2>{{'Airdrop Balance'|translate}} </h2>
+            <div class="panel-heading pr">
+                <h2>{{'Airdrop Balance'|translate}}</h2>
+                <div class="plain-text">
+                    <a class="white-text text-decoration-N verify" href="https://explorertestnet.ddkoin.com/#/user-info/DDK10720340277000928808"
+                        target="_blank">{{'Verify in Explorer'|translate}}</a>
+                </div>
             </div>
             <div class="airdrop-container">
                 <div class="pieChart-values">
@@ -29,15 +32,29 @@
                 </li>
             </ul>
             <div class="tab-content panel panel-default">
+                <h1>{{expanded}}</h1>
                 <div class="tab-pane active" id="1">
                     <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
                         <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableReferral" border="0" width="100%" cellpadding="0"
-                            cellspacing="0">
-                            <!--  <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
-                            </div> -->
-                            <tr ng-repeat="referral in $data">
-                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.level}}</td>
-                                <td data-title="tableReferral.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.address}}</td>
+                            cellspacing="0" class="referrals-list">
+                            <tr ng-repeat-start="referral in $data">
+                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.Level}}</td>
+                                <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{referral.count}} Address</td>
+                                <td data-title="tableReferral.cols.totalVolume" sortable="'totalVolume'">{{referral.totalStakeVolume}}</td>
+                                <td data-title="tableReferral.cols.action">
+                                    <button class="action-referral" ng-click="exp($index,referral.addressList)">
+                                        <i class="fa fa-chevron-right rotate" ng-class="itemDetails.index === $index ? 'down' : ''"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr ng-repeat-end="">
+                                <td colspan="4" class="child" ng-class="itemDetails.index === $index ? 'open' : ''">
+                                    <div collapse="itemDetails.index !== $index" class="itemDetails-collapse">
+                                        <span ng-repeat="obj in stakeStatus" class="multiple-address">
+                                            <a ng-class="{activeStatus: (obj.status == 'Active'), inactiveStatus: (obj.status == 'Inactive')}">{{obj.address}}</a>
+                                        </span>
+                                    </div>
+                                </td>
                             </tr>
                             <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
                                 <td colspan="2">
@@ -59,9 +76,7 @@
                 </div>
                 <div class="tab-pane" id="2">
                     <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
-                        <table ng-table="tableRewards" border="0" width="100%" cellpadding="0" cellspacing="0">
-                            <!--  <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
-                            </div> -->
+                        <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableRewards" border="0" width="100%" cellpadding="0" cellspacing="0">
                             <tr ng-repeat="referral in $data">
                                 <td data-title="tableRewards.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.sponsor_address}}</td>
                                 <td data-title="tableRewards.cols.reward" sortable="'reward'">{{referral.reward/100000000}}</td>

@@ -26,23 +26,13 @@
                     <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
                         <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
                     </td>
-                    <!-- <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                        <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
+                    <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
+                        <a ng-if="transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderName}}</a>
+                        <a ng-if="!transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                        <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
-                    </td> -->
-                    <td ng-if="transaction.senderName" class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                        <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderName}}</a>
-                    </td>
-                    <td ng-if="!transaction.senderName" class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                        <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                    </td>
-                    <td ng-if="transaction.recipientName" class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                        <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientName}}</a>
-                    </td>
-                    <td ng-if="!transaction.recipientName" class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                        <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
+                        <a ng-if="transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientName}}</a>
+                        <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
                         {{transaction.trsName}}
@@ -65,21 +55,16 @@
                     <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockInfo(transaction.blockId)" class="pointer">
                         <a href="#">{{transaction.height}}</a>
                     </td>
-                    <!-- <td data-title="tableTransactions.cols.height" sortable="'height'">{{transaction.height}}</td> -->
                     <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
                         <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
                     </td>
-                    <td ng-if="transaction.senderName" class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                        <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderName}}</a>
+                    <td class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
+                        <a ng-if="transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderName}}</a>
+                        <a ng-if="!transaction.senderName" href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
                     </td>
-                    <td ng-if="!transaction.senderName" class="td-amount" data-title="tableTransactions.cols.senderId" class="pointer" sortable="'senderId'">
-                        <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                    </td>
-                    <td ng-if="transaction.recipientName" class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                        <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientName}}</a>
-                    </td>
-                    <td ng-if="!transaction.recipientName" class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
-                        <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
+                    <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
+                        <a ng-if="transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientName}}</a>
+                        <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
                         {{transaction.trsName}}

@@ -1,4 +1,5 @@
 <div class="top-margin"></div>
+<!--Top Info -->
 <div class="row clearfix">
   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 dashboard-info">
     <div class="panel widget widget-brown">
@@ -17,7 +18,6 @@
       </div>
     </div>
   </div>
-
   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 pl7 dashboard-info pr15-none">
     <div class="panel widget widget-brown">
       <div class="panel-body">
@@ -79,7 +79,9 @@
           </span>
         </span>
         <div class="info-box-content">
-          <span class="info-box-number">{{stakeBalanceToShow[0] || 0}}<span class="small">{{stakeBalanceToShow[1]}}</span></span>&nbsp; DDK</span>
+          <span class="info-box-number">{{stakeBalanceToShow[0] || 0}}
+            <span class="small">{{stakeBalanceToShow[1]}}</span>
+          </span>&nbsp; DDK</span>
           <br>
           <span>({{totalDDKStaked?((myDDKFrozen/totalDDKStaked)*100).toFixed(2):0}}%)</span>
           <span class="info-box-text">{{'Your DDK Frozen'|translate}}</span>
@@ -128,7 +130,9 @@
           </span>
         </span>
         <div class="info-box-content">
-          <span class="info-box-number">{{totalStakeBalanceToShow[0] || 0}}<span class="small">{{totalStakeBalanceToShow[1]}}</span></span>&nbsp; DDK</span>
+          <span class="info-box-number">{{totalStakeBalanceToShow[0] || 0}}
+            <span class="small">{{totalStakeBalanceToShow[1]}}</span>
+          </span>&nbsp; DDK</span>
           <br>
           <span class="info-box-text">{{'Total Stake Amount'|translate}}</span>
         </div>
@@ -136,24 +140,14 @@
     </div>
   </div>
 </div>
+<!--Top Info -->
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-default">
-      <div class="panel-heading" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
-        <h2>
-          {{'Latest Transactions'|translate}}
-        </h2>
-        <!-- <div class="more" ng-show="transactions.length">
-          <span class="sr-only">
-            <translate>More</translate>
-          </span>
-          {{'View History'|translate}}
-        </div> -->
-
+      <div class="panel-heading pr" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
+        <h2>{{'Latest Transactions'|translate}}</h2>
         <div class="plain-text" ng-show="transactions.length">{{'View History'|translate}}</div>
-
-
       </div>
       <div class="table-responsive">
         <table class="table" id="transactions" ng-if="transactions.length">
@@ -217,7 +211,10 @@
           </tbody>
         </table>
         <div align="right">
-            <button ><a href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank"><translate>View in Explorer</translate></a></button>
+        <div class="text-center" ng-if="transactions.length">
+          <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
+            <translate>View in Explorer</translate>
+          </a>
         </div>
       </div>
       <div class="panel-body empty-body" ng-if="!transactions.length">
