@@ -121,46 +121,46 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Third Step -->
-                    <div ng-switch-when="Step 3: Backup Key" class="main-form-section backup-key">
-                        <p class="qr-code-key text-center">{{ twoFactorKey }}</p>
-                        <p class="text-center">
-                            Plase save this key on paper. This key will allow you to recover Google Authentication in case of phone loss.
-                        </p>
-                        <p class="text-danger text-center">
-                            Resetting you Google Authentication requies opening a support ticket and take at least 7 day to process.
-                        </p>
+                    <!-- Third Step backup-key-->
+                    <div ng-switch-when="Step 3: Backup Key" class="comm-tab-wrapper">
+                        <div class="comm-tab-container">
+                                <p class="qr-code-key text-center">{{ twoFactorKey }}</p>
+                                <p class="text-center">
+                                    Plase save this key on paper. This key will allow you to recover Google Authentication in case of phone loss.
+                                </p>
+                                <p class="text-warning text-center">
+                                    Resetting you Google Authentication requies opening a support ticket and take at least 7 day to process.
+                                </p>
+                        </div>
                     </div>
                     <!-- Four Step -->
-                    <div ng-switch-when="Step 4: Enable Google Authentication" class="main-form-section enble-googleAuth comm-tab-wrapper">
+                    <div ng-switch-when="Step 4: Enable Google Authentication" class="enble-googleAuth comm-tab-wrapper">
                         <div class="alert alert-success" ng-show="successMessage.nextStep">{{ successMessage.nextStep }}</div>
                         <div class="comm-tab-container">
                             <form class="m-t-35" form-horizontal ng-submit="enableTwoFactor(twoFactor)">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="input-field">
-                                            <input class="form-control mb10" id="key" type="text" ng-model="settings.twoFactor.key">
-                                            <label for="key">
-                                                <translate>key</translate>
-                                            </label>
-                                        </div>
+                                    <div class="input-field">
+                                        <input class="form-control mb10" id="key" type="text" ng-model="settings.twoFactor.key">
+                                        <label for="key">
+                                            <translate>key</translate>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="input-field">
-                                            <input class="form-control mb10" id="yourPassphrase" type="text" ng-model="settings.twoFactor.secret">
-                                            <label for="yourPassphrase">
-                                                <translate>Your Passphrase</translate>
-                                            </label>
-                                        </div>
+                                    <div class="input-field">
+                                        <input class="form-control mb10" id="yourPassphrase" type="text" ng-model="settings.twoFactor.secret">
+                                        <label for="yourPassphrase">
+                                            <translate>Your Passphrase</translate>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <input class="form-control mb10" id="faCode" type="text" ng-model="settings.twoFactor.otp">
-                                    <label for="faCode">
-                                        <translate>2FA Code</translate>
-                                    </label>
+                                    <div class="input-field">
+                                        <input class="form-control mb10" id="faCode" type="text" ng-model="settings.twoFactor.otp">
+                                        <label for="faCode">
+                                            <translate>2FA Code</translate>
+                                        </label>
+                                    </div>
                                 </div>
                             </form>
                         </div>

@@ -24,10 +24,6 @@
                             <div class="field-padding">
                                 <div class="input-field">
                                     <input id="referralLink" type="text" ng-model="refLink" readonly> 
-                                     <!-- <label for="">
-                                            {{referLink}}
-                                        <translate>{{referLink}}</translate> 
-                                    </label>  -->
                                     <button class="btn-flat btn-copy blue-link pull-right p-r-0 referral-link-btn" clipboard data-clipboard-target="#referralLink" clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);">
                                         <i class="small material-icons">assignment</i>
                                         <translate>Copy Referral Link</translate>
@@ -41,18 +37,6 @@
                                     </label>
                                     <span class="pass-error" style="margin-top: 0;" ng-show="noMatch"><translate>{{errorMessage}}</translate></span>
                                 </div>
-                                <!-- <span class="fee-text flat-text pull-right" ng-show="fAmount">
-                                    <translate>Fee: {{fee | DDKFilter}} ETP</translate>
-                                </span>
-                                <span class="pass-error" ng-show="errorMessage.fAmount">{{errorMessage.fAmount}}</span> -->
-                            </div>
-                            <!-- <p class="error-container" ng-show="errorMessage.recipient">
-                                <span class="pass-error">{{errorMessage.recipient}}</span>
-                            </p> -->
-                            <!-- <p class="error-container" ng-show="errorMessage.fromServer">
-                                <span class="pass-error">{{errorMessage.fromServer}}</span>
-                            </p> -->
-                            <!-- <input type="submit" ng-show="false"> -->
                         </form>
                     </div>
                     <div class="modal-body bordered">
