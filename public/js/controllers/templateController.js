@@ -5,6 +5,7 @@ angular.module('DDKApp').controller('templateController', ['$scope', '$rootScope
     $scope.allChecked = false;
     $scope.errorMessage = {};
     $scope.username = userService.username;
+    $scope.groupBonus = userService.groupBonus
 
     $scope.getInitialSync = function () {
         $http.get($rootScope.serverUrl + "/api/loader/status/sync").then(function (resp) {
