@@ -7,8 +7,8 @@
                         <!-- For Step 1 -->
                         <div class="material-modal-content" ng-show="step == 1">
                             <div class="modal-header modal-iconed">
-                                <span class="modal-log text-center">
-                                    <img src="../images/logo.png" alt="DDK COIN" width="150">
+                                <span class="modal-log logo-wrapper">
+                                    <img src="../images/logo.png" alt="DDKOIN" width="250">
                                 </span>
                                 <div class="close-modal" ng-click="close()">
                                     <span class="sr-only">
@@ -28,7 +28,6 @@
                                 <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                     <div class="input-field passphraseGeneration">
                                         <textarea id="newPassphrase" class="materialize-textarea" ng-model="newPassphrase" autofocus readonly ng-trim="false"></textarea>
-                                        <!-- <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label> -->
                                         <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label>
                                     </div>
                                     <span class="pull-right generate no-select" ng-click="generatePassphrase()">
@@ -59,35 +58,7 @@
                             </div>
                         </div>
                         <!-- End Step 1 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        
                         <!-- For Step 2 -->
                         <div class="material-modal-content" ng-show="step == 2">
                             <div class="modal-header modal-iconed">
@@ -96,14 +67,12 @@
                                         <translate>Close modal</translate>
                                     </span>
                                 </div>
-                                <span class="modal-log text-center">
-                                    <img src="../images/logo.png" alt="DDK COIN" width="150">
+                                <span class="modal-log logo-wrapper">
+                                    <img src="../images/logo.png" alt="DDKOIN" width="250">
                                 </span>
                             </div>
                             <div class="modal-header clearfix">
-                                <div>
-                                    <h2>{{'Step 2/2 - Confirm your Passphrase xcx'|translate}}</h2>
-                                </div>
+                                <div><h2>{{'Step 2/2 - Confirm your Passphrase xcx'|translate}}</h2></div>
                                 <div>
                                     <translate>Please re-enter your passphrase below.</translate>
                                 </div>
