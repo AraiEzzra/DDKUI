@@ -107,8 +107,10 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'https://webwallet-w.ddkoin.com';
-    //$rootScope.serverUrl = 'http://localhost:7000';
+    $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
+    $rootScope.protocol = 'http';
+    $rootScope.host = '159.65.139.248';
+    $rootScope.port = '7000';
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in
