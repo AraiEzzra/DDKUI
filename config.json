@@ -4,7 +4,7 @@
     "serverPort": 443,
     "elasticsearchHost": "https://search-ddkoin-es-4qcgobakdvymdnnjibppa5qttu.ap-southeast-1.es.amazonaws.com",
     "UIPort":80,
-    "explorerServerHost": "https://explorer-e.ddkoin.com",
+    "explorerServerHost": "https://explorer.ddkoin.com",
     "explorerServerPort":443,
     "domainName": "https://webwallet.ddkoin.com"
 }
