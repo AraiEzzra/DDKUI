@@ -2,7 +2,7 @@
     "serverProtocol": "https",
     "serverHost": "webwallet-w.ddkoin.com",
     "serverPort": 443,
-    "elasticsearchHost": "https://vpc-ddk-es-32wbyx4zu5hb5udvelaf44sxlu.ap-southeast-1.es.amazonaws.com",
+    "elasticsearchHost": "https://search-ddkoin-es-4qcgobakdvymdnnjibppa5qttu.ap-southeast-1.es.amazonaws.com",
     "UIPort":80,
     "explorerServerHost": "https://explorer-e.ddkoin.com",
     "explorerServerPort":443,

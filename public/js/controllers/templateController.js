@@ -5,6 +5,7 @@ angular.module('DDKApp').controller('templateController', ['$scope', '$rootScope
     $scope.allChecked = false;
     $scope.errorMessage = {};
     $scope.name = userService.username;
+    $scope.groupBonus = userService.groupBonus;
     console.log('$scope.username : ',$scope.name);
 
     $scope.getInitialSync = function () {
