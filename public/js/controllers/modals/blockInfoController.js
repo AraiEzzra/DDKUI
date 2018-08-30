@@ -6,6 +6,7 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
     $scope.transactionsLength = 0;
 
     $scope.getTransactionsOfBlock = function (blockId) {
+        console.log("blockId : ",blockId)
         $http.get($rootScope.serverUrl + "/api/transactions/", {params: {blockId: blockId}})
             .then(function (resp) {
                 $scope.transactions = resp.data.transactions;
@@ -13,7 +14,10 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
             });
     };
 
-    $scope.getTransactionsOfBlock($scope.block.id);
+    $scope.getTransactionsOfBlock($scope.block.b_id);
+    
+    
+    
 
     $scope.close = function () {
         blockInfo.deactivate();
