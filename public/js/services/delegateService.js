@@ -19,7 +19,7 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
     }
 
     var delegates = {
-        topRate: 201,
+        topRate: 3,
         gettingStandBy: false,
         gettingTop: false,
         gettingVoted: false,
