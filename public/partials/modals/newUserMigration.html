@@ -18,7 +18,7 @@
                                 <div><translate>You can find your passphrase below.</translate></div>
                             </div>
                             <div class="modal-body clearfix">
-                                <div class="left-margin-40 right-margin-40 top-margin-40">
+                                <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                     <div class="input-field passphraseGeneration">
                                         <textarea id="newPassphrase" class="materialize-textarea" ng-model="migrateUserPassphrase" autofocus readonly ng-trim="false"></textarea>
                                         <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label>
@@ -26,34 +26,6 @@
                                     <span class="pull-left generate no-select" ng-click="generatePassphrase()">
                                         <span><translate>Generate New</translate></span>
                                     </span>
-                                </div>
-                                <div class="left-margin-40 right-margin-40">
-                                    <div class="row clearfix">
-                                        <div class="col-md-6">
-                                            <div class="input-field">
-                                                <input id="name" ng-model="name">
-                                                <label for="name">Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input-field">
-                                                <input id="email" ng-model="email">
-                                                <label for="email">Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input-field">
-                                                <input id="Country" ng-model="Country">
-                                                <label for="Country">Country</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input-field">
-                                                <input id="phone" ng-model="phone">
-                                                <label for="phone">Phone</label>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="modal-body bordered">

@@ -12,7 +12,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     $scope.countForgingBlocks = 0;
     $scope.itemDetails = {};
 
-    
     $scope.exp = function (index, sponsorAddress) {
         if (index === $scope.itemDetails.index) {
             $scope.itemDetails.index = null;
@@ -22,7 +21,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                 .then(function (resp) {
                     if (resp.data.success) {
                         $scope.stakeStatus = resp.data.sponsorStatus;
-                        console.log('index : ', $scope.itemDetails.index);
                     } else {
                         Materialize.toast(resp.data.error, 3000, 'red white-text');
                     }
@@ -33,10 +31,9 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
 
     /* For Referral sponsors stake status */
     $scope.sponsorsStakeStatus = function (sponsorAddress) {
-        $http.post($rootScope.serverUrl + "/sponsor/stakeStatus",{ address: sponsorAddress } )
+        $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
             .then(function (resp) {
                 if (resp.data.success) {
-                    console.log('resp.data :',resp)
                     $scope.stakeStatus = resp.data.sponsorStatus;
                 } else {
                     Materialize.toast(resp.data.error, 3000, 'red white-text');
@@ -57,7 +54,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             getData: function ($defer, params) {
                 //$scope.loading = true;
                 referralService.getReferralList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
-                    console.log('defer: ', $defer);
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     //$scope.loading = false;
@@ -96,7 +92,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             getData: function ($defer, params) {
                 $scope.loading = true;
                 referralService.getRewardList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
-                    //console.log('defer: ', $defer);
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
@@ -137,7 +132,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         data = parseFloat(data);
         let airdropLeftPercentage = (($scope.mixBalance - data / 100000000) / ($scope.mixBalance)) * 100;
         let data1 = [airdropLeftPercentage, 100 - airdropLeftPercentage];
-        $scope.data1 = data1.map(function(each_element){
+        $scope.data1 = data1.map(function (each_element) {
             return Number(each_element.toFixed(3));
         });
         let con = $scope.mixBalance - data / 100000000;
@@ -156,8 +151,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     });
 
     // Search blocks watcher
-    var tempSearchBlockID = '',
-        searchBlockIDTimeout;
+    var tempSearchBlockID = '', searchBlockIDTimeout;
     $scope.$watch('searchBlocks.searchForBlock', function (val) {
         if (searchBlockIDTimeout) $timeout.cancel(searchBlockIDTimeout);
         if (val.trim() != '') {
@@ -174,9 +168,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         searchBlockIDTimeout = $timeout(function () {
             $scope.searchBlocks.searchForBlock = tempSearchBlockID;
             $scope.updateReferral();
-        }, 2000); // Delay 2000 ms
+        }, 2000);
     });
 }]);
-
-
-

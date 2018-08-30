@@ -9,9 +9,8 @@ require('../node_modules/angular-gettext/dist/angular-gettext.min.js');
 require('../node_modules/angular-chart.js/dist/angular-chart.js');
 require('../node_modules/angular-socket-io/socket.js');
 require('../node_modules/ng-table/dist/ng-table.js');
+require('../bower_components/bootstrap/dist/js/bootstrap.min.js');
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
-
-
 
 Mnemonic = require('bitcore-mnemonic');
 
@@ -87,6 +86,11 @@ DDKApp.config([
                 templateUrl: "/partials/existing-etps-user.html",
                 controller: "existingETPSUserController"
             })
+            .state('main.airdropStatistics', {
+                url: "/airdropStatistics",
+                templateUrl: "/partials/referral-statistics.html",
+                controller: "referralStatisticsController"
+            })
             .state('referal', {
                 url: "/referal/:id",
                 reloadOnSearch: false,
@@ -107,10 +111,7 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
-    $rootScope.protocol = 'http';
-    $rootScope.host = '159.65.139.248';
-    $rootScope.port = '7000';
+    $rootScope.serverUrl = 'https://webwallet-w.ddkoin.com';
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in

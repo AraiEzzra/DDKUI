@@ -129,11 +129,8 @@ body{
 #sidebar-wrapper{
   background: #3b4650;
   .account-block {
-    .address {
+    .address,.name {
       color: #fff;
-    }
-    .name{
-      color: #797979;
     }
   }
   #menu{
@@ -300,7 +297,7 @@ body{
 .auth-btn{
   margin-left: -10px;
   margin-right: -10px;
-  .col-md-4, .col-md-12{
+  .col-md-4, .col-md-5, .col-md-12{
     padding-left: 10px;
     padding-right: 10px;
     .btn{
@@ -310,7 +307,9 @@ body{
   }
 }
 
-
+.m-t-20{
+  margin-top:20px;
+}
 
 
 
@@ -546,7 +545,7 @@ h4 {
   }
 }
 
-.passphrase-form{
+.passphrase-form, .sec_passphrase{
   .generate{
     margin-bottom: 0;
     span{
@@ -1154,6 +1153,8 @@ a.imhere-pre{
   }
   &.paginated{
     background-color: #46535f;
+    -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,.12);
+    box-shadow: 0 0 3px 1px rgba(0,0,0,.12);
     .panel-heading{
       border: none;
       box-shadow: none;
@@ -1277,7 +1278,7 @@ a.imhere-pre{
   position: fixed;
   right: 0;
   bottom: 0;
-  width: 100%;
+  width: calc(100% - 240px);
   z-index: 2;
   .m-b-5{
     margin-bottom: 5px;

@@ -70,12 +70,8 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
     }
 
     // function to validate existing ETPS user from ETP_test database
-    $scope.validateExistingUser = function (username, password, adminCode) {
-        if(adminCode != "ddkTest2306" ){
-            $scope.errorMessageAdmin = 'Only For Admin : Migration is under Testing.';
-            return;
-        }
-        $scope.errorMessageAdmin = false;
+    $scope.validateExistingUser = function (username, password) {
+
         var post = "username=" + btoa(username) + "&password=" + btoa(password);
 
         $http.post($rootScope.serverUrl +"/api/accounts/existingETPSUser/validate", {

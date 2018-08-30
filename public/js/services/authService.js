@@ -11,31 +11,30 @@ angular.module('DDKApp').service('AuthService', ['$http', 'userService', '$windo
 
     // check whether user is logged-in or not
     function isLoggedIn() {
-	if (user) {
+        if (user) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     // get user's status
     function getUserStatus() {
         return $http({
             method: 'GET',
             url: $rootScope.serverUrl + '/user/status',
-	    params: {
+            params: {
                 token: $window.localStorage.getItem('token')
             }
         }).success(function (resp) {
-            if(resp.hasOwnProperty('data')) {
+            if (resp.hasOwnProperty('data')) {
                 $window.localStorage.setItem('token', resp.data.refreshToken);
             }
             if (resp.status && resp.data.success) {
                 user = true;
                 $rootScope.enableReferOption = resp.data.referStatus;
-                console.log('user status : ',resp.data);
                 userService.setData();
-                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, null,resp.data.account.totalFrozeAmount,resp.data.account.username);
+                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, null, resp.data.account.totalFrozeAmount, resp.data.account.username);
                 userService.setForging(resp.data.account.forging);
                 userService.setSecondPassphrase(resp.data.account.secondSignature || resp.data.account.unconfirmedSignature);
                 userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;

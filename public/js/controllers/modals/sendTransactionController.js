@@ -43,7 +43,6 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.to);
         $scope.errorMessage = {};
-        
         if ($scope.to.trim() == '') {
             $scope.errorMessage.recipient = 'Empty recipient';
             $scope.presendError = true;
@@ -55,6 +54,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                     return;
                 }
                 if ($scope.isCorrectValue($scope.amount)) {
+                    $scope.presendError = false;
                     return onValid();
                 } else {
                     $scope.presendError = true;
@@ -68,7 +68,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
 
     function validateOTP(onValid) {
         $scope.errorMessage = {};
-        if ($scope.otpNumber === '' || $scope.otpNumber === undefined) {
+        if ($scope.otpNumber == '' || $scope.otpNumber == undefined) {
             $scope.errorMessage.otpNumber = 'No OTP supplied';
             $scope.presendError = true;
             return;
@@ -76,22 +76,18 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         return onValid();
     }
 
-    $scope.getPass = function () {
-        $scope.checkSecondPass = false;
-        $scope.passmode = $scope.rememberedPassphrase ? false : true;
-        if ($scope.passmode) {
-            $scope.focus = 'secretPhrase';
-        }
-        $scope.secondPhrase = '';
-        $scope.secretPhrase = '';
-        return;
-    }
-
     $scope.passcheck = function (fromSecondPass, otp) {
-        if(otp) {
+        if ($scope.OTP) {
             $scope.otp = otp;
+            validateOTP(function () {
+                $scope.OTP = false;
+                $scope.presendError = false;
+                $scope.errorMessage = {};
+            });
+            if($scope.presendError){
+                return;
+            }
         }
-        
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -103,15 +99,21 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             return;
         }
         if ($scope.rememberedPassphrase) {
+            if($scope.otp){
+                $scope.OTP = true;
+            }
             validateForm(function () {
                 $scope.presendError = false;
                 $scope.errorMessage = {};
                 $scope.sendTransaction($scope.rememberedPassphrase);
             });
         } else {
-            validateOTP(function () {
-                $scope.OTP = false;
-                $scope.getPass();
+            validateForm(function () {
+                $scope.presendError = false;
+                $scope.errorMessage = {};
+                $scope.passmode = !$scope.passmode;
+                $scope.focus = 'secretPhrase';
+                $scope.secretPhrase = '';
             });
         }
     }
@@ -130,29 +132,23 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                 publicKey: userService.publicKey
             }
         })
-        .then(function (resp) {
-            if (resp.data.success) {
-                $scope.twofactor = true;
-                $scope.OTPModalPopup();
-            } else {
-                $scope.OTP = false;
-                if ($scope.rememberedPassphrase) {
-                    $scope.passcheck();
+            .then(function (resp) {
+                if (resp.data.success) {
+                    $scope.twofactor = true;
+                    $scope.OTPModalPopup();
                 } else {
-                    $scope.passcheck(true);
+                    $scope.OTP = false;
+                    $scope.passcheck();
                 }
-            }
-        })
+            })
     }
-
-
-
 
     $scope.close = function () {
         if ($scope.destroy) {
             $scope.destroy();
         }
         sendTransactionModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.accountChanged = function (e) {
@@ -170,13 +166,6 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         } else {
             $scope.accountValid = false;
         }
-    }
-
-    $scope.getCurrentFee = function () {
-        $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
-            $scope.currentFee = resp.data.fee;
-            $scope.fee = resp.data.fee;
-        });
     }
 
     $scope.isCorrectValue = function (currency, throwError) {
@@ -252,6 +241,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
 
     $scope.sendTransaction = function (secretPhrase, withSecond) {
         if ($scope.secondPassphrase && !withSecond) {
+            $scope.OTP = false;
             $scope.checkSecondPass = true;
             $scope.focus = 'secondPhrase';
             return;
@@ -277,13 +267,13 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             $http.put($rootScope.serverUrl + '/api/transactions', data).then(function (resp) {
                 $scope.sending = false;
                 if (resp.data.error) {
-                    Materialize.toast('Transaction error', 3000, 'red white-text');
+                    Materialize.toast('Sent Error', 3000, 'red white-text');
                     $scope.errorMessage.fromServer = resp.data.error;
                 } else {
                     if ($scope.destroy) {
                         $scope.destroy();
                     }
-                    Materialize.toast('Transaction sent', 3000, 'green white-text');
+                    Materialize.toast('Sent Success', 3000, 'green white-text');
                     sendTransactionModal.deactivate();
                 }
             });
@@ -294,21 +284,26 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         var regEx2 = /[0]+$/;
         //Convert fee according to whole/decimal number
         $scope.fee = (rawFee % 1) != 0 ?  rawFee.toFixed(8).toString().replace(regEx2, ''): rawFee.toString();
+    
     };
 
     $scope.calFees = function (amount) {
         if (parseFloat(amount) >= 0.0001) {
             feeService(function (fees) {
-                if (parseFloat(amount) <= 100) {
-                    $scope.setFees((parseFloat(amount) * fees.send.level1) / 100);
-                } else if (parseFloat(amount) > 100 && parseFloat(amount) <= 1000) {
-                    $scope.setFees((parseFloat(amount) * fees.send.level2) / 100);
-                } else {
-                    $scope.setFees((parseFloat(amount) * fees.send.level3) / 100);
-                }
+                $scope.setFees((parseFloat(amount) * fees.send) / 100);
             });
         } else {
             $scope.fee = 0;
         }
     };
+
+    $scope.iconShow = function (to) {
+        if (to.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+
 }]);

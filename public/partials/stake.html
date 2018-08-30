@@ -23,7 +23,7 @@
     </div>
     <div class="col-xs-12">
         <!-- For stake search bar -->
-        <div class="search-bar" ng-show="view.bar.showStakeSearchBar">
+        <div class="search-bar" ng-show="view.bar.showStakeSearchBar"  ng-if="countFreezeOrders">
             <div class="search-toggle" ng-if="searchStake.searchForStake">
                 <i ng-click="clearSearch()" class="mdi-content-clear small"></i>
             </div>
@@ -50,10 +50,12 @@
             </div>
         </div>
         <div class="panel-default custom-panel-default" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
-            <div class="panel-heading"><h2>{{'Latest Orders'|translate}}</h2></div>
+            <div class="panel-heading">
+                <h2>{{'Latest Orders'|translate}}</h2>
+            </div>
             <div class="table-responsive">
-                <table class="latestOrders-stake" ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0" cellspacing="0"
-                    template-pagination="custom/pager">
+                <table class="latestOrders-stake" ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
+                    cellspacing="0" template-pagination="custom/pager">
                     <tr ng-repeat="fo in $data">
                         <td data-title="tableStakes.cols.stakedAmount" sortable="'stakedAmount'">{{fo.freezedAmount / 100000000}}</td>
                         <td data-title="tableStakes.cols.status" sortable="'status'">{{fo.status ? 'Active' : 'Inactive'}}</td>
@@ -76,12 +78,11 @@
                         </td>
                     </tr>
                 </table>
-            </div>
-            </div>
-            <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders">
-                <p class="empty-state-text">
-                    <translate>No results for this search.</translate>
-                </p>
+                <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders">
+                    <p class="empty-state-text">
+                        <translate>No results for this search.</translate>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

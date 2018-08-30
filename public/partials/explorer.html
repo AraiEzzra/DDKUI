@@ -101,7 +101,7 @@
                         <span ng-show="block.b_timestamp == 0">-</span>
                     </td>
                     <td data-title="tableBlocks.cols.numberOfTransactions">
-                        <div ng-show="block.b_numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block)">
+                        <div ng-show="block.b_numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block.b_id)">
                             <a href="#">{{block.b_numberOfTransactions}}</a>
                         </div>
                         <div ng-show="block.b_numberOfTransactions == 0">
