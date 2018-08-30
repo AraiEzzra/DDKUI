@@ -107,7 +107,7 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
+    $rootScope.serverUrl = 'https://webwallet-w.ddkoin.com';
     $rootScope.protocol = 'http';
     $rootScope.host = '159.65.139.248';
     $rootScope.port = '7000';

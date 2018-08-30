@@ -22,7 +22,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                 .then(function (resp) {
                     if (resp.data.success) {
                         $scope.stakeStatus = resp.data.sponsorStatus;
-                        console.log('index : ', $scope.itemDetails.index);
                     } else {
                         Materialize.toast(resp.data.error, 3000, 'red white-text');
                     }
@@ -36,7 +35,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         $http.post($rootScope.serverUrl + "/sponsor/stakeStatus",{ address: sponsorAddress } )
             .then(function (resp) {
                 if (resp.data.success) {
-                    console.log('resp.data :',resp)
                     $scope.stakeStatus = resp.data.sponsorStatus;
                 } else {
                     Materialize.toast(resp.data.error, 3000, 'red white-text');
@@ -57,7 +55,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             getData: function ($defer, params) {
                 //$scope.loading = true;
                 referralService.getReferralList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
-                    console.log('defer: ', $defer);
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
                     //$scope.loading = false;
