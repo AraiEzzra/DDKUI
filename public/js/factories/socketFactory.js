@@ -3,7 +3,7 @@ require('angular');
 angular.module('DDKApp').factory('serverSocket', ["socketFactory", "$location", "$rootScope", "userService", function (socketFactory, $location, $rootScope, userService) {
     //FIXME: Use @newIoSocket if front-end and back-end running on same server
     //var newIoSocket = io.connect($location.protocol() + '://' + $location.host() + ($location.port() ? ':' + $location.port() : ''));
-    
+    //console.log($location.port());
     var newIoSocket = io.connect($rootScope.serverUrl);
     newIoSocket.on('connect', function() {
         var userAddress = userService.address;
@@ -11,8 +11,9 @@ angular.module('DDKApp').factory('serverSocket', ["socketFactory", "$location", 
 			newIoSocket.emit('setUserAddress', {
 				'address': userAddress
 			});
-		}
-	});
+        }
+    });
+    
     serverSocket = socketFactory({
         ioSocket: newIoSocket
     });

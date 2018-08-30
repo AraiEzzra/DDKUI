@@ -73,7 +73,7 @@
                     <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
                     <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.isTransferred }}</td>
                     <td data-title="tableStakes.cols.action">
-                        <a class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.stakeId,fo.freezedAmount)">
+                        <a class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)">
                             <i class="mdi-content-send"></i>
                         </a>
                     </td>

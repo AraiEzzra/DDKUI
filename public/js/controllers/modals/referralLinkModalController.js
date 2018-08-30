@@ -41,7 +41,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         
         if(!refLink) {
-            $scope.errorMessage = "Mail can't be sent with blank refer link";
+            $scope.errorMessage = "Mail can't be sent with blank referral link";
             $scope.noMatch = true;
             return;
         }
