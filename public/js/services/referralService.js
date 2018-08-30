@@ -40,7 +40,6 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
                     return sliceData(orderData(filterData(data, filter), params), params);
                 }
                 if (response.data.success) {
-                    //console.log("response.data : ",response.data)
                     params.total(response.data.count);
                     var filteredData = $filter('filter')(response.data.SponsorList, filter);
                     var transformData = transformData(response.data.SponsorList, filter, params)
