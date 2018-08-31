@@ -29,7 +29,7 @@
                     <!-- <div class="buttons-panel row"> -->
                     <div class="row auth-btn m-t-20">
                         <div class="col-md-4">
-                            <a class="btn btn-primary btn-block" ng-click="validateExistingUser(username, password)" ng-disabled="!password">
+                            <a class="btn btn-primary btn-block" ng-click="validateExistingUser(username, password)" ng-disabled="!password" data-toggle="modal" data-target="#myModal">
                                 <translate>Login</translate>
                             </a>
                         </div>
@@ -89,3 +89,19 @@
         </div>
     </div>
 </div>
+
+
+
+<div id="myModal" class="modal fade login-message" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-body">
+              <p>The migration process is still running for existing ETPS users since we launchon 30th August 2018. This migration process is to include all user pre-order data into the main network DDK Core blockchain. while waiting for the process to finish, we have to close the login button for ETPS user until the process is complete. All etps users can see at any time the process runs until all the 3.8% allocation distribution and staking with remaining months is done from DDK mainnet explorer : <br><a href="https://explorer.ddkoin.com/#/user-info/DDK8999840344646463126" target="_blank">https://explorer.ddkoin.com/#/user-info/DDK8999840344646463126</a></p>
+            </div>
+          </div>
+      
+        </div>
+      </div>

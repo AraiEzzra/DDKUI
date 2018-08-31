@@ -68,7 +68,6 @@
                 <div class="table-menu" ng-show="countForgingBlocks || !searchBlocks.searchForBlock">
                     <div class="more-down-table" dropdown on-toggle="toggled(open)" is-open="moreDownTable.isopen">
                         <i class="mdi-navigation-more-vert" dropdown-toggle aria-haspopup="true" aria-expanded="false"></i>
-
                         <div class="dropdown-menu" role="menu">
                             <p ng-click="check($event)">
                                 <input type="checkbox" class="filled-in violet" id="advanced" ng-model="showAllColumns">
@@ -101,7 +100,7 @@
                         <span ng-show="block.b_timestamp == 0">-</span>
                     </td>
                     <td data-title="tableBlocks.cols.numberOfTransactions">
-                        <div ng-show="block.b_numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block.b_id)">
+                        <div ng-show="block.b_numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block)">
                             <a href="#">{{block.b_numberOfTransactions}}</a>
                         </div>
                         <div ng-show="block.b_numberOfTransactions == 0">
