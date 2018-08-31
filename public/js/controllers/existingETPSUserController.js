@@ -71,7 +71,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
 
     // function to validate existing ETPS user from ETP_test database
     $scope.validateExistingUser = function (username, password) {
-
+        return;
         var post = "username=" + btoa(username) + "&password=" + btoa(password);
 
         $http.post($rootScope.serverUrl +"/api/accounts/existingETPSUser/validate", {
