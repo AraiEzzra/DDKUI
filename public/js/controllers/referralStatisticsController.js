@@ -22,7 +22,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                 .then(function (resp) {
                     if (resp.data.success) {
                         $scope.stakeStatus = resp.data.sponsorStatus;
-                        console.log('index : ', $scope.itemDetails.index);
                     } else {
                         Materialize.toast(resp.data.error, 3000, 'red white-text');
                     }
