@@ -118,9 +118,6 @@ DDKApp.config([
     clipboardService();
     $rootScope.$state = $state;
     $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
-    $rootScope.protocol = 'http';
-    $rootScope.host = '159.65.139.248';
-    $rootScope.port = '7000';
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in
@@ -143,15 +140,4 @@ DDKApp.config([
                 }
             });
     });
-
-    // user authentication upon page forward/back for currently logged-in user
-   /*  $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
-
-        AuthService.getUserStatus()
-            .then(function () {
-                if (!AuthService.isLoggedIn() && toState.url != '/referal/:id' && toState.url != '/existingETPSUser') {
-                    $state.go('passphrase');
-                }
-            });
-    }); */
 });

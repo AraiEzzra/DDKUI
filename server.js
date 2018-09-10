@@ -1,12 +1,15 @@
+
 var express = require('express');
 var http = require('http');
 var cors = require('cors');
 var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+const request = require('request');
+const Config = require('./config.json');
 
 var app = express();
-var port = process.env.PORT || '7001';
+var port = process.env.PORT || '7000';
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -17,7 +20,14 @@ app.use(bodyParser.json({ limit: '2mb' }));
 app.use(cookieParser());
 
 app.get('/', function (req, res) {
-    res.render('wallet.html', { layout: false });
+    const serverURL= 'http://'+Config.serverHost+':'+Config.serverPort;
+    request(serverURL, { json: true }, function (err, resp, body) {
+        if (body && body.success == true) {
+            res.render('wallet.html', { layout: false });
+        } else {
+            res.render('loading.html');
+        }
+    });
 });
 
 app.use(function (req, res, next) {
