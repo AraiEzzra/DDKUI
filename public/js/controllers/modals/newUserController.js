@@ -33,13 +33,25 @@ angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$r
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
-    $scope.login = function (pass) {
+    $scope.login = function (pass,email) {
+
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if(!regex.test(email) && email)
+        {
+            $scope.errorMessage = 'Please enter a valid email address.';
+            $scope.noMatch = true;
+            return;
+        }
+
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
+            $scope.errorMessage = 'The passphrase entered doesn\'t match with the one generated before.Please go back';
             $scope.noMatch = true;
+            return;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, email:email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
@@ -312,32 +324,5 @@ angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$r
     {name: 'Zimbabwe', code: 'ZW'}
   ];
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }]);

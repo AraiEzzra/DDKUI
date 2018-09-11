@@ -42,14 +42,25 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
 
     }
 
-    $scope.login = function (pass) {
+    $scope.login = function (pass,email) {
+
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if(!regex.test(email) && email)
+        {
+            $scope.errorMessage = 'Please enter a valid email address.';
+            $scope.noMatch = true;
+            return;
+        }
         
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
+            $scope.errorMessage = 'The passphrase entered doesn\'t match with the one generated before.Please go back';
             $scope.noMatch = true;
+            return;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, etps_user: true }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, etps_user: true, email:email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
@@ -71,7 +82,5 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
         newUserMigration.deactivate();
         angular.element(document.querySelector("body")).removeClass("ovh");
     }
-
-    // $scope.generatePassphrase();
 
 }]);
