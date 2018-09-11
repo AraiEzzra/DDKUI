@@ -20,12 +20,23 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
         $scope.newPassphrase = code.toString();
     };
 
-    $scope.goToStep = function (step) {
-        if (step == 1) {
-            $scope.repeatPassphrase = '';
-            $scope.noMatch = false;
+    $scope.goToStep = function (step,email) {
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if(!regex.test(email) && email)
+        {
+            $scope.errorMessage = 'Please enter a valid email address.';
+            $scope.emailErr = true;
+            return;
+        } else {
+            $scope.emailErr = false;
+
+            if (step == 1) {
+                $scope.repeatPassphrase = '';
+                $scope.noMatch = false;
+            }
+            $scope.step = step;
         }
-        $scope.step = step;
     }
 
     $scope.savePassToFile = function (pass) {
@@ -33,7 +44,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
-    $scope.login = function (pass) {
+    $scope.login = function (pass,email) {
 
         if (!pass || pass.trim().split(/\s+/g).length < 12) {
             $scope.errorMessage = 'Passphrase must consist of 12 or more words.';
@@ -42,11 +53,6 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
         }
         if (pass.length > 100) {
             $scope.errorMessage = 'Passphrase must contain less than 100 characters.';
-            $scope.noMatch = true;
-            return;
-        }
-        if (!Mnemonic.isValid(pass)) {
-            $scope.errorMessage = 'Passphrase must be a valid BIP39 mnemonic code.';
             $scope.noMatch = true;
             return;
         }
@@ -60,7 +66,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
             $scope.noMatch = true;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId, email:email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);

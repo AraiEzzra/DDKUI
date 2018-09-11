@@ -92,12 +92,12 @@ input[type='range']::-ms-slider-thumb {
 }
 
 .pass-error {
-  /* position: absolute; */
   bottom: inherit;
   color: #ff0000;
   font-size: 12px;
-
-  /* &:after {
+  position: relative;
+  margin-left: 30px;
+  &:after {
     content: '';
     height: 15px;
     width: 17px;
@@ -107,7 +107,7 @@ input[type='range']::-ms-slider-thumb {
     background-position: 0 -69px;
     top: 0;
     left: -25px;
-  } */
+  }
   span{
     font-size: inherit;
   }

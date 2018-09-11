@@ -34,11 +34,24 @@
                                         <translate>Generate New</translate>
                                     </span>
                                 </div>
-                                <select class="selectpicker" data-live-search="true">
-                                    <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                                    <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                                    <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                                </select>
+                                <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
+                                    <div class="row clearfix">
+                                        <div class="col-md-12">
+                                            <div class="input-field">
+                                                <input id="email" type="text" ng-model="emailId" class="form-control">
+                                                <label for="email">
+                                                    <translate>Email</translate>
+                                                </label>
+                                                <a tooltip-placement="left" class="btn btn-white waves-effect email-info"
+                                                    tooltip="Email is not required for new user. However, if you enter your email in the column you will receive a welcome email only 1 time for information regarding your registration. In line with our mission, this DDK web wallet is an open source project so we do not store any email or identity records in our nodes just like the cryptographic open source wallet that exists out there."
+                                                    tooltip-trigger="mouseenter">?</a>
+                                            </div>
+                                        </div>
+                                        <span class="pass-error" style="margin-top: 69px;" ng-show="emailErr">
+                                            <translate>{{errorMessage}}</translate>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-body bordered ">
                                 <span class="send-info-text">
@@ -52,7 +65,7 @@
                                         />
                                     </li>
                                     <li>
-                                        <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2)" class="btn-flat blue-link" />
+                                        <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2, emailId)" class="btn-flat blue-link" />
                                     </li>
                                 </ul>
                             </div>
@@ -109,7 +122,7 @@
                                         <input type="submit" value="{{'GO BACK' | translate}}" ng-click="goToStep(1)" class="btn-flat" />
                                     </li>
                                     <li>
-                                        <input type="submit" value="{{'CONFIRM' | translate}}" ng-click="login(repeatPassphrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}"
+                                        <input type="submit" value="{{'CONFIRM' | translate}}" ng-click="login(repeatPassphrase, emailId)" class="btn-flat blue-link" ng-class="{'disabled': sending}"
                                             ng-disabled="sending" />
                                     </li>
                                 </ul>
