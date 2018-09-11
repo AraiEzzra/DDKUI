@@ -33,7 +33,16 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
-    $scope.login = function (pass) {
+    $scope.login = function (pass,email) {
+
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if(!regex.test(email) && email)
+        {
+            $scope.errorMessage = 'Please enter a valid email address.';
+            $scope.noMatch = true;
+            return;
+        }
 
         if (!pass || pass.trim().split(/\s+/g).length < 12) {
             $scope.errorMessage = 'Passphrase must consist of 12 or more words.';
@@ -45,22 +54,18 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
             $scope.noMatch = true;
             return;
         }
-        if (!Mnemonic.isValid(pass)) {
-            $scope.errorMessage = 'Passphrase must be a valid BIP39 mnemonic code.';
-            $scope.noMatch = true;
-            return;
-        }
         if(_referalId == "") {
             $scope.errorMessage = 'Referal Id in the URL can\'t be blank';
             $scope.noMatch = true;
             return;
         }
-        var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
+            $scope.errorMessage = 'The passphrase entered doesn\'t match with the one generated before.Please go back';
             $scope.noMatch = true;
+            return;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId, email:email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
@@ -86,38 +91,5 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
     }
 
    $scope.generatePassphrase();
-
-
-
-
-
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }]);
