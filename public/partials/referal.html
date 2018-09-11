@@ -38,6 +38,9 @@
                                                         tooltip-trigger="mouseenter">?</a>
                                                 </div>
                                             </div>
+                                            <span class="pass-error" style="margin-top: 69px;" ng-show="emailErr">
+                                                <translate>{{errorMessage}}</translate>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +53,7 @@
                                             <input type="submit" value="{{'SAVE PASSPHRASE' | translate}}" ng-click="savePassToFile(newPassphrase)" class="btn-flat" />
                                         </li>
                                         <li>
-                                            <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2)" class="btn-flat blue-link" />
+                                            <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2,emailId)" class="btn-flat blue-link" />
                                         </li>
                                     </ul>
                                 </div>
