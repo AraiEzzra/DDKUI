@@ -1,8 +1,9 @@
 require('angular');
 
-angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScope', '$http', "userService", function ($rootScope, $scope, $http, userService) {
+angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScope', '$http', 'userService', 'gettextCatalog', function ($rootScope, $scope, $http, userService, gettextCatalog) {
     $scope.address = userService.address;
-    $scope.withdrawalStatus = userService.withdrawalStatus;
+    $scope.view.inLoading = true;
+    $scope.view.loadingText = gettextCatalog.getString('Loading Withdrawal Status');
     if($scope.withdrawalStatus) {
         $scope.errCode = $scope.withdrawalStatus.checkLastWithdrawl && $scope.withdrawalStatus.checkActiveStake && $scope.withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && $scope.withdrawalStatus.checkRatio ? true : false;
     }
@@ -26,7 +27,6 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
             let verified = resp.data.status.checkLastWithdrawl && resp.data.status.checkActiveStake && resp.data.status.checkActiveStakeOfLeftAndRightSponsor && resp.data.status.checkRatio;
             if (verified) {
                 userService.setWithdrawlStatus(resp.data.status);
-                //$scope.errCode = $scope.withdrawalStatus.checkLastWithdrawl && $scope.withdrawalStatus.checkActiveStake && $scope.withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && $scope.withdrawalStatus.checkRatio ? true : false;
                 if ($scope.errCode) {
                     $http.post($rootScope.serverUrl + "/api/accounts/sendWithdrawlAmount", {
                         address: $scope.address,
@@ -55,18 +55,28 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
             $scope.errorMessage.fromServer = err;
         })
     }
-    //$scope.getWithdrawlStatus();
+    function loadWithdrawlStatus() {
+        $http.get($rootScope.serverUrl + "/api/accounts/getWithdrawlStatus", {
+            params: {
+                address: $scope.address
+            }
+        })
+        .then(function (resp) {
+            if(resp.data.success) {
+                $scope.view.inLoading = false;
+                userService.setWithdrawlStatus(resp.data.status);
+                $scope.withdrawalStatus = userService.withdrawalStatus;
+            }
+        })
+        .catch(function(err) {
+            $scope.errorMessage.fromServer = err;
+        });
+    }
+    loadWithdrawlStatus();
+    
 
     // validate rules for pending group bonus
     $scope.validateGroupBonusRules = function () {
         getWithdrawlStatus();
-        /* $scope.errCode = $scope.withdrawalStatus.checkLastWithdrawl && $scope.withdrawalStatus.checkActiveStake && $scope.withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && $scope.withdrawalStatus.checkRatio ? true : false;
-        if (!$scope.errCode) {
-            $scope.errorMessage.failedRule = 'All rules are not passed to qualify for your next withdrawal';
-            return;
-        } else {
-            
-        } */
-
     }
 }]);
