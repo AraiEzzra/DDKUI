@@ -20,9 +20,14 @@ DDKApp.config([
     "$locationProvider",
     "$stateProvider",
     "$urlRouterProvider",
-    function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    "$tooltipProvider",
+    function ($locationProvider, $stateProvider, $urlRouterProvider, $tooltipProvider) {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
+
+        $tooltipProvider.setTriggers({
+            'hover': 'mouseenter'     
+        });
 
         // Now set up the states
         $stateProvider
@@ -35,6 +40,11 @@ DDKApp.config([
                 url: "/dashboard",
                 templateUrl: "/partials/account.html",
                 controller: "accountController"
+            })
+            .state('main.explorer', {
+                url: "/explorer",
+                templateUrl: "/partials/explorer.html",
+                controller: "explorerController"
             })
             .state('main.stake', {
                 url: "/stake",
@@ -97,6 +107,11 @@ DDKApp.config([
                 templateUrl: "/partials/passphrase.html",
                 controller: "passphraseController"
             })
+            .state('main.referralStatistics', {
+                url: "/referralStatistics",
+                templateUrl: "/partials/referral-statistics.html",
+                controller: "referralStatisticsController"
+            })
             .state('loading', {
                 url: "/",
                 templateUrl: "/partials/loading.html"
@@ -106,7 +121,9 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'https://webwallet-w.ddkoin.com';
+    const currentURL = new URL(window.location.origin);
+    currentURL.port = 7007;
+    $rootScope.serverUrl = currentURL.origin;
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in
