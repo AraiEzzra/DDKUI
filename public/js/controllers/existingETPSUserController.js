@@ -30,12 +30,18 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
         $scope.loginPage = false;
         $scope.forgotPasswordPage = true;
         $scope.errorMessage = false;
+        $scope.username = '';
+        $scope.password = '';
+        $("label").removeClass("active");
     }
 
     $scope.back = function() {
         $scope.forgotPasswordPage = false;
         $scope.loginPage = true;
         $scope.forgotErrorMessage = false;
+        $scope.etps_username = '';
+        $scope.email = '';
+        $("label").removeClass("active");
     }
     
     $scope.forgotPassword = function (username, email) {
@@ -62,6 +68,9 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
             if (!resp.success) {
                 $scope.forgotErrorMessage = resp.error;
             } else {
+                $scope.etps_username = '';
+                $scope.email = '';
+                $("label").removeClass("active");
                 Materialize.toast(resp.info, 1000, 'green white-text');
             }
         }).error(function (err) {
