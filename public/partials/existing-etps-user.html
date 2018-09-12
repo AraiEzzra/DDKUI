@@ -12,6 +12,8 @@
                     <label for="userName">
                         <translate>Your User Name</translate>
                     </label>
+                    <a tooltip-placement="left" class="btn btn-white waves-effect email-info" tooltip="Username is Case-Sensitive"
+                        tooltip-trigger="mouseenter">?</a>
                 </div>
 
                 <div class="input-field">
@@ -24,9 +26,11 @@
 
                 <div class="input-field">
                     <input id="adminCode" type="password" ng-model="adminCode">
-                    <label for="adminCode"><translate>Admin Code</translate></label>
+                    <label for="adminCode">
+                        <translate>Admin Code</translate>
+                    </label>
                     <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
-                </div> 
+                </div>
 
                 <div class="text-center">
                     <!--a class="btn btn-blue waves-effect waves-light" ng-click="login(username, password)" ng-disabled="!password"><translate>Login</translate></a-->
@@ -49,6 +53,8 @@
                     <label for="username">
                         <translate>Your User Name</translate>
                     </label>
+                    <a tooltip-placement="left" class="btn btn-white waves-effect email-info" tooltip="Username is Case-Sensitive"
+                        tooltip-trigger="mouseenter">?</a>
                 </div>
 
                 <div class="input-field">
