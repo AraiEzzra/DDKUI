@@ -43,6 +43,9 @@
                                                     tooltip-trigger="mouseenter">?</a>
                                             </div>
                                         </div>
+                                        <span class="pass-error" style="margin-top: 69px;" ng-show="emailErr">
+                                            <translate>{{errorMessage}}</translate>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +62,7 @@
                                             class="btn-flat" />
                                     </li>
                                     <li>
-                                        <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2)"
+                                        <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2,emailId)"
                                             class="btn-flat blue-link" />
                                     </li>
                                 </ul>
