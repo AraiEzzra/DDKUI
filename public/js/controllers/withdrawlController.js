@@ -62,13 +62,19 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
             }
         })
         .then(function (resp) {
+            console.log('resp : ', resp);
             if(resp.data.success) {
                 $scope.view.inLoading = false;
                 userService.setWithdrawlStatus(resp.data.status);
                 $scope.withdrawalStatus = userService.withdrawalStatus;
+            } else {
+                $scope.view.inLoading = false;
+                userService.setWithdrawlStatus(resp.data.error.status);
+                $scope.withdrawalStatus = userService.withdrawalStatus;
             }
         })
         .catch(function(err) {
+            console.log('err : ', err);
             $scope.errorMessage.fromServer = err;
         });
     }
