@@ -117,7 +117,9 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
+    const currentURL = new URL(window.location.origin);
+    currentURL.port = 7007;
+    $rootScope.serverUrl = currentURL.origin;
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in
