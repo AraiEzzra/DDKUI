@@ -6,7 +6,8 @@
                     <div class="card-content">
                         <div class="material-modal-content" ng-show="step == 1">
                             <div class="modal-header modal-iconed">
-                                <span class="modal-log"><img style="width: 70%;position: relative;top: -80px;" src="../images/logo.png" alt="logo"></span>
+                                <span class="modal-log"><img style="width: 70%;position: relative;top: -80px;" src="../images/logo.png"
+                                        alt="logo"></span>
                                 <div class="close-modal" ng-click="close()">
                                     <span class="sr-only">
                                         <translate>Close modal</translate>
@@ -24,7 +25,8 @@
                             <div class="modal-body clearfix passphrase-form">
                                 <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                     <div class="input-field passphraseGeneration">
-                                        <textarea id="newPassphrase" class="materialize-textarea" ng-model="newPassphrase" autofocus readonly ng-trim="false"></textarea>
+                                        <textarea id="newPassphrase" class="materialize-textarea" ng-model="newPassphrase"
+                                            autofocus readonly ng-trim="false"></textarea>
                                         <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label>
                                     </div>
                                     <span class="pull-left generate no-select" ng-click="generatePassphrase()">
@@ -33,93 +35,40 @@
                                         </span>
                                     </span>
                                 </div>
-                                <!-- <div class="left-margin-40 right-margin-40">
+                                <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                     <div class="row clearfix">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="input-field">
-                                                <input id="name" type="text">
-                                                <label for="name">
-                                                    <translate>Name</translate>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="input-field">
-                                                <input id="email" type="text">
+                                                <input id="email" type="text" ng-model="emailId">
                                                 <label for="email">
                                                     <translate>Email</translate>
                                                 </label>
+                                                <a tooltip-placement="left" class="btn btn-white waves-effect email-info"
+                                                    tooltip="Email is not required for new user. However, if you enter your email in the column you will receive a welcome email only 1 time for information regarding your registration. In line with our mission, this DDK web wallet is an open source project so we do not store any email or identity records in our nodes just like the cryptographic open source wallet that exists out there."
+                                                    tooltip-trigger="mouseenter">?</a>
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
-
-                                        <div class="col-md-6">
-                                            <div class="input-field country-box">
-                                                <select ng-model="country" ng-options="country.name for country in countries track by country.code">
-                                                    <option value="">Select a Country</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="input-field">
-                                                <input id="phone" type="text">
-                                                <label for="phone">
-                                                    <translate>Phone</translate>
-                                                </label>
-                                            </div>
-                                        </div>
+                                        <span class="pass-error" style="margin-top: 69px;" ng-show="emailErr">
+                                            <translate>{{errorMessage}}</translate>
+                                        </span>
                                     </div>
-                                </div> -->
-
-
-                                <!-- <div class="left-margin-40 right-margin-40 top-margin-40">
-                                    <div class="input-field passphraseGeneration">
-                                        <textarea id="newPassphrase" class="materialize-textarea" ng-model="newPassphrase" autofocus readonly ng-trim="false"></textarea>
-                                        <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label>
-                                    </div>
-                                    <span class="pull-left generate no-select" ng-click="generatePassphrase()">
-                                        <span><translate>Generate New</translate></span>
-                                    </span>
                                 </div>
-                                <div class="left-margin-40 right-margin-40 top-margin-40">
-                                    <div class="input-field passphraseGeneration">
-                                        <textarea id="newPassphrase" class="materialize-textarea" ng-model="newPassphrase" autofocus readonly ng-trim="false"></textarea>
-                                        <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label>
-                                    </div>
-                                    <span class="pull-left generate no-select" ng-click="generatePassphrase()">
-                                        <span><translate>Generate New</translate></span>
-                                    </span>
-                                </div>
-                                <div class="left-margin-40 right-margin-40 top-margin-40">
-                                    <div class="input-field passphraseGeneration">
-                                        <textarea id="newPassphrase" class="materialize-textarea" ng-model="newPassphrase" autofocus readonly ng-trim="false"></textarea>
-                                        <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label>
-                                    </div>
-                                    <span class="pull-left generate no-select" ng-click="generatePassphrase()">
-                                        <span><translate>Generate New</translate></span>
-                                    </span>
-                                </div> -->
-                                <select class="selectpicker" data-live-search="true">
-                                    <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                                    <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                                    <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                                </select>
                             </div>
                             <div class="modal-body bordered ">
                                 <span class="send-info-text">
-                                    <translate>Make sure that you keep the passphrase safe. You will be asked to re-type it for confirmation.</translate>
+                                    <translate>Make sure that you keep the passphrase safe. You will be asked to
+                                        re-type it for confirmation.</translate>
                                 </span>
                             </div>
                             <div class="modal-body bordered clearfix">
                                 <ul class="nav modal-buttons pull-right">
                                     <li>
-                                        <input type="submit" value="{{'SAVE PASSPHRASE' | translate}}" ng-click="savePassToFile(newPassphrase)" class="btn-flat"
-                                        />
+                                        <input type="submit" value="{{'SAVE PASSPHRASE' | translate}}" ng-click="savePassToFile(newPassphrase)"
+                                            class="btn-flat" />
                                     </li>
                                     <li>
-                                        <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2)" class="btn-flat blue-link" />
+                                        <input type="submit" value="{{'NEXT STEP' | translate}}" ng-click="goToStep(2,emailId)"
+                                            class="btn-flat blue-link" />
                                     </li>
                                 </ul>
                             </div>
@@ -137,7 +86,8 @@
                                         <translate>Close modal</translate>
                                     </span>
                                 </div>
-                                <span class="modal-log"><img style="width: 70%;position: relative;top: -80px;" src="../images/logo.png" alt="logo"></span>
+                                <span class="modal-log"><img style="width: 70%;position: relative;top: -80px;" src="../images/logo.png"
+                                        alt="logo"></span>
                             </div>
                             <div class="modal-header clearfix">
                                 <div>
@@ -150,32 +100,38 @@
                             <div class="modal-body clearfix">
                                 <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                     <div class="input-field passphraseGeneration">
-                                        <textarea id="repeatPassphrase" class="materialize-textarea" ng-trim="false" ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}"
-                                            autofocus></textarea>
+                                        <textarea id="repeatPassphrase" class="materialize-textarea" ng-trim="false"
+                                            ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}" autofocus></textarea>
                                         <label for="repeatPassphrase" ng-class="{'active':activeLabel(repeatPassphrase)}">
                                             <translate>Passphrase</translate>
                                         </label>
                                     </div>
-                                    <span class="pass-error" style="margin-top: 0;" ng-show="noMatch">
-                                        <translate>The passphrase entered doesn't match with the one generated before. Please go back
+                                    <!-- <span class="pass-error" style="margin-top: 0;" ng-show="noMatch">
+                                        <translate>The passphrase entered doesn't match with the one generated before.
+                                            Please go back
                                             and generate a new one.</translate>
+                                    </span> -->
+                                    <span class="pass-error" style="margin-top: 0;" ng-show="noMatch">
+                                        <translate>{{errorMessage}}</translate>
                                     </span>
                                 </div>
                             </div>
                             <div class="modal-body bordered">
                                 <span class="send-info-text">
-                                    <translate>Make sure that you keep the passphrase safe. If you lose your passphrase later on, your
+                                    <translate>Make sure that you keep the passphrase safe. If you lose your passphrase
+                                        later on, your
                                         account can't be restored and all your funds will be lost.</translate>
                                 </span>
                             </div>
                             <div class="modal-body bordered clearfix">
                                 <ul class="nav modal-buttons pull-right">
                                     <li>
-                                        <input type="submit" value="{{'GO BACK' | translate}}" ng-click="goToStep(1)" class="btn-flat" />
+                                        <input type="submit" value="{{'GO BACK' | translate}}" ng-click="goToStep(1)"
+                                            class="btn-flat" />
                                     </li>
                                     <li>
-                                        <input type="submit" value="{{'CONFIRM' | translate}}" ng-click="login(repeatPassphrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}"
-                                            ng-disabled="sending" />
+                                        <input type="submit" value="{{'CONFIRM' | translate}}" ng-click="login(repeatPassphrase,emailId)"
+                                            class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                                     </li>
                                 </ul>
                             </div>

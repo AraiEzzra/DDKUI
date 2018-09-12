@@ -1067,27 +1067,6 @@ a.imhere-pre{
     font-size: 12px;
     margin: 0 12px 0 0;
   }
-  .tooltip{
-    width: 100%;
-    border-radius: 4px;
-    margin: auto;
-    text-align: center;
-    padding: 5px;
-    left: 0!important;
-    margin-top: -10px!important;
-    &:after{
-      content: " ";
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 10px solid #000;
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      margin-left: -10px;
-    }
-  }
 }
 .action-referral{
   width: 25px;
@@ -1167,4 +1146,37 @@ td.child.open {
       margin: 0;
     }
   }
+}
+.tooltip{
+  width: 50%;
+  border-radius: 4px;
+  margin: auto;
+  text-align: center;
+  padding: 5px;
+  color: #fff;
+  background: #000!important;
+  opacity: 1;
+  margin-right: 10px;
+    &:after{
+    content: " ";
+    width: 0;
+    height: 0;
+    border-left: 5px solid #000;
+    border-right: 5px solid transparent;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    position: absolute;
+    right: -10px;
+    top: 50%;
+  } 
+}
+.email-info{
+  position: absolute;
+    right: 0;
+    top: -3px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: #c0c0bf;
 }

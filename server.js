@@ -20,7 +20,8 @@ app.use(bodyParser.json({ limit: '2mb' }));
 app.use(cookieParser());
 
 app.get('/', function (req, res) {
-    const serverURL= 'http://'+Config.serverHost+':'+Config.serverPort;
+
+    const serverURL = Config.serverProtocol+'://' + Config.serverHost + ':' + Config.serverPort;
     request(serverURL, { json: true }, function (err, resp, body) {
         if (body && body.success == true) {
             res.render('wallet.html', { layout: false });

@@ -20,12 +20,24 @@ angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$r
         $scope.newPassphrase = code.toString();
     };
 
-    $scope.goToStep = function (step) {
-        if (step == 1) {
-            $scope.repeatPassphrase = '';
-            $scope.noMatch = false;
+    $scope.goToStep = function (step,email) {
+
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if(!regex.test(email) && email)
+        {
+            $scope.errorMessage = 'Please enter a valid email address.';
+            $scope.emailErr = true;
+            return;
+        } else {
+            $scope.emailErr = false;
+
+            if (step == 1) {
+                $scope.repeatPassphrase = '';
+                $scope.noMatch = false;
+            }
+            $scope.step = step;
         }
-        $scope.step = step;
     }
 
     $scope.savePassToFile = function (pass) {
@@ -33,13 +45,16 @@ angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$r
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
-    $scope.login = function (pass) {
+    $scope.login = function (pass,email) {
+        
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
+            $scope.errorMessage = 'The passphrase entered doesn\'t match with the one generated before.Please go back';
             $scope.noMatch = true;
+            return;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, email:email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
@@ -312,32 +327,5 @@ angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$r
     {name: 'Zimbabwe', code: 'ZW'}
   ];
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }]);
