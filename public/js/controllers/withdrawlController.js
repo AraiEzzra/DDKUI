@@ -4,6 +4,7 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
     $scope.address = userService.address;
     $scope.view.inLoading = true;
     $scope.view.loadingText = gettextCatalog.getString('Loading Withdrawal Status');
+    $scope.view.page = { title: gettextCatalog.getString('PendingGB'), previous: null };
     if ($scope.withdrawalStatus) {
         $scope.errCode = $scope.withdrawalStatus.checkLastWithdrawl && $scope.withdrawalStatus.checkActiveStake && $scope.withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && $scope.withdrawalStatus.checkRatio ? true : false;
     }
