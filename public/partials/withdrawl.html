@@ -1,30 +1,41 @@
+<style>
+
+    #exampleModal {
+        padding-right: 0px !important;
+    }
+
+</style>
+
 <div ng-controller="templateController">
     <br></br>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLabel">Hello {{address}}</h2>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="error-notice">
-                        Pending Group Bonus feature will be enabled after 5th October 2018.
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+
+
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Withdrawal
+    </button>
+
+
+    <div class="modal modal-dialog fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Hello {{address}}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Pending group bonus will be enabled after 5th October 2018.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Click Here</button>
-
-    <!-- <div class="error-notice">
+</div>
+<!-- <div class="error-notice">
         <div ng-show="withdrawalStatus.checkLastWithdrawl && withdrawalStatus.checkLastWithdrawl !== undefined" class="oaerror">
             <strong>Rule 1</strong> {{errDescription[0]}}
             <span class="checkedwithdrawl"></span>
