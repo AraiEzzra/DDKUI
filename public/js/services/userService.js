@@ -5,7 +5,7 @@ angular.module('DDKApp').service('userService', function () {
     this.rememberPassphrase = false;
     this.rememberedPassphrase = '';
  
-    this.setData = function (address, publicKey, balance, unconfirmedBalance, effectiveBalance, token, totalFrozeAmount, username) {
+    this.setData = function (address, publicKey, balance, unconfirmedBalance, effectiveBalance, token, totalFrozeAmount, username, groupBonus) {
         this.address = address;
         this.publicKey = publicKey;
         this.balance = balance / 100000000;
@@ -16,7 +16,7 @@ angular.module('DDKApp').service('userService', function () {
         this.token = token;
         this.totalFrozeAmount= totalFrozeAmount;
         this.username = username;
-        //console.log('this.username service : ', this.username)
+        this.groupBonus = groupBonus;
     }
 
     this.getPublicKey = function() {

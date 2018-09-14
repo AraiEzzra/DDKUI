@@ -79,13 +79,11 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
     });
 
     $scope.showBlock = function (block) {
-        console.log("block : ",block);
         $scope.modal = blockModal.activate({ block: block });
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.blockInfo = function (block) {
-        console.log("block : ",block)
         $scope.modal = blockInfo.activate({ block: block });
         angular.element(document.querySelector("body")).addClass("ovh");
     }

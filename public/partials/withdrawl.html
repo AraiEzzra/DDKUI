@@ -1,31 +1,30 @@
+<style>
+    #exampleModal {
+        padding-right: 0px !important;
+    }
+</style>
+
 <div ng-controller="templateController">
-    <div class="error-notice row">
-        <div class="col-md-6 col-sm-6" ng-repeat="rule in rules">
-            <div class="oaerror">
-                <div ng-if="rule < errCode - 1" class="rule-info rule-sucess-border">
-                    <div class="rule-sucess">
-                        <h5>Rule {{rule + 1}}</h5>
-                        <p><span>{{errDescription[rule]}}</span></p>
-                        <i class="fa fa-check-circle text-success d-block f-40"></i>
-                    </div>
-                </div>
-                <div ng-if="rule >= errCode - 1" class="rule-info rule-danger-border">
-                    <div class="rule-danger">
-                        <h5>Rule {{rule + 1}}</h5> 
-                        <p><span>{{errDescription[rule]}}</span></p>
-                        <i class="fa fa-times-circle text-danger d-block f-40"></i>
-                    </div>
-                </div>
+    <br></br>
+    <button type="button" class="btn btn-primary l-height-n" data-toggle="modal" data-target="#exampleModal">
+        Withdrawal
+    </button>
+
+
+    <div class="modal modal-dialog fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Hello {{address}}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Pending group bonus will be enabled after 5th October 2018.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary l-height-n" data-dismiss="modal">Close</button>
             </div>
         </div>
-        <div class="error-container">
-            <p ng-show="errorMessage.failedRule">
-                <span class="font-12">{{errorMessage.failedRule}}</span>
-            </p>
-            <p ng-show="errorMessage.fromServer">
-                <span class="font-12">{{errorMessage.fromServer}}</span>
-            </p>
-        </div>
     </div>
-    <button ng-click="validateGroupBonusRules(allChecked)" class="btn btn-primary l-h-n">Withdrawal</button>
 </div>
