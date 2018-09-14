@@ -9,6 +9,20 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.rememberPassphrase = true;
     $scope.errorMessage = "";
 
+    $scope.migrationState=true;
+    $scope.totalTxn=456000;
+    function getTrsCount() {
+        $http.get($rootScope.serverUrl + "/api/transactions/count/").then(function (resp) {
+            
+                console.log('Total txns : ', JSON.stringify(resp.data.confirmed));
+                $scope.migPercentage= ((resp.data.confirmed/$scope.totalTxn)*100).toFixed(3);
+            
+        }, function (error) {
+        });
+    }
+   getTrsCount();
+
+
 
 
     $scope.cleanUpUserData = function () {
