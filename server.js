@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.get('/', function (req, res) {
 
-    const serverURL = Config.serverProtocol+'://' + Config.serverHost + ':' + Config.serverPort;
+    const serverURL = Config.domainName;
     request(serverURL, { json: true }, function (err, resp, body) {
         if (body && body.success == true) {
             res.render('wallet.html', { layout: false });
