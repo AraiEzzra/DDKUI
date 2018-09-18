@@ -10,7 +10,8 @@
                     <div class="col-md-12"><h3 class="text-left txt-primary">Sign In</h3></div>
                 </div>
                 <hr/>
-                <form class="clearfix" _lpchecked="1" ng-submit="login(pass, rememberPassphrase)">
+                
+                 <form class="clearfix" _lpchecked="1" ng-submit="login(pass, rememberPassphrase)">
                     <div class="input-field">
                         <input id="password" type="password" ng-model="pass" ng-trim="false" class="form-control" autofocus>
                         <label for="password">
@@ -21,7 +22,6 @@
                     <div class="input-field">
                         <div ng-include="'partials/shared/language-selector.html'"></div>
                     </div>
-                    <!-- <div class="buttons-panel row"> -->
                     <div class="row auth-btn">
                         <div class="col-md-4">
                             <a class="btn btn-primary btn-block" ui-sref="existingETPSUser">
@@ -39,17 +39,25 @@
                             </a>
                         </div>
                     </div>
-                </form>
+                </form> 
             </div>
         </div>
-        <div class="pass-footer clearfix">
-            <p style="margin-bottom: 10px;">DDKOIN MainNet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
-            <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
-                <img src="../images/facebook.png" alt="facebook">
-            </a>&nbsp
-            <a href="http://forums.ddkoin.com/" target="_blank">
-                <img src="../images/forum.png" alt="forum">
-            </a>
-        </div>
+        
     </div>
 </div>
+
+<div class="pass-footer clearfix">
+    <p style="margin-bottom: 10px;">DDKOIN MainNet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+    <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
+        <img src="../images/facebook.png" alt="facebook">
+    </a>&nbsp
+    <a href="http://forums.ddkoin.com/" target="_blank">
+        <img src="../images/forum.png" alt="forum">
+    </a>
+</div>
+
+
+
+
+
+

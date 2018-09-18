@@ -12,7 +12,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
     $scope.API_KEY_GLOBAL = "etps_2_etp_V1.1";
 
     focus('focusMe');
-    
+
     $scope.forgotPasswordPage = false;
     $scope.loginPage = true;
 
@@ -22,11 +22,11 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
             destroy: function () {
             }
         });
-        let passphrase = Buffer.from(data.passphrase,"base64").toString("ascii");
+        let passphrase = Buffer.from(data.passphrase, "base64").toString("ascii");
         $rootScope.newPassphrase = passphrase;
     }
-    
-    $scope.forgotWindow = function() {
+
+    $scope.forgotWindow = function () {
         $scope.loginPage = false;
         $scope.forgotPasswordPage = true;
         $scope.errorMessage = false;
@@ -35,7 +35,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
         $("label").removeClass("active");
     }
 
-    $scope.back = function() {
+    $scope.back = function () {
         $scope.forgotPasswordPage = false;
         $scope.loginPage = true;
         $scope.forgotErrorMessage = false;
@@ -43,7 +43,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
         $scope.email = '';
         $("label").removeClass("active");
     }
-    
+
     $scope.forgotPassword = function (username, email) {
 
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -59,7 +59,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
         }
 
         let post = "username=" + btoa(username) + "&email=" + btoa(email);
-        let url  = config.domainName+'/existingETPSUser';
+        let url = config.domainName + '/existingETPSUser';
         $scope.forgotErrorMessage = false;
         $http.post($rootScope.serverUrl + "/api/accounts/forgotEtpsPassword", {
             data: post,
@@ -80,13 +80,14 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
 
     // function to validate existing ETPS user from ETP_test database
     $scope.validateExistingUser = function (username, password) {
-        if(!username || !password) {
+
+        if (!username || !password) {
             $scope.errorMessage = 'Username & Password are Required';
             return;
         }
         var post = "username=" + btoa(username) + "&password=" + btoa(password);
 
-        $http.post($rootScope.serverUrl +"/api/accounts/existingETPSUser/validate", {
+        $http.post($rootScope.serverUrl + "/api/accounts/existingETPSUser/validate", {
 
             data: post
         })
@@ -95,9 +96,9 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
                 if (!resp.success) {
                     $scope.errorMessage = resp.error;
                 } else {
-                    if(resp.userInfo.transferred_etp === 1){
+                    if (resp.userInfo.transferred_etp === 1) {
                         $scope.errorMessage = 'User is already migrated';
-                    }else{
+                    } else {
                         var userInfo = {};
                         Object.assign(userInfo, resp.userInfo);
                         $scope.newUser(userInfo);
