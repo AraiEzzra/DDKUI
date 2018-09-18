@@ -9,7 +9,7 @@ const request = require('request');
 const Config = require('./config.json');
 
 var app = express();
-var port = process.env.PORT || '7000';
+var port = parseInt(process.env.PORT,10) || 7000;
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.get('/', function (req, res) {
 
-    const serverURL = Config.domainName;
+    const serverURL = Config.serverUrl;
     request(serverURL, { json: true }, function (err, resp, body) {
         if (body && body.success == true) {
             res.render('wallet.html', { layout: false });
