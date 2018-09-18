@@ -9,22 +9,6 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.rememberPassphrase = true;
     $scope.errorMessage = "";
 
-    $scope.migrationState=true;
-    $scope.totalTxn=456000;
-    function getTrsCount() {
-        $http.get($rootScope.serverUrl + "/api/transactions/count/").then(function (resp) {
-            
-                console.log('Total txns : ', JSON.stringify(resp.data.confirmed));
-                $scope.migPercentage = ((resp.data.confirmed/$scope.totalTxn)*100).toFixed(3);
-            
-        }, function (error) {
-        });
-    }
-   getTrsCount();
-
-
-
-
     $scope.cleanUpUserData = function () {
         var userProperties = ['address', 'allVotes', 'balance', 'balanceToShow', 'dataToShow', 'unconfirmedBalance',
             'unconfirmedPassphrase', 'username', 'rememberedPassphrase', 'publicKey', 'delegate'];
@@ -61,7 +45,7 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
         $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass }).then(function (resp) {
             if (resp.data.success) {
                 $window.localStorage.setItem('token', resp.data.account.token);
-                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token, resp.data.account.totalFrozeAmount,resp.data.account.username,resp.data.account.groupBonus);
+                userService.setData(resp.data.account.address, resp.data.account.publicKey, resp.data.account.balance, resp.data.account.unconfirmedBalance, resp.data.account.effectiveBalance, resp.data.account.token, resp.data.account.totalFrozeAmount, resp.data.account.username, resp.data.account.groupBonus);
                 userService.setForging(resp.data.account.forging);
                 userService.setSecondPassphrase(resp.data.account.secondSignature || resp.data.account.unconfirmedSignature);
                 userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
