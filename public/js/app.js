@@ -12,6 +12,7 @@ require('../node_modules/ng-table/dist/ng-table.js');
 require('../bower_components/bootstrap/dist/js/bootstrap.min.js');
 
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
+const Config = require('../../config.json');
 
 Mnemonic = require('bitcore-mnemonic');
 
@@ -117,7 +118,7 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
+    $rootScope.serverUrl = Config.serverUrl;
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in
