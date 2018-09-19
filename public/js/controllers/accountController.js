@@ -145,7 +145,8 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 }
             });
     }
-
+    $scope.getStakeholdersCount();
+    
     /* For Circulating Supply */
     $scope.getCirculatingSupply = function () {
         $http.get($rootScope.serverUrl + "/api/accounts/getCirculatingSupply")
@@ -242,7 +243,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.updateAppView = function () {
         $scope.getAccount();
         $scope.getTransactions();
-        $scope.getStakeholdersCount();
+//         $scope.getStakeholdersCount();
         $scope.getCirculatingSupply();
         $scope.getAccountHolders();
         $scope.getMyDDKFrozen();
