@@ -145,7 +145,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 }
             });
     }
-    $scope.getStakeholdersCount();
     
     /* For Circulating Supply */
     $scope.getCirculatingSupply = function () {
@@ -243,12 +242,12 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.updateAppView = function () {
         $scope.getAccount();
         $scope.getTransactions();
-//         $scope.getStakeholdersCount();
-        $scope.getCirculatingSupply();
-        $scope.getAccountHolders();
-        $scope.getMyDDKFrozen();
-        $scope.getTotalSupply();
-        $scope.getTotalDDKStaked();
+        //$scope.getStakeholdersCount();
+        // $scope.getCirculatingSupply();
+        // $scope.getAccountHolders();
+        // $scope.getMyDDKFrozen();
+        // $scope.getTotalSupply();
+        // $scope.getTotalDDKStaked();
         delegateService.getDelegate($scope.publicKey, function (response) {
             $timeout(function () {
                 $scope.delegate = response;
@@ -267,16 +266,21 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         $scope.$$listeners.updateControllerData.splice(1);
         if ((data.indexOf('main.dashboard') != -1 && $state.current.name == 'main.dashboard') || data.indexOf('main.transactions') != -1) {
             $scope.updateAppView();
+            $scope.getTotalDDKStaked();
+            $scope.getMyDDKFrozen();
         }
     });
 
-    $scope.$on('updateTotalStakeAmount', function (ev, data) {
+    /* $scope.$on('updateTotalStakeAmount', function (ev, data) {
         $scope.getAccount();
         $scope.getTotalDDKStaked();
-    });
+    }); */
 
     $scope.updateAppView();
-    /*   $scope.getCandles(); */
 
+    $scope.getTotalSupply();
+    $scope.getAccountHolders();
+    $scope.getCirculatingSupply();
+    $scope.getStakeholdersCount();
 
 }]);
