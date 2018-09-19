@@ -281,6 +281,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.getTotalSupply();
     $scope.getAccountHolders();
     $scope.getCirculatingSupply();
-    $scope.getStakeholdersCount();
+    //$scope.getStakeholdersCount();
 
 }]);
