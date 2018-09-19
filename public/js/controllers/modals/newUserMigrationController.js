@@ -42,17 +42,6 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
-    $scope.migrateData = function (data, address) {
-        //update database tables : mem_accounts and stakeOrder table
-        $http.post($rootScope.serverUrl + "/api/accounts/migrateData/", {
-            data: data,
-            address: address
-        }).then(function (resp) {
-
-        });
-
-    }
-
     $scope.login = function (pass,email) {
 
         var data = { secret: pass };
@@ -69,7 +58,6 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
                     userService.setForging(resp.data.account.forging);
                     userService.setSecondPassphrase(resp.data.account.secondSignature);
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
-                    $scope.migrateData($scope.dataVar, resp.data.account.address);
                     $state.go('main.dashboard');
                 } else {
                     console.error("Login failed. Failed to open account.");
