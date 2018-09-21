@@ -17,7 +17,6 @@ require('../../js/controllers/walletPendingsController');
 require('../../js/controllers/dappsController');
 require('../../js/controllers/dappController');
 require('../../js/controllers/dappsCategoryController');
-require('../../js/controllers/explorerController');
 require('../../js/controllers/stakeController');
 require('../../js/controllers/esController');
 require('../../js/controllers/withdrawlController');

@@ -36,11 +36,6 @@ DDKApp.config([
                 templateUrl: "/partials/account.html",
                 controller: "accountController"
             })
-            .state('main.explorer', {
-                url: "/explorer",
-                templateUrl: "/partials/explorer.html",
-                controller: "explorerController"
-            })
             .state('main.stake', {
                 url: "/stake",
                 templateUrl: "/partials/stake.html",
