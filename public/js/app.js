@@ -36,11 +36,6 @@ DDKApp.config([
                 templateUrl: "/partials/account.html",
                 controller: "accountController"
             })
-            .state('main.explorer', {
-                url: "/explorer",
-                templateUrl: "/partials/explorer.html",
-                controller: "explorerController"
-            })
             .state('main.stake', {
                 url: "/stake",
                 templateUrl: "/partials/stake.html",
@@ -81,30 +76,34 @@ DDKApp.config([
                 templateUrl: "/partials/withdrawl.html",
                 controller: "withdrawlController"
             })
-            .state('existingETPSUser', {
+           /*  .state('existingETPSUser', {
                 url: "/existingETPSUser",
                 templateUrl: "/partials/existing-etps-user.html",
                 controller: "existingETPSUserController"
-            })
+            }) */
             .state('main.airdropStatistics', {
                 url: "/airdropStatistics",
                 templateUrl: "/partials/referral-statistics.html",
                 controller: "referralStatisticsController"
             })
-            .state('referal', {
+            /* .state('referal', {
                 url: "/referal/:id",
                 reloadOnSearch: false,
                 templateUrl: "/partials/referal.html",
                 controller: "referalController"
-            })
-            .state('passphrase', {
+            }) */
+           /*  .state('passphrase', {
                 url: "/login",
                 templateUrl: "/partials/passphrase.html",
                 controller: "passphraseController"
-            })
+            }) */
             .state('loading', {
                 url: "/",
                 templateUrl: "/partials/loading.html"
+            })
+            .state('index', {
+                url: "/",
+                templateUrl: "/index.html"
             });
     }
 ]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout, $stateParams) {
