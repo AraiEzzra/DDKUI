@@ -556,6 +556,10 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         ]);
     });
 
+    $scope.$on('socket:stake/create', function (ev, data) {
+        $scope.$broadcast('updateStakeAmount', null);
+    });
+
     $window.onfocus = function () {
         $scope.getAppData();
         $scope.updateViews([$state.current.name]);

@@ -29,6 +29,7 @@ angular.module('DDKApp').factory('serverSocket', ["socketFactory", "$location", 
     serverSocket.forward('updateConnected');
     serverSocket.forward('stake/change');
     serverSocket.forward('milestone/change');
+    serverSocket.forward('stake/create');
 
     return serverSocket;
 

@@ -90,10 +90,10 @@
                 <a class="btn btn-blue-nav waves-effect waves-light" ng-click="sendTransaction()">
                     <translate>SEND</translate>
                 </a>
-                <a class="btn btn-blue-nav waves-effect waves-light margin-left-10" ui-sref="main.dashboard" ng-click="classRemove()" ng-if="$state.current.name === 'main.explorer'">
+               <!--  <a class="btn btn-blue-nav waves-effect waves-light margin-left-10" ui-sref="main.dashboard" ng-click="classRemove()">
                     <i class="material-icons left back-btn-icon backBackBtn">navigate_before</i>
                     <translate>Back</translate>
-                </a>
+                </a> -->
                 <div class="mini-chart valign-wrapper" ng-show="syncState != undefined">
                     <div class="mini-chart-label" style="color:#000">{{syncState}}%</div>
                     <canvas id="total-forged" class="chart chart-doughnut" chart-data="loading.values" chart-labels="loading.labels" chart-options="loading.options"
@@ -265,9 +265,8 @@
                         </span>
                     </a>
                 </li>
-                <li ng-show="showMenuItem('main.explorer')" ui-sref-active="active">
-                    <!-- <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="obj.value1 = 'someothervalue'; clickedh=!clickedh"> -->
-                    <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
+                <!-- <li ng-show="showMenuItem('main.explorer')" ui-sref-active="active">
+                     <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
                         <div class="nav-icon">
                             <i class="fa fa-folder-open"></i>
                         </div>
@@ -275,7 +274,7 @@
                             <translate>DDK Explorer</translate>
                         </span>
                     </a>
-                </li>
+                </li> -->
                 <li ng-show="showMenuItem('main.stake')" ui-sref-active="active">
                     <a ui-sref="main.stake" class="waves-effect waves-blue">
                         <div class="nav-icon">
