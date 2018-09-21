@@ -27,7 +27,7 @@ DDKApp.config([
         $urlRouterProvider.otherwise("/");
 
         $tooltipProvider.setTriggers({
-            'click': 'mouseleave',     
+            'hover': 'mouseenter'     
         });
 
         // Now set up the states

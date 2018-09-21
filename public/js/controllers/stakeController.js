@@ -12,7 +12,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   $scope.loading = true;
   $scope.searchStake = stakeService;
   $scope.view.bar = { showStakeSearchBar: true };
-  $scope.mixBalance = 41400000;
+  $scope.mixBalance = 41130000;
 
   /* For Air Drop Balance */
   $scope.options = {
