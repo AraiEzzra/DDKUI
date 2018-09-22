@@ -17,6 +17,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             $scope.itemDetails.index = null;
         } else {
             $scope.itemDetails.index = index;
+            $scope.stakeStatus = [];
             $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
                 .then(function (resp) {
                     if (resp.data.success) {
