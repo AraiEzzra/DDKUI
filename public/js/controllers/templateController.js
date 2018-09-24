@@ -23,6 +23,7 @@ angular.module('DDKApp').controller('templateController', ['$scope', '$rootScope
     $scope.getInitialSync();
 
     $scope.getWithdrawlStatus = function() {
+        return;
         $http.get($rootScope.serverUrl + "/api/accounts/getWithdrawlStatus", {
             params: {
                 address: $scope.address
