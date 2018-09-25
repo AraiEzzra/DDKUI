@@ -62,7 +62,7 @@
                         <td data-title="tableStakes.cols.startTime" sortable="'startTime'">{{ fo.startTime | timestampFilter}}</td>
                         <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone >0 ? (fo.nextVoteMilestone | timestampFilter):0}}</td>
                         <td data-title="tableStakes.cols.monthRemain" sortable="'monthRemain'">{{6-fo.rewardCount}}</td>
-                        <td data-title="tableStakes.cols.voteIndicator" sortable="'voteIndicator'">{{fo.voteCount}}/4</td>
+                        <td data-title="tableStakes.cols.voteIndicator" sortable="'voteIndicator'">{{fo.voteCount}}</td>
                         <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
                         <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.isTransferred }}</td>
                         <td data-title="tableStakes.cols.action">
