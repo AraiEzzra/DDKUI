@@ -41,11 +41,11 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             total: 0,
             counts: [],
             getData: function ($defer, params) {
-                $scope.rewardloading = true;
+                $scope.loading = true;
                 referralService.getReferralList($defer, params, function () {
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
-                    $scope.rewardloading = false;
+                    $scope.loading = false;
                     $scope.view.inLoading = false;
                 }, null, true);
             }
@@ -71,11 +71,11 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             total: 0,
             counts: [],
             getData: function ($defer, params) {
-                $scope.loading = true;
+                $scope.rewardloading = true;
                 referralService.getRewardList($defer, params, $scope.filter, function () {
                     $scope.searchBlocks.inSearch = false;
                     $scope.countForgingBlocks = params.total();
-                    $scope.loading = false;
+                    $scope.rewardloading = false;
                     $scope.view.inLoading = false;
                 }, null, true);
             }
