@@ -49,6 +49,7 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
                 userService.setForging(resp.data.account.forging);
                 userService.setSecondPassphrase(resp.data.account.secondSignature || resp.data.account.unconfirmedSignature);
                 userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
+                $rootScope.referList = null;
                 if (remember) {
                     userService.setSessionPassphrase(pass);
                 }

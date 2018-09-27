@@ -58,6 +58,7 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
                     userService.setForging(resp.data.account.forging);
                     userService.setSecondPassphrase(resp.data.account.secondSignature);
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
+                    $rootScope.referList = null;
                     $state.go('main.dashboard');
                 } else {
                     console.error("Login failed. Failed to open account.");

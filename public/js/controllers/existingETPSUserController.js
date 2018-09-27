@@ -86,7 +86,7 @@ angular.module('DDKApp').controller('existingETPSUserController', ['$scope', '$r
             return;
         }
 
-        if(adminCode != "TDASupportDDK" ){
+        if(adminCode != "VOTE4TDA" ){
             $scope.errorMessageAdmin = 'Only For Admin : Migrated ETPS users Testing.';
             return;
         }
