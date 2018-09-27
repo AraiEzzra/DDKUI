@@ -63,6 +63,11 @@
                                     <translate>No Referral</translate>
                                 </td>
                             </tr>
+                            <tr ng-show="loading">
+                                <td class="gray2 white-text" colspan="8">
+                                    <translate>Loading...</translate>
+                                </td>
+                            </tr>
                         </table>
                         <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
                             <p class="empty-state-text">
@@ -83,12 +88,12 @@
                                 <td data-title="tableRewards.cols.transactionType" sortable="'transactionType'">{{referral.transaction_type}}</td>
                                 <td data-title="tableRewards.cols.rewardTime" sortable="'rewardTime'">{{referral.reward_time | timeAgoFilter : showFullTime}}</td>
                             </tr>
-                            <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
+                            <tr ng-show="!rewardloading && (!$data || $data.length == 0)">
                                 <td colspan="5">
-                                    <translate>No Referral</translate>
+                                    <translate>No Reward</translate>
                                 </td>
                             </tr>
-                            <tr ng-show="loading">
+                            <tr ng-show="rewardloading">
                                 <td class="gray2 white-text" colspan="8">
                                     <translate>Loading...</translate>
                                 </td>
