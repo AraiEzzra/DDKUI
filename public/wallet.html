@@ -1,206 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="DDKApp">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>DDKOIN | MAINNET WEB WALLET</title>
-    <style>
-        a {
-            color: #46b4f9;
-            text-decoration: dashed;
-        }
+    <base href="/">
+    <title>DDKOIN Mainnet Webwallet</title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126033547-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        a:hover {
-            color: #2583be;
-        }
+        gtag('config', 'UA-126033547-1');
+    </script>
+    
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+    <meta charset="UTF-8">
+    <meta name="application-name" content="{{'DDK - Blockchain Application Platform'|translate}}" />
+    <meta name="msapplication-TileColor" content="#F3F3E1" />
+    <link rel="stylesheet" href="/static/css/app.css">
+    <script src="/static/js/vendor_app.js"></script>
+    <script src="./node_modules/socket.io/socket.io.js"></script>
+</head>
 
-        button {
-
-            background: #352516;
-            padding: 10px;
-            border: 1px solid #ffc000;
-            color: #9f8a5a;
-            font-weight: bold;
-
-        }
-
-        button a {
-
-
-            padding: 10px;
-            color: #9f8a5a;
-            font-weight: bold;
-            text-decoration: none;
-
-
-        }
-
-        button a:hover {
-
-
-            padding: 10px;
-
-            color: red;
-            font-weight: bold;
-            text-decoration: none;
-
-
-        }
-
-
-        .img-responsive {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-
-    <![endif]-->
-
-  </head>
-
-  <body style="font-family:Verdana, Geneva, sans-serif; font-size:13px; line-height: 1.42857143;
-  color: #333; background:#f0f0f0;">
-
-
-<!-- Header -->
-
-<div>
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-    <tbody>
-        <tr>
-        <td bgcolor="#f0f0f0" align="center"><table>
-            <tbody>
-              <tr>
-              <br><br>
-              
-                <td><table border="0" cellpadding="0" cellspacing="0" width="100%" style=" width: 100%;
-    max-width: 600px; border: 1px solid #e0e0e0;">
-                    <tbody>
-                      <tr>
-                        <td><table summary="" bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                              <tr>
-                                <td><table summary="" width="100%" border="0" cellspacing="0" cellpadding="0">
-                            
-                                    
-                          
-                                    
-                                      
-                                    
-                                      
-                                      
-                                      <tr>
-                                   <td align="center" style="font-weight:600;font-size:20px;line-height:35px;font-style:italic;font-family:Helvetica,Arial,sans-serif;color:#333;padding-top:30px;padding-left:10px;padding-right:10px;line-height: 1.35;background: #3b4650;padding: 35px;"><img src="img/logo.png" style="width: 100%; height: auto; ">  </td>
-                                      </tr>
-                                      <tr>
-                                        <td  style="padding:20px 0 0 0;font-size:15px;line-height:25px;font-family:Helvetica,Arial,sans-serif;color:#333;padding-left:15px;padding-right:15px;line-height: 1.35;">
-                                        
-            <p>Dear Stakeholders,</p>
-                                    
-
-                                        
-                                         </td>
-                                      </tr>
-                                      
-                                                  <tr>
-                                        <td  style="padding:0 0 0 0;font-size:15px;line-height:25px;font-family:Helvetica,Arial,sans-serif;color:#333;padding-left:15px;padding-right:15px;line-height: 1.35;">
-                                        
-            <p>    
-                                 Please note that the optimization of the Web Wallet Main-Net platform is still on-going progress. 
-</p>
-                                    
-      <p>After deploy the latest optimization and done doing testing we can re-open the DDK Mainet Web Wallet to enable users making transaction.</p>
-         <p>Your cooperation is highly appreciated.</p>
-          <p>    Please visit our DDK Forum for official announcement :<a href="https://forums.ddkoin.com/forum/info-and-announcements/ddk-team-announcement"> https://forums.ddkoin.com/forum/info-and-announcements/ddk-team-announcement </a>  </p>
-             <p>       Your cooperation is highly appreciated.<br> Thanks   </p>
-                                        
-                                         </td>
-                                      </tr>
-                                      
-                                      
-                                      
-                                      
-                                   
-                               
-                                      
-                                 
-                                            
-                                    
-                                      
-                                 
-                    
-                              
-                                      
-                                           
-                                      
-                                       <tr>
-                            <td class="m_-1802406925910922097m_-4808669824766442491social" style="border-left-color:#e0e0e0;border-left-style:none;border-left-width:1px;color:#434343;font-size:12px;line-height:20px;text-align:center;vertical-align:middle;width:60%;padding: 30px;border-top: 1px solid #e0e0e0;" align="center" valign="middle">
-                            Follow us: &nbsp;   &nbsp; <a href="https://www.facebook.com/DDKoin_Official-437883973356520/">Facebook</a> &nbsp; <a href="https://www.ddkoin.com/"> Website</a> &nbsp; <a href="https://forums.ddkoin.com/">Forum</a>
-                        </td>
-                                      </tr>
-                                    
-                                    
-                                    
-                                      
-                                            
-                                      
-                                      
-                                      
-                                   
-                               
-                                   
-               
-                               
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
-                                      
-                                      
-                                        
-                                      
-                                      
-                                      
-                                    
-                      
-                                      
-                                      
-                                
-                                      
-                       
-                                  </table></td>
-                              </tr>
-                            </tbody>
-                          </table></td>
-                      </tr>
-                    </tbody>
-                  </table></td>
-                  
-                     
-              </tr>
-            </tbody>
-          </table>  <br><br></td>
-      </tr>
-      
-      </tbody>
-  </table>
-  </div>
-
-
+<body>
+    <div>
+        <div ui-view ng-class="lang.id" class="container-app"></div>
+    </div>
 </body>
+
 </html>
