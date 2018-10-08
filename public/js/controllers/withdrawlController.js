@@ -2,7 +2,7 @@ require('angular');
 
 angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScope', '$http', 'userService', 'gettextCatalog', function ($rootScope, $scope, $http, userService, gettextCatalog) {
     $scope.address = userService.address;
-    $scope.view.inLoading = true;
+    //$scope.view.inLoading = true;
     $scope.view.loadingText = gettextCatalog.getString('Loading Withdrawal Status');
     $scope.view.page = { title: gettextCatalog.getString('PendingGB'), previous: null };
     if ($scope.withdrawalStatus) {
@@ -48,7 +48,6 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
                                 })
                         }
                     } else {
-                        console.log('else : ');
                         let verified = resp.data.status.checkLastWithdrawl && resp.data.status.checkActiveStake && resp.data.status.checkActiveStakeOfLeftAndRightSponsor && resp.data.status.checkRatio;
                         if (!verified) {
                             userService.setWithdrawlStatus(resp.data.error.status);
@@ -83,11 +82,11 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
         })
             .then(function (resp) {
                 if (resp.data.success) {
-                    $scope.view.inLoading = false;
+                    //$scope.view.inLoading = false;
                     userService.setWithdrawlStatus(resp.data.status);
                     $scope.withdrawalStatus = userService.withdrawalStatus;
                 } else {
-                    $scope.view.inLoading = false;
+                    //$scope.view.inLoading = false;
                     userService.setWithdrawlStatus(resp.data.error.status);
                     $scope.withdrawalStatus = userService.withdrawalStatus;
                 }

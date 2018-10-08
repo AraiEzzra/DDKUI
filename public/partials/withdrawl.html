@@ -1,98 +1,81 @@
+<style>
+
+    #exampleModal {
+        padding-right: 0px !important;
+    }
+
+</style>
+
 <div ng-controller="templateController">
-    <!-- <div class="error-notice">
-            
-                <div ng-show="withdrawalStatus.checkLastWithdrawl && withdrawalStatus.checkLastWithdrawl !== undefined" class="oaerror">
-                    <strong>Rule 1</strong> {{errDescription[0]}}
-                    <span class="checkedwithdrawl"></span>
-                </div>
-                <div ng-show="!withdrawalStatus.checkLastWithdrawl && withdrawalStatus.checkLastWithdrawl !== undefined" class="oaerror">
-                    <strong>Rule 1</strong> {{errDescription[0]}}
-                    <span class="uncheckedwithdrawl"></span>
-                </div>
-                <div ng-show="withdrawalStatus.checkActiveStake && withdrawalStatus.checkActiveStake !== undefined" class="oaerror">
-                    <strong>Rule 2</strong> {{errDescription[1]}}
-                    <span class="checkedwithdrawl"></span>
-                </div>
-                <div ng-show="!withdrawalStatus.checkActiveStake && withdrawalStatus.checkActiveStake !== undefined" class="oaerror">
-                    <strong>Rule 2</strong> {{errDescription[1]}}
-                    <span class="uncheckedwithdrawl"></span>
-                </div>
-                <div ng-show="withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor !== undefined" class="oaerror">
-                    <strong>Rule 3</strong> {{errDescription[2]}}
-                    <span class="checkedwithdrawl"></span>
-                </div>
-                <div ng-show="!withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor !== undefined" class="oaerror">
-                    <strong>Rule 3</strong> {{errDescription[2]}}
-                    <span class="uncheckedwithdrawl"></span>
-                </div>
-                <div ng-show="withdrawalStatus.checkRatio && withdrawalStatus.checkRatio !== undefined" class="oaerror">
-                    <strong>Rule 4</strong> {{errDescription[3]}}
-                    <span class="checkedwithdrawl"></span>
-                </div>
-                <div ng-show="!withdrawalStatus.checkRatio && withdrawalStatus.checkRatio !== undefined" class="oaerror">
-                    <strong>Rule 4</strong> {{errDescription[3]}}
-                    <span class="uncheckedwithdrawl"></span>
-                </div>
-            
-        </div>
-        <p class="error-container" ng-show="errorMessage.failedRule">
-            <span class="pass-error">{{errorMessage.failedRule}}</span>
-        </p>
-        <p class="error-container" ng-show="errorMessage.fromServer">
-            <span class="pass-error">{{errorMessage.fromServer}}</span>
-        </p>
-        <button ng-click="validateGroupBonusRules(errCode)" class="btn btn-blue-nav waves-effect waves-light">Withdrawl</button> -->
-    <div class="top-margin"></div>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2>{{'Details of Pending Group Bonus '|translate}}</h2>
-                </div>
-                <div class="panel-body pendingGB-info">
-                    <ul>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Transferred so far</span>
-                            <span class="col-md-6">0 DDK(DDK0.000)</span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Available Transfer</span>
-                            <span class="col-md-6">0.000 DDK</span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Current Price(We Buy)</span>
-                            <span class="col-md-6">USD 160.5</span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Weekly Limit</span>
-                            <span class="col-md-6">15 DDK (Transferred in this week: 0 DDK)</span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Your Active Stake</span>
-                            <span class="col-md-6">1000 Stake</span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Max Withdrawal Upto</span>
-                            <span class="col-md-6">100</span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Active Referee Level</span>
-                            <span class="col-md-6">5</span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Transfer Amount(DDK)</span>
-                            <span class="col-md-4">
-                                <input type="text" class="form-control transfer-amount">
-                            </span>
-                        </li>
-                        <li class="clearfix row">
-                            <span class="col-md-4">Action</span>
-                            <span class="col-md-6">
-                                <a class="btn btn-blue-nav waves-effect waves-light">Withdraw</a></span>
-                        </li>
-                    </ul>
-                </div>
+    <br></br>
+
+
+
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Withdrawal
+    </button>
+
+
+    <div class="modal modal-dialog fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Hello {{address}}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Pending group bonus will be enabled after 5th October 2018.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
+<!-- <div class="error-notice">
+        <div ng-show="withdrawalStatus.checkLastWithdrawl && withdrawalStatus.checkLastWithdrawl !== undefined" class="oaerror">
+            <strong>Rule 1</strong> {{errDescription[0]}}
+            <span class="checkedwithdrawl"></span>
+        </div>
+        <div ng-show="!withdrawalStatus.checkLastWithdrawl && withdrawalStatus.checkLastWithdrawl !== undefined" class="oaerror">
+            <strong>Rule 1</strong> {{errDescription[0]}}
+            <span class="uncheckedwithdrawl"></span>
+        </div>
+        <div ng-show="withdrawalStatus.checkActiveStake && withdrawalStatus.checkActiveStake !== undefined" class="oaerror">
+            <strong>Rule 2</strong> {{errDescription[1]}}
+            <span class="checkedwithdrawl"></span>
+        </div>
+        <div ng-show="!withdrawalStatus.checkActiveStake && withdrawalStatus.checkActiveStake !== undefined" class="oaerror">
+            <strong>Rule 2</strong> {{errDescription[1]}}
+            <span class="uncheckedwithdrawl"></span>
+        </div>
+        <div ng-show="withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor !== undefined"
+            class="oaerror">
+            <strong>Rule 3</strong> {{errDescription[2]}}
+            <span class="checkedwithdrawl"></span>
+        </div>
+        <div ng-show="!withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor && withdrawalStatus.checkActiveStakeOfLeftAndRightSponsor !== undefined"
+            class="oaerror">
+            <strong>Rule 3</strong> {{errDescription[2]}}
+            <span class="uncheckedwithdrawl"></span>
+        </div>
+        <div ng-show="withdrawalStatus.checkRatio && withdrawalStatus.checkRatio !== undefined" class="oaerror">
+            <strong>Rule 4</strong> {{errDescription[3]}}
+            <span class="checkedwithdrawl"></span>
+        </div>
+        <div ng-show="!withdrawalStatus.checkRatio && withdrawalStatus.checkRatio !== undefined" class="oaerror">
+            <strong>Rule 4</strong> {{errDescription[3]}}
+            <span class="uncheckedwithdrawl"></span>
+        </div>
+    </div>
+    <p class="error-container" ng-show="errorMessage.failedRule">
+        <span class="pass-error">{{errorMessage.failedRule}}</span>
+    </p>
+    <p class="error-container" ng-show="errorMessage.fromServer">
+        <span class="pass-error">{{errorMessage.fromServer}}</span>
+    </p>
+    <button ng-click="validateGroupBonusRules(errCode)" class="btn btn-blue-nav waves-effect waves-light">Withdrawl</button> -->
 </div>

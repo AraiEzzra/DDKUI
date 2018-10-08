@@ -30,18 +30,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         }
     }
 
-    /* For Referral sponsors stake status */
-    /* $scope.sponsorsStakeStatus = function (sponsorAddress) {
-        $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
-            .then(function (resp) {
-                if (resp.data.success) {
-                    $scope.stakeStatus = resp.data.sponsorStatus;
-                } else {
-                    Materialize.toast(resp.data.error, 3000, 'red white-text');
-                }
-            });
-    } */
-
     // Referral List
     $scope.tableReferral = new ngTableParams({
         page: 1,
