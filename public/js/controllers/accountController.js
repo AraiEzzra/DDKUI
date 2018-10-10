@@ -41,6 +41,8 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         }
     };
 
+    
+
     $scope.transactionInfo = function (transaction) {
         $scope.modal = transactionInfo.activate({ transaction: transaction });
         angular.element(document.querySelector("body")).addClass("ovh");
@@ -94,10 +96,12 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 }
             }).then(function (resp) {
                 var unconfirmedTransactions = resp.data.transactions;
-
                 $timeout(function () {
                     $scope.transactions = _.compact(
                         unconfirmedTransactions.concat(transactions).slice(0, 8)
+                    );
+                    $scope.unconfirmedTransactions = _.compact(
+                        unconfirmedTransactions.slice(0, 8)
                     );
                 });
             });

@@ -8,6 +8,9 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.secondPassphrase = userService.secondPassphrase;
     $scope.focus = 'secretPhrase';
+    $scope.confirmations = false;
+    $scope.errorMessage = false;
+    // $scope.secondPassphrase = userService.secondPassphrase;
 
     Object.size = function (obj) {
         var size = 0, key;
@@ -18,6 +21,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     };
 
     $scope.passcheck = function (fromSecondPass) {
+        $scope.errorMessage = false;
         $scope.fromServer=null;
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
@@ -30,8 +34,15 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
             return;
         }
         if ($scope.rememberedPassphrase) {
-            $scope.vote($scope.rememberedPassphrase);
+            if(!$scope.secondPassphrase) {
+                $scope.confirmations = true;
+            } else {
+                $scope.checkSecondPass = true;
+                $scope.focus = 'secondPhrase';
+                return;
+            }
         } else {
+            $scope.confirmations = false;
             $scope.passmode = !$scope.passmode;
             if ($scope.passmode) {
                 $scope.focus = 'secretPhrase';
@@ -40,7 +51,35 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
         }
     }
 
-    $scope.secondPassphrase = userService.secondPassphrase;
+    $scope.confirmationsPopup =  function(){
+
+        $scope.vote($scope.rememberedPassphrase);
+    }
+
+    $scope.confirmPassphrasePopup = function(secret,withSecond) {
+
+        $scope.errorMessage = false;
+
+        if(!secret) {
+            $scope.errorMessage = 'Missing Passphrase';
+            return;
+        }
+        
+        if(!$scope.secondPassphrase && !withSecond) {
+            $scope.confirmations = true;
+            $scope.rememberedPassphrase = secret;
+        } else {
+
+            if(!$scope.checkSecondPass) {
+                $scope.confirmations = false;
+                $scope.checkSecondPass = true;
+                return;
+            } else {
+                $scope.confirmations = true;
+            }
+        }
+    }
+
 
     $scope.close = function () {
         if ($scope.destroy) {
@@ -58,12 +97,12 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
         }
     }
 
-    $scope.vote = function (pass, withSecond) {
-        if ($scope.secondPassphrase && !withSecond) {
+    $scope.vote = function (pass) {
+/*         if ($scope.secondPassphrase && !withSecond) {
             $scope.checkSecondPass = true;
             $scope.focus = 'secondPhrase';
             return;
-        }
+        } */
         pass = pass || $scope.secretPhrase;
 
         var data = {
@@ -73,7 +112,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
             }),
             publicKey: userService.publicKey
         };
-
+        
         if ($scope.secondPassphrase) {
             data.secondSecret = $scope.secondPhrase;
             if ($scope.rememberedPassphrase) {
@@ -88,8 +127,8 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
                 $scope.sending = false;
 
                 if (resp.data.error) {
-                    Materialize.toast(($scope.adding?'Vote Error':'DownVote Error'), 3000, 'red white-text');
-                    $scope.fromServer = resp.data.error;
+                    $scope.errorMessage = resp.data.error;
+                    Materialize.toast(($scope.adding?'Vote Error':'DownVote Error'), 3000, 'red white-text');                    
                 } else {
                     if ($scope.destroy) {
                         $scope.destroy();

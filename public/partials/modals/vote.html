@@ -1,8 +1,8 @@
 <div class="app-modal valign-wrapper">
     <div class="container height100">
         <div class="row height100">
-            <div class="col-md-6 col-md-offset-4 height100 valign-wrapper">
-                <div class="modal-content" ng-show="!passmode && !checkSecondPass">
+            <div class="col-md-6 col-md-offset-3 height100 valign-wrapper">
+                <div class="modal-content" ng-show="!passmode && !checkSecondPass && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only"><translate>Close modal</translate></span>
@@ -45,7 +45,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show="passmode && !checkSecondPass">
+                <div class="modal-content" ng-show="passmode && !checkSecondPass && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="passcheck()">
                             <span class="sr-only"><translate>Close modal</translate></span>
@@ -64,7 +64,7 @@
                                     <input ng-focus="focus=='secretPhrase'" id="passPhrase" type="password" ng-model="secretPhrase" ng-trim="false" autofocus ng-class="{'invalid': fromServer}">
                                     <label for="passPhrase"><translate>Your Passphrase</translate></label>
                                 </div>
-                                <span class="pass-error" ng-show="fromServer">{{fromServer}}</span>
+                                <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
                             </div>
                             <input type="submit" ng-show="false">
                         </form>
@@ -75,12 +75,62 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="" adding="adding" vote-action ng-click="vote(secretPhrase)" class="btn-flat" ng-class="{'blue-link': adding, 'red-link': !adding, 'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="" adding="adding" vote-action ng-click="confirmPassphrasePopup(secretPhrase)" class="btn-flat" ng-class="{'blue-link': adding, 'red-link': !adding, 'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show="checkSecondPass">
+
+
+
+                 <!-- For Confirmations ng-show=" passmode && !checkSecondPass && !OTP" -->
+                 <div class="modal-content" ng-show="confirmations">
+                        <div class="modal-header modal-iconed">
+                            <div class="close-modal" ng-click="close()">
+                                <span class="sr-only">
+                                    <translate>Close modal</translate>
+                                </span>
+                            </div>
+                            <span class="modal-log">DDK</span>
+                        </div>
+                        <div class="modal-header clearfix">
+                            <div>
+                                <h2>{{'Confirmations, Are you sure?.'|translate}}</h2>
+                            </div>
+                            <!-- <h2>
+                                <translate>Are you sure?.</translate>
+                            </h2> -->
+                        </div>
+                        <div class="modal-body confirmations-message">
+                          <i class="mdi-alert-error"></i>
+                          <p>Are you sure that you want to vote/unvote the Delegates</p>  
+                          <div class="final-detail-show">
+                                <span class="delegate-label">Delegate Name :</span><br>
+                                <span class="list-group-item vote-list" ng-repeat="(key, item) in voteList">{{item}}
+                                    </span>
+                                <span>Fee: {{fee | DDKFilter}} DDK</span>
+                            </div>
+
+
+                        </div>
+                        <div class="error-message-wrapper">
+                        <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
+                        </div>
+                        <div class="modal-body bordered">
+                            <ul class="nav modal-buttons pull-right">
+                                <li>
+                                    <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
+                                </li>
+                                <li>
+                                    <input type="submit" value="{{'Yes, Send It' | translate}}" ng-click="confirmationsPopup()" class="btn-flat blue-link"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                <div class="modal-content" ng-show="checkSecondPass && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only"><translate>Close modal</span>
@@ -100,7 +150,7 @@
                                     <input ng-focus="focus=='secondPhrase'" id="secondPhrase" type="password" ng-model="secondPhrase" ng-trim="false" autofocus ng-class="{'invalid': errorMessage}">
                                     <label for="secondPhrase"><translate>Your Second Passphrase</translate></label>
                                 </div>
-                                <span class="pass-error" ng-show="fromServer">{{fromServer}}</span>
+                                <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
                             </div>
                             <input type="submit" ng-show="false">
                         </form>
@@ -111,7 +161,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="" adding="adding" vote-action ng-click="vote(secretPhrase, true)" class="btn-flat" ng-class="{'blue-link': adding, 'red-link': !adding, 'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="" adding="adding" vote-action ng-click="confirmPassphrasePopup(secondPhrase,true)" class="btn-flat" ng-class="{'blue-link': adding, 'red-link': !adding, 'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

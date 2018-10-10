@@ -13,6 +13,8 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.focus = $scope.to ? 'amount' : 'to';
     $scope.presendError = false;
     $scope.twofactor = false;
+    $scope.confirmations = false;
+    $scope.errorMessage.fromServer = false;
 
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
 
@@ -77,6 +79,8 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.passcheck = function (fromSecondPass, otp) {
+        $scope.errorMessage.fromServer = false;
+        $scope.fromServer=null;
         if ($scope.OTP) {
             $scope.otp = otp;
             validateOTP(function () {
@@ -102,13 +106,23 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             if($scope.otp){
                 $scope.OTP = true;
             }
+            if (!$scope.secondPassphrase) {
+                $scope.confirmations = true;
+            } else {
+                $scope.OTP = false;
+                $scope.checkSecondPass = true;
+                $scope.focus = 'secondPhrase';
+                return;
+            }
             validateForm(function () {
+                $scope.confirmations = true;
                 $scope.presendError = false;
                 $scope.errorMessage = {};
-                $scope.sendTransaction($scope.rememberedPassphrase);
+              //  $scope.sendTransaction($scope.rememberedPassphrase);
             });
         } else {
             validateForm(function () {
+                $scope.confirmations = false;
                 $scope.presendError = false;
                 $scope.errorMessage = {};
                 $scope.passmode = !$scope.passmode;
@@ -117,6 +131,35 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             });
         }
     }
+
+    $scope.confirmationsPopup =  function(){
+        $scope.sendTransaction($scope.rememberedPassphrase);
+    }
+
+    $scope.confirmPassphrasePopup = function(secret,withSecond) {
+
+        $scope.errorMessage.fromServer = false;
+
+        if(!secret) {
+            $scope.errorMessage.fromServer = 'Missing Passphrase';
+            return;
+        }
+
+        if (!$scope.secondPassphrase && !withSecond) {
+            $scope.confirmations = true;
+            $scope.rememberedPassphrase = secret;
+        } else {
+            if (!$scope.checkSecondPass) {
+                $scope.focus = 'secondPhrase';
+                $scope.confirmations = false;
+                $scope.checkSecondPass = true;
+                return;
+            } else {
+                $scope.confirmations = true;
+            }
+        }
+    }
+
 
     $scope.OTPModalPopup = function () {
         validateForm(function () { });
@@ -239,16 +282,16 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         $scope.to = '';
     }
 
-    $scope.sendTransaction = function (secretPhrase, withSecond) {
-        if ($scope.secondPassphrase && !withSecond) {
+    $scope.sendTransaction = function (secretPhrase) {
+/*         if ($scope.secondPassphrase && !withSecond) {
             $scope.OTP = false;
             $scope.checkSecondPass = true;
             $scope.focus = 'secondPhrase';
             return;
-        }
+        } */
         $scope.errorMessage = {};
         var data = {
-            secret: secretPhrase,
+            secret: secretPhrase || $scope.secretPhrase,
             amount: $scope.convertDDK($scope.amount),
             recipientId: $scope.to,
             publicKey: userService.publicKey,
