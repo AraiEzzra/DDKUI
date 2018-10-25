@@ -194,13 +194,9 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                         $scope.twoFactorKey = resp.data.key
                         $scope.successMessage.nextStep = 'Google Authentication is enabled for : ' + userService.getAddress();
                         Materialize.toast('2FA Enabled', 3000, 'green white-text');
-
                         $scope.enable = false;
-
                         $scope.myVar = false;
-
                         $scope.disable = true
-
                         $scope.presendError = false;
                         $scope.errorMessage = {};
 
@@ -224,6 +220,7 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                 if (resp.data.success) {
                     $scope.enable = true;
                     $scope.disable = false;
+                    Materialize.toast('2FA Disable', 3000, 'red white-text');
                 }
             })
     }

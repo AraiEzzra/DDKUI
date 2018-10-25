@@ -53,6 +53,8 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                 if($scope.to == $scope.address){
                     $scope.errorMessage.recipient = 'Sender and Recipient can\'t be same';
                     $scope.presendError = true;
+                    $scope.checkSecondPass = false;
+                    $scope.confirmations = false;
                     return;
                 }
                 if ($scope.isCorrectValue($scope.amount)) {
@@ -60,10 +62,14 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                     return onValid();
                 } else {
                     $scope.presendError = true;
+                    $scope.checkSecondPass = false;
+                    $scope.confirmations = false;
                 }
             } else {
                 $scope.errorMessage.recipient = 'Invalid recipient';
                 $scope.presendError = true;
+                $scope.checkSecondPass = false;
+                $scope.confirmations = false;
             }
         }
     }
@@ -106,19 +112,18 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             if($scope.otp){
                 $scope.OTP = true;
             }
-            if (!$scope.secondPassphrase) {
-                $scope.confirmations = true;
-            } else {
-                $scope.OTP = false;
-                $scope.checkSecondPass = true;
-                $scope.focus = 'secondPhrase';
-                return;
-            }
+
             validateForm(function () {
-                $scope.confirmations = true;
+
+                if (!$scope.secondPassphrase) {
+                    $scope.confirmations = true;
+                } else {
+                    $scope.OTP = false;
+                    $scope.checkSecondPass = true;
+                    $scope.focus = 'secondPhrase';
+                }
                 $scope.presendError = false;
                 $scope.errorMessage = {};
-              //  $scope.sendTransaction($scope.rememberedPassphrase);
             });
         } else {
             validateForm(function () {
@@ -170,6 +175,10 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.checkStatus = function () {
+/*         if($scope.adminCode != "U+FDFD_GODDK" ){
+            $scope.errorMessageAdmin = 'Incorrect Admin Code';
+            return;
+        } */
         $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {
             params: {
                 publicKey: userService.publicKey
@@ -229,7 +238,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             }
         }
 
-        if (currency == null) {
+        if (!currency) {
             return error('DDK amount can not be blank');
         }
 
@@ -283,12 +292,6 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.sendTransaction = function (secretPhrase) {
-/*         if ($scope.secondPassphrase && !withSecond) {
-            $scope.OTP = false;
-            $scope.checkSecondPass = true;
-            $scope.focus = 'secondPhrase';
-            return;
-        } */
         $scope.errorMessage = {};
         var data = {
             secret: secretPhrase || $scope.secretPhrase,
@@ -325,7 +328,6 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
 
     $scope.setFees = function (rawFee) {
         var regEx2 = /[0]+$/;
-        //Convert fee according to whole/decimal number
         $scope.fee = (rawFee % 1) != 0 ?  rawFee.toFixed(8).toString().replace(regEx2, ''): rawFee.toString();
     
     };

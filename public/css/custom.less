@@ -469,6 +469,9 @@ body{
       width: 70%;
       .info-box-number{
         font-size: 14px;
+        a{
+          color: #655740;
+        }
       }
       .info-box-text{
         font-size: 14px;
@@ -572,22 +575,22 @@ body{
 }
 
 /* width */
-body::-webkit-scrollbar,#sidebar-wrapper::-webkit-scrollbar {
+body::-webkit-scrollbar,#sidebar-wrapper::-webkit-scrollbar, .popupHeight::-webkit-scrollbar {
   width: 6px;
 }
 
 /* Track */
-body::-webkit-scrollbar-track,#sidebar-wrapper::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track,#sidebar-wrapper::-webkit-scrollbar-track, .popupHeight::-webkit-scrollbar-track{
   background: #fff; 
 }
 
 /* Handle */
-body::-webkit-scrollbar-thumb,#sidebar-wrapper::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,#sidebar-wrapper::-webkit-scrollbar-thumb, .popupHeight::-webkit-scrollbar-thumb {
   background: #cc3d3d; 
 }
 
 /* Handle on hover */
-body::-webkit-scrollbar-thumb:hover,#sidebar-wrapper::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover,#sidebar-wrapper::-webkit-scrollbar-thumb:hover, .popupHeight::-webkit-scrollbar-thumb:hover {
   background: #cc3d3d; 
 }
 .top-header-section{
@@ -1232,4 +1235,16 @@ td.child.open {
 .delegate-label{
   padding-bottom: 10px;
   display: inline-block;
+}
+
+.popupHeight{
+  height: 450px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.d-inline-block{
+  a{
+    color: @white;
+  }
 }
