@@ -469,6 +469,9 @@ body{
       width: 70%;
       .info-box-number{
         font-size: 14px;
+        a{
+          color: #655740;
+        }
       }
       .info-box-text{
         font-size: 14px;
@@ -572,22 +575,22 @@ body{
 }
 
 /* width */
-body::-webkit-scrollbar,#sidebar-wrapper::-webkit-scrollbar {
+body::-webkit-scrollbar,#sidebar-wrapper::-webkit-scrollbar, .popupHeight::-webkit-scrollbar {
   width: 6px;
 }
 
 /* Track */
-body::-webkit-scrollbar-track,#sidebar-wrapper::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track,#sidebar-wrapper::-webkit-scrollbar-track, .popupHeight::-webkit-scrollbar-track{
   background: #fff; 
 }
 
 /* Handle */
-body::-webkit-scrollbar-thumb,#sidebar-wrapper::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,#sidebar-wrapper::-webkit-scrollbar-thumb, .popupHeight::-webkit-scrollbar-thumb {
   background: #cc3d3d; 
 }
 
 /* Handle on hover */
-body::-webkit-scrollbar-thumb:hover,#sidebar-wrapper::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover,#sidebar-wrapper::-webkit-scrollbar-thumb:hover, .popupHeight::-webkit-scrollbar-thumb:hover {
   background: #cc3d3d; 
 }
 .top-header-section{
@@ -988,6 +991,7 @@ a.imhere-pre{
 }
 
 .referral-tab{
+  position: relative;
   .tab-content {
     background: transparent;
     border: none;
@@ -1010,6 +1014,14 @@ a.imhere-pre{
   .nav-tabs>li{
     margin-bottom: inherit;
   }
+  .plain-text{
+    position: absolute;
+    right: 0;
+    top: 15px;
+  }
+}
+.bg-white-i{
+  background: #fff!important;
 }
 
 .airdrop-balance{
@@ -1179,4 +1191,60 @@ td.child.open {
     height: 30px;
     padding: 0;
     background: #c0c0bf;
+}
+
+.confirmations-message{
+  padding: 15px 15px 20px!important;
+  text-align: center;
+  i{
+    color: #cc3d3d;
+    font-size: 60px;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  p{
+    font-size: 18px;
+    font-weight: 300;
+  }
+}
+
+.final-detail-show{
+  padding: 10px 10px 0;
+  line-height: 24px;
+  span{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .list-group-item{
+    width: 50%;
+    margin: auto auto 10px;
+    padding: 5px;
+    font-weight: 300;
+    background: #cc3d3d;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+.error-message-wrapper{
+  width: 90%;
+  margin: auto;
+}
+
+.delegate-label{
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.popupHeight{
+  height: 450px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.d-inline-block{
+  a{
+    color: @white;
+  }
 }

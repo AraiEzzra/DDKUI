@@ -18,6 +18,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             $scope.itemDetails.index = null;
         } else {
             $scope.itemDetails.index = index;
+            $scope.stakeStatus = [];
             $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
                 .then(function (resp) {
                     if (resp.data.success) {
@@ -27,18 +28,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                     }
                 });
         }
-    }
-
-    /* For Referral sponsors stake status */
-    $scope.sponsorsStakeStatus = function (sponsorAddress) {
-        $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
-            .then(function (resp) {
-                if (resp.data.success) {
-                    $scope.stakeStatus = resp.data.sponsorStatus;
-                } else {
-                    Materialize.toast(resp.data.error, 3000, 'red white-text');
-                }
-            });
     }
 
     // Referral List

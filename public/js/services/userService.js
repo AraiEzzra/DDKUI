@@ -26,6 +26,10 @@ angular.module('DDKApp').service('userService', function () {
     this.getPublicKey = function() {
         return this.publicKey;
     }
+    
+    this.getBalance = function() {
+        return this.balance
+    }
 
     this.getAddress = function () {
        return this.address;

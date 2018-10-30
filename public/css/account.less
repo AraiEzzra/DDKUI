@@ -71,3 +71,30 @@
   margin-left: 0!important;
 }
 
+/*For withdrawl*/
+.pendingGB-info{
+  ul{
+    li{
+      padding: 15px 0;
+      border-bottom: #dcdcdc 1px solid;
+      &:last-child{
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+      &:first-child{
+        padding-top: 0;
+      }
+      .transfer-amount{
+        border: 1px solid #9e9e9e!important;
+        margin-bottom: 0px!important;
+        border-radius: 4px!important;
+        padding: 0 10px;
+        &:focus:not([readonly]){
+          box-sizing:content-box;
+        }
+
+      }
+    }
+  }
+}
+

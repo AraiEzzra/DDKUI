@@ -2,7 +2,7 @@
     <div class="container height100">
         <div class="row height100">
             <div class="col-md-6 col-md-offset-3 height100 valign-wrapper">
-                <div class="modal-content" ng-show="!passmode && !checkSecondPass">
+                <div class="modal-content" ng-show="!passmode && !checkSecondPass && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
@@ -55,7 +55,50 @@
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show="passmode && !checkSecondPass">
+
+                <!-- For Confirmations-->
+                <div class="modal-content" ng-show="confirmations">
+                    <div class="modal-header modal-iconed">
+                        <div class="close-modal" ng-click="close()">
+                            <span class="sr-only">
+                                <translate>Close modal</translate>
+                            </span>
+                        </div>
+                        <span class="modal-log">DDK</span>
+                    </div>
+                    <div class="modal-header clearfix">
+                        <div>
+                            <h2>{{'Confirmations, Are you sure?.'|translate}}</h2>
+                        </div>
+                    </div>
+                    <div class="modal-body confirmations-message">
+                        <i class="mdi-alert-error"></i>
+                        <p>Are you sure that you want to stake new DDKOIN?</p>
+                        <div class="final-detail-show">
+                            <span>Total DDK Available Balance : {{ balance | DDKFilter}} DDK</span>
+                            <br>
+                            <span>Total New Stake : {{fAmount}}</span>
+                            <br>
+                            <span>Fee : {{fee }} DDK
+                        </div>
+                    </div>
+                    <div class="error-message-wrapper">
+                        <span class="pass-error" ng-show="errorMessage.fromServer">{{errorMessage.fromServer}}</span>
+                    </div>
+                    <div class="modal-body bordered">
+                        <ul class="nav modal-buttons pull-right">
+                            <li>
+                                <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
+                            </li>
+                            <li>
+                                <input type="submit" value="{{'Yes, Send It' | translate}}" ng-click="confirmationsPopup()" class="btn-flat blue-link" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="modal-content" ng-show="passmode && !checkSecondPass && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
@@ -92,13 +135,13 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase)" class="btn-flat waves-blue"
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="confirmPassphrasePopup(secretPhrase)" class="btn-flat waves-blue"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show="checkSecondPass">
+                <div class="modal-content" ng-show="checkSecondPass && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
@@ -136,7 +179,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase, true)" class="btn-flat blue-link"
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="confirmPassphrasePopup(secretPhrase, true)" class="btn-flat blue-link"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>

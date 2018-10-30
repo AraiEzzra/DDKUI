@@ -11,7 +11,7 @@
         </span>
         </span>
         <div class="info-box-content">
-          <span class="info-box-number">{{totalSupply || 0}} DDK</span>
+          <span class="info-box-number"><a href=" https://explorer.ddkoin.com/#/transaction-info/transactionId/2525816115293971625" target="_blank">{{totalSupply || 0}} DDK</a></span>
           <br>
           <span class="info-box-text">{{'Total Supply'|translate}}</span>
         </div>
@@ -27,7 +27,7 @@
           </span>
         </span>
         <div class="info-box-content">
-          <span class="info-box-number">{{circulatingSupply || 0}} DDK</span>
+          <span class="info-box-number"><a href="https://explorer.ddkoin.com/#/user-info/DDK4995063339468361088" target="_blank">{{circulatingSupply || 0}} DDK</a></span>
           <br>
           <span class="info-box-text">{{'Circulating Supply'|translate}}</span>
         </div>
@@ -142,7 +142,7 @@
 </div>
 <!--Top Info -->
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading pr" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
@@ -211,18 +211,199 @@
           </tbody>
         </table>
         <div align="right">
-        <div class="text-center" ng-if="transactions.length">
-          <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
-            <translate>View in Explorer</translate>
-          </a>
+          <div class="text-center" ng-if="transactions.length">
+            <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
+              <translate>View in Explorer</translate>
+            </a>
+          </div>
+        </div>
+        <div class="panel-body empty-body" ng-if="!transactions.length">
+          <p class="empty-state-text">
+            {{'You have not made any transactions yet.'|translate}}
+          </p>
         </div>
       </div>
-      <div class="panel-body empty-body" ng-if="!transactions.length">
-        <!-- <div class="logo-grey"></div> -->
-        <p class="empty-state-text">
-          {{'You have not made any transactions yet.'|translate}}
-        </p>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="referral-tab">
+      <div class="plain-text" ng-show="transactions.length" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">{{'View History'|translate}}</div>
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#1" data-toggle="tab">Confirmed Transaction</a>
+        </li>
+        <li>
+          <a href="#2" data-toggle="tab">Pending Transaction</a>
+        </li>
+      </ul>
+      <div class="tab-content panel panel-default bg-white-i">
+        <div class="tab-pane active" id="1">
+          <div class="table-responsive">
+            <table class="table no-margin-bottom" id="transactions" ng-if="transactions.length">
+              <thead>
+                <tr class="head">
+                  <th class="hide-in-1400">
+                    <translate>Transaction ID</translate>
+                  </th>
+                  <th class="padding-in-1400">
+                    <translate>Sender</translate>
+                  </th>
+                  <th>
+                    <translate>Recipient</translate>
+                  </th>
+                  <th>
+                    <translate>Type</translate>
+                  </th>
+                  <th>
+                    <translate>Time</translate>
+                  </th>
+                  <th>
+                    <translate>Amount (Fee)</translate>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="transaction in transactions">
+                  <td class="hide-in-1400">
+                    <a href="#" ng-click="transactionInfo(transaction)" class="word-break-xs">{{transaction.id}}</a>
+                  </td>
+                  <td ng-if="transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderName}}</a>
+                  </td>
+                  <td ng-if="!transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
+                  </td>
+                  <td ng-if="transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientName}}</a>
+                  </td>
+                  <td ng-if="!transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
+                  </td>
+                  <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
+                  <td class="padding-in-1400">
+                    {{transaction.trsName}}
+                  </td>
+                  <td>
+                    {{transaction.timestamp | timeAgoFilter: false}}
+                  </td>
+                  <td ng-show="transaction.type != 8">
+                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
+                    <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                  <td ng-show="transaction.type == 8">
+                    <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.stakedAmount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div align="right">
+              <div class="text-center" ng-if="transactions.length">
+                <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
+                  <translate>View in Explorer</translate>
+                </a>
+              </div>
+            </div>
+            <div class="panel-body empty-body" ng-if="!transactions.length">
+              <!-- <div class="logo-grey"></div> -->
+              <p class="empty-state-text">
+                {{'You have not made any transactions yet.'|translate}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="2">
+          <div class="table-responsive">
+            <table class="table no-margin-bottom" id="transactions" ng-if="transactions.length">
+              <thead>
+                <tr class="head">
+                  <th class="hide-in-1400">
+                    <translate>Transaction ID</translate>
+                  </th>
+                  <th class="padding-in-1400">
+                    <translate>Sender</translate>
+                  </th>
+                  <th>
+                    <translate>Recipient</translate>
+                  </th>
+                  <th>
+                    <translate>Type</translate>
+                  </th>
+                  <th>
+                    <translate>Time</translate>
+                  </th>
+                  <th>
+                    <translate>Amount (Fee)</translate>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="transaction in unconfirmedTransactions">
+                  <td class="hide-in-1400">
+                    <a href="#" ng-click="transactionInfo(transaction)" class="word-break-xs">{{transaction.id}}</a>
+                  </td>
+                  <td ng-if="transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderName}}</a>
+                  </td>
+                  <td ng-if="!transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
+                  </td>
+                  <td ng-if="transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientName}}</a>
+                  </td>
+                  <td ng-if="!transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
+                  </td>
+                  <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
+                  <td class="padding-in-1400">
+                    {{transaction.trsName}}
+                  </td>
+                  <td>
+                    {{transaction.timestamp | timeAgoFilter: false}}
+                  </td>
+                  <td ng-show="transaction.type != 8">
+                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
+                    <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                  <td ng-show="transaction.type == 8">
+                    <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.stakedAmount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div align="right">
+              <div class="text-center" ng-if="unconfirmedTransactions.length">
+                <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
+                  <translate>View in Explorer</translate>
+                </a>
+              </div>
+            </div>
+            <div class="panel-body empty-body" ng-if="!unconfirmedTransactions.length">
+              <!-- <div class="logo-grey"></div> -->
+              <p class="empty-state-text">
+                {{'You have not made any unconfirmed transactions yet.'|translate}}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
