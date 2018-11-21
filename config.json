@@ -1,0 +1,11 @@
+{
+    "serverProtocol": "http",
+    "serverHost": "10.5.0.5",
+    "serverPort": 7007,
+    "serverUrl": "10.5.0.5:7007",
+    "elasticsearchHost": "10.5.0.2:9200",
+    "domainName": "localhost",
+    "explorerServerHost": "localhost",
+    "explorerServerPort": "80",
+    "port": 7000
+}
