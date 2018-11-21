@@ -8,7 +8,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
-    $scope.generateReferLink = function(){
+    $scope.generateReferLink = function () {
         
         let userAddress = userService.getAddress();
 
@@ -17,13 +17,12 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
             $scope.errorMessage = "Currently not able to generate the referral link";
             return;
         }
-        
+
         $scope.refLink = config.domainName + '/referal/' + userAddress;
 
-    }
+    };
 
-    $scope.sendEmail = function(email,refLink)
-    {
+    $scope.sendEmail = function (email,refLink) {
         $scope.noMatch = false;
 
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -64,7 +63,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
         }, function (error) {
             $scope.errorMessage = error.data.error ? error.data.error : error.data;
         });
-    }
+    };
 
     $scope.generateReferLink();
 
