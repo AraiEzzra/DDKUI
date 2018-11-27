@@ -24,9 +24,4 @@ RUN npm install && \
     cd public && \
     bower install && \
     npm install
-    
-COPY --chown=ddk . /home/ddk
 
-RUN cd public && grunt release
-
-CMD ["npm", "start"]

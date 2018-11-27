@@ -1,0 +1,7 @@
+FROM ddkoin:ui
+
+COPY --chown=ddk . /home/ddk
+
+RUN cd public && grunt release
+
+CMD ["npm", "start"]
