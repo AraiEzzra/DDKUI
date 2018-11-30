@@ -11,7 +11,8 @@
         </span>
         </span>
         <div class="info-box-content">
-          <span class="info-box-number"><a href=" https://explorer.ddkoin.com/#/transaction-info/transactionId/2525816115293971625" target="_blank">{{totalSupply || 0}} DDK</a></span>
+          <span class="info-box-number"><a href=" https://explorer.ddkoin.com/#/transaction-info/transactionId/2525816115293971625"
+              target="_blank">{{totalSupply || 0}} DDK</a></span>
           <br>
           <span class="info-box-text">{{'Total Supply'|translate}}</span>
         </div>
@@ -27,7 +28,8 @@
           </span>
         </span>
         <div class="info-box-content">
-          <span class="info-box-number"><a href="https://explorer.ddkoin.com/#/user-info/DDK4995063339468361088" target="_blank">{{circulatingSupply || 0}} DDK</a></span>
+          <span class="info-box-number"><a href="https://explorer.ddkoin.com/#/user-info/DDK4995063339468361088" target="_blank">{{circulatingSupply
+              || 0}} DDK</a></span>
           <br>
           <span class="info-box-text">{{'Circulating Supply'|translate}}</span>
         </div>
@@ -230,7 +232,8 @@
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="referral-tab">
-      <div class="plain-text" ng-show="transactions.length" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">{{'View History'|translate}}</div>
+      <div class="plain-text" ng-show="transactions.length" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length"
+        ui-sref="main.transactions">{{'View History'|translate}}</div>
       <ul class="nav nav-tabs">
         <li class="active">
           <a href="#1" data-toggle="tab">Confirmed Transaction</a>
@@ -360,9 +363,7 @@
                     <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
                   </td>
                   <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
-                  <td class="padding-in-1400">
-                    {{transaction.trsName}}
-                  </td>
+                  <td class="padding-in-1400">{{transaction.trsName}}</td>
                   <td>
                     {{transaction.timestamp | timeAgoFilter: false}}
                   </td>
@@ -398,12 +399,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,6 @@ angular.module('DDKApp').factory('sendTransactionModal', function (btfModal) {
     });
 });
 
-
 angular.module('DDKApp').factory('freezeAmountModal', function (btfModal) {
     return btfModal({
         controller: 'freezeAmountController',

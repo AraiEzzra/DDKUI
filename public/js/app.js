@@ -47,16 +47,26 @@ DDKApp.config([
                 templateUrl: "/partials/explorer.html",
                 controller: "explorerController"
             })
+
+            .state('main.pendingGB', {
+                url: "/pendingGB",
+                templateUrl: "/partials/pendingGB.html",
+                controller: "pendingGBController"
+            })
+
+
             .state('main.stake', {
                 url: "/stake",
                 templateUrl: "/partials/stake.html",
                 controller: "stakeController"
             })
+
             .state('main.settings', {
                 url: "/settings",
                 templateUrl: "/partials/settings.html",
                 controller: "settingsController"
             })
+          
             .state('main.transactions', {
                 url: "/transactions",
                 templateUrl: "/partials/transactions.html",
@@ -117,9 +127,7 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    const currentURL = new URL(window.location.origin);
-    currentURL.port = 7007;
-    $rootScope.serverUrl = currentURL.origin;
+     $rootScope.serverUrl = 'https://webtestnet-w.ddkoin.com';
     $rootScope.defaultLoaderScreen = false;
 
     // render current logged-in user upon page refresh if currently logged-in

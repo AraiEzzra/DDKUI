@@ -1,7 +1,7 @@
 require('angular');
 var compareVersion = require('../../node_modules/compare-version/index.js');
 
-angular.module('DDKApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal', function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal) {
+angular.module('DDKApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal' , function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal) {
 
     $scope.searchTransactions = transactionsService;
     $scope.searchDapp = dappsService;
@@ -13,6 +13,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     $scope.diffVersion = 0;
     $scope.subForgingCollapsed = true;
     $scope.categories = {};
+
     $scope.dataToShow = { forging: false }
 
     $scope.getCategoryName = function (id) {
@@ -93,6 +94,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         $scope.searchDapp.searchForDappGlobal = '';
     }
 
+    
     $scope.modules = [
         'main.dashboard',
         'main.delegates',
@@ -105,6 +107,9 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         'main.dappstore',
         'main.multi',
         'main.explorer',
+       
+        //'main.abc',
+        'main.pendingGB',
         'main.stake',
         'main.withdrawl',
         'main.airdropStatistics'
@@ -222,9 +227,10 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             });
     }
 
+    
     $scope.sendTransaction = function (to) {
         to = to || '';
-        $scope.sendTransactionModal = sendTransactionModal.activate({
+            $scope.sendTransactionModal = sendTransactionModal.activate({
             totalBalance: $scope.unconfirmedBalance,
             to: to,
             destroy: function () {
@@ -232,6 +238,8 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         });
     }
 
+    
+    
     $scope.freezeAmount = function () {
         $scope.freezeAmountModal = freezeAmountModal.activate({
             destroy: function () {

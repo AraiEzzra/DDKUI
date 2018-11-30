@@ -14,6 +14,10 @@ require('../../js/factories/modals/userInfo');
 require('../../js/factories/modals/forgingModal');
 require('../../js/factories/modals/secondPassphraseModal');
 require('../../js/factories/modals/sendTransactionModal');
+
+///
+require('../../js/factories/modals/agreeConfirmationModal');
+
 require('../../js/factories/modals/sendFreezeOrderModal');
 require('../../js/factories/modals/voteModal');
 require('../../js/factories/modals/registrationDelegateModal');

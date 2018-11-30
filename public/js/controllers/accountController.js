@@ -103,6 +103,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                     $scope.unconfirmedTransactions = _.compact(
                         unconfirmedTransactions.slice(0, 8)
                     );
+                    
                 });
             });
         });

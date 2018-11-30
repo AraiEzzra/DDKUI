@@ -1,7 +1,7 @@
 require('angular');
 
 
-angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUser", 'gettextCatalog', '$cookies', '$window', function ($scope, $rootScope, $http, $state, userService, newUser, gettextCatalog, $cookies, $window) {
+angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootScope', '$http', "$state", "userService", "newUser", 'gettextCatalog', '$cookies', '$window', 'agreeConfirmationModal', function ($scope, $rootScope, $http, $state, userService, newUser, gettextCatalog, $cookies, $window, agreeConfirmationModal) {
 
     userService.setData();
     userService.rememberPassphrase = false;
@@ -23,13 +23,12 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.cleanUpUserData();
 
     $scope.newUser = function () {
-          $scope.newUserModal = newUser.activate({
-             destroy: function () {
-             }
-         }); 
+        $scope.newUserModal = newUser.activate({
+            destroy: function () {
+            }
+        });
     }
-
-    $scope.login = function (pass, remember) {
+       $scope.login = function (pass, remember) {
         if (!pass || pass.trim().split(/\s+/g).length < 12) {
             $scope.errorMessage = 'Passphrase must consist of 12 or more words.';
             return;
@@ -60,6 +59,13 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
                     $state.go(goto);
                 } else {
                     $state.go('main.dashboard');
+                    //MODAL CALL
+
+                    
+/*                  $scope.agreeConfirmationModal = agreeConfirmationModal.activate({
+            
+                }); */
+                  
                 }
             } else {
                 $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';

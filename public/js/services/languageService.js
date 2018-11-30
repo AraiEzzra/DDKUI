@@ -4,8 +4,8 @@ angular.module('DDKApp').service('languageService', function ($rootScope, $windo
 
     $rootScope.languages = [
         { id: 'en', name: 'English' },
-        { id: 'de', name: 'Deutsch' },
-        { id: 'ru', name: 'Pусский' },
+        { id: 'ch', name: 'Chinese' },
+        /* { id: 'ru', name: 'Pусский' },
         { id: 'zh', name: '中文' },
         { id: 'es', name: 'Español' },
         { id: 'fr', name: 'Français' },
@@ -18,7 +18,7 @@ angular.module('DDKApp').service('languageService', function ($rootScope, $windo
         // { id: 'pt_BR', name: 'Português' },
         { id: 'pl', name: 'Poi' },
         { id: 'ro', name: 'Română' },
-        { id: 'uk_UA', name: 'Yкраїнський' }
+        { id: 'uk_UA', name: 'Yкраїнський' } */
     ];
 
     $rootScope.changeLang = function (changed) {
