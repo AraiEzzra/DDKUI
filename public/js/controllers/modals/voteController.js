@@ -101,9 +101,19 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
         }
     }
 
+    $scope.setVoteFees = function (rawFee) {
+        var regEx2 = /[0]+$/;
+        $scope.fee = (rawFee % 1) != 0 ? rawFee.toFixed(8).toString().replace(regEx2, '') : rawFee.toString();
+
+    };
+
     feeService(function (fees) {
 
-        $scope.fee = (userService.totalFrozeAmount * fees.vote) / 100;
+        // $scope.fee = (userService.totalFrozeAmount * fees.vote) / 100;
+
+        let amount = userService.totalFrozeAmount / 100000000;
+
+        $scope.setVoteFees((parseFloat(amount) * fees.vote) / 100);
 
     });
 
