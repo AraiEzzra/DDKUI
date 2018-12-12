@@ -157,6 +157,7 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
                     if (resp.data.success) {
                         Materialize.toast('Stake Success', 3000, 'green white-text');
                         freezeAmountModal.deactivate();
+                        angular.element(document.querySelector("body")).removeClass("ovh");
                         $rootScope.enableReferOption = resp.data.referStatus;
                     } else {
                         Materialize.toast('Stake Error', 3000, 'red white-text');

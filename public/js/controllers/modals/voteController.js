@@ -96,6 +96,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
                     }
                     Materialize.toast(($scope.adding?'Vote Success':'DownVote Success'), 3000, 'green white-text');
                     voteModal.deactivate();
+                    angular.element(document.querySelector("body")).removeClass("ovh");
                 }
             });
         }

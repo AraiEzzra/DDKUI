@@ -69,6 +69,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
             if (resp.data.success) {
                 Materialize.toast(resp.data.info, 3000, 'green white-text');
                 referralLinkModal.deactivate();
+                angular.element(document.querySelector("body")).removeClass("ovh");
             } else {
                 $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
             }

@@ -275,6 +275,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                     }
                     Materialize.toast('Sent Success', 3000, 'green white-text');
                     sendTransactionModal.deactivate();
+                    angular.element(document.querySelector("body")).removeClass("ovh");
                 }
             });
         }

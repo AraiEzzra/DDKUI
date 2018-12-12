@@ -16,10 +16,12 @@ angular.module('DDKApp').controller('blockModalController', ["$scope", "$http", 
 
     $scope.close = function () {
         blockModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.userInfo = function (userId) {
         blockModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
         $scope.userInfo = userInfo.activate({userId: userId});
         angular.element(document.querySelector("body")).addClass("ovh");
     }
