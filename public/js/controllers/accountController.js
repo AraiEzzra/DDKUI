@@ -2,7 +2,7 @@
 require('angular');
 var config = require('../../../config');
 
-angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo) {
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', 'SpecifictransactionInfoModal',function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo, SpecifictransactionInfoModal) {
     
     $scope.ExplorerHost = config.explorerServerHost;
     $scope.ExplorerPort = config.explorerServerPort;
@@ -19,9 +19,12 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.secondPassphrase = userService.secondPassphrase;
     $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
     $scope.transactionsLoading = true;
+    $scope.sponsor ;
     $scope.allVotes = 100 * 1000 * 1000 * 1000 * 1000 * 100;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     
+    $scope.voteTransaction = false;
+    $scope.stakeTransaction = false;
 
     $scope.graphs = {
         DDKPrice: {
@@ -40,6 +43,26 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             }
         }
     };
+
+
+
+  /*----------------------------------Transaction Information-----------------------------------------*/
+    $scope.SpecifictransactionInfoModal = function (transaction,id) {
+        if(id==1){
+            console.log("hello  1");
+            $scope.voteTransaction= true;
+            $scope.stakeTransaction= false; 
+            
+        }else if(id==2){
+            console.log("hello  2");
+            $scope.sponsor = Object.keys(transaction.asset.airdropReward.sponsors)[0]
+            $scope.stakeTransaction= true; 
+            $scope.voteTransaction= false;
+        }
+        console.log(transaction,"-----------------------");
+        $scope.modal = SpecifictransactionInfoModal.activate({ transaction: transaction });
+        angular.element(document.querySelector("body")).addClass("ovh");
+    }
 
     $scope.transactionInfo = function (transaction) {
         $scope.modal = transactionInfo.activate({ transaction: transaction });
@@ -78,7 +101,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     }
 
     $scope.getTransactions = function () {
-        $http.get($rootScope.serverUrl + "/api/transactions", {
+           $http.get($rootScope.serverUrl + "/api/transactions", {
             params: {
                 senderPublicKey: userService.publicKey,
                 recipientId: $scope.address,
