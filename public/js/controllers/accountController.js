@@ -44,22 +44,17 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         }
     };
 
-
-
-  /*----------------------------------Transaction Information-----------------------------------------*/
+    /*----------------------------------Transaction Information--------------------------------------*/
     $scope.SpecifictransactionInfoModal = function (transaction,id) {
         if(id==1){
-            console.log("hello  1");
             $scope.voteTransaction= true;
             $scope.stakeTransaction= false; 
             
         }else if(id==2){
-            console.log("hello  2");
             $scope.sponsor = Object.keys(transaction.asset.airdropReward.sponsors)[0]
             $scope.stakeTransaction= true; 
             $scope.voteTransaction= false;
         }
-        console.log(transaction,"-----------------------");
         $scope.modal = SpecifictransactionInfoModal.activate({ transaction: transaction });
         angular.element(document.querySelector("body")).addClass("ovh");
     }
@@ -300,5 +295,18 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.updateAppView();
     /*   $scope.getCandles(); */
 
+
+   /* For Vote Icon Functionality */
+   $scope.voteIconVisibility =function(transaction){
+
+    if(transaction.type == 3 && (transaction.asset.reward>0||transaction.asset.unstake>0||(transaction.asset.airdropReward.withAirdropReward==true&&transaction.asset.airdropReward.totalReward>0))){
+
+        return true;
+    }else{
+    
+        return false;
+    }
+
+   }
 
 }]);

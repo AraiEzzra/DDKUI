@@ -13,10 +13,6 @@ angular.module('DDKApp').controller('SpecifictransactionController', ["$scope", 
     }
 
     $scope.close = function () {
-        console.log("asdf");
-        if ($scope.destroy) {
-            $scope.destroy();
-        }
         SpecifictransactionInfoModal.deactivate();
         angular.element(document.querySelector("body")).removeClass("ovh");
     }

@@ -1,174 +1,175 @@
+<!----------------------Stake Transaction Modal------------------------------------------>
 <div>
-<div class="app-modal valign-wrapper" id="transaction-modal" ng-if="stakeTransaction">
-
-    <div class="container height100">
-
-        <div class="row height100">
-            <div class="col-md-8 col-md-offset-2 height100 valign-wrapper">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>{{'Direct Referral Reward '|translate}}:</h2>
-
-                        <div class="close-modal" ng-click="close()">
-                            <span class="sr-only">
-                                <translate>Close modal</translate>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="scrolling">
-                        <div class="modal-body">
-                            <ul class="list-group">
-
-                                <li class="list-group-item bordered">
-                                    <translate> Sponsor's address</translate>
-                                    <span class="pull-right small-text">{{sponsor}}</span>
-                                </li>
-
-                                <li class="list-group-item bordered">
-                                    <translate>Reward</translate>
-                                    <span class="pull-right small-text">{{transaction.asset.airdropReward.totalReward/100000000}}</span>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-</div>
-<!-----------Vote Transaction Modal---------------->
-
-<div class="app-modal valign-wrapper" id="voteTransaction-modal" ng-if="voteTransaction">
-
+    <div class="app-modal valign-wrapper" id="transaction-modal" ng-if="stakeTransaction">
         <div class="container height100">
-    
             <div class="row height100">
                 <div class="col-md-8 col-md-offset-2 height100 valign-wrapper">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2>{{'vote Reward'|translate}}:</h2>
-    
+                            <h2>{{'Direct Referral Reward '|translate}}:</h2>
+
                             <div class="close-modal" ng-click="close()">
                                 <span class="sr-only">
                                     <translate>Close modal</translate>
                                 </span>
                             </div>
                         </div>
+
                         <div class="scrolling">
                             <div class="modal-body">
                                 <ul class="list-group">
-    
-                                    <!-- <li class="list-group-item bordered">
-                                        <translate>Address</translate>
-                                        <span class="pull-right small-text">{{transaction.Address}}</span>
-                                    </li>
-    
+
                                     <li class="list-group-item bordered">
-                                        <translate>Reward Amount</translate>
-                                        <span class="pull-right small-text">{{transaction.reward}}</span>
+                                        <translate> Sponsor's address</translate>
+                                        <span class="pull-right small-text">{{sponsor}}</span>
                                     </li>
-     -->
-                                
 
+                                    <li class="list-group-item bordered">
+                                        <translate>Reward</translate>
+                                        <span class="pull-right small-text">{{transaction.asset.airdropReward.totalReward/100000000}}</span>
+                                    </li>
 
-
-                                    <div class="referral-tab">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active">
-                                                    <a href="#1" data-toggle="tab">Stake Reward</a>
-                                                </li>
-                                                   <li>
-                                                        <a href="#2" data-toggle="tab">Chain Reward</a>
-                                                    </li>
-                                                
-                                               
-                                                 <li>
-                                                    <a href="#3" data-toggle="tab">Unstake</a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content panel panel-default">
-                                                <h1>{{expanded}}</h1>
-                                                <div class="tab-pane active" id="1">
-                                                    <div class="panel panel-default" ng-class="">
-                                                            <table ng-show="" ng-table="tableRewards" border="0" width="100%" cellpadding="0" cellspacing="0"> 
-                                                                    <!-- <table class="table">
-                                                                            <thead>
-                                                                              <tr>
-                                                                                <th scope="col">#</th>
-                                                                                <th scope="col">First</th>
-                                                                                <th scope="col">Last</th>
-                                                                                <th scope="col">Handle</th>
-                                                                              </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                              <tr>
-                                                                                <th scope="row">1</th>
-                                                                                <td>Mark</td>
-                                                                                <td>Otto</td>
-                                                                                <td>@mdo</td>
-                                                                              </tr>
-                                                                              <tr>
-                                                                                <th scope="row">2</th>
-                                                                                <td>Jacob</td>
-                                                                                <td>Thornton</td>
-                                                                                <td>@fat</td>
-                                                                              </tr>
-                                                                              <tr>
-                                                                                <th scope="row">3</th>
-                                                                                <td>Larry</td>
-                                                                                <td>the Bird</td>
-                                                                                <td>@twitter</td>
-                                                                              </tr>
-                                                                            </tbody>
-                                                                          </table>
-                                               -->
-                                                            </div>
-                                              </div>
-                                                
-                                               <div class="tab-pane" id="2">
-                                                    <div class="panel panel-default">
-                                                        <table ng-show="" ng-table="tableRewards" border="0" width="100%" cellpadding="0" cellspacing="0">
-                                                           
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane" id="2">
-                                                        <div class="panel panel-default" ng-class="">
-                                                            <table ng-show="" ng-table="tableRewards" border="0" width="100%" cellpadding="0" cellspacing="0">
-                                                               
-                                                        </div>
-                                                    </div>
-                                            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                   
                                 </ul>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
+    </div>
+    <!------------------------------Vote Transaction Modal-------------------------------------->
+
+
+    <div class="app-modal valign-wrapper" id="voteTransaction-modal" ng-if="voteTransaction">
+
+        <div class="container height100">
+
+            <div class="row height100">
+                <div class="col-md-8 col-md-offset-2 height100 valign-wrapper">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h2>{{'Reward Info'|translate}}:</h2>
+
+                            <div class="close-modal" ng-click="close()">
+                                <span class="sr-only">
+                                    <translate>Close modal</translate>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--<div class="scrolling">
+                            <div class="modal-body">
+                                <ul class="list-group"> -->
+                        <div class="referral-tab">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#1" data-toggle="tab">Stake Reward</a>
+                                </li>
+                                <li>
+                                    <a href="#2" data-toggle="tab">Chain Reward</a>
+                                </li>
+                                <li>
+                                    <a href="#3" data-toggle="tab">Unstake</a>
+                                </li>
+                            </ul>
+
+
+                            <div class="tab-content panel panel-default">
+
+                                <div class="tab-pane active" id="1">
+                                    <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
+                                        class="referrals-list">
+                                        <tr ng-show="transaction.asset.reward>0">
+                                            <td data-title="tableReferral.cols.level" sortable="'level'">
+                                                <translate> Stake Reward</translate>
+                                            </td>
+                                            <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">
+                                                    {{transaction.asset.reward/100000000}}
+                                                <!-- <span class="pull-right small-text">{{transaction.asset.reward}}</span> -->
+
+                                            </td>
+
+                                        </tr>
+
+                                        <tr ng-show="transaction.asset.reward==0">
+                                            <td colspan="2">
+                                                <translate>No Data Available</translate>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+
+                                <div class="tab-pane" id="2">
+
+                                    <!-- <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
+                                        <p class="empty-state-text">
+                                            <translate>No results for this search.</translate>
+                                        </p>
+                                    </div> -->
+
+                                    <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
+                                        class="referrals-list">
+                                        <tr ng-show="transaction.asset.airdropReward.totalReward>0" ng-repeat="(key,value) in transaction.asset.airdropReward.sponsors">
+                                            
+                                            <td data-title="tableReferral.cols.level" sortable="'level'">{{key}}</td>
+                                            <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{value/100000000}}</td>
+                                            
+                                        </tr>
+
+                                        <tr ng-show="transaction.asset.airdropReward.totalReward<=0">
+                                            <td colspan="2">
+                                                <translate>No Data Available</translate>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+
+                                <div class="tab-pane" id="3">
+
+                                    <!-- <li class="list-group-item bordered" ng-if="transaction.asset.unstake>0">
+                                        <translate> Unstake Reward</translate>
+                                        <span class="pull-right small-text">{{transaction.asset.unstake}}</span>
+                                    </li>-->
+
+                                    <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
+                                        class="referrals-list">
+                                        <tr ng-show="transaction.asset.unstake<0">
+                                            <td data-title="tableReferral.cols.level" sortable="'level'">
+                                                <translate> Unstake Reward</translate>
+                                            </td>
+                                            <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">
+                                                {{transaction.asset.unstake/100000000}}
+
+                                            </td>
+
+                                        </tr>
+
+                                        <tr ng-show="transaction.asset.unstake==0">
+                                            <td colspan="2">
+                                                <translate>No Data Available</translate>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 

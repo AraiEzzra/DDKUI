@@ -194,17 +194,13 @@
               <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
              
               <td class="padding-in-1400">
-               <!--------------------------working------------------------->
-
-               <!-- <i class="vertical-text mdi-image-brightness-1 cloud-font" ng-click="SpecifictransactionInfoModal(transaction.senderId)"></i> -->
-               <i ng-if="transaction.type==8 " class="vertical-text mdi-image-brightness-7"  ng-click="SpecifictransactionInfoModal(transaction,2)"></i>
-               <i ng-if="transaction.type==3"  class="vertical-text mdi-action-find-in-page" ng-click="SpecifictransactionInfoModal(transaction,1)"></i>
+               <!----------------------Icons of Vote and Stake---------------------------->
+               
+               <i ng-if="transaction.type==8 && transaction.asset.airdropReward.totalReward > 0" class="vertical-text mdi-image-brightness-7"  ng-click="SpecifictransactionInfoModal(transaction,2)"></i>
+               <i ng-if="transaction.type==3 && (transaction.asset.reward > 0 || transaction.asset.airdropReward.totalReward > 0 || transaction.asset.unstake < 0)"  class="vertical-text mdi-social-person-add" ng-click="SpecifictransactionInfoModal(transaction,1)"></i>
               
-              {{transaction.trsName}}
+                {{transaction.trsName}}
               </td>
-              
-
-              
               <td>
                 {{transaction.timestamp | timeAgoFilter: false}}
               </td>
