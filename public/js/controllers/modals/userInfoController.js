@@ -8,6 +8,7 @@ angular.module('DDKApp').controller('userInfoController', ["$scope", "$http", "$
 
     $scope.sendTransactionToUser = function () {
         userInfo.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
         $scope.sendTransactionModal = sendTransactionModal.activate({
             totalBalance: $scope.unconfirmedBalance,
             to: $scope.userId,

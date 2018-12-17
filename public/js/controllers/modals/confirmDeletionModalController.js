@@ -7,6 +7,7 @@ angular.module('DDKApp').controller('confirmDeletionModalController', ["$scope",
             $scope.destroy(yesDelete);
         }
         confirmDeletionModal.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
 }]);

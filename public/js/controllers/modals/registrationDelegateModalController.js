@@ -132,6 +132,7 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
 
                         Materialize.toast('Transaction sent', 3000, 'green white-text');
                         registrationDelegateModal.deactivate();
+                        angular.element(document.querySelector("body")).removeClass("ovh");
                     } else {
                         Materialize.toast('Transaction error', 3000, 'red white-text');
                         $scope.error = resp.data.error;
