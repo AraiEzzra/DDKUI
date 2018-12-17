@@ -5,7 +5,7 @@
     "serverUrl": "10.5.0.5:7007",
     "elasticsearchHost": "10.5.0.2:9200",
     "domainName": "localhost",
+    "port": 7000,
     "explorerServerHost": "localhost",
-    "explorerServerPort": "80",
-    "port": 7000
+    "explorerServerPort": 7000
 }
