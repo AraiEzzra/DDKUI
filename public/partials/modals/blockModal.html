@@ -31,7 +31,15 @@
                                     </div>
                                     <div class="transaction-bottom">
                                         <div class="fee"><translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>
-                                        <div class="fee"><translate>Type</translate>: {{transaction.trsName}}</div>
+                                        <div class="fee"><translate>Type</translate>: <!-- {{transaction.trsName}} -->
+                                        
+                                            <span ng-if="transaction.trsName === 'SIGNATURE'">
+                                                SECONDPASS
+                                              </span>
+                                              <span ng-if="transaction.trsName !== 'SIGNATURE'">
+                                                {{transaction.trsName}}
+                                              </span>
+                                        </div>
                                         <div class="DDK">{{transaction.amount | DDKFilter}} DDK</div>
                                         <div class="confirmations">{{transaction.confirmations || 0}} <translate>CONFIRMATIONS</translate></div>
                                     </div>

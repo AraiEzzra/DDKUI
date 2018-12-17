@@ -9,7 +9,8 @@
                 <div class="logo-grey"></div>
                 <p class="empty-state-text">{{'Your Multi-Signature group(s) have not made any transactions yet.'|translate}}</p>
             </div>
-            <table ng-show="!!countPendings" ng-table="tableMultiTransactions" border="0" width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
+            <table ng-show="!!countPendings" ng-table="tableMultiTransactions" border="0" width="100%" cellpadding="0" cellspacing="0"
+                template-pagination="custom/pager">
                 <tr ng-class="{'voted': transaction.confirmations>=transaction.needed}" style="height: 63px;" ng-repeat="item in $data">
                     <td data-title="tableMultiTransactions.cols.transactionId" sortable="'transaction.id'">{{item.transaction.id}}</td>
                     <td data-title="tableMultiTransactions.cols.recipientId" sortable="'transaction.recipientId'">
@@ -28,7 +29,10 @@
                         {{countSign(item.transaction)}}/{{confirmationsNeeded(item)}}
                     </td>
                     <td data-title="''">
-                        <a ng-click="confirmTransaction(item.transaction.id)" ng-if="!signedByUser(item)" class="btn btn-dark-meant"><i class="mdi-action-done left"></i><translate>CONFIRM</translate></a>
+                        <a ng-click="confirmTransaction(item.transaction.id)" ng-if="!signedByUser(item)" class="btn btn-dark-meant">
+                            <i class="mdi-action-done left"></i>
+                            <translate>CONFIRM</translate>
+                        </a>
                     </td>
                 </tr>
             </table>
@@ -56,7 +60,8 @@
                     </td>
                     <td data-title="''">
                         <a class="btn btn-dark-meant" ui-sref="main.walletTransactions({walletId:wallet.address})">
-                            <i class="mdi-action-done left"></i><translate>CONFIRMED TRANSACTIONS</translate>
+                            <i class="mdi-action-done left"></i>
+                            <translate>CONFIRMED TRANSACTIONS</translate>
                         </a>
                     </td>
                 </tr>

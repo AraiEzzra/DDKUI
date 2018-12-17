@@ -44,7 +44,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     let diskDataJson = {
       "data": $scope.airdropData,
       "labels": ["Consume", "Available"],
-      "colours": ["#cc3d3d", "#c0bebe"]
+      "colours": ["#0288d1", "#c0bebe"]
     };
     $scope.pieDiskData = diskDataJson;
   });
@@ -142,13 +142,3 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     }, 2000); // Delay 2000 ms
   });
 }]);
-
-
-
-
-
-
-
-
-
-

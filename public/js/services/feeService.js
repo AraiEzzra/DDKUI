@@ -3,8 +3,7 @@ require('angular');
 angular.module('DDKApp').service('feeService', function ($http, $rootScope) {
 
     return function (cb) {
-        $http.get($rootScope.serverUrl + '/api/blocks/getFees')
-        .then(function (response) {
+        $http.get($rootScope.serverUrl + '/api/blocks/getFees').then(function (response) {
             return cb(response.data.fees || {
                 send: 0,
                 vote: 0,

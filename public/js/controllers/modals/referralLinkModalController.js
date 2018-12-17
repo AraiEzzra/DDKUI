@@ -17,20 +17,8 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
             $scope.errorMessage = "Currently not able to generate the referral link";
             return;
         }
-
+        
         $scope.refLink = config.domainName + '/referal/' + userAddress;
-
-/*         $http.post($rootScope.serverUrl + "/referral/generateReferalLink/", { secret: userAddress }).then(function (resp) {
-            if (resp.data.success) {
-                $scope.refLink = config.serverProtocol+'://'+config.serverHost+':'+config.UIPort+'/referal/'+resp.data.referralLink;
-            } else {
-                $scope.noMatch = true;
-                $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
-            }
-        }, function (error) {
-            $scope.noMatch = true;
-            $scope.errorMessage = error.data.error ? error.data.error : error.data;
-        }); */
 
     }
 
@@ -69,6 +57,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope","$r
             if (resp.data.success) {
                 Materialize.toast(resp.data.info, 3000, 'green white-text');
                 referralLinkModal.deactivate();
+                angular.element(document.querySelector("body")).removeClass("ovh");
             } else {
                 $scope.errorMessage = resp.data.error ? resp.data.error : 'Error connecting to server';
             }

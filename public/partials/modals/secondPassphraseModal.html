@@ -9,7 +9,7 @@
                                 <div class="close-modal" ng-click="close()">
                                     <span class="sr-only"><translate>Close modal</translate></span>
                                 </div>
-                                <span class="modal-log">DDK</span>
+                                <span class="modal-log">DDKOIN</span>
                             </div>
                             <div class="modal-header clearfix">
                                 <div>
@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="modal-body clearfix">
-                                <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-20">
+                                <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-20 sec_passphrase">
                                     <div class="input-field passphraseGeneration">
                                         <textarea ng-focus="focus=='secondPass'" id="newPassphrase" class="materialize-textarea" ng-model="newPassphrase" ng-trim="false" autofocus readonly></textarea>
                                         <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Second Passphrase</label>
@@ -45,19 +45,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- <div class="card-action clearfix">
-                                <div class="pull-right">
-                                    <a href="#" class="waves-effect second-action" ng-click="savePassToFile(newPassphrase)"><translate>SAVE PASSPHRASE</translate></a>
-                                    <a href='#' class="primary-action waves-effect" ng-click="goToStep(2)"><translate>NEXT STEP</translate></a>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="material-modal-content" ng-show="!passmode && step == 2">
                             <div class="modal-header modal-iconed">
                                 <div class="close-modal" ng-click="close()">
                                     <span class="sr-only"><translate>Close modal</translate></span>
                                 </div>
-                                <span class="modal-log">DDK</span>
+                                <span class="modal-log">DDKOIN</span>
                             </div>
                             <div class="modal-header clearfix">
                                 <div>
@@ -88,19 +82,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- <div class="card-action clearfix">
-                                <div class="pull-right">
-                                    <a href="#" class="waves-effect second-action" ng-click="goToStep(1)"><translate>GO BACK</translate></a>
-                                    <a href='#' class="primary-action waves-effect" ng-click="confirmNewPassphrase()"><translate>confirm second passphrase</translate></a>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="material-modal-content" ng-show="passmode">
                             <div class="modal-header modal-iconed">
                                 <div class="close-modal" ng-click="close()">
                                     <span class="sr-only"><translate>Close modal</translate></span>
                                 </div>
-                                <span class="modal-log">DDK</span>
+                                <span class="modal-log">DDKOIN</span>
                             </div>
                             <div class="modal-header clearfix">
                                 <div>
@@ -130,12 +118,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- <div class="card-action clearfix">
-                                <div class="pull-right">
-                                    <a href="#" class="waves-effect second-action" ng-click="goToStep(2)"><translate>GO BACK</translate></a>
-                                    <a href='#' class="primary-action waves-effect" ng-click="addNewPassphrase(pass)"><translate>add second passphrase</translate></a>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>

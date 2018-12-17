@@ -37,9 +37,6 @@
 .account-block {
   color: @white;
   font-size: @content-text;
-  background-color: @gray3;
- /* box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.8) inset;
-  -webkit-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.8) inset;*/
   padding: 17px 8px;
   .icon {
     width: 64px;
@@ -62,12 +59,32 @@
     text-align: center;
   }
 }
-
-.send-input{
-  width: 100%;
-  border-right: 0!important;
-  border-left: 0!important;
-  margin-right: 0!important;
-  margin-left: 0!important;
+.agreeConfirmation{
+  [type=checkbox].filled-in:checked+label:after{
+    border: 2px solid #076da5;
+    background-color: #0187d1;
+  }
 }
 
+.agreeConfirmation{
+  [type=checkbox].filled-in:not(:checked)+label:after{
+    border: 2px solid #337ab7!important;
+  }
+}
+
+
+/* AgreeConfirmation Modal */
+.agree{
+  padding: 15px;
+  p{
+line-height: 20px;
+    margin-bottom: 15px;
+}
+ h2{
+  margin-bottom: 15px;
+ }
+ li{
+  margin-bottom: 15px;
+  line-height: 20px;
+ }
+}

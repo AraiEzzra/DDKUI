@@ -2,15 +2,16 @@
     <div class="container height100">
         <div class="row height100">
             <div class="col-md-6 col-md-offset-3 height100 valign-wrapper">
-                <div class="modal-content" ng-show="!passmode && !checkSecondPass && !OTP">
+                <div class="modal-content" ng-show="!passmode && !checkSecondPass && !OTP && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
                                 <translate>Close modal</translate>
                             </span>
                         </div>
-                        <span class="modal-log">DDK</span>
+                        <span class="modal-log">DDKOIN</span>
                     </div>
+                    <div class="popupHeight">
                     <div class="modal-header clearfix">
                         <div>
                             <h2>{{'Send DDK'|translate}}</h2>
@@ -45,8 +46,10 @@
                     </div>
                     <div class="modal-body bordered">
                         <span class="send-info-text flat-text">
-                            <translate>Make sure you're sending DDK to the right address. This action can't be undone later.</translate>
+                            <translate>All transfer or/and executions are final and irreversible.
+                                DDK Organization takes no responsibility or/and accountability to any Users or Stakeholders transactions or/and executions transactions with any parties involved in the platform as decentralized platform implemented. Any transactions or/ and execution transactions by any users with any parties in the platform are done at their own risk.</translate>
                         </span>
+                    </div>
                     </div>
                     <div class="modal-body bordered">
                         <ul class="nav modal-buttons pull-right">
@@ -60,13 +63,55 @@
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show=" passmode && !checkSecondPass && !OTP">
+
+                <!-- For Confirmations -->
+                <div class="modal-content" ng-show="confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
                                 <translate>Close modal</translate>
                             </span>
                         </div>
+                        <span class="modal-log">DDK</span>
+                    </div>
+                    <div class="modal-header clearfix">
+                        <div>
+                            <h2>{{'Confirmations, Are you sure?.'|translate}}</h2>
+                        </div>
+                    </div>
+                    <div class="modal-body confirmations-message">
+                        <i class="mdi-alert-error"></i>
+                        <p>Are you sure that you want to send this Transaction</p>
+                        <div class="final-detail-show">
+                            <span>Receiver Address : {{to}}</span>
+                            <br>
+                            <span>Value of DDK : {{amount}}</span>
+                            <br>
+                            <span>Fee : {{fee }} DDK
+                        </div>
+                    </div>
+                    <div class="error-message-wrapper">
+                        <span class="pass-error" ng-show="errorMessage.fromServer">{{errorMessage.fromServer}}</span>
+                    </div>
+                    <div class="modal-body bordered">
+                        <ul class="nav modal-buttons pull-right">
+                            <li>
+                                <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
+                            </li>
+                            <li>
+                                <input type="submit" value="{{'Yes, Send It' | translate}}" ng-click="confirmationsPopup()" class="btn-flat blue-link" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-content" ng-show="passmode && !checkSecondPass && !OTP && !confirmations">
+                    <div class="modal-header modal-iconed">
+                        <div class="close-modal" ng-click="close()">
+                            <span class="sr-only">
+                                <translate>Close modal</translate>
+                            </span>
+                        </div>
+                        <span class="modal-log">DDKOIN</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -86,7 +131,7 @@
                                         <translate>Your Passphrase</translate>
                                     </label>
                                 </div>
-                                <span class="pass-error" ng-show="errorMessage.fromServer && !secondSecret">{{errorMessage.fromServer}}</span>
+                                <span class="pass-error" ng-show="errorMessage.fromServer">{{errorMessage.fromServer}}</span>
                             </div>
                             <input type="submit" ng-show="false">
                         </form>
@@ -97,20 +142,20 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase)" class="btn-flat waves-blue"
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="confirmPassphrasePopup(secretPhrase)" class="btn-flat waves-blue"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show="checkSecondPass && !OTP">
+                <div class="modal-content" ng-show="checkSecondPass && !OTP && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
                                 <translate>Close modal</translate>
                             </span>
                         </div>
-                        <span class="modal-log">DDK</span>
+                        <span class="modal-log">DDKOIN</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -125,7 +170,7 @@
                             <div class="field-padding">
                                 <div class="input-field">
                                     <input id="secondPhrase" type="password" ng-model="secondPhrase" ng-trim="false" autofocus ng-focus="focus == 'secondPhrase'"
-                                        ng-class="{'invalid': errorMessage}">
+                                        ng-class="{'invalid': errorMessage.fromServer}">
                                     <label for="secondPhrase">
                                         <translate>Your Second Passphrase</translate>
                                     </label>
@@ -141,40 +186,36 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase, true)" class="btn-flat blue-link"
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="confirmPassphrasePopup(secondPhrase, true)" class="btn-flat blue-link"
                                     ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="modal-content" ng-show="OTP">
+                <div class="modal-content" ng-show="OTP && !confirmations">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only">
                                 <translate>Close modal</translate>
                             </span>
                         </div>
-                        <span class="modal-log">DDK</span>
+                        <span class="modal-log">DDKOIN</span>
                     </div>
                     <div class="modal-header clearfix">
-
                         <div class="m-b-20">
-                            <h2>{{'OTP'|translate}}</h2>
-                            <h1>Verify your mobile number</h1>
+                            <h2>{{'Input Your Google Authentication 6 Digit Code'|translate}}</h2>
                         </div>
                         <div class="l-h20">
-                            <translate>Thanks for giving your details. An OTP has been sent to your Mobile Number.Please enter the 4
-                                digit OTP below for Successful Registration.</translate>
+                            <translate>Please enter DDKoinDAE 6 digit code below to proceed transaction.</translate>
                         </div>
                     </div>
                     <div class="modal-body">
-                        <!-- <form ng-submit="passcheck()"> -->
                         <form ng-submit="passcheck('', otpNumber)">
                             <div class="field-padding">
                                 <div class="input-field">
                                     <input id="otpNumber" type="text" ng-model="otpNumber" ng-class="{'invalid': errorMessage.otpNumber}">
                                     <label for="fAmount">
-                                        <translate>Enter your OTP Number</translate>
+                                        <translate>Enter 6 Digit Code Number Here</translate>
                                     </label>
                                 </div>
 

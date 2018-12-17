@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="DDKApp">
-    <head>
-        <base href="/">
-        <title>DDK</title>
-        
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123365280-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
 
-            gtag('config', 'UA-123365280-1');
-        </script>
-     
-        <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+<head>
+    <base href="/">
+    <title>DDKOIN Mainnet Webwallet</title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126033547-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'UA-126033547-1');
+    </script>
+    
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
     <meta charset="UTF-8">
     <meta name="application-name" content="{{'DDK - Blockchain Application Platform'|translate}}" />
     <meta name="msapplication-TileColor" content="#F3F3E1" />
     <link rel="stylesheet" href="/static/css/app.css">
     <script src="/static/js/vendor_app.js"></script>
+    <script src="./node_modules/socket.io/socket.io.js"></script>
 </head>
 
 <body>

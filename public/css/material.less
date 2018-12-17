@@ -10,14 +10,14 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
   font-size: 1.15rem;
   opacity: 1;
   color: #b8b8b8;
-  &.active {
+  /* &.active {
     font-size: .8rem;
     -webkit-transform: translateY(-160%);
     -moz-transform: translateY(-160%);
     -ms-transform: translateY(-160%);
     -o-transform: translateY(-160%);
     transform: translateY(-160%);
-  }
+  } */
 }
 
 .input-field {
@@ -35,19 +35,19 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 
 .progress {
   position: relative;
-  height: 6px;
+  height: 4px;
   display: block;
   width: 100%;
-  background-color: #d2d2d2;
+  background-color: #90caf9;
   border-radius: 2px;
   margin: 0.5rem 0 1rem 0;
   overflow: hidden;
   .determinate {
     position: absolute;
-    background-color: #cd3d3d;
+    background-color: inherit;
     top: 0;
     bottom: 0;
-    //background-color: #209bde;
+    background-color: #209bde;
     -webkit-transition: width .3s linear;
     -moz-transition: width .3s linear;
     -o-transition: width .3s linear;
@@ -62,7 +62,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
     overflow-y: hidden;
     padding: 0;
     resize: none;
-    min-height: 3rem;
+    /* min-height: 3rem */;
     margin: 0;
   }
   label.active {

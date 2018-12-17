@@ -1,22 +1,27 @@
 <div class="top-margin"></div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">
+        <div class="panel-default custom-panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">
             <div class="panel-heading">
-                <h2>
-                  {{'Latest Transactions'|translate}}
-                </h2>
+                <h2>{{'Latest Transactions'|translate}}</h2>
             </div>
-            <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions" border="0" width="100%" cellpadding="0" cellspacing="0">
+            <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions" border="0" width="100%"
+                cellpadding="0" cellspacing="0" template-pagination="custom/pager">
                 <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
                     <div class="more-down-table" dropdown on-toggle="toggled(open)" is-open="moreDownTable.isopen">
                         <i class="mdi-navigation-more-vert" dropdown-toggle aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" role="menu">
-                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="advanced" ng-model="showAllColumns">
-                                <label for="advanced"><translate>Show All Columns</translate></label>
+                            <p ng-click="check($event)">
+                                <input type="checkbox" class="filled-in violet" id="advanced" ng-model="showAllColumns">
+                                <label for="advanced">
+                                    <translate>Show All Columns</translate>
+                                </label>
                             </p>
-                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="fulltime" ng-model="showFullTime">
-                                <label for="fulltime"><translate>Show Full Time</translate></label>
+                            <p ng-click="check($event)">
+                                <input type="checkbox" class="filled-in violet" id="fulltime" ng-model="showFullTime">
+                                <label for="fulltime">
+                                    <translate>Show Full Time</translate>
+                                </label>
                             </p>
                         </div>
                     </div>
@@ -35,7 +40,14 @@
                         <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
-                        {{transaction.trsName}}
+                        
+
+                        <div ng-if="transaction.trsName === 'SIGNATURE'">
+                            SECONDPASS
+                          </div>
+                          <div ng-if="transaction.trsName !== 'SIGNATURE'">
+                            {{transaction.trsName}}
+                          </div>
                     </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>
@@ -67,7 +79,13 @@
                         <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
-                        {{transaction.trsName}}
+                        
+                        <div ng-if="transaction.trsName === 'SIGNATURE'">
+                            SECONDPASS
+                          </div>
+                          <div ng-if="transaction.trsName !== 'SIGNATURE'">
+                            {{transaction.trsName}}
+                          </div>
                     </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>
@@ -78,7 +96,7 @@
                     </td>
                     <td ng-show="transaction.type == 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                        {{transaction.stakedAmount | DDKFilter}} 
+                        {{transaction.stakedAmount | DDKFilter}}
                     </td>
                     <td data-title="tableTransactions.cols.fee" sortable="'fee'">{{transaction.fee | DDKFilter}}
                     </td>

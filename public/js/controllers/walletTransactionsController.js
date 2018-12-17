@@ -14,10 +14,12 @@ angular.module('DDKApp').controller('walletTransactionsController', ['$scope', '
 
     $scope.userInfo = function (userId) {
         $scope.modal = userInfo.activate({userId: userId});
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.transactionInfo = function (block, signList) {
         $scope.modal = transactionInfo.activate({block: block, signList: signList});
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.getParams = function () {
@@ -92,6 +94,7 @@ angular.module('DDKApp').controller('walletTransactionsController', ['$scope', '
             destroy: function () {
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
 }]);

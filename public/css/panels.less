@@ -1,6 +1,4 @@
 .panel-default {
-  border-radius: @border-radius;
-  border-color: @border-grey;
   -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   &.panel-list {
@@ -53,15 +51,18 @@
   }
   .panel-heading {
     background-color: @grey;
-    padding: 16px;
+    padding: 15px;
     border-bottom: 2px solid @border-grey;
+    position: relative;
     .plain-text {
       position: absolute;
-      font-size: 14px;
       color: @white;
-      top: 15px;
-      font-weight: 500;
+      top: 18px;
+      font-weight: 300;
       right: 15px;
+      span{
+        font-size: 13px;
+      }
     }
     .more {
       position: absolute;
@@ -77,8 +78,8 @@
     h2 {
       line-height: 20px;
       opacity: @font-opacity;
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
   table {
@@ -92,11 +93,7 @@
         &:first-child {
           padding-left: 16px;
         }
-        color: @black;
-        font-size: @content-text;
-        font-weight: 500;
-        background-color: @grey;
-        border-bottom: 1px solid @border-grey;
+        font-weight: 400;
       }
 
     }
@@ -176,6 +173,8 @@
     }
   }
 
+  .panel-body {
+  }
   .wg-label {
     opacity: @font-opacity;
     display: block;
@@ -215,7 +214,7 @@
 }
 
 .light-graph {
-  background-color: @white;
+  background-color: #4c5965;
   border-color: @light-cloud;
   -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
@@ -227,7 +226,7 @@
   }
   &-heading {
     padding: 20px 0;
-    color: @grey-text;
+    color: @white;
     text-align: center;
     font-size: @graph-heading;
     width: 100%;
@@ -278,9 +277,8 @@
       left: 0;
       right: 0;
       margin-top: -20px;
-
       font-size: 32px;
-      color: #404040;
+      color: @white;
       .small-text {
         display: block;
         font-size: @normal-text;
@@ -310,28 +308,23 @@
 .info-panel {
   height: 50px;
   line-height: 50px;
-  background-color: @white;
+  background-color: #4c5965;
+  color: @white;
   border-color: @light-cloud;
   -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, .12);
   border-radius: @border-radius;
-  padding: 0 26px;
-  margin-bottom: 20px;
-
-  &.white {
-
-  }
+  padding: 0;
+  margin-bottom: 30px;
   &.info-panel-grey {
     height: 54px;
     line-height: 54px;
+    border-color: @light-cloud;
     border-radius: @border-radius;
     padding: 0 16px;
     margin-bottom: 20px;
-    border-bottom: 2px solid #cecece;
-    background-color: #fafafa;
-    border-top: 1px solid #cecece;
-    border-right: 1px solid #cecece;
-    border-left: 1px solid #cecece;
+    border-bottom: 2px solid #3f4b55;
+    background-color: #4c5965;
     -webkit-box-shadow: 0 0 3px 1px rgba(0, 0, 0, .12);
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, .12);
     overflow: hidden;
@@ -341,7 +334,6 @@
       line-height: inherit;
     }
     .title {
-      //font-size: @widget-text;
       display: block;
       float: left;
       vertical-align: middle;
@@ -382,14 +374,10 @@
         padding: 0 !important;
       }
     }
-
     span {
-      // width: 100%;
-      // float: left;
       padding: 18px 0;
       vertical-align: baseline;
     }
-
     .plain-text {
       padding-top: 18px;
     }

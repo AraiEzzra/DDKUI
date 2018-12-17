@@ -53,6 +53,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             }
         }).then(function (response) {
             transactionInfo.deactivate();
+            angular.element(document.querySelector("body")).removeClass("ovh");
             $scope.modal = blockInfo.activate({ block: response.data.block });
             angular.element(document.querySelector("body")).addClass("ovh");
         }
@@ -94,10 +95,13 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 }
             }).then(function (resp) {
                 var unconfirmedTransactions = resp.data.transactions;
-
+                
                 $timeout(function () {
                     $scope.transactions = _.compact(
                         unconfirmedTransactions.concat(transactions).slice(0, 8)
+                    );
+                    $scope.unconfirmedTransactions = _.compact(
+                        unconfirmedTransactions.slice(0, 8)
                     );
                 });
             });
@@ -133,44 +137,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         });
     }
 
-    /* For total stakeholders */
-    $scope.getStakeholdersCount = function () {
-        $http.get($rootScope.serverUrl + "/api/frogings/countStakeholders")
-            .then(function (resp) {
-                if (resp.data.success) {
-                    var countStakeholders = resp.data.countStakeholders.count;
-                    $scope.countStakeholders = JSON.parse(countStakeholders);
-                } else {
-                    Materialize.toast(resp.data.error, 3000, 'red white-text');
-                }
-            });
-    }
-
-    /* For Circulating Supply */
-    $scope.getCirculatingSupply = function () {
-        $http.get($rootScope.serverUrl + "/api/accounts/getCirculatingSupply")
-            .then(function (resp) {
-                if (resp.data.success) {
-                    var circulatingSupply = resp.data.circulatingSupply / 100000000;
-                    $scope.circulatingSupply = parseInt(circulatingSupply);
-                } else {
-                    Materialize.toast(resp.data.error, 3000, 'red white-text');
-                }
-            });
-    }
-
-    /* For Total Count*/
-    $scope.getAccountHolders = function () {
-        $http.get($rootScope.serverUrl + "/api/accounts/count")
-            .then(function (resp) {
-                if (resp.data.success) {
-                    var totalCount = resp.data.count;
-                    $scope.totalCount = JSON.parse(totalCount);
-                } else {
-                    Materialize.toast(resp.data.error, 3000, 'red white-text');
-                }
-            });
-    }
 
     /* For Your DDK Frozen */
     $scope.getMyDDKFrozen = function () {
@@ -195,23 +161,29 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             });
     }
 
-    /* For total DDK staked by stakeholders */
-    $scope.getTotalDDKStaked = function () {
-        $http.get($rootScope.serverUrl + "/api/frogings/getTotalDDKStaked")
+     /* For Get account details */
+     $scope.getDashboardDDKData = function () {
+        $http.get($rootScope.serverUrl + "/api/accounts/getDashboardDDKData")
             .then(function (resp) {
                 if (resp.data.success) {
-                    var totalDDKStaked = resp.data.totalDDKStaked.sum / 100000000;
+                    $scope.countStakeholders = JSON.parse(resp.data.countStakeholders);
+                    var totalDDKStaked = resp.data.totalDDKStaked / 100000000;
                     $scope.totalDDKStaked = (totalDDKStaked);
-                    $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalDDKStaked.sum);
+                    $scope.totalStakeBalanceToShow = $filter('decimalFilter')(resp.data.totalDDKStaked);
                     if ($scope.totalStakeBalanceToShow[1]) {
                         $scope.totalStakeBalanceToShow[1] = '.' + $scope.totalStakeBalanceToShow[1];
                     }
+                    var totalCount = resp.data.totalAccountHolders;
+                    $scope.totalCount = JSON.parse(totalCount);
+                    var circulatingSupply = resp.data.totalCirculatingSupply / 100000000;
+                    $scope.circulatingSupply = parseFloat(circulatingSupply);
                 } else {
-                    Materialize.toast(resp.data.error, 3000, 'red white-text');
+                    console.log('Error in getDashboardDDKData : ',resp.data.error);
                 }
             });
     }
-
+    $scope.getDashboardDDKData();
+    
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.balanceInterval);
         $scope.balanceInterval = null;
@@ -229,6 +201,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 }
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.referralLink = function () {
@@ -242,12 +215,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.updateAppView = function () {
         $scope.getAccount();
         $scope.getTransactions();
-        $scope.getStakeholdersCount();
-        $scope.getCirculatingSupply();
-        $scope.getAccountHolders();
-        $scope.getMyDDKFrozen();
-        $scope.getTotalSupply();
-        $scope.getTotalDDKStaked();
         delegateService.getDelegate($scope.publicKey, function (response) {
             $timeout(function () {
                 $scope.delegate = response;
@@ -262,20 +229,12 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         }
     });
 
-    $scope.$on('updateTotalStakeAmount', function (event, data) {
-        $scope.$$listeners.updateControllerData.splice(1);
-        if ((data.indexOf('main.dashboard') != -1 && $state.current.name == 'main.dashboard') || data.indexOf('main.transactions') != -1) {
-            $scope.updateAppView();
-        }
-    });
-
-    $scope.$on('updateTotalStakeAmount', function (ev, data) {
-        $scope.getAccount();
-        $scope.getTotalDDKStaked();
+    $scope.$on('updateStakeAmount', function (ev, data) {
+        $scope.getMyDDKFrozen();
     });
 
     $scope.updateAppView();
-    /*   $scope.getCandles(); */
-
+    $scope.getTotalSupply();
+    $scope.getMyDDKFrozen();
 
 }]);

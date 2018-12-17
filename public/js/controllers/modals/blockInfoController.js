@@ -14,14 +14,18 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
     };
 
     $scope.getTransactionsOfBlock($scope.block.b_id);
+    
+    
+    
 
     $scope.close = function () {
         blockInfo.deactivate();
-        angular.element(document.querySelector("body")).removeClass("ovh");   
+        angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
     $scope.userInfo = function (userId) {
         blockInfo.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
         $scope.userInfo = userInfo.activate({userId: userId});
         angular.element(document.querySelector("body")).addClass("ovh");
     }
@@ -29,6 +33,7 @@ angular.module('DDKApp').controller('blockInfoController', ["$scope", "$http", "
 
     $scope.showGenerator = function (generatorId) {
         blockInfo.deactivate();
+        angular.element(document.querySelector("body")).removeClass("ovh");
         $scope.userInfo = userInfo.activate({userId: generatorId});
         angular.element(document.querySelector("body")).addClass("ovh");
     }

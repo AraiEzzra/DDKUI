@@ -96,7 +96,7 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
                     destroy: function () {
 
                     }
-                });
+                })
                 angular.element(document.querySelector("body")).addClass("ovh");
             }
         });
@@ -114,12 +114,13 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
                                 }
                             }
                         })
+                        angular.element(document.querySelector("body")).addClass("ovh");
                     } else {
                         $scope.uninstallRequest();
                     }
                 }
             }
-        });
+        })
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
@@ -161,7 +162,7 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
                         $scope.installRequest(masterPass);
                     }
                 }
-            });
+            })
             angular.element(document.querySelector("body")).addClass("ovh");
         } else {
             $scope.installRequest();
@@ -190,6 +191,7 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
 
                     }
                 })
+                angular.element(document.querySelector("body")).addClass("ovh");
             }
         });
     }
@@ -206,6 +208,7 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
                         }
                     }
                 })
+                angular.element(document.querySelector("body")).addClass("ovh");
             } else {
                 $scope.launchRequest();
             }
@@ -229,6 +232,7 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
 
     $scope.openDapp = function () {
         openDappModal.activate({ destroy: openDapp });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.isInstalled();

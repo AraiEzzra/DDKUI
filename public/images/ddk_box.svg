@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{fill:#FFFFFF;}
+	.st1{display:none;fill:#ED1C6C;}
+	
+		.st2{fill:none;stroke:#FFFFFF;stroke-width:6;stroke-miterlimit:10;stroke-dasharray:9.1005,27.3014,9.1005,9.1005,27.3014,9.1005;}
+]]>
+</style>
+<rect x="-38.5" y="-50" class="st1" width="159.5" height="218.5"/>
+<g id="logo">
+	<path class="st0" d="M57.943,44.187L57.58,67.344c-0.313,0.805-0.73,1.184-1.125,1.361l-11.664,0.16H44.79v-1.521h-9.294v10.814
+		h18.983c0,0,0.03,0.002,0.088,0.002c0.123,0,0.37-0.004,0.704-0.023c1.016-0.049,2.121-0.189,3.286-0.418l0.175-0.053
+		c0.357-0.139,0.703-0.287,1.039-0.439c3.465-1.24,7.572-4.174,7.572-11.104V44.187H57.943z"/>
+	<path class="st0" d="M46.279,33.194v9.504l22.233-0.001c2.113,0.075,3.154,1.077,3.374,3.248v7.594
+		c-0.421,3.021-1.8,3.021-2.391,3.021h-0.673v9.281c1.127-0.025,2.364-0.17,3.678-0.428l0.174-0.051
+		c5.714-2.24,8.611-6.125,8.611-11.545v-8.871c0-1.793-0.439-3.556-1.306-5.238l-0.022-0.042c-2.478-4.296-6.08-6.474-10.708-6.474
+		H46.279L46.279,33.194z"/>
+	<path class="st0" d="M44.79,29.343h9.78c2.053,0.072,2.701,1.032,3.011,1.749l0.265,0.611h9.549l-0.102-1.105
+		c-0.133-1.454-0.555-2.881-1.279-4.285c-2.477-4.296-6.078-6.474-10.707-6.474H35.496V55.07h9.295L44.79,29.343L44.79,29.343z"/>
+	<polygon class="st0" points="56.455,56.561 44.79,56.561 32.533,56.561 32.533,42.698 34.007,42.698 34.007,33.194 23.239,33.194 
+		23.239,65.855 56.455,65.855 	"/>
+</g>
+<g>
+	<circle class="st2" cx="50.176" cy="48.25" r="43.463"/>
+              <animateTransform attributeName="transform"
+                              attributeType="XML"
+                              type="rotate"
+                              from="0 50 50"
+                              to="360 50 50"
+                              dur="10s"
+                              repeatCount="indefinite" />
+</g>
+</svg>

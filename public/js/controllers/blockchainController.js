@@ -47,7 +47,6 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
         numberOfTransactions: gettextCatalog.getString('Transactions'),
         totalAmount: gettextCatalog.getString('Amount'),
         totalFee: gettextCatalog.getString('Fee')
-  //      reward: gettextCatalog.getString('Reward')
     };
 
     $scope.tableBlocks.settings().$scope = $scope;

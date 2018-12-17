@@ -92,14 +92,11 @@ input[type='range']::-ms-slider-thumb {
 }
 
 .pass-error {
-  font-size: 14px;
-  color: #f34235;
-  display: block;
-  margin-top: -8px;
-  margin-left: 25px;
-  margin-bottom: 20px;
-  padding-top: 1px;
+  bottom: inherit;
+  color: #ff0000;
+  font-size: 12px;
   position: relative;
+  margin-left: 30px;
   &:after {
     content: '';
     height: 15px;
@@ -110,6 +107,9 @@ input[type='range']::-ms-slider-thumb {
     background-position: 0 -69px;
     top: 0;
     left: -25px;
+  }
+  span{
+    font-size: inherit;
   }
 }
 
@@ -329,13 +329,13 @@ input[type='range']::-ms-slider-thumb {
       font-size: @content-text;
       padding: 0 0 0 28px;
       text-transform: uppercase;
-      color: @black;
+      color: @white;
       i {
         font-size: 18px;
       }
       &:hover, &:active, &:focus {
-        background-color: @white;
-        color: @black;
+        background: transparent;
+        color: rgba(255,255,255,0.5);
       }
       &.red-link {
         color: @dark-red;
@@ -539,7 +539,7 @@ a {
       -webkit-box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.25);
       -moz-box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.25);
       box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.25);
-      border-color: @border-grey;
+      border-color: #cecece;
       border-radius: @border-radius;
       padding: 10px 0;
       min-width: 150px;
@@ -575,7 +575,7 @@ a {
     }
   }
   .divider-wrap {
-    padding: 8px 0;
+    padding: 0;
   }
   .table-more-actions {
     display: block;
@@ -598,10 +598,9 @@ a {
   margin-bottom: 20px;
   color: @generate-text;
   line-height: @content-text + 2;
-  font-size: @content-text;
   cursor: pointer;
   position: relative;
-  top: 6px;
+  top: -15px;
   &:before {
     position: absolute;
     display: block;
@@ -784,7 +783,8 @@ a {
     user-select: none;
     cursor: pointer;
     font-size: 1.6rem;
-    opacity: @font-opacity
+    opacity: @font-opacity;
+    color: @white;
   }
 }
 
@@ -859,7 +859,8 @@ a {
     user-select: none;
     cursor: pointer;
     font-size: 1.6rem;
-    opacity: @font-opacity
+    opacity: @font-opacity;
+    color: @white;
   }
 }
 

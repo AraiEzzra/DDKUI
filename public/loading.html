@@ -5,16 +5,6 @@
     <base href="/">
     <title>DDK - Loading...</title>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123365280-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-123365280-1');
-    </script>
-
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
@@ -41,7 +31,6 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,300italic,300,900italic,100italic,100&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic'
         rel='stylesheet' type='text/css'>
-
     <script src="/static/js/vendor_app.js"></script>
 </head>
 
@@ -50,19 +39,20 @@
     <div id="pass" ng-controller="loadingController" ng-class="lang.id">
         <div class="overlay"></div>
         <div class="pass-bottom">
-            <div class="pass-window">
-                <div class="pass-window-icon">
-                    <span>
-                        <img style="width: 70%;position: relative;top: -80px;" src="../images/logo.png" alt="logo">
-                    </span>
+            <div class="login-card card-block auth-body mr-auto ml-auto">
+                <div class="text-center logo-wrapper">
+                    <img src="../images/logo.png" alt="DDKOIN" width="250">
                 </div>
-                <div class="loading clearfix" class="clearfix" ng-controller="loadingController">
-                    <div class="progress" ng-show="loadingState">
-                        <div class="determinate" style="width: {{loadingState}}%"></div>
+                <div class="auth-box">
+                    <div class="loading clearfix" class="clearfix" ng-controller="loadingController">
+                        <div class="progress" ng-show="loadingState">
+                            <div class="determinate" style="width: {{loadingState}}%"></div>
+                        </div>
+                        <h3 class="heading" ng-show="loadingState">{{loadingState}}%</h3>
+                        <h3 class="heading">Blockchain is loading...</h3>
                     </div>
-                    <h3 class="heading" ng-show="loadingState">{{loadingState}}%</h3>
-                    <h3 class="heading">Blockchain is loading...</h3>
                 </div>
+
             </div>
         </div>
     </div>

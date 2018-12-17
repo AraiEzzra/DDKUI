@@ -79,7 +79,6 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
             }
         });
         angular.element(document.querySelector("body")).addClass("ovh");
-        
     };
 
     $scope.balance = userService._unconfirmedBalance;

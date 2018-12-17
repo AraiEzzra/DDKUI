@@ -9,8 +9,6 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.rememberPassphrase = true;
     $scope.errorMessage = "";
 
-
-
     $scope.cleanUpUserData = function () {
         var userProperties = ['address', 'allVotes', 'balance', 'balanceToShow', 'dataToShow', 'unconfirmedBalance',
             'unconfirmedPassphrase', 'username', 'rememberedPassphrase', 'publicKey', 'delegate'];
@@ -23,17 +21,19 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.cleanUpUserData();
 
     $scope.newUser = function () {
-          $scope.newUserModal = newUser.activate({
-             destroy: function () {
-             }
-         }); 
+        $scope.newUserModal = newUser.activate({
+            destroy: function () {
+            }
+        });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
-    $scope.login = function (pass, remember) {
+    $scope.login = function (pass, remember, adminCode) {
         if (!pass || pass.trim().split(/\s+/g).length < 12) {
             $scope.errorMessage = 'Passphrase must consist of 12 or more words.';
             return;
         }
+
         if (pass.length > 100) {
             $scope.errorMessage = 'Passphrase must contain less than 100 characters.';
             return;
@@ -51,6 +51,7 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
                 userService.setForging(resp.data.account.forging);
                 userService.setSecondPassphrase(resp.data.account.secondSignature || resp.data.account.unconfirmedSignature);
                 userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
+                $rootScope.referList = null;
                 if (remember) {
                     userService.setSessionPassphrase(pass);
                 }

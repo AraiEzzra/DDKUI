@@ -1,7 +1,7 @@
 require('angular');
 var compareVersion = require('../../node_modules/compare-version/index.js');
 
-angular.module('DDKApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal', function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal) {
+angular.module('DDKApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal', 'agreeConfirmationModal', function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal, agreeConfirmationModal) {
 
     $scope.searchTransactions = transactionsService;
     $scope.searchDapp = dappsService;
@@ -107,33 +107,9 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         'main.explorer',
         'main.stake',
         'main.withdrawl',
-        'main.referralStatistics',
+        'main.airdropStatistics'
 
     ];
-/*
-    $scope.getPriceTicker = function () {
-        $http.get("https://explorer.ddk.io/api/getPriceTicker")
-            .then(function (response) {
-                $scope.btc_usd = Math.floor(response.data.tickers.BTC.USD * 1000000) / 1000000;
-                $scope.DDK_btc = Math.floor(response.data.tickers.DDK.BTC * 1000000) / 1000000;
-                $scope.DDK_usd = Math.floor(response.data.tickers.DDK.USD * 1000000) / 1000000;
-            });
-    }; */
-
-  /*   $scope.getVersion = function () {
-        $http.get($rootScope.serverUrl + "/api/peers/version").then(function (response) {
-            if (response.data.success) {
-                $scope.version = response.data.version;
-                $http.get("https://login.DDK.io/api/peers/version").then(function (response) {
-                    $scope.latest = response.data.version;
-                    $scope.diffVersion = compareVersion($scope.version, $scope.latest);
-                });
-            } else {
-                $scope.diffVersion = -1;
-                $scope.version = 'version error';
-            }
-        });
-    }; */
 
     $scope.convertToUSD = function (DDK) {
         return (DDK / 100000000) * $scope.DDK_usd;
@@ -147,7 +123,6 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     $scope.resetAppData = function () {
         $scope.balance = userService.balance = 0;
         $scope.unconfirmedBalance = userService.unconfirmedBalance = 0;
-        userService.totalFrozeAmount = 0;
 
         $scope.secondPassphrase = userService.secondPassphrase = 0;
         $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase = 0;
@@ -408,10 +383,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                 $scope.username = response.username;
                 userService.username = response.username;
             }
-            // if ($scope.delegateInRegistration) {
-            //     $scope.delegateInRegistration = !(!!response);
-            //     userService.setDelegateProcess($scope.delegateInRegistration);
-            // }
+
             $scope.delegate = response;
             userService.setDelegate($scope.delegate);
             if (!response.noDelegate) {
@@ -455,14 +427,16 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
-    $scope.logout = function () {
+ 
+   $scope.logout = function () {
         $http.post($rootScope.serverUrl + "/api/accounts/logout", { address: userService.getAddress(), token: $window.localStorage.getItem('token') }).then(function (res) {
+            agreeConfirmationModal.deactivate();
             $window.localStorage.setItem('token', '');
             $location.path('passphrase');
         });
     }
 
-    $scope.syncInterval = $interval(function () {
+   $scope.syncInterval = $interval(function () {
         $scope.getSync();
     }, 1000 * 30);
 
@@ -496,11 +470,11 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     });
 
     $scope.$on('socket:blocks/change', function (ev, data) {
-        $scope.getAppData();
-        $scope.updateViews([
+       /* $scope.getAppData();
+          $scope.updateViews([
             'main.blockchain',
             'main.dashboard'
-        ]);
+         ]); */
     });
 
     $scope.$on('socket:delegates/change', function (ev, data) {
@@ -543,10 +517,10 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
 
     $scope.$on('socket:updateConnected', function (ev, data) {
         $scope.totalConnected = data;
-        $scope.getAppData();
+       /* $scope.getAppData();
         $scope.updateViews([
             'main.dashboard'
-        ]);
+        ]);  */
     });
 
     //Autoupdate stake Table 
@@ -566,6 +540,10 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         ]);
     });
 
+    $scope.$on('socket:stake/create', function (ev, data) {
+        $scope.$broadcast('updateStakeAmount', null);
+    });
+
     $window.onfocus = function () {
         $scope.getAppData();
         $scope.updateViews([$state.current.name]);
@@ -578,8 +556,6 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getAppData();
-   /*  $scope.getPriceTicker(); */
-   /*  $scope.getVersion(); */
     $scope.getMasterPassphrase();
    /*  $timeout(function () {
         $scope.getVersion();

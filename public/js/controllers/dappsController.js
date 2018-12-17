@@ -58,6 +58,7 @@ angular.module('DDKApp').controller('dappsController', ['$scope', 'viewFactory',
             destroy: function () {
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.searchedText = '';

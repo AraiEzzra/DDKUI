@@ -1,13 +1,13 @@
 <div class="app-modal valign-wrapper">
     <div class="container height100">
         <div class="row height100">
-            <div class="col-md-6 col-md-offset-4 height100 valign-wrapper">
+            <div class="col-md-6 col-md-offset-3 height100 valign-wrapper">
                 <div class="modal-content" ng-show="!passmode && !checkSecondPass">
                     <div class="modal-header modal-iconed">
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only"><translate>Close modal</translate></span>
                         </div>
-                        <span class="modal-log">DDK</span>
+                        <span class="modal-log">DDKOIN</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -15,8 +15,7 @@
                         </div>
                         <div><translate>Please choose a delegate name.</translate></div>
                     </div>
-                    <!-- <div class="modal-body field-padding" ng-if="!username"></div> -->
-                    <div class="modal-body field-padding" ng-if="ddkfoundation">
+                    <div class="modal-body field-padding" ng-if="!username">
                         <form ng-submit="passcheck()">
                             <div class="input-field">
                                 <input ng-focus="focus == 'username'" id="delegateUsername" type="text" ng-model="delegateData.username" autofocus ng-class="{'invalid': error}">
@@ -41,8 +40,7 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
                             </li>
                             <li>
-                                    <input ng-if="ddkfoundation" type="submit" value="{{'register' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
-                                <!-- <input type="submit" value="{{'register' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> --><h2 ng-if="!ddkfoundation">Disabled</h2>
+                                <input type="submit" value="{{'register' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -52,7 +50,7 @@
                         <div class="close-modal" ng-click="passcheck()">
                             <span class="sr-only"><translate>Close modal</translate></span>
                         </div>
-                        <span class="modal-log">DDK</span>
+                        <span class="modal-log">DDKOIN</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
@@ -75,8 +73,7 @@
                                         <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                                     </li>
                                     <li>
-                                            <input ng-if="ddkfoundation" type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
-                                    <!--    <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> --> <h2 ng-if="!ddkfoundation">Disabled</h2>  
+                                        <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                                     </li>
                                 </ul>
                             </div>
@@ -89,11 +86,11 @@
                         <div class="close-modal" ng-click="close()">
                             <span class="sr-only"><translate>Close modal</translate></span>
                         </div>
-                        <span class="modal-log">DDK</span>
+                        <span class="modal-log">DDKOIN</span>
                     </div>
                     <div class="modal-header clearfix">
                         <div>
-                            <h2>{{'Account Verification'|translate}}</h2>
+                            <h2>{{'Account Verification ll'|translate}}</h2>
                         </div>
                         <div><translate>Please enter your second passphrase below.</translate></div>
                     </div>
@@ -115,8 +112,7 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                    <input ng-if="ddkfoundation" type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
-                             <!--   <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" /> --><h2 ng-if="!ddkfoundation">Disabled</h2>
+                                <input type="submit" value="{{'register' | translate}}" ng-click="registrationDelegate(secretPhrase, true)" class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

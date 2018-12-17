@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "multisignatureModal", 'gettextCatalog', '$location', function ($rootScope, $scope, $http, userService, $interval, multisignatureModal, gettextCatalog, $location) {
+angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "multisignatureModal", 'gettextCatalog', '$location', 'otpConfirmationModal', function ($rootScope, $scope, $http, userService, $interval, multisignatureModal, gettextCatalog, $location, otpConfirmationModal) {
 
     $scope.checkTwoFactorStatus = function () {
         $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {
@@ -17,9 +17,18 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
             })
     }
     $scope.checkTwoFactorStatus();
+
+    $scope.openOTPModal = function () {
+        $scope.otpConfirmationModal = otpConfirmationModal.activate({
+            destroy: function () {
+            }
+        });
+    }
+
     var setPage = function () {
         $scope.view.page = { title: gettextCatalog.getString('Settings'), previous: null };
     }
+
 
     // Refresh $scope.view.page object on change of language.
     $rootScope.$on('gettextLanguageChanged', setPage);
@@ -76,6 +85,7 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                 }, 1000);
             }
         });
+        angular.element(document.querySelector("body")).addClass("ovh");
     }
 
     $scope.steps = [
@@ -146,8 +156,6 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                         $scope.incrementStep();
 
                     }
-                    //$scope.presendError = false;
-                    //$scope.errorMessage = {};
                 });
         }
         if (stepIndex === 1) {
@@ -181,7 +189,7 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
         }
         if (stepIndex === 3) {
             $scope.successMessage = {};
-            // $scope.enableTwoFactor = function (twoFactor) {
+            
             var data = {
                 publicKey: userService.publicKey,
                 key: $scope.settings.twoFactor.key,
@@ -194,20 +202,15 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                         $scope.twoFactorKey = resp.data.key
                         $scope.successMessage.nextStep = 'Google Authentication is enabled for : ' + userService.getAddress();
                         Materialize.toast('2FA Enabled', 3000, 'green white-text');
-
                         $scope.enable = false;
-
                         $scope.myVar = false;
-
                         $scope.disable = true
-
                         $scope.presendError = false;
                         $scope.errorMessage = {};
 
                     } else {
                         $scope.presendError = true;
                         $scope.errorMessage.fromServer = resp.data.error;
-                        //$scope.twoFactorKey = 'No Key. Please check previous step.'
                     }
                 });
         }
@@ -224,9 +227,31 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                 if (resp.data.success) {
                     $scope.enable = true;
                     $scope.disable = false;
+                    Materialize.toast('2FA Disable', 3000, 'red white-text');
                 }
             })
     }
+
+
+
+
+    // $scope.disableTwoFactor = function () {
+    //     var data = {
+    //         publicKey: userService.publicKey
+    //     };
+    //     $http.post($rootScope.serverUrl + '/api/accounts/disableTwoFactor', data)
+    //         .then(function (resp) {
+    //             if (resp.data.success) {
+    //                 $scope.enable = true;
+    //                 $scope.disable = false;
+    //                 Materialize.toast('2FA Disable', 3000, 'red white-text');
+    //             }
+    //         })
+    // }
+
+
+
+
 
 }]);
 

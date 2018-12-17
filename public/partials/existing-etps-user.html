@@ -1,75 +1,96 @@
 <div id="pass">
-    <!-- <div class="pass-banner"></div> -->
     <div class="overlay"></div>
     <div class="pass-bottom">
-        <div class="pass-window" ng-show="loginPage">
-            <div class="pass-window-icon">
-                <span>Existing ETPS User</span>
+        <div class="login-card card-block auth-body mr-auto ml-auto">
+            <div class="text-center logo-wrapper">
+                <img src="../images/logo.png" alt="DDKOIN" width="250">
             </div>
-            <form class="clearfix pass-window-form">
-                <div class="input-field">
-                    <input id="userName" type="text" ng-model="username" focus-on="focusMe">
-                    <label for="userName">
-                        <translate>Your User Name</translate>
-                    </label>
+            <!-- For Login Page -->
+            <div class="auth-box" ng-show="loginPage">
+                <div class="row m-b-20">
+                    <div class="col-md-12">
+                        <h3 class="text-left txt-primary">Existing ETPS User</h3>
+                    </div>
                 </div>
-
-                <div class="input-field">
-                    <input id="password" type="password" ng-model="password">
-                    <label for="password">
-                        <translate>Your Password</translate>
-                    </label>
-                    <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
-                </div>
-
-                <div class="input-field">
-                    <input id="adminCode" type="password" ng-model="adminCode">
-                    <label for="adminCode"><translate>Admin Code</translate></label>
-                    <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
-                </div> 
-
-                <div class="text-center">
-                    <!--a class="btn btn-blue waves-effect waves-light" ng-click="login(username, password)" ng-disabled="!password"><translate>Login</translate></a-->
-                    <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password, adminCode)" ng-disabled="!password">
-                        <translate>Login</translate>
-                    </a>
-                    <a class="btn btn-blue waves-effect waves-light" ng-click="forgotWindow()">
-                        <translate>Forgot Password</translate>
-                    </a>
-                </div>
-            </form>
-        </div>
-        <div class="pass-window" ng-show="forgotPasswordPage">
-            <div class="pass-window-icon">
-                <span>Forgot Password</span>
+                <hr/>
+                <form class="clearfix" _lpchecked="1" ng-submit="login(pass, rememberPassphrase)">
+                    <div class="input-field">
+                        <input id="userName" type="text" ng-model="username" class="form-control" focus-on="focusMe">
+                        <label for="userName">
+                            <translate>Your User Name</translate>
+                        </label>
+                        <a tooltip-placement="left" class="btn btn-white waves-effect email-info" tooltip="Username is Case-Sensitive" tooltip-trigger="mouseenter">?</a>
+                    </div>
+                    <div class="input-field">
+                        <input id="password" type="password" ng-model="password" class="form-control">
+                        <label for="password">
+                            <translate>Your Password</translate>
+                        </label>
+                        <span class="pass-error" ng-show="errorMessage"> {{errorMessage}}</span>
+                    </div>
+                    <div class="row auth-btn m-t-20">
+                        <div class="col-md-4">
+                            <a class="btn btn-primary btn-block" ng-click="validateExistingUser(username, password, adminCode)" ng-disabled="!password">
+                                <translate>Login</translate>
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <a class="btn btn-primary btn-block" ng-click="forgotWindow()">
+                                <translate>Forgot Password</translate>
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <form class="clearfix pass-window-form">
-                <div class="input-field">
-                    <input id="username" type="text" ng-model="etps_username" focus-on="focusMe">
-                    <label for="username">
-                        <translate>Your User Name</translate>
-                    </label>
-                </div>
+            <!-- Ends Login Page -->
 
-                <div class="input-field">
-                    <input id="email" type="text" ng-model="email">
-                    <label for="email">
-                        <translate>Your Email Id</translate>
-                    </label>
-                    <span class="pass-error" ng-show="forgotErrorMessage">{{forgotErrorMessage}}</span>
+            <!-- For Forgot Password -->
+            <div class="auth-box" ng-show="forgotPasswordPage">
+                <div class="row m-b-20">
+                    <div class="col-md-12">
+                        <h3 class="text-left txt-primary">Forgot Password</h3>
+                    </div>
                 </div>
-
-
-                <div class="text-center">
-                    <a class="btn btn-blue waves-effect waves-light" ng-click="back()">
-                        <translate>Back To Login</translate>
-                    </a>
-                    <a class="btn btn-blue waves-effect waves-light" ng-click="forgotPassword(etps_username, email)" ng-disabled="((!etps_username) || (!email))">
-                        <translate>Send Email</translate>
-                    </a>
-                </div>
-            </form>
+                <hr/>
+                <form class="clearfix">
+                    <div class="input-field">
+                        <input id="username" type="text" ng-model="etps_username" focus-on="focusMe">
+                        <label for="username">
+                            <translate>Your User Name</translate>
+                        </label>
+                        <a tooltip-placement="left" class="btn btn-white waves-effect email-info" tooltip="Username is Case-Sensitive" tooltip-trigger="mouseenter">?</a>
+                    </div>
+                    <div class="input-field">
+                        <input id="email" type="text" ng-model="email">
+                        <label for="email">
+                            <translate>Your Email Id</translate>
+                        </label>
+                        <span class="pass-error" ng-show="forgotErrorMessage">{{forgotErrorMessage}}</span>
+                    </div>
+                    <div class="row auth-btn m-t-20">
+                        <div class="col-md-4">
+                            <a class="btn btn-primary btn-block" ng-click="back()">
+                                <translate>Back To Login</translate>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-primary btn-block" ng-click="forgotPassword(etps_username, email)" ng-disabled="((!etps_username) || (!email))">
+                                <translate>Send Email</translate>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Ends Forgot Password -->
         </div>
-        <div class="pass-footer clearfix">DDK © 2017. All Rights Reserved.</div>
+        <div class="pass-footer clearfix">
+            <p style="margin-bottom: 10px;">DDKOIN MainNet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+            <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
+                <img src="../images/facebook.png" alt="facebook">
+            </a>&nbsp
+            <a href="http://forums.ddkoin.com/" target="_blank">
+                <img src="../images/forum.png" alt="forum">
+            </a>
+        </div>
     </div>
 </div>

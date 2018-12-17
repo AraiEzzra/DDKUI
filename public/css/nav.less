@@ -1,7 +1,8 @@
 #page-nav {
   min-height: 60px;
   position: relative;
-  background-color: @white;
+  color: @white;
+  background-color: #4c5965;
   margin: 0 0 20px;
   &.mobile-nav {
     @media (max-width: @screen-xs-max) {
@@ -135,8 +136,7 @@
 }
 
 .nav-underline {
-  padding: 0 40px;
-
+  padding: 0;
   &.categories {
     padding-right: 15px;
     padding-left: 30px;
@@ -147,18 +147,15 @@
     -o-user-select: none;
     user-select: none;
     a {
-
       cursor: default;
     }
   }
-
   &.fast-sort {
     padding-left: 15px;
     @media (max-width: @screen-xs-max) {
       padding: 0;
       width: 100%;
       & > li {
-
         width: 50%;
         text-align: center;
 
@@ -166,7 +163,6 @@
     }
 
   }
-
   &.forgin-start {
     @media (min-width: @screen-xs-min) {
       padding-left: 0;
@@ -177,7 +173,7 @@
     padding: 24px 30px 18px;
    & > span {
      font-size: 14px;
-     color: #000;
+     color: @white;
      font-weight: 500;
     }
     & > .switch {
@@ -189,6 +185,9 @@
           margin-left: 10px;
           margin-right: 10px;
         }
+        span{
+          color: @white;
+        }
       }
     }
     }
@@ -197,8 +196,7 @@
     font-weight: 500;
     position: relative;
     line-height: 56px;
-    padding: 0;
-
+    padding: 0 30px;
     &:before {
       content: '';
       display: inline-block;
@@ -212,7 +210,6 @@
   }
   & > li {
     float: left;
-
     &.active a {
       font-weight: 500;
       border-bottom: solid 4px @blue;
@@ -224,11 +221,11 @@
       }
     }
     & > a {
-      border-bottom: solid 4px @white;
+      border-bottom: solid 4px transparent;
       text-transform: uppercase;
       font-size: 14px;
       padding: 24px 30px 18px;
-      color: @black;
+      color: @white;
       @media (max-width: @screen-xs-max) {
         padding-right: 15px;
         padding-left: 15px;

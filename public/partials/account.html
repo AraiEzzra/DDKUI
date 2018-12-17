@@ -1,227 +1,321 @@
 <div class="top-margin"></div>
-<!--Top Info -->
+<!-- For Top Information -->
 <div class="row clearfix">
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/plug.png" width="32">
-          </span>
-        </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalSupply || 0}} DDK</span>
-          <br>
-          <span class="info-box-text">{{'Total Supply'|translate}}</span>
+  <!-- For Total Supply -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16"><a href=" https://explorer.ddkoin.com/#/transaction-info/transactionId/2525816115293971625" target="_blank">{{totalSupply || 0}} DDK</a></h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-addons st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Supply'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 pl7 dashboard-info pr15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/power-cord.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{circulatingSupply || 0}} DDK</span>
-          <br>
-          <span class="info-box-text">{{'Circulating Supply'|translate}}</span>
+  <!-- For Circulating Supply -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16"><a href="https://explorer.ddkoin.com/#/user-info/DDK4995063339468361088" target="_blank">{{(circulatingSupply || 0).toFixed(2)}} DDK</a></h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-pie-chart st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Circulating Supply'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 pr7 dashboard-info pl15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/users-group.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalCount}}</span>
-          <br>
-          <span class="info-box-text">{{'Token Holders'|translate}}</span>
+  <!-- For Total Count -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{totalCount}}</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-users st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Account Holders'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 pr0 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/money-bag-with-dollar-symbol.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">
-            <span class="strong">{{balanceToShow[0] || 0}}
-              <span class="small">{{balanceToShow[1]}}</span>
-            </span>&nbsp;DDK</span>
-          <br>
-          <span>({{((availableBalanceDec/circulatingSupply)*100).toFixed(2)}}%)</span>
-          <span class="info-box-text">{{'Your DDK Balance'|translate}}</span>
+  <!-- For Balance To Show -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{balanceToShow[0] || 0}}
+            <span class="small">{{balanceToShow[1]}}</span> DDK</h5>
+          <span class="f-left pos-absolute p-0 m-0">({{((availableBalanceDec/circulatingSupply)*100).toFixed(2)}}%)</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-money-bag st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Your DDK Balance'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/snowflake.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{stakeBalanceToShow[0] || 0}}
-            <span class="small">{{stakeBalanceToShow[1]}}</span>
-          </span>&nbsp; DDK</span>
-          <br>
-          <span>({{totalDDKStaked?((myDDKFrozen/totalDDKStaked)*100).toFixed(2):0}}%)</span>
-          <span class="info-box-text">{{'Your DDK Frozen'|translate}}</span>
+  <!-- For Stake Balance To Show -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{stakeBalanceToShow[0] || 0}}
+            <span class="small">{{stakeBalanceToShow[1]}}</span> DDK</h5>
+          <span class="f-left pos-absolute p-0 m-0">({{totalDDKStaked?((myDDKFrozen/totalDDKStaked)*100).toFixed(2):0}}%)</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-snow-alt st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Your DDK Frozen'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 pl7 dashboard-info pr15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/share-connection-sing.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalConnected}}</span>
-          <br>
-          <span class="info-box-text">{{'Total Connected'|translate}}</span>
+  <!-- For Total Connected -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{totalConnected}}</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-brand-slideshare st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Connected'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pr7 pl7 dashboard-info pl15-none">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/icon.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{countStakeholders}}</span>
-          <br>
-          <span class="info-box-text">{{'Total Stakeholders'|translate}}</span>
+  <!-- For Count Stake Holders -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{countStakeholders}}</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-holding-hands st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Stakeholders'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pl7 dashboard-info">
-    <div class="panel widget widget-brown">
-      <div class="panel-body">
-        <span class="icon-container">
-          <span class="info-box-icon bg-blue">
-            <img src="images/moneylock.png" width="32">
-          </span>
-        </span>
-        <div class="info-box-content">
-          <span class="info-box-number">{{totalStakeBalanceToShow[0] || 0}}
-            <span class="small">{{totalStakeBalanceToShow[1]}}</span>
-          </span>&nbsp; DDK</span>
-          <br>
-          <span class="info-box-text">{{'Total Stake Amount'|translate}}</span>
+  <!-- For Total Stake Balance To Show -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 dashboard-top-info">
+    <div class="card widget-statstic-card">
+      <div class="card-header p-b-0">
+        <div class="card-header-left">
+          <h5 class="d-inline-block f-16">{{totalStakeBalanceToShow[0] || 0}}
+            <span class="small">{{totalStakeBalanceToShow[1]}}</span>DDK</h5>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-ui-lock st-icon"></i>
+        <div class="text-left">
+          <h5 class="ng-tns-c6-1">{{'Total Stake Amount'|translate}}</h5>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!--Top Info -->
+<!-- End Top Information -->
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="panel panel-default">
-      <div class="panel-heading pr" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length" ui-sref="main.transactions">
-        <h2>{{'Latest Transactions'|translate}}</h2>
-        <div class="plain-text" ng-show="transactions.length">{{'View History'|translate}}</div>
-      </div>
-      <div class="table-responsive">
-        <table class="table" id="transactions" ng-if="transactions.length">
-          <thead>
-            <tr class="head">
-              <th class="hide-in-1400">
-                <translate>Transaction ID</translate>
-              </th>
-              <th class="padding-in-1400">
-                <translate>Sender</translate>
-              </th>
-              <th>
-                <translate>Recipient</translate>
-              </th>
-              <th>
-                <translate>Type</translate>
-              </th>
-              <th>
-                <translate>Time</translate>
-              </th>
-              <th>
-                <translate>Amount (Fee)</translate>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="transaction in transactions">
-              <td class="hide-in-1400">
-                <a href="#" ng-click="transactionInfo(transaction)" class="word-break-xs">{{transaction.id}}</a>
-              </td>
-              <td ng-if="transaction.senderName" class="padding-in-1400">
-                <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderName}}</a>
-              </td>
-              <td ng-if="!transaction.senderName" class="padding-in-1400">
-                <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
-              </td>
-              <td ng-if="transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
-                <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientName}}</a>
-              </td>
-              <td ng-if="!transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
-                <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
-              </td>
-              <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
-              <td class="padding-in-1400">
-                {{transaction.trsName}}
-              </td>
-              <td>
-                {{transaction.timestamp | timeAgoFilter: false}}
-              </td>
-              <td ng-show="transaction.type != 8">
-                <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
-              </td>
-              <td ng-show="transaction.type == 8">
-                <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                {{transaction.stakedAmount | DDKFilter}} ({{transaction.fee | DDKFilter}})
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div align="right">
-        <div class="text-center" ng-if="transactions.length">
-          <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
-            <translate>View in Explorer</translate>
-          </a>
+    <div class="referral-tab latest-transaction">
+      <div class="plain-text" ng-show="transactions.length" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length"
+        ui-sref="main.transactions">{{'View History'|translate}}</div>
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#1" data-toggle="tab">Latest Transactions</a>
+        </li>
+        <li>
+          <a href="#2" data-toggle="tab">Pending Transactions</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="1">
+          <div class="panel-default custom-panel-default">
+            <div class="table-responsive">
+            <table class="table no-margin-bottom" id="transactions" ng-if="transactions.length">
+              <thead>
+                <tr class="head">
+                  <th class="hide-in-1400">
+                    <translate>Transaction ID</translate>
+                  </th>
+                  <th class="padding-in-1400">
+                    <translate>Sender</translate>
+                  </th>
+                  <th>
+                    <translate>Recipient</translate>
+                  </th>
+                  <th>
+                    <translate>Type</translate>
+                  </th>
+                  <th>
+                    <translate>Time</translate>
+                  </th>
+                  <th>
+                    <translate>Amount (Fee)</translate>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="transaction in transactions">
+                  <td class="hide-in-1400">
+                    <a href="#" ng-click="transactionInfo(transaction)" class="word-break-xs">{{transaction.id}}</a>
+                  </td>
+                  <td ng-if="transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderName}}</a>
+                  </td>
+                  <td ng-if="!transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
+                  </td>
+                  <td ng-if="transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientName}}</a>
+                  </td>
+                  <td ng-if="!transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
+                  </td>
+                  <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
+                  <td class="padding-in-1400">
+                    <div ng-if="transaction.trsName === 'SIGNATURE'">
+                      SECONDPASS
+                    </div>
+                    <div ng-if="transaction.trsName !== 'SIGNATURE'">
+                      {{transaction.trsName}}
+                    </div>
+                  </td>
+                  <td>
+                    {{transaction.timestamp | timeAgoFilter: false}}
+                  </td>
+                  <td ng-show="transaction.type != 8">
+                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
+                    <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                  <td ng-show="transaction.type == 8">
+                    <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.stakedAmount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div align="right">
+              <div class="text-center" ng-if="transactions.length">
+                <a class="btn btn-blue-nav waves-effect waves-light m15 l-height-n" href="{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
+                  <translate>View in Explorer</translate>
+                </a>
+              </div>
+            </div>
+            <div class="panel-body empty-body" ng-if="!transactions.length">
+              <!-- <div class="logo-grey"></div> -->
+              <p class="empty-state-text">
+                {{'You have not made any transactions yet.'|translate}}
+              </p>
+            </div>
+          </div>
+          </div>
         </div>
-      </div>
-      <div class="panel-body empty-body" ng-if="!transactions.length">
-        <!-- <div class="logo-grey"></div> -->
-        <p class="empty-state-text">
-          {{'You have not made any transactions yet.'|translate}}
-        </p>
+        <div class="tab-pane" id="2">
+          <div class="panel-default custom-panel-default">
+              <div class="table-responsive">
+            <table class="table no-margin-bottom" id="transactions" ng-if="transactions.length">
+              <thead>
+                <tr class="head">
+                  <th class="hide-in-1400">
+                    <translate>Transaction ID</translate>
+                  </th>
+                  <th class="padding-in-1400">
+                    <translate>Sender</translate>
+                  </th>
+                  <th>
+                    <translate>Recipient</translate>
+                  </th>
+                  <th>
+                    <translate>Type</translate>
+                  </th>
+                  <th>
+                    <translate>Time</translate>
+                  </th>
+                  <th>
+                    <translate>Amount (Fee)</translate>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="transaction in unconfirmedTransactions">
+                  <td class="hide-in-1400">
+                    <a href="#" ng-click="transactionInfo(transaction)" class="word-break-xs">{{transaction.id}}</a>
+                  </td>
+                  <td ng-if="transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderName}}</a>
+                  </td>
+                  <td ng-if="!transaction.senderName" class="padding-in-1400">
+                    <a href="#" ng-click="userInfo(transaction.senderId)" class="word-break-xs">{{transaction.senderId}}</a>
+                  </td>
+                  <td ng-if="transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientName}}</a>
+                  </td>
+                  <td ng-if="!transaction.recipientName" ng-show="(transaction.type &lt; 1) || (transaction.type &gt; 9)">
+                    <a href="#" ng-click="userInfo(transaction.recipientId)" class="word-break-xs">{{transaction.recipientId}}</a>
+                  </td>
+                  <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
+                  <td class="padding-in-1400">
+                    {{transaction.trsName}}
+                  </td>
+                  <td>
+                    {{transaction.timestamp | timeAgoFilter: false}}
+                  </td>
+                  <td ng-show="transaction.type != 8">
+                    <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text" ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
+                    <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                  <td ng-show="transaction.type == 8">
+                    <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                    {{transaction.stakedAmount | DDKFilter}} ({{transaction.fee | DDKFilter}})
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div align="right">
+              <div class="text-center" ng-if="unconfirmedTransactions.length">
+                <a class="btn btn-blue-nav waves-effect waves-light m15 l-height-n" href="{{ExplorerHost}}/#/user-info/{{address}}" target="_blank">
+                  <translate>View in Explorer</translate>
+                </a>
+              </div>
+            </div>
+            <div class="panel-body empty-body" ng-if="!unconfirmedTransactions.length">
+              <!-- <div class="logo-grey"></div> -->
+              <p class="empty-state-text">
+                {{'You have not made any unconfirmed transactions yet.'|translate}}
+              </p>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

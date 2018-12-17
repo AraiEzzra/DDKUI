@@ -51,15 +51,12 @@
         </div>
     </div>
 </div>
-
-
-
 <div id="wrapper" ng-controller="appController" ng-class="{'toggled': !toggled,'pl-none':$state.current.name=='main.explorer'}">
     <div class="header-wrapper top-header-section">
         <div class="nav-bar clearfix" id="header">
             <a ui-sref="main.account" class="log-box">
                 <div id="logo">
-                    <img src="../images/logo.png" alt="logo">
+                    <img src="../images/logo.png" alt="logo" width="200">
                 </div>
             </a>
             <div class="logo">
@@ -82,7 +79,7 @@
                 <span class="forging-state" ng-class="{'disabled': !forgingEnabled}" ng-if="forgingStatus && view.bar.forgingMenu">{{forgingStatus}}</span>
             </div>
             <div id="top-menu">
-                <span id="balance" class="margin-right-10">
+                <span id="balance" class="margin-right-10 btn btn-blue-nav">
                     {{availableBalance | DDKFilter}} DDK
                 </span>
                 <a class="btn btn-blue-nav waves-effect waves-light margin-right-10" ng-click="freezeAmount()">
@@ -90,15 +87,12 @@
                 </a>
 
                 <a class="btn btn-blue-nav waves-effect waves-light" ng-click="sendTransaction()">
-                    <i class="mdi-content-send left"></i>
                     <translate>SEND</translate>
                 </a>
-                <a class="btn btn-blue-nav waves-effect waves-light margin-left-10" ui-sref="main.dashboard" ng-click="classRemove()" ng-if="$state.current.name === 'main.explorer'">
+                <!--  <a class="btn btn-blue-nav waves-effect waves-light margin-left-10" ui-sref="main.dashboard" ng-click="classRemove()">
                     <i class="material-icons left back-btn-icon backBackBtn">navigate_before</i>
                     <translate>Back</translate>
-                </a>
-
-
+                </a> -->
                 <div class="mini-chart valign-wrapper" ng-show="syncState != undefined">
                     <div class="mini-chart-label" style="color:#000">{{syncState}}%</div>
                     <canvas id="total-forged" class="chart chart-doughnut" chart-data="loading.values" chart-labels="loading.labels" chart-options="loading.options"
@@ -122,7 +116,6 @@
                                 <translate>Referral Link</translate>
                             </a>
                         </li>
-
                         <li>
                             <a ui-sref="main.settings">
                                 <translate>Settings</translate>
@@ -146,32 +139,6 @@
             </span>
             {{view.page.title}}
         </h1>
-        <!--div class="search-bar" ng-show="view.bar.showTransactionsSearchBar">
-           <div class="search-toggle" ng-if="searchTransactions.searchForTransaction">
-              <i ng-click="clearSearch()" class="mdi-content-clear small"></i>
-           </div>
-           <div class="input-group">
-              <span class="input-group-addon">ass="form-control" placeholder="{{'Search for transactions (Transaction ID, Sender address, Recipient address)'|translate}}" ng-model="searchTransactions.searchForTransaction">
-              <span class="input-group-addon spinner-addon">
-                 <div class="
-              <i class="mdi-action-search"></i>
-              </span>
-              <input type="text" clpreloader-wrapper" ng-class="{'active': searchTransactions.inSearch}">
-                    <div class="spinner-layer spinner-blue-only">
-                       <div class="circle-clipper left">
-                          <div class="circle"></div>
-                       </div>
-                       <div class="gap-patch">
-                          <div class="circle"></div>
-                       </div>
-                       <div class="circle-clipper right">
-                          <div class="circle"></div>
-                       </div>
-                    </div>
-                 </div>
-              </span>
-           </div>
-        </div-->
         <div id="page-nav" class="clearfix mobile-nav" ng-if="view.bar.showDappsBar">
             <ul class="nav nav-underline categories pull-left">
                 <li>
@@ -198,8 +165,6 @@
                         <translate>HOME</translate>
                     </a>
                 </li>
-                <!-- <li><a href="#">TOP RATED</a></li> -->
-                <!-- <li><a href="#">MOST USED</a></li> -->
                 <li>
                     <a ui-sref='main.dappsCategory({categoryId:"Installed"})'>
                         <translate>INSTALLED</translate>
@@ -234,12 +199,12 @@
             </div>
         </div>
         <!-- Sidebar -->
-        <!-- <div id="sidebar-wrapper" ng-class="{test: obj.value1 == 'someothervalue'}"> -->
         <div id="sidebar-wrapper" class="abc" ng-class="myClass">
             <div class="account-block">
                 <div class="icon">
                     <img src="/images/account.png" alt="Account">
-                </div>               
+                </div>
+
                 <span class="name" ng-show="name">
                     <translate>Welcome back, {{name}}</translate>
                 </span>
@@ -248,7 +213,9 @@
             <ul id="menu">
                 <li ng-show="showMenuItem('main.dashboard')" ui-sref-active="active">
                     <a ui-sref="main.dashboard" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="dashboard-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-home"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>Dashboard</translate>
                         </span>
@@ -256,7 +223,9 @@
                 </li>
                 <li ng-show="showMenuItem('main.forging')" ui-sref-active="active">
                     <a ui-sref="main.forging" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="forging-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-thumbs-up"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>DDK Delegates</translate>
                         </span>
@@ -266,7 +235,9 @@
                 <ul id="submenu" ng-hide="subForgingCollapsed">
                     <li ng-show="showMenuItem('main.delegates')" ui-sref-active="active">
                         <a ui-sref="main.delegates" class="waves-effect waves-blue">
-                            <div class="nav-icon" id="delegates-icon"></div>
+                            <div class="nav-icon">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                            </div>
                             <span class="menu-text">
                                 <translate>Delegates</translate>
                             </span>
@@ -274,7 +245,9 @@
                     </li>
                     <li ng-show="showMenuItem('main.votes')" ui-sref-active="active">
                         <a ui-sref="main.votes" class="waves-effect waves-blue">
-                            <div class="nav-icon" id="myvotes-icon"></div>
+                            <div class="nav-icon">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                            </div>
                             <span class="menu-text">
                                 <translate>My Votes</translate>
                             </span>
@@ -283,39 +256,39 @@
                 </ul>
                 <li ng-show="showMenuItem('main.blockchain')" ui-sref-active="active">
                     <a ui-sref="main.blockchain" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="blockchain-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-link"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>DDK Blockchain</translate>
                         </span>
                     </a>
                 </li>
-                <li ng-show="showMenuItem('main.explorer')" ui-sref-active="active">
-                   <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
-                        <div class="nav-icon" id="explorer-icon"></div>
-                        <span class="menu-text">
-                            <translate>DDK Explorer</translate>
-                        </span>
-                    </a>
-                </li>
                 <li ng-show="showMenuItem('main.stake')" ui-sref-active="active">
                     <a ui-sref="main.stake" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="stake-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-database"></i>
+                        </div>
                         <span class="menu-text">
-                            <translate>DDK Staking</translate>
+                            <translate>DDK Stake</translate>
                         </span>
                     </a>
                 </li>
                 <li ng-if="groupBonus > 0" ng-show="showMenuItem('main.withdrawl')" ui-sref-active="active">
                     <a ui-sref="main.withdrawl" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="pendingGB-icon"></div>
+                        <div class="nav-icon">
+                            <i class="fa fa-gift"></i>
+                        </div>
                         <span class="menu-text" ng-click="getWithdrawlStatus()">
                             <translate>PendingGB</translate>
                         </span>
                     </a>
-                </li>   
-                <li ng-show="showMenuItem('main.referralStatistics')" ui-sref-active="active">
-                    <a ui-sref="main.referralStatistics" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="referral-icon"></div>
+                </li>
+                <li ng-show="showMenuItem('main.airdropStatistics')" ui-sref-active="active">
+                    <a ui-sref="main.airdropStatistics" class="waves-effect waves-blue">
+                        <div class="nav-icon">
+                            <i class="fa fa-user-plus"></i>
+                        </div>
                         <span class="menu-text">
                             <translate>Airdrop Statistics</translate>
                         </span>
@@ -356,10 +329,10 @@
     </div>
     <div class="container-fluid main-container-fluid" ui-view></div>
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer" ng-class="{'toggled': !toggled}">
         <div class="row">
             <div class="col-xs-12">
-                <p class="m-b-5 font12">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+                <p class="m-b-5 font12">DDKOIN MainNet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
                 <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
                     <img src="../images/facebook.png" alt="facebook">
                 </a>&nbsp

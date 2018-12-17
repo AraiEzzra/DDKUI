@@ -134,6 +134,7 @@ angular.module('DDKApp').controller('multisignatureModalController', ["$scope", 
                     }
                     Materialize.toast('Transaction sent', 3000, 'green white-text');
                     multisignatureModal.deactivate();
+                    angular.element(document.querySelector("body")).removeClass("ovh");
                 }
             });
         }
