@@ -35,7 +35,10 @@
                         <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
-                        {{transaction.trsName}}
+                        
+                        
+                        <!-- ng-click="SpecifictransactionInfoModal(transaction,2)" -->
+                       {{transaction.trsName}}
                     </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>
@@ -46,12 +49,13 @@
                     </td>
                     <td ng-show="transaction.type == 8" class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                       
                         {{transaction.stakedAmount | DDKFilter}}
                     </td>
                     <td data-title="tableTransactions.cols.fee">{{transaction.fee | DDKFilter}}</td>
                     <td data-title="''"></td>
                 </tr>
-                <tr ng-repeat="transaction in $data">
+                <tr ng-repeat="transaction in $data"> 
                     <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockInfo(transaction.blockId)" class="pointer">
                         <a href="#">{{transaction.height}}</a>
                     </td>
@@ -67,7 +71,10 @@
                         <a ng-if="!transaction.recipientName" href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.type" class="pointer" sortable="'type'">
-                        {{transaction.trsName}}
+                       <!-------------------Transactions Icons------------>
+                       <i ng-if="transaction.type==8 && transaction.asset.airdropReward.totalReward > 0" class="vertical-text mdi-image-brightness-7" ng-click="SpecifictransactionInfoModal(transaction,2)"></i>
+                       <i ng-if="transaction.type==3 && (transaction.asset.reward > 0 || transaction.asset.airdropReward.totalReward > 0 || transaction.asset.unstake < 0)"  class="vertical-text mdi-social-person-add" ng-click="SpecifictransactionInfoModal(transaction,1)"></i>
+                       {{transaction.trsName}}
                     </td>
                     <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
                     </td>
