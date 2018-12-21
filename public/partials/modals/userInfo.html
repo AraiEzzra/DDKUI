@@ -8,41 +8,63 @@
                         <h2 class="media-heading">{{'DDK USER'|translate}}</h2>
                         <input id="accountAddress" class="clipboard" value="{{account.address}}" readonly>
                         <input id="accountPublicKey" class="clipboard publicKey" value="{{account.publicKey}}" readonly>
-                        <button class="btn-flat btn-copy blue-link"><a href="https://{{ExplorerHost}}/#/user-info/{{account.address}}" target="_blank"><translate>View Address History in Explorer</translate></a></button>
+                        <button class="btn-flat btn-copy blue-link"><a href="https://{{ExplorerHost}}/#/user-info/{{account.address}}"
+                                target="_blank">
+                                <translate>View Address History in Explorer</translate>
+                            </a></button>
 
                         <div class="close-modal" ng-click="close()">
-                            <span class="sr-only"><translate>Close modal</translate></span>
+                            <span class="sr-only">
+                                <translate>Close modal</translate>
+                            </span>
                         </div>
                     </div>
                     <div class="modal-nav" ng-if="account.address != address">
                         <ul class="nav nav-justified nav-actions" ng-if="account.address">
                             <li>
-                                <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-target="#accountAddress" clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);"><i class="small material-icons">assignment</i><translate>Copy Address</translate></button>
+                                <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-target="#accountAddress"
+                                    clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);"><i
+                                        class="small material-icons">assignment</i>
+                                    <translate>Copy Address</translate>
+                                </button>
                             </li>
                             <li>
-                                <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-target="#accountPublicKey" clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);"><i class="small material-icons">assignment</i><translate>Copy Public Key</translate></button>
+                                <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-target="#accountPublicKey"
+                                    clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);"><i
+                                        class="small material-icons">assignment</i>
+                                    <translate>Copy Public Key</translate>
+                                </button>
                             </li>
                             <li>
-                                <button class="btn-flat btn-copy blue-link" ng-click="sendTransactionToUser()"><i class="mdi-content-send"></i><translate>Send DDK</translate></button>
+                                <button class="btn-flat btn-copy blue-link" ng-click="sendTransactionToUser()"><i class="mdi-content-send"></i>
+                                    <translate>Send DDK</translate>
+                                </button>
                             </li>
                         </ul>
                     </div>
                     <div class="scrolling">
                         <div class="modal-body">
                             <ul class="list-group">
-                                <li class="list-group-item summary"><translate>Summary</translate></li>
-                                <li class="list-group-item bordered"><translate>Total Balance</translate>
+                                <li class="list-group-item summary">
+                                    <translate>Summary</translate>
+                                </li>
+                                <li class="list-group-item bordered">
+                                    <translate>Total Balance</translate>
                                     <span class="pull-right small-text">{{account.unconfirmedBalance | DDKFilter }} DDK</span>
                                 </li>
-                                <li class="list-group-item"><translate>USD Equivalent</translate>
-                                    <span class="pull-right small-text">${{convertToUSD(account.unconfirmedBalance) || 0 | number: 2}}</span>
+                                <li class="list-group-item">
+                                    <translate>USD Equivalent</translate>
+                                    <span class="pull-right small-text">${{convertToUSD(account.unconfirmedBalance) ||
+                                        0 | number: 2}}</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="modal-chapter clearfix">
                             <div class="multiline" ng-click="toggleTransactions()">
                                 <h2>{{'Transactions'|translate}}</h2>
-                                <div class="chapter-more pull-right" ng-class="{'open': transactions.view, 'closed': !transactions.view}">{{transactions.list.length || '0'}} <translate>Transactions</translate></div>
+                                <div class="chapter-more pull-right" ng-class="{'open': transactions.view, 'closed': !transactions.view}">{{transactions.list.length
+                                    || '0'}} <translate>Transactions</translate>
+                                </div>
                             </div>
                         </div>
                         <div ng-repeat="transaction in transactions.list" ng-show="transactions.view">
@@ -50,11 +72,16 @@
                                 <h2>{{'Transaction ID'|translate}}:</h2>
 
                                 <input id="transactionId" class="clipboard" value="{{transaction.id}}" readonly>
-                                <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-text="{{transaction.id}}" clipboard data-clipboard-target="#transactionId" clipboard-success="clipboardSuccess(e);" clipboard-error="clipboardCommand(e);"><i class="small material-icons">assignment</i><translate>Copy Transaction ID</translate></button>
+                                <button class="btn-flat btn-copy blue-link" clipboard data-clipboard-text="{{transaction.id}}"
+                                    clipboard data-clipboard-target="#transactionId" clipboard-success="clipboardSuccess(e);"
+                                    clipboard-error="clipboardCommand(e);"><i class="small material-icons">assignment</i>
+                                    <translate>Copy Transaction ID</translate>
+                                </button>
                             </div>
                             <div class="modal-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item bordered"><translate>Confirmations</translate>
+                                    <li class="list-group-item bordered">
+                                        <translate>Confirmations</translate>
                                         <span class="pull-right small-text">{{transaction.confirmations}}</span>
                                     </li>
                                     <li class="list-group-item">
@@ -66,23 +93,31 @@
                                             {{transaction.stakedAmount | DDKFilter}} DDK
                                         </div>
                                     </li>
-                                    <li class="list-group-item"><translate>Type</translate>
+                                    <li class="list-group-item">
+                                        <translate>Type</translate>
                                         <span class="pull-right small-text">{{transaction.trsName}}</span>
                                     </li>
-                                    <li class="list-group-item bordered"><translate>Fee</translate>
+                                    <li class="list-group-item bordered">
+                                        <translate>Fee</translate>
                                         <span class="pull-right small-text">{{transaction.fee | DDKFilter}} DDK</span>
                                     </li>
-                                    <li class="list-group-item"><translate>USD Equivalent</translate>
-                                        <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 | number: 2}}</span>
+                                    <li class="list-group-item">
+                                        <translate>USD Equivalent</translate>
+                                        <span class="pull-right small-text">${{convertToUSD(transaction.amount) || 0 |
+                                            number: 2}}</span>
                                     </li>
-                                    <li class="list-group-item bordered"><translate>Time</translate>
-                                        <span class="pull-right small-text">{{transaction.timestamp | timeAgoFilter}} ({{transaction.timestamp | timestampFilter}})</span>
+                                    <li class="list-group-item bordered">
+                                        <translate>Time</translate>
+                                        <span class="pull-right small-text">{{transaction.timestamp | timeAgoFilter}}
+                                            ({{transaction.timestamp | timestampFilter}})</span>
                                     </li>
                                 </ul>
                                 <ul class="list-group transactions">
                                     <!-- ngRepeat: transaction in transactions -->
                                     <li class="list-group-item">
-                                        <div class="transaction-data"><strong><translate>Transaction ID</translate>:</strong> {{transaction.id}}
+                                        <div class="transaction-data"><strong>
+                                                <translate>Transaction ID</translate>:
+                                            </strong> {{transaction.id}}
                                             <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
                                         </div>
                                         <div class="transaction-path">
@@ -97,15 +132,18 @@
                                             <div class="transaction-direction"></div>
                                             <div ng-show="transaction.type != 8" class="transaction-part pull-right">
                                                 <a href="#" class="blue-link" ng-click="getAccountDetail(transaction.recipientId)">{{transaction.recipientId
-                                                || ""}}</a>
+                                                    || ""}}</a>
                                                 <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                                             </div>
                                             <div ng-show="transaction.type == 8" class="transaction-part pull-right"></div>
                                         </div>
                                         <div class="transaction-bottom">
-                                            <div class="fee"><translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK</div>
+                                            <div class="fee">
+                                                <translate>FEE</translate>: {{transaction.fee | DDKFilter}} DDK
+                                            </div>
                                             <div class="DDK">{{transaction.amount | DDKFilter}} DDK</div>
-                                            <div class="confirmations">{{transaction.confirmations || 0 }} <translate>CONFIRMATIONS</translate></div>
+                                            <div class="confirmations">{{transaction.confirmations || 0 }} <translate>CONFIRMATIONS</translate>
+                                            </div>
                                         </div>
                                     </li>
                                     <!-- end ngRepeat: transaction in transactions -->

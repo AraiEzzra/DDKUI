@@ -24,13 +24,16 @@
 
                 <div class="input-field">
                     <input id="adminCode" type="password" ng-model="adminCode">
-                    <label for="adminCode"><translate>Admin Code</translate></label>
+                    <label for="adminCode">
+                        <translate>Admin Code</translate>
+                    </label>
                     <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
-                </div> 
+                </div>
 
                 <div class="text-center">
                     <!--a class="btn btn-blue waves-effect waves-light" ng-click="login(username, password)" ng-disabled="!password"><translate>Login</translate></a-->
-                    <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password, adminCode)" ng-disabled="!password">
+                    <a class="btn btn-blue waves-effect waves-light" ng-click="validateExistingUser(username, password, adminCode)"
+                        ng-disabled="!password">
                         <translate>Login</translate>
                     </a>
                     <a class="btn btn-blue waves-effect waves-light" ng-click="forgotWindow()">
@@ -64,7 +67,8 @@
                     <a class="btn btn-blue waves-effect waves-light" ng-click="back()">
                         <translate>Back To Login</translate>
                     </a>
-                    <a class="btn btn-blue waves-effect waves-light" ng-click="forgotPassword(etps_username, email)" ng-disabled="((!etps_username) || (!email))">
+                    <a class="btn btn-blue waves-effect waves-light" ng-click="forgotPassword(etps_username, email)"
+                        ng-disabled="((!etps_username) || (!email))">
                         <translate>Send Email</translate>
                     </a>
                 </div>

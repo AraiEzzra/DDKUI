@@ -33,8 +33,8 @@
             <div class="panel-heading">
                 <h2>{{'Latest Blocks'|translate}}</h2>
             </div>
-            <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableBlocks" border="0" width="100%" cellpadding="0"
-                cellspacing="0" template-pagination="custom/pager">
+            <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableBlocks" border="0"
+                width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
                 <div class="table-menu" ng-show="countForgingBlocks || !searchBlocks.searchForBlock">
                     <div class="more-down-table" dropdown on-toggle="toggled(open)" is-open="moreDownTable.isopen">
                         <i class="mdi-navigation-more-vert" dropdown-toggle aria-haspopup="true" aria-expanded="false"></i>
@@ -76,7 +76,8 @@
                             {{block.b_numberOfTransactions}}
                         </div>
                     </td>
-                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.b_totalAmount | DDKFilter}}</td>
+                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.b_totalAmount |
+                        DDKFilter}}</td>
                     <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.b_totalFee | DDKFilter}}</td>
                     <td data-title="''" class="width-80"></td>
                 </tr>

@@ -88,11 +88,9 @@
                                                 <translate> Stake Reward</translate>
                                             </td>
                                             <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">
-                                                    {{transaction.asset.reward/100000000}}
+                                                {{transaction.asset.reward/100000000}}
                                                 <!-- <span class="pull-right small-text">{{transaction.asset.reward}}</span> -->
-
                                             </td>
-
                                         </tr>
 
                                         <tr ng-show="transaction.asset.reward==0">
@@ -116,10 +114,10 @@
                                     <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
                                         class="referrals-list">
                                         <tr ng-show="transaction.asset.airdropReward.totalReward>0" ng-repeat="(key,value) in transaction.asset.airdropReward.sponsors">
-                                            
+
                                             <td data-title="tableReferral.cols.level" sortable="'level'">{{key}}</td>
                                             <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{value/100000000}}</td>
-                                            
+
                                         </tr>
 
                                         <tr ng-show="transaction.asset.airdropReward.totalReward<=0">
@@ -147,7 +145,6 @@
                                             </td>
                                             <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">
                                                 {{transaction.asset.unstake/100000000}}
-
                                             </td>
 
                                         </tr>
@@ -169,8 +166,7 @@
                 </div>
             </div>
         </div>
-
-    </div>
+   </div>
 
 
 </div>

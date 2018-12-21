@@ -44,7 +44,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         }
     };
 
-    /*----------------------------------Transaction Information--------------------------------------*/
+    /*--------------Transaction Information--------------------*/
     $scope.SpecifictransactionInfoModal = function (transaction,id) {
         if(id==1){
             $scope.voteTransaction= true;
@@ -59,6 +59,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
+    /* Transaction Info*/
     $scope.transactionInfo = function (transaction) {
         $scope.modal = transactionInfo.activate({ transaction: transaction });
         angular.element(document.querySelector("body")).addClass("ovh");

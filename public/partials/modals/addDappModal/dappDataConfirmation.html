@@ -9,15 +9,19 @@
     <li class="collection-item">
         <h4>{{'Description'|translate}}</h4>
         <p>
-          <span ng-if="newDapp.description" class="cut-text">{{newDapp.description}}</span>
-          <span ng-if="!newDapp.description" class="grey-text"><translate>None</translate></span>
+            <span ng-if="newDapp.description" class="cut-text">{{newDapp.description}}</span>
+            <span ng-if="!newDapp.description" class="grey-text">
+                <translate>None</translate>
+            </span>
         </p>
     </li>
     <li class="collection-item">
         <h4>{{'Tags'|translate}}</h4>
         <p>
-          <span ng-if="newDapp.tags" class="cut-text">{{newDapp.tags}}</span>
-          <span ng-if="!newDapp.tags" class="grey-text"><translate>None</translate></span>
+            <span ng-if="newDapp.tags" class="cut-text">{{newDapp.tags}}</span>
+            <span ng-if="!newDapp.tags" class="grey-text">
+                <translate>None</translate>
+            </span>
         </p>
     </li>
     <li class="collection-item">
@@ -27,21 +31,25 @@
     <li class="collection-item">
         <h4>{{'Application Source Code'|translate}}</h4>
         <p>
-          <span ng-if="newDapp.link" class="cut-text">{{newDapp.link}}</span>
-          <span ng-if="!newDapp.link" class="grey-text"><translate>None</translate></span>
+            <span ng-if="newDapp.link" class="cut-text">{{newDapp.link}}</span>
+            <span ng-if="!newDapp.link" class="grey-text">
+                <translate>None</translate>
+            </span>
         </p>
     </li>
     <li class="collection-item">
         <h4>{{'Application Icon'|translate}}</h4>
         <p>
-          <span ng-if="newDapp.icon" class="cut-text">{{newDapp.icon}}</span>
-          <span ng-if="!newDapp.icon" class="grey-text"><translate>None</translate></span>
+            <span ng-if="newDapp.icon" class="cut-text">{{newDapp.icon}}</span>
+            <span ng-if="!newDapp.icon" class="grey-text">
+                <translate>None</translate>
+            </span>
         </p>
     </li>
     <li class="collection-item">
         <h4>{{'Fee'|translate}}</h4>
         <p>
-          <span class="cut-text">{{fee | DDKFilter}} DDK</span>
+            <span class="cut-text">{{fee | DDKFilter}} DDK</span>
         </p>
     </li>
 </ul>
