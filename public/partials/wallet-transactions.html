@@ -11,7 +11,8 @@
                     <td data-title="tableWalletTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
                         <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
-                    <td data-title="tableWalletTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
+                    <td data-title="tableWalletTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp
+                        | timeAgoFilter : showFullTime}}
                     </td>
                     <td class="td-amount" data-title="tableWalletTransactions.cols.amount" sortable="'amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>

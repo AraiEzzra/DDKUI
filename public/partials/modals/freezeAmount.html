@@ -23,13 +23,15 @@
                         <form ng-submit="passcheck()">
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="fAmount" type="text" ng-change="calFees(fAmount)" ng-model="fAmount" ng-focus="focus == 'fAmount'" ng-class="{'invalid': errorMessage.fAmount}">
+                                    <input id="fAmount" type="text" ng-change="calFees(fAmount)" ng-model="fAmount"
+                                        ng-focus="focus == 'fAmount'" ng-class="{'invalid': errorMessage.fAmount}">
                                     <label for="fAmount">
                                         <translate>Stake DDK Amount </translate>
                                     </label>
                                 </div>
                                 <span class="fee-text flat-text pull-right" ng-show="fAmount">
-                                    <translate>Fee: {{fee }} DDK</span>
+                                    <translate>Fee: {{fee }} DDK
+                                </span>
                                 <span class="pass-error" ng-show="errorMessage.fAmount">{{errorMessage.fAmount}}</span>
                             </div>
                             <p class="error-container" ng-show="errorMessage.recipient">
@@ -49,8 +51,8 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" ng-class="{'disabled': sending}"
-                                    ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="passcheck()" class="btn-flat blue-link"
+                                    ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -75,8 +77,8 @@
                         <form ng-submit="freezeOrder(secretPhrase)">
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="passPhrase" type="password" ng-model="secretPhrase" ng-focus="focus == 'secretPhrase'" ng-trim="false" autofocus
-                                        ng-class="{'invalid': errorMessage.fromServer}">
+                                    <input id="passPhrase" type="password" ng-model="secretPhrase" ng-focus="focus == 'secretPhrase'"
+                                        ng-trim="false" autofocus ng-class="{'invalid': errorMessage.fromServer}">
                                     <label for="passPhrase">
                                         <translate>Your Passphrase</translate>
                                     </label>
@@ -92,8 +94,8 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase)" class="btn-flat waves-blue"
-                                    ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase)"
+                                    class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -119,8 +121,8 @@
                         <form ng-submit="freezeOrder(secretPhrase, true)">
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="secondPhrase" type="password" ng-model="secondPhrase" ng-trim="false" autofocus ng-focus="focus == 'secondPhrase'"
-                                        ng-class="{'invalid': errorMessage}">
+                                    <input id="secondPhrase" type="password" ng-model="secondPhrase" ng-trim="false"
+                                        autofocus ng-focus="focus == 'secondPhrase'" ng-class="{'invalid': errorMessage}">
                                     <label for="secondPhrase">
                                         <translate>Your Second Passphrase</translate>
                                     </label>
@@ -136,8 +138,8 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase, true)" class="btn-flat blue-link"
-                                    ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase, true)"
+                                    class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

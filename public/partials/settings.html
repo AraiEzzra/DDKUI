@@ -15,7 +15,8 @@
                         <div class="col s2">
                             <div class="switch blue-switch">
                                 <label>
-                                    <input type="checkbox" ng-disabled="settings.enabledMultisign" ng-model="settings.enabledMultisign" ng-click="setMultisignature()">
+                                    <input type="checkbox" ng-disabled="settings.enabledMultisign" ng-model="settings.enabledMultisign"
+                                        ng-click="setMultisignature()">
                                     <span class="lever"></span>
                                 </label>
                             </div>
@@ -117,7 +118,8 @@
                         <div class="comm-tab-container qrCode">
                             <img src="{{ dataUrl }}" alt="dataUrl" class="img-thumbnail">
                             <div class="qr-code-input">
-                                <input class="form-control mb10" type="text" value="Enter QR Code" ng-model="settings.otp" name="qrCode">
+                                <input class="form-control mb10" type="text" value="Enter QR Code" ng-model="settings.otp"
+                                    name="qrCode">
                                 <p class="error-container" ng-show="errorMessage.fromServer">
                                     <span class="pass-error">{{errorMessage.fromServer}}</span>
                                 </p>
@@ -132,10 +134,12 @@
                     <div ng-switch-when="Step 3: Backup Key" class="backup-key">
                         <p class="qr-code-key text-center">{{ twoFactorKey }}</p>
                         <p class="text-center">
-                            Plase save this key on paper. This key will allow you to recover Google Authentication in case of phone loss.
+                            Plase save this key on paper. This key will allow you to recover Google Authentication in
+                            case of phone loss.
                         </p>
                         <p class="text-danger text-center">
-                            Resetting you Google Authentication requies opening a support ticket and take at least 7 day to process.
+                            Resetting you Google Authentication requies opening a support ticket and take at least 7
+                            day to process.
                         </p>
                     </div>
                     <!-- Four Step -->
@@ -154,7 +158,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="yourPassphrase">Your Passphrase:</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" aria-describedby="yourPassphrase" ng-model="settings.twoFactor.secret">
+                                        <input type="password" class="form-control" aria-describedby="yourPassphrase"
+                                            ng-model="settings.twoFactor.secret">
                                     </div>
                                 </div>
                                 <div class="form-group">

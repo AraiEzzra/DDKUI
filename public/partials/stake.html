@@ -19,8 +19,9 @@
                         <h3>Available Value :</h3> {{avlaibleValue}}
                     </span>
                 </div>
-                <canvas id="pie33" options="options" class="chart chart-pie chart-xs ng-isolate-scope" height="120" width="240" data="pieDiskData.data"
-                    labels="pieDiskData.labels" colours="pieDiskData.colours" legend="true"></canvas>
+                <canvas id="pie33" options="options" class="chart chart-pie chart-xs ng-isolate-scope" height="120"
+                    width="240" data="pieDiskData.data" labels="pieDiskData.labels" colours="pieDiskData.colours"
+                    legend="true"></canvas>
             </div>
 
         </div>
@@ -55,7 +56,7 @@
         </div>
 
 
-        <div class="panel panel-default" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
+        <!-- <div class="panel panel-default" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
             <div class="panel-heading">
                 <h2>
                     {{'Latest Orders'|translate}}
@@ -90,6 +91,161 @@
                 </p>
             </div>
 
-        </div>
+        </div> -->
     </div>
+</div>
+
+
+
+<!-----------------Working------------------>
+
+<div class="referral-tab">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#1" data-toggle="tab">Latest Orders</a>
+        </li>
+        <li>
+            <a href="#2" data-toggle="tab">Reward History</a>
+        </li>
+
+    </ul>
+
+
+    <div class="tab-content panel panel-default">
+
+        <div class="tab-pane active" id="1">
+
+
+            <div class="panel panel-default" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
+                <!-- <div class="panel-heading">
+                <h2>
+                    {{'Latest Orders'|translate}}
+                </h2>
+            </div> -->
+                <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
+                    cellspacing="0" template-pagination="custom/pager">
+                    <tr ng-repeat="fo in $data">
+                        <td data-title="tableStakes.cols.stakedAmount" sortable="'stakedAmount'">{{fo.freezedAmount /
+                            100000000}}</td>
+                        <td data-title="tableStakes.cols.status" sortable="'status'">{{fo.status ? 'Active' :
+                            'Inactive'}}</td>
+                        <td data-title="tableStakes.cols.startTime" sortable="'startTime'">{{ fo.startTime |
+                            timestampFilter}}</td>
+                        <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone
+                            >0 ? (fo.nextVoteMilestone | timestampFilter):0}}</td>
+                        <td data-title="tableStakes.cols.monthRemain" sortable="'monthRemain'">{{6-fo.rewardCount}}</td>
+                        <td data-title="tableStakes.cols.voteIndicator" sortable="'voteIndicator'">{{fo.voteCount}}/4</td>
+                        <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.isVoteDone}}</td>
+                        <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
+                        <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.isTransferred
+                            }}</td>
+                        <td data-title="tableStakes.cols.action">
+                            <a class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-show="fo.status">
+                                <i class="mdi-content-send" ></i>
+                            </a>
+                          
+                            <a class="sendFreezeAmountDisable-btn" ng-show="!fo.status">
+                                <i class="mdi-content-send" ></i>
+                            </a>
+                      
+                        </td>
+                    </tr>
+                    <tr ng-show="loading">
+                        <td class="gray2 white-text" colspan="7">
+                            <translate>Loading...</translate>
+                        </td>
+                    </tr>
+                </table>
+                <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders">
+                    <p class="empty-state-text">
+                        <translate>No results for this search.</translate>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="tab-pane" id="2">
+
+
+
+            <!-- <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0" class="referrals-list">
+                <tr>
+
+                    <td data-title="tableReferral.cols.level" sortable="'level'">{{key}}</td>
+
+
+                <tr>
+                    <td colspan="2">
+                        <translate>No Data Available</translate>
+                    </td>
+                </tr>
+
+            </table> -->
+
+
+
+            <div class="panel panel-default" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
+                <!-- <div class="panel-heading">
+                <h2>
+                    {{'Latest Orders'|translate}}
+                </h2>
+            </div> -->
+                <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
+                    cellspacing="0" template-pagination="custom/pager">
+                    <tr ng-repeat="fo in $data">
+                        <td data-title="tableReward.cols.rewardAmount" sortable="'rewardAmount'">{{fo.freezedAmount /
+                            100000000}}</td>
+                        <td data-title="tableStakes.cols.rewardTime" sortable="'rewardTime'"></td>
+                        <!-- <td data-title="tableStakes.cols.startTime" sortable="'startTime'">{{ fo.startTime |
+                            timestampFilter}}</td> -->
+                        <!-- <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone
+                            >0 ? (fo.nextVoteMilestone | timestampFilter):0}}</td>
+                        <td data-title="tableStakes.cols.monthRemain" sortable="'monthRemain'">{{6-fo.rewardCount}}</td>
+                        <td data-title="tableStakes.cols.voteIndicator" sortable="'voteIndicator'">{{fo.voteCount}}/4</td>
+                        <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.isVoteDone}}</td>
+                        <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
+                        <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.isTransferred
+                            }}</td> -->
+                        <!-- <td data-title="tableStakes.cols.action">
+                            <a class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-show="fo.status">
+                                <i class="mdi-content-send" ></i>
+                            </a>
+                            <a class="sendFreezeAmount-btn" ng-show="!fo.status">
+                                <i class="mdi-content-send" ></i>
+                            </a>
+                        </td> -->
+                    </tr>
+                    <tr ng-show="loading">
+                        <td class="gray2 white-text" colspan="7">
+                            <translate>Loading...</translate>
+                        </td>
+                    </tr>
+                </table>
+                <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders">
+                    <p class="empty-state-text">
+                        <translate>No results for this search.</translate>
+                    </p>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            
+        </div>
+
+
+
+    </div>
+
 </div>

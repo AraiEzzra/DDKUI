@@ -13,7 +13,8 @@
                     <td data-title="tableTransactions.cols.t_recipientId" class="pointer" sortable="'t_recipientId'">
                         <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
-                    <td data-title="tableTransactions.cols.t_timestamp" sortable="'t_timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
+                    <td data-title="tableTransactions.cols.t_timestamp" sortable="'t_timestamp'">{{transaction.timestamp
+                        | timeAgoFilter : showFullTime}}
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.t_amount" sortable="'t_amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
@@ -25,7 +26,9 @@
                         {{transaction.multi.confirmations}}/{{transaction.multi.needed}}
                     </td>
                     <td data-title="''">
-                        <a class="btn btn-dark-meant"><i class="mdi-action-done left"></i><translate>CONFIRM</translate></a>
+                        <a class="btn btn-dark-meant"><i class="mdi-action-done left"></i>
+                            <translate>CONFIRM</translate>
+                        </a>
                     </td>
                 </tr>
             </table>

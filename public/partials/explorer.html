@@ -130,8 +130,8 @@
             <div class="panel-heading">
                 <h2>{{'Latest Block Details'|translate}}</h2>
             </div>
-            <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableBlocks" border="0" width="100%" cellpadding="0"
-                cellspacing="0" template-pagination="custom/pager">
+            <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableBlocks" border="0"
+                width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
                 <div class="table-menu" ng-show="countForgingBlocks || !searchBlocks.searchForBlock">
                     <div class="more-down-table" dropdown on-toggle="toggled(open)" is-open="moreDownTable.isopen">
                         <i class="mdi-navigation-more-vert" dropdown-toggle aria-haspopup="true" aria-expanded="false"></i>
@@ -168,16 +168,17 @@
                         <span ng-show="block.b_timestamp == 0">-</span>
                     </td>
                     <td data-title="tableBlocks.cols.numberOfTransactions">
-                        <div ng-show="block.b_numberOfTransactions > 0"  class="pointer" ng-click="showBlock(block)">
+                        <div ng-show="block.b_numberOfTransactions > 0" class="pointer" ng-click="showBlock(block)">
                             <a href="#">{{block.b_numberOfTransactions}}</a>
                         </div>
                         <div ng-show="block.b_numberOfTransactions == 0">
                             {{block.b_numberOfTransactions}}
                         </div>
                     </td>
-                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.b_totalAmount | DDKFilter}}</td>
+                    <td data-title="tableBlocks.cols.totalAmount" sortable="'totalAmount'">{{block.b_totalAmount |
+                        DDKFilter}}</td>
                     <td data-title="tableBlocks.cols.totalFee" sortable="'totalFee'">{{block.b_totalFee | DDKFilter}}</td>
-                  <!--  <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.reward | DDKFilter}}</td>  -->
+                    <!--  <td data-title="tableBlocks.cols.reward" sortable="'reward'">{{block.reward | DDKFilter}}</td>  -->
                     <td data-title="''" class="width-80"></td>
                 </tr>
                 <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
@@ -198,7 +199,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- For Latest Block Details -->
     <div class="col-xs-12">
         <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">
@@ -207,16 +208,23 @@
                     {{'Latest Transactions Details'|translate}}
                 </h2>
             </div>
-            <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions" border="0" width="100%" cellpadding="0" cellspacing="0">
+            <table ng-show="countForgingBlocks || !searchTransactions.searchForTransaction" ng-table="tableTransactions"
+                border="0" width="100%" cellpadding="0" cellspacing="0">
                 <div class="table-menu" ng-show="countForgingBlocks || !searchTransactions.searchForTransaction">
                     <div class="more-down-table" dropdown on-toggle="toggled(open)" is-open="moreDownTable.isopen">
                         <i class="mdi-navigation-more-vert" dropdown-toggle aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" role="menu">
-                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="advanced" ng-model="showAllColumns">
-                                <label for="advanced"><translate>Show All Columns</translate></label>
+                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="advanced"
+                                    ng-model="showAllColumns">
+                                <label for="advanced">
+                                    <translate>Show All Columns</translate>
+                                </label>
                             </p>
-                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="fulltime" ng-model="showFullTime">
-                                <label for="fulltime"><translate>Show Full Time</translate></label>
+                            <p ng-click="check($event)"><input type="checkbox" class="filled-in violet" id="fulltime"
+                                    ng-model="showFullTime">
+                                <label for="fulltime">
+                                    <translate>Show Full Time</translate>
+                                </label>
                             </p>
                         </div>
                     </div>
@@ -232,7 +240,8 @@
                     <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
                         <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
-                    <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
+                    <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp |
+                        timeAgoFilter : showFullTime}}
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
@@ -243,7 +252,8 @@
                     <td data-title="''"></td>
                 </tr>
                 <tr ng-repeat="transaction in $data">
-                    <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockIdInfo(transaction.blockId)" class="pointer">
+                    <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockIdInfo(transaction.blockId)"
+                        class="pointer">
                         <a href="#">{{transaction.height}}</a>
                     </td>
                     <!-- <td data-title="tableTransactions.cols.height" sortable="'height'">{{transaction.height}}</td> -->
@@ -256,7 +266,8 @@
                     <td class="td-amount" data-title="tableTransactions.cols.recipientId" class="pointer" sortable="'recipientId'">
                         <a href="#" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId}}</a>
                     </td>
-                    <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp | timeAgoFilter : showFullTime}}
+                    <td data-title="tableTransactions.cols.timestamp" sortable="'timestamp'">{{transaction.timestamp |
+                        timeAgoFilter : showFullTime}}
                     </td>
                     <td class="td-amount" data-title="tableTransactions.cols.amount" sortable="'amount'">
                         <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
