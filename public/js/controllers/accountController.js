@@ -71,10 +71,21 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             }
         }).then(function (response) {
             transactionInfo.deactivate();
-            $scope.modal = blockInfo.activate({ block: response.data.block });
+            var tmp = [];
+            var keys = Object.keys(response.data.block);
+            for (var j = 0; j < keys.length; j++) {
+                if (keys[j] === 'username') {
+                    var key = keys[j].replace(keys[j], 'm_' + keys[j]);
+                } else {
+                    var key = keys[j].replace(keys[j], 'b_' + keys[j]);
+                }
+                tmp[key] = response.data.block[keys[j]];
+            }
+
+            $scope.modal = blockInfo.activate({ block: tmp });
             angular.element(document.querySelector("body")).addClass("ovh");
         }
-        );
+            );
     }
 
     $scope.resetAppData = function () {
