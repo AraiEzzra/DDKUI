@@ -140,14 +140,9 @@
                         <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.isTransferred
                             }}</td>
                         <td data-title="tableStakes.cols.action">
-                            <a class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-show="fo.status">
+                            <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="!fo.status" >
                                 <i class="mdi-content-send" ></i>
-                            </a>
-                          
-                            <a class="sendFreezeAmountDisable-btn" ng-show="!fo.status">
-                                <i class="mdi-content-send" ></i>
-                            </a>
-                      
+                            </button>
                         </td>
                     </tr>
                     <tr ng-show="loading">
