@@ -2,7 +2,7 @@
 require('angular');
 
 
-angular.module('DDKApp').service("stakeService", function ($http, $filter, esClient, userService) {
+angular.module('DDKApp').service("stakeService", function ($http, $filter, esClient, userService,$rootScope) {
 
   function filterData(data, filter) {
     return $filter('filter')(data, filter)
@@ -184,7 +184,42 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
         });
 
       }
-    }
+    },
+    getRewardData: function ($defer, params, filter, cb) {
+      
+      $http.get($rootScope.serverUrl + "/api/frogings/getRewardHistory", {
+          params : {
+            senderId: userService.address
+/*             limit: 10,
+            offset: 0 */
+          }
+      }).then(function (response) {
+        console.log('Reward ',response);
+        function filterData(data, filter) {
+          return $filter('filter')(data, filter)
+      }
+      function orderData(data, params) {
+          return params.sorting() ? $filter('orderBy')(data, params.orderBy()) : filteredData;
+      }
+      function sliceData(data, params) {
+          return data.slice((params.page() - 1) * params.count(), params.page() * params.count())
+      }
+      function transformData(data, filter, params) {
+          return sliceData(orderData(filterData(data, filter), params), params);
+      }
+      if (response.data.success) {
+          params.total(response.data.count);
+          var filteredData = $filter('filter')(response.data.rewardHistory, filter);
+          var transformData = transformData(response.data.rewardHistory, filter, params);
+          $defer.resolve(transformData);
+          cb();
+      } else {
+          $defer.resolve([]);
+          cb();
+          
+      }
+  });
+}
   };
   return service;
 });

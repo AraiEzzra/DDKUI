@@ -187,12 +187,12 @@
                     {{'Latest Orders'|translate}}
                 </h2>
             </div> -->
-                <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
+                <table ng-show="countFreezeOrders" ng-table="tableReward" border="0" width="100%" cellpadding="0"
                     cellspacing="0" template-pagination="custom/pager">
-                    <tr ng-repeat="fo in $data">
-                        <td data-title="tableReward.cols.rewardAmount" sortable="'rewardAmount'">{{fo.freezedAmount /
+                    <tr ng-repeat="fo1 in $data">
+                        <td data-title="tableReward.cols.rewardAmount" sortable="'rewardAmount'">{{fo1.v_reward /
                             100000000}}</td>
-                        <td data-title="tableStakes.cols.rewardTime" sortable="'rewardTime'"></td>
+                        <td data-title="tableReward.cols.rewardTime" sortable="'rewardTime'">{{fo1.t_timestamp}}</td>
                         <!-- <td data-title="tableStakes.cols.startTime" sortable="'startTime'">{{ fo.startTime |
                             timestampFilter}}</td> -->
                         <!-- <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone

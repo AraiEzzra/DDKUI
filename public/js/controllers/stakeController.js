@@ -10,8 +10,9 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   $scope.view.page = { title: gettextCatalog.getString('Staking'), previous: null };
   
   /*------Reward-----*/
-  $scope.view.loadingText = gettextCatalog.getString('Loading Rewards');
-  $scope.view.page = { title: gettextCatalog.getString('Reward'), previous: null };
+  $scope.view.loadingText1 = gettextCatalog.getString('Loading Rewards');
+  $scope.view.page1 = { title: gettextCatalog.getString('Reward'), previous: null };
+  $scope.countRewardOrders = 0
   
   $scope.countFreezeOrders = 0;
   $scope.loading = true;
@@ -114,12 +115,14 @@ $scope.tableReward = new ngTableParams(
       // if ($scope.rememberedPassphrase == '') {
       //   $scope.rememberedPassphrase = $rootScope.secretPhrase;
       // }
-      stakeService.getData($scope.searchStake.searchForStake, $defer, params, $scope.filter, $scope.rememberedPassphrase, function () {
-        $scope.searchStake.inSearch = false;
-        $scope.countFreezeOrders = params.total();
+      stakeService.getRewardData($defer, params, $scope.filter, function () {
+        console.log('Reward Response',$defer);
+        // $scope.searchStake.inSearch = false;
+        $scope.countRewardOrders = params.total();
         $scope.loading = false;
         $scope.view.inLoading = false;
-      });
+      }, null, true);
+
     }
   });
 
@@ -127,13 +130,7 @@ $scope.tableReward.cols = {
   rewardAmount: gettextCatalog.getString('RewardAmount'),
   //status: gettextCatalog.getString('Status'),
   rewardTime: gettextCatalog.getString('RewardTime'),
-  // VoteTimeRemain: gettextCatalog.getString('VoteTimeRemain'),
-  // monthRemain: gettextCatalog.getString('MonthRemain'),
-  // voteIndicator: gettextCatalog.getString('VoteIndicator'),
-  // voteDone: gettextCatalog.getString('Vote'),
-  // recipient: gettextCatalog.getString('Recipient'),
-  // transIndicator: gettextCatalog.getString('Transferred'),
-  // action: gettextCatalog.getString('Action')
+
 };
 
 $scope.tableReward.settings().$scope = $scope;
