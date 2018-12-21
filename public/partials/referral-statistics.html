@@ -50,7 +50,7 @@
                                 <td data-title="tableReferral.cols.totalVolume" sortable="'totalVolume'">{{referral.totalStakeVolume}}</td>
                                 <td data-title="tableReferral.cols.action">
                                     <button class="action-referral" ng-click="exp($index,referral.addressList)">
-                                        <i class="fa fa-chevron-right rotate" ng-class="itemDetails.index === $index ? 'down' : ''"></i>
+                                        <i class="small material-icons">{{itemDetails.index === $index? 'expand_less':'expand_more'}}</i>
                                     </button>
                                 </td>
                             </tr>
