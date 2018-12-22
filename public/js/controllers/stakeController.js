@@ -8,6 +8,12 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   var data = stakeService.data;
   $scope.view.loadingText = gettextCatalog.getString('Loading stake orders');
   $scope.view.page = { title: gettextCatalog.getString('Staking'), previous: null };
+  
+  /*------Reward-----*/
+  $scope.view.loadingText1 = gettextCatalog.getString('Loading Rewards');
+  $scope.view.page1 = { title: gettextCatalog.getString('Reward'), previous: null };
+  $scope.countRewardOrders = 0
+  
   $scope.countFreezeOrders = 0;
   $scope.loading = true;
   $scope.searchStake = stakeService;
@@ -92,6 +98,61 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     $scope.tableStakes.reload();
   });
 
+/* ---------Reward--------------- */
+
+
+$scope.tableReward = new ngTableParams(
+  {
+    page: 1,            // show first page
+    count: 5,           // count per page
+    //sorting: { status: 'desc' }
+  },
+  {
+    total: 0, // length of data
+    counts: [],
+    getData: function ($defer, params) {
+      $scope.loading = true;
+      // if ($scope.rememberedPassphrase == '') {
+      //   $scope.rememberedPassphrase = $rootScope.secretPhrase;
+      // }
+      stakeService.getRewardData($defer, params, $scope.filter, function () {
+        console.log('Reward Response',$defer);
+        // $scope.searchStake.inSearch = false;
+        $scope.countRewardOrders = params.total();
+        $scope.loading = false;
+        $scope.view.inLoading = false;
+      }, null, true);
+
+    }
+  });
+
+$scope.tableReward.cols = {
+  rewardAmount: gettextCatalog.getString('RewardAmount'),
+  //status: gettextCatalog.getString('Status'),
+  rewardTime: gettextCatalog.getString('RewardTime'),
+
+};
+
+$scope.tableReward.settings().$scope = $scope;
+
+$scope.$watch("filter.$", function () {
+  $scope.tableReward.reload();
+});
+
+/* End Rewards */
+
+
+
+
+
+
+
+
+
+
+
+
+
   $scope.sendFreezeOrder = function (id, freezedAmount) {
     $scope.sendFreezeOrderModal = sendFreezeOrderModal.activate({
       stakeId: id,
@@ -142,13 +203,3 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     }, 2000); // Delay 2000 ms
   });
 }]);
-
-
-
-
-
-
-
-
-
-

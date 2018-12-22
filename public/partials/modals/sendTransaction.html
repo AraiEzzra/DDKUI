@@ -16,7 +16,8 @@
                             <h2>{{'Send DDK'|translate}}</h2>
                         </div>
                         <div>
-                            <translate>Please enter the Recipient Address and DDK Amount that you would like send below.</translate>
+                            <translate>Please enter the Recipient Address and DDK Amount that you would like send
+                                below.</translate>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -31,10 +32,15 @@
                             </p>
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="amount" type="text" ng-change="calFees(amount)" ng-model="amount" ng-focus="focus == 'amount'" ng-class="{'invalid': errorMessage.amount}">
-                                    <label for="amount"><translate>DDK Amount</translate></label>
+                                    <input id="amount" type="text" ng-change="calFees(amount)" ng-model="amount"
+                                        ng-focus="focus == 'amount'" ng-class="{'invalid': errorMessage.amount}">
+                                    <label for="amount">
+                                        <translate>DDK Amount</translate>
+                                    </label>
                                 </div>
-                                <span class="fee-text flat-text pull-right" ng-show="amount"><translate>Fee: {{fee }} DDK</span>
+                                <span class="fee-text flat-text pull-right" ng-show="amount">
+                                    <translate>Fee: {{fee }} DDK
+                                </span>
                                 <span class="pass-error" ng-show="errorMessage.amount">{{errorMessage.amount}}</span>
                             </div>
                             <p class="error-container" ng-show="errorMessage.fromServer">
@@ -45,7 +51,8 @@
                     </div>
                     <div class="modal-body bordered">
                         <span class="send-info-text flat-text">
-                            <translate>Make sure you're sending DDK to the right address. This action can't be undone later.</translate>
+                            <translate>Make sure you're sending DDK to the right address. This action can't be undone
+                                later.</translate>
                         </span>
                     </div>
                     <div class="modal-body bordered">
@@ -54,8 +61,8 @@
                                 <input type="submit" value="{{'Cancel' | translate}}" ng-click="close()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="checkStatus()" class="btn-flat blue-link" ng-class="{'disabled': sending}"
-                                    ng-disabled="sending" />
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="checkStatus()" class="btn-flat blue-link"
+                                    ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -80,8 +87,8 @@
                         <form ng-submit="sendTransaction(secretPhrase)">
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="passPhrase" type="password" ng-model="secretPhrase" ng-focus="focus == 'secretPhrase'" ng-trim="false" autofocus
-                                        ng-class="{'invalid': errorMessage.fromServer}">
+                                    <input id="passPhrase" type="password" ng-model="secretPhrase" ng-focus="focus == 'secretPhrase'"
+                                        ng-trim="false" autofocus ng-class="{'invalid': errorMessage.fromServer}">
                                     <label for="passPhrase">
                                         <translate>Your Passphrase</translate>
                                     </label>
@@ -97,8 +104,8 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase)" class="btn-flat waves-blue"
-                                    ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase)"
+                                    class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -124,8 +131,8 @@
                         <form ng-submit="sendTransaction(secretPhrase, true)">
                             <div class="field-padding">
                                 <div class="input-field">
-                                    <input id="secondPhrase" type="password" ng-model="secondPhrase" ng-trim="false" autofocus ng-focus="focus == 'secondPhrase'"
-                                        ng-class="{'invalid': errorMessage}">
+                                    <input id="secondPhrase" type="password" ng-model="secondPhrase" ng-trim="false"
+                                        autofocus ng-focus="focus == 'secondPhrase'" ng-class="{'invalid': errorMessage}">
                                     <label for="secondPhrase">
                                         <translate>Your Second Passphrase</translate>
                                     </label>
@@ -141,8 +148,8 @@
                                 <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
                             </li>
                             <li>
-                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase, true)" class="btn-flat blue-link"
-                                    ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase, true)"
+                                    class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -163,7 +170,8 @@
                             <h1>Verify your mobile number</h1>
                         </div>
                         <div class="l-h20">
-                            <translate>Thanks for giving your details. An OTP has been sent to your Mobile Number.Please enter the 4
+                            <translate>Thanks for giving your details. An OTP has been sent to your Mobile
+                                Number.Please enter the 4
                                 digit OTP below for Successful Registration.</translate>
                         </div>
                     </div>
@@ -189,8 +197,8 @@
                     <div class="modal-body bordered">
                         <ul class="nav modal-buttons pull-right">
                             <li>
-                                <input type="submit" value="{{'Verify' | translate}}" ng-click="passcheck('', otpNumber)" class="btn-flat blue-link" ng-class="{'disabled': sending}"
-                                    ng-disabled="sending" />
+                                <input type="submit" value="{{'Verify' | translate}}" ng-click="passcheck('', otpNumber)"
+                                    class="btn-flat blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

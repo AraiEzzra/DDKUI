@@ -7,12 +7,14 @@
                 <span><img style="width: 70%;position: relative;top: -80px;" src="../images/logo.png" alt="logo"></span>
             </div>
             <form class="clearfix pass-window-form" _lpchecked="1" ng-submit="login(pass, rememberPassphrase)">
-              <div class="input-field">
-                  <input id="password" type="password" ng-model="pass" ng-trim="false" autofocus>
-                  <label for="password"><translate>Your Passphrase</translate></label>
-                  <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
-              </div>
-              <!-- <div class="input-group">
+                <div class="input-field">
+                    <input id="password" type="password" ng-model="pass" ng-trim="false" autofocus>
+                    <label for="password">
+                        <translate>Your Passphrase</translate>
+                    </label>
+                    <span class="pass-error" ng-show="errorMessage">{{errorMessage}}</span>
+                </div>
+                <!-- <div class="input-group">
                   <div class="switch blue-switch margin">
                       <label>
                           <input type="checkbox" ng-model="rememberPassphrase">
@@ -21,24 +23,32 @@
                       </label>
                   </div>
               </div> -->
-              <div class="input-field">
-                  <div ng-include="'partials/shared/language-selector.html'"></div>
-              </div>
-              <div class="buttons-panel pull-right">
-                  <a class="btn btn-white waves-effect btn-marging" ui-sref="existingETPSUser"><translate>Existing ETPS User</translate></a>
-                  <a class="btn btn-white waves-effect btn-marging" ng-click="newUser()"><translate>NEW ACCOUNT</translate></a>
-                  <a class="btn btn-blue waves-effect waves-light" ng-click="login(pass, rememberPassphrase)" ng-disabled="!pass"><translate>SIGN IN</translate></a>
-              </div>
+                <div class="input-field">
+                    <div ng-include="'partials/shared/language-selector.html'"></div>
+                </div>
+                <div class="buttons-panel pull-right">
+                    <a class="btn btn-white waves-effect btn-marging" ui-sref="existingETPSUser">
+                        <translate>Existing ETPS User</translate>
+                    </a>
+                    <a class="btn btn-white waves-effect btn-marging" ng-click="newUser()">
+                        <translate>NEW ACCOUNT</translate>
+                    </a>
+                    <a class="btn btn-blue waves-effect waves-light" ng-click="login(pass, rememberPassphrase)"
+                        ng-disabled="!pass">
+                        <translate>SIGN IN</translate>
+                    </a>
+                </div>
             </form>
         </div>
 
-        <div class="pass-footer clearfix"><p style="margin-bottom: 10px;">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
-       <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
-                    <img src="../images/facebook.png" alt="facebook">
-                </a>&nbsp
-                <a href="http://forums.ddkoin.com/" target="_blank">
-                    <img src="../images/forum.png" alt="forum">
-                </a>
-</div>
+        <div class="pass-footer clearfix">
+            <p style="margin-bottom: 10px;">DDK Testnet Web Wallet © 2016 - 2028. All Rights Reserved.</p>
+            <a href="https://www.facebook.com/DDKoin_Official-437883973356520/" target="_blank">
+                <img src="../images/facebook.png" alt="facebook">
+            </a>&nbsp
+            <a href="http://forums.ddkoin.com/" target="_blank">
+                <img src="../images/forum.png" alt="forum">
+            </a>
+        </div>
     </div>
 </div>

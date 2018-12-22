@@ -162,7 +162,9 @@
             <div class="panel-heading cursor">
                 <h2>{{getCategoryName(cat[0].category)}} {{searchedText}}</h2>
                 <div class="more">
-                    <span class="sr-only"><translate>More</translate></span>
+                    <span class="sr-only">
+                        <translate>More</translate>
+                    </span>
                 </div>
             </div>
         </div>
@@ -218,11 +220,14 @@
 <div class="row clearfix margin" ng-repeat-end></div>
 <div class="row clearfix">
     <div class="col-xs-12">
-        <div class="panel panel-default no-margin-bottom" ui-sref='main.dappsCategory({categoryId:"Installed"})' eat-click-if="!installedDapps.length">
+        <div class="panel panel-default no-margin-bottom" ui-sref='main.dappsCategory({categoryId:"Installed"})'
+            eat-click-if="!installedDapps.length">
             <div class="panel-heading" ng-class="{'cursor': installedDapps.length}">
                 <h2>{{'Installed Applications'|translate}} {{searchedInstalledText}}</h2>
                 <div class="more">
-                    <span class="sr-only"><translate>More</translate></span>
+                    <span class="sr-only">
+                        <translate>More</translate>
+                    </span>
                 </div>
             </div>
             <div ng-if="!installedDapps.length" class="panel-body empty-body ng-scope">
