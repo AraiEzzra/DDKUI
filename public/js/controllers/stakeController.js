@@ -84,9 +84,9 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     status: gettextCatalog.getString('Status'),
     startTime: gettextCatalog.getString('StartTime'),
     VoteTimeRemain: gettextCatalog.getString('VoteTimeRemain'),
-    monthRemain: gettextCatalog.getString('MonthRemain'),
-    voteIndicator: gettextCatalog.getString('VoteIndicator'),
-    voteDone: gettextCatalog.getString('Vote'),
+    reward: gettextCatalog.getString('Reward'),
+    voteCount: gettextCatalog.getString('VoteCount'),
+    voteDone: gettextCatalog.getString('Voted'),
     recipient: gettextCatalog.getString('Recipient'),
     transIndicator: gettextCatalog.getString('Transferred'),
     action: gettextCatalog.getString('Action')
@@ -140,6 +140,18 @@ $scope.$watch("filter.$", function () {
 });
 
 /* End Rewards */
+
+  getCurrentTimestamp();
+
+  function getCurrentTimestamp() {
+    var epochTime = new Date(Date.UTC(2016, 0, 1, 17, 0, 0, 0));
+    var epochTimestamp = epochTime.getTime();
+
+    var date = new Date();
+    var currentTimestamp = date.getTime();
+
+    $scope.currentDDKTimestamp = Math.floor((currentTimestamp - epochTimestamp) / 1000);
+  }
 
 
 
