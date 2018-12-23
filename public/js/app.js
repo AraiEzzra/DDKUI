@@ -111,9 +111,13 @@ DDKApp.config([
             .state('loading', {
                 url: "/",
                 templateUrl: "/partials/loading.html"
+            })
+            .state('notFound', {
+                url: '/notFound',
+                templateUrl: '/partials/notFound.html'
             });
     }
-]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout, $stateParams) {
+]).run(function (languageService, clipboardService, $rootScope, $state, AuthService, $timeout, $stateParams, $http) {
     languageService();
     clipboardService();
     $rootScope.$state = $state;
@@ -126,16 +130,29 @@ DDKApp.config([
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         AuthService.getUserStatus()
             .then(function () {
+                if(toState.name == 'notFound') {
+                    return;
+                }
+                if(toState.name == 'referal') {
+                    if (!toParams || !toParams.id) {
+                        return $state.go('notFound');
+                    }
+                    $http.post($rootScope.serverUrl + "/api/accounts/checkAccountExists", { address: toParams.id })
+                    .then(function (response) {
+                        if(!response.data.success) {
+                            return $state.go('notFound');
+                        }
+                    });
+                    return;
+                }
+
                 if (AuthService.isLoggedIn()) {
                         if (toState.name != 'loading')
                             $state.go(toState.name);
                         else
                             $state.go('main.dashboard');
-                    
                 } else {
-                    if (toState.name == 'referal') {
-                        $state.go('referal');
-                    } else if (toState.name == 'existingETPSUser') {
+                    if (toState.name == 'existingETPSUser') {
                         $state.go('existingETPSUser');
                     } else
                         $state.go('passphrase');
