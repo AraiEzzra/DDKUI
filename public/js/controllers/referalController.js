@@ -1,8 +1,12 @@
 require('angular');
 
 
-angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams) {
+angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', 'accountExists', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams, accountExists) {
 
+    if(!accountExists.data.success) {
+        $state.go('notFound');
+    }
+    
     var _referalId = $stateParams.id;
     $scope.step = 1;
     $scope.noMatch = false;

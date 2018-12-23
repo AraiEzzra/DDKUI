@@ -96,7 +96,12 @@ DDKApp.config([
                 url: "/referal/:id",
                 reloadOnSearch: false,
                 templateUrl: "/partials/referal.html",
-                controller: "referalController"
+                controller: "referalController",
+                resolve: {
+                    accountExists: function($http, $rootScope, $stateParams) {
+                        return $http.post($rootScope.serverUrl + "/api/accounts/checkAccountExists", { address: $stateParams.id });
+                    }
+                }
             })
             .state('passphrase', {
                 url: "/login",
@@ -130,22 +135,9 @@ DDKApp.config([
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         AuthService.getUserStatus()
             .then(function () {
-                if(toState.name == 'notFound') {
+                if(toState.name == 'notFound' || toState.name == 'referal') {
                     return;
                 }
-                if(toState.name == 'referal') {
-                    if (!toParams || !toParams.id) {
-                        return $state.go('notFound');
-                    }
-                    $http.post($rootScope.serverUrl + "/api/accounts/checkAccountExists", { address: toParams.id })
-                    .then(function (response) {
-                        if(!response.data.success) {
-                            return $state.go('notFound');
-                        }
-                    });
-                    return;
-                }
-
                 if (AuthService.isLoggedIn()) {
                         if (toState.name != 'loading')
                             $state.go(toState.name);
@@ -158,5 +150,14 @@ DDKApp.config([
                         $state.go('passphrase');
                 }
             });
+    });
+
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+        if(toState.name === 'referal') {
+            if (!toParams || !toParams.id) {
+                event.preventDefault();
+                return $state.go('notFound');
+            }
+        }
     });
 });
