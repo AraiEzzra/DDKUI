@@ -133,12 +133,12 @@
                             timestampFilter}}</td>
                         <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone
                             >0 ? (fo.nextVoteMilestone | timestampFilter):0}}</td>
-                        <td data-title="tableStakes.cols.monthRemain" sortable="'monthRemain'">{{6-fo.rewardCount}}</td>
-                        <td data-title="tableStakes.cols.voteIndicator" sortable="'voteIndicator'">{{fo.voteCount}}/4</td>
-                        <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.isVoteDone}}</td>
+                        <td data-title="tableStakes.cols.reward" sortable="'reward'">{{fo.voteCount/4 - (fo.voteCount/4)%1}}</td>
+                        <td data-title="tableStakes.cols.voteCount" sortable="'voteCount'">{{fo.voteCount}}</td>
+                        <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.nextVoteMilestone > currentDDKTimestamp? 'true':'false'}}</td>
                         <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
-                        <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.isTransferred
-                            }}</td>
+                        <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.transferCount
+                            }}/3</td>
                         <td data-title="tableStakes.cols.action">
                             <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="!fo.status" >
                                 <i class="mdi-content-send" ></i>
@@ -191,26 +191,8 @@
                     cellspacing="0" template-pagination="custom/pager">
                     <tr ng-repeat="fo1 in $data">
                         <td data-title="tableReward.cols.rewardAmount" sortable="'rewardAmount'">{{fo1.v_reward /
-                            100000000}}</td>
-                        <td data-title="tableReward.cols.rewardTime" sortable="'rewardTime'">{{fo1.t_timestamp}}</td>
-                        <!-- <td data-title="tableStakes.cols.startTime" sortable="'startTime'">{{ fo.startTime |
-                            timestampFilter}}</td> -->
-                        <!-- <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone
-                            >0 ? (fo.nextVoteMilestone | timestampFilter):0}}</td>
-                        <td data-title="tableStakes.cols.monthRemain" sortable="'monthRemain'">{{6-fo.rewardCount}}</td>
-                        <td data-title="tableStakes.cols.voteIndicator" sortable="'voteIndicator'">{{fo.voteCount}}/4</td>
-                        <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.isVoteDone}}</td>
-                        <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
-                        <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.isTransferred
-                            }}</td> -->
-                        <!-- <td data-title="tableStakes.cols.action">
-                            <a class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-show="fo.status">
-                                <i class="mdi-content-send" ></i>
-                            </a>
-                            <a class="sendFreezeAmount-btn" ng-show="!fo.status">
-                                <i class="mdi-content-send" ></i>
-                            </a>
-                        </td> -->
+                            100000000}} DDK</td>
+                        <td data-title="tableReward.cols.rewardTime" sortable="'rewardTime'">{{fo1.t_timestamp | timeAgoFilter}} | {{fo1.t_timestamp | timestampFilter}}</td>
                     </tr>
                     <tr ng-show="loading">
                         <td class="gray2 white-text" colspan="7">
