@@ -138,7 +138,7 @@
                         <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.nextVoteMilestone > currentDDKTimestamp? 'true':'false'}}</td>
                         <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
                         <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.transferCount
-                            }}</td>
+                            }}/3</td>
                         <td data-title="tableStakes.cols.action">
                             <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="!fo.status" >
                                 <i class="mdi-content-send" ></i>
