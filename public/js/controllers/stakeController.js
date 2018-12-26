@@ -154,17 +154,6 @@ $scope.$watch("filter.$", function () {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
   $scope.sendFreezeOrder = function (id, freezedAmount) {
     $scope.sendFreezeOrderModal = sendFreezeOrderModal.activate({
       stakeId: id,
