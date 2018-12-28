@@ -87,11 +87,7 @@ DDKApp.config([
                 templateUrl: "/partials/withdrawl.html",
                 controller: "withdrawlController"
             })
-            .state('existingETPSUser', {
-                url: "/existingETPSUser",
-                templateUrl: "/partials/existing-etps-user.html",
-                controller: "existingETPSUserController"
-            })
+            
             .state('referal', {
                 url: "/referal/:id",
                 reloadOnSearch: false,
@@ -144,9 +140,7 @@ DDKApp.config([
                         else
                             $state.go('main.dashboard');
                 } else {
-                    if (toState.name == 'existingETPSUser') {
-                        $state.go('existingETPSUser');
-                    } else
+                    
                         $state.go('passphrase');
                 }
             });
