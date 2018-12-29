@@ -311,7 +311,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
    /* For Vote Icon Functionality */
    $scope.voteIconVisibility =function(transaction){
 
-    if(transaction.type == 3 && (transaction.asset.reward>0||transaction.asset.unstake>0||(transaction.asset.airdropReward.withAirdropReward==true&&transaction.asset.airdropReward.totalReward>0))){
+    if(transaction.type == 60 && (transaction.asset.reward>0||transaction.asset.unstake>0||(transaction.asset.airdropReward.withAirdropReward==true&&transaction.asset.airdropReward.totalReward>0))){
 
         return true;
     }else{
