@@ -102,8 +102,11 @@
                         <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.transferCount
                             }}/3</td>
                         <td data-title="tableStakes.cols.action">
-                            <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="!fo.status" >
-                                <i class="mdi-content-send" ></i>
+                            <!-- <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="!fo.status">
+                                <i class="mdi-content-send"></i>
+                            </button> -->
+                            <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="true">
+                                <i class="mdi-content-send"></i>
                             </button>
                         </td>
                     </tr>
