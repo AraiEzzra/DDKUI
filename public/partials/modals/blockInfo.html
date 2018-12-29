@@ -77,9 +77,9 @@
                                     <div class="transaction-path">
                                         <div class="transaction-part pull-left">
                                             <a href="#" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
-                                            <span ng-show="transaction.type != 8" class="DDK">{{transaction.amount |
+                                            <span ng-show="transaction.type != 40" class="DDK">{{transaction.amount |
                                                 DDKFilter}} DDK</span>
-                                            <span ng-show="transaction.type == 8" class="DDK">{{transaction.stakedAmount
+                                            <span ng-show="transaction.type == 40" class="DDK">{{transaction.stakedAmount
                                                 | DDKFilter}} DDK</span>
                                         </div>
                                         <div class="transaction-direction"></div>
