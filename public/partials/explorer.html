@@ -126,7 +126,9 @@
                 </span>
             </div>
         </div>
-        <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
+
+        
+        <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
             <div class="panel-heading">
                 <h2>{{'Latest Block Details'|translate}}</h2>
             </div>
@@ -202,7 +204,7 @@
 
     <!-- For Latest Block Details -->
     <div class="col-xs-12">
-        <div class="panel panel-default" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">
+        <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countForgingBlocks || !searchTransactions.searchForTransaction}">
             <div class="panel-heading">
                 <h2>
                     {{'Latest Transactions Details'|translate}}

@@ -1,5 +1,6 @@
 body{
-  background-color: #eef5f9;
+  //background-color: #eef5f9;
+  background-color: #51606d;
 }
 .ovh{
   overflow: hidden;
@@ -21,7 +22,8 @@ body{
       &.active {
         a {
           font-weight: 500;
-          border-bottom: solid 4px #cc3d3d;
+          //border-bottom: solid 4px #cc3d3d;
+          border-bottom: solid 4px #0288d1;
         }
       }
     }
@@ -29,15 +31,22 @@ body{
 }
 .info-panel, .info-panel.info-panel-grey, .light-graph{
   margin-bottom: 15px;
+  background-color:#45525e;
+  border-bottom: 2px solid #45525e;
+  border-top: 1px solid #45525e;
+  border-right: 1px solid #45525e;
+  border-left: 1px solid #45525e;
 }
 .table-responsive{
   .table{
     tr{
       &:nth-child(even){
-        background: #fafafa;
+        //background: #fafafa;
+        background-color:#45525e;
       }
       &:hover{
-        background-color: #eee;
+       // background-color: #eee;
+        background-color:#45525e;
       }
     }
     td{
@@ -91,11 +100,11 @@ body{
   }
 }
 .search-bar{
-  border: #cecece 1px solid;
-  border-radius: 4px;
-  padding: 5px 50px 5px 10px;
-  margin-bottom: 15px;
-
+    border-radius: 4px;
+    padding: 5px 40px 5px 10px;
+    background-color: #46535f;
+    border: 1px solid #515f6c;
+    margin-bottom: 15px;
 }
 .container-fluid {
   padding-right: 15px;
@@ -152,14 +161,15 @@ body{
 /* For Menu Sidebar  */
 #sidebar-wrapper{
   //background: #ffffff;
-  background: #46535f;
+ // background: #46535f;
+  background: #3b4650;
   .account-block {
     // background-color: #fbfbfb;
     background-color: #3b4650;
-    border-bottom: #f5f1f1 1px solid;
+    // border-bottom: #f5f1f1 1px solid;
     .address {
       //color: #cc3d3d;
-      color: #0288d1;
+      color: #fff;
     }
     .name{
       color: #797979;
@@ -176,7 +186,8 @@ body{
       }
       &.active{
        // background-color: #f2f5f7;
-        background-color: #3b4650;
+       // background-color: #3b4650;
+        background: rgba(202,202,202,.3);
       }
     }
   }
@@ -261,9 +272,10 @@ body{
 }
 /* For table section  */
 .panel{
+  
   .panel-heading{
     //background: #cc3d3d;
-    background: #0288d1;
+    background: #45525e;
     padding: 12px;
     border-bottom: none;
     h2{
@@ -309,7 +321,8 @@ body{
   padding:12px 0 12px 5px;
 }
 .panel-default table td a{
-  color: #cc3d3d;
+  //color: #cc3d3d;
+  color: #fff;
 }
 .pagination{
   margin: 10px 0;
@@ -468,7 +481,8 @@ body{
         width: 50px;
         text-align: center;
         line-height: 70px;
-        background: #f2f5f7;
+       // background: #f2f5f7;
+        background: rgba(255,255,255,.2);
         border-radius: 100%;
       }
     }
@@ -489,7 +503,7 @@ body{
         font-size: 14px;
         font-weight: 400;
         display: block;
-        color: #ababab;
+        //color: #ababab;
       }
     }
   }
@@ -1004,6 +1018,7 @@ a.imhere-pre{
 
 .main-container-fluid{
   padding-bottom: 65px;
+  //background-color: #3b4650;
 }
 
 .referral-tab{
@@ -1015,17 +1030,20 @@ a.imhere-pre{
   }
   .nav-tabs>li.active>a{
     color: #fff;
-    background: #cc3d3d;
-   
+    // background: #cc3d3d;
+    background: #0288d1;
+    border: none;
   }
   .nav-tabs>li>a{
     padding: 12px 15px;
-    color: #544835;
-    background: #e0e0e0;
+    //color: #544835;
+    color: #fff;
+    //background: #e0e0e0;
+    background: #46535f;
   }
-  .nav-tabs {
-    border-bottom: 1px solid #ddd;
-  }
+  // .nav-tabs {
+  //   border-bottom: 1px solid #ddd;
+  // }
   .nav-tabs>li{
     margin-bottom: inherit;
   }
@@ -1035,12 +1053,14 @@ a.imhere-pre{
   .chart-container{
     text-align: center;
     padding: 15px;
-    background: #fff;
+    //background: #fff;
+    background:#485160;
   }
 }
 .stake-pie-container,.airdrop-container{
   padding: 15px;
   position:relative;
+  background-color: #485160;
   .chart-container{
     width:550px !important;
     margin: auto;
@@ -1049,6 +1069,7 @@ a.imhere-pre{
 }
 .pie-legend{
   margin-top: 15px;
+  color: #fff;
   li{
     font-size: unset;
     line-height: normal;
@@ -1068,6 +1089,8 @@ a.imhere-pre{
   top: 35%;
   left: 8%;
   bottom: 0;
+  color: #fff;
+
   span{
     margin-bottom: 10px;
     display: block;
@@ -1198,4 +1221,100 @@ td.child.open {
     height: 30px;
     padding: 0;
     background: #c0c0bf;
+}
+.heading{
+  background-color: #485160;
+}
+
+
+/*For Table*/
+.custom-panel-default{
+  margin-bottom: 30px;
+  border-radius: .25rem;
+  background: #46535f;
+  .panel-heading{
+    background: transparent;
+    border-bottom: none;
+    color: @white;
+  }
+  table {
+    background-color: transparent;
+    box-shadow:none;
+    margin-bottom: 0px;
+    .head {
+      border-bottom: transparent;
+      th{
+        color: @white;
+        background-color: #0187d1;
+        border-radius: 0px;
+        border-bottom: transparent;
+        line-height: inherit;
+      }
+    }
+  }
+  .table-responsive{
+    .table{
+      tr{
+        &:hover{
+          background-color: transparent;
+        }
+        &:nth-child(even){
+          background-color: #424e5a;
+        }
+        td{
+          font-size: 13px;
+          color: @white;
+          padding: 12px;
+          a{
+            color: @white;
+          }
+        }
+      }
+    }
+  }
+  &.paginated{
+    background-color: #46535f;
+    -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,.12);
+    box-shadow: 0 0 3px 1px rgba(0,0,0,.12);
+    .panel-heading{
+      border: none;
+      box-shadow: none;
+    }
+    table{
+      border:0;
+      thead{
+        tr{
+          th{
+            background-color: #0187d1!important;
+            border-bottom: 0;
+            border-radius: 0;
+            color: @white!important;
+            div{
+              span {
+                padding: 12px;
+                font-weight: 400;
+              }
+            } 
+          }
+        }
+      }
+      tbody{
+        tr{
+          &:hover{
+            background-color: transparent;
+          }
+          &:nth-child(even){
+            background-color: #424e5a;
+          }
+          td{
+            color:@white;
+            font-size: 13px;
+            a{
+              color:@white;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -155,7 +155,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         let airdropDataJson = {
             "data": $scope.data1,
             "labels": ["Consume", "Available"],
-            "colours": ["#cc3d3d", "#c0bebe"]
+            "colours": ["#0288d1", "#c0bebe"]
         };
         $scope.airdropData = airdropDataJson;
     });
