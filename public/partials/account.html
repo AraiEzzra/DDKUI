@@ -198,9 +198,9 @@
               <td class="padding-in-1400">
                 <!----------------------Icons of Vote and Stake---------------------------->
 
-                <i ng-if="transaction.type==8 && transaction.asset.airdropReward.totalReward > 0" class="vertical-text mdi-image-brightness-7"
+                <i ng-if="transaction.type==40 && transaction.asset.airdropReward.totalReward > 0" class="vertical-text mdi-image-brightness-7"
                   ng-click="SpecifictransactionInfoModal(transaction,2)"></i>
-                <i ng-if="transaction.type==3 && (transaction.asset.reward > 0 || transaction.asset.airdropReward.totalReward > 0 || transaction.asset.unstake < 0)"
+                <i ng-if="transaction.type==60 && (transaction.asset.reward > 0 || transaction.asset.airdropReward.totalReward > 0 || transaction.asset.unstake < 0)"
                   class="vertical-text mdi-social-person-add" ng-click="SpecifictransactionInfoModal(transaction,1)"></i>
 
                 {{transaction.trsName}}
@@ -209,15 +209,15 @@
                 {{transaction.timestamp | timeAgoFilter: false}}
               </td>
 
-              <td ng-show="transaction.type != 8">
+              <td ng-show="transaction.type != 40">
                 <i ng-if="transaction.recipientId==transaction.senderId" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
-                <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 8" class="vertical-text"
+                <i ng-if="transaction.recipientId!=transaction.senderId && transaction.type != 40" class="vertical-text"
                   ng-class="{'mdi-content-add-circle dark-meent-font': transaction.recipientId==address, 'mdi-content-remove-circle dark-red-font': transaction.senderId==address}"></i>
-                <i ng-if="transaction.type == 8" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
+                <i ng-if="transaction.type == 40" class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                 {{transaction.amount | DDKFilter}} ({{transaction.fee | DDKFilter}})
               </td>
 
-              <td ng-show="transaction.type == 8">
+              <td ng-show="transaction.type == 40">
                 <i class="vertical-text mdi-image-brightness-1 cloud-font"></i>
                 {{transaction.stakedAmount | DDKFilter}} ({{transaction.fee | DDKFilter}})
               </td>

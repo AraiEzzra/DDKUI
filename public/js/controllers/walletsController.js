@@ -79,7 +79,7 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
 
     $scope.confirmationsNeeded = function (item) {
         try {
-            return item.transaction.type == 8 ? item.transaction.asset.multisignature.keysgroup.length + 1 : item.min;
+            return item.transaction.type == 40 ? item.transaction.asset.multisignature.keysgroup.length + 1 : item.min;
         }
         catch (err) {
             return 0;

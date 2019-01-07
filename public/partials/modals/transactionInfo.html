@@ -33,10 +33,10 @@
                                 </li>
                                 <li class="list-group-item">
                                     <translate>Amount</translate>
-                                    <div class="pull-right small-text" ng-show="transaction.type != 8">
+                                    <div class="pull-right small-text" ng-show="transaction.type != 40">
                                         {{transaction.amount | DDKFilter}} DDK
                                     </div>
-                                    <div class="pull-right small-text" ng-show="transaction.type == 8">
+                                    <div class="pull-right small-text" ng-show="transaction.type == 40">
                                         {{transaction.stakedAmount | DDKFilter}} DDK
                                     </div>
                                 </li>
@@ -79,21 +79,21 @@
                                         <span class="pull-right">{{transaction.timestamp | timestampFilter}}</span>
                                     </div>
                                     <div class="transaction-path">
-                                        <div ng-show="transaction.type != 8" class="transaction-part pull-left">
+                                        <div ng-show="transaction.type != 40" class="transaction-part pull-left">
                                             <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
                                             <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                                         </div>
-                                        <div ng-show="transaction.type == 8" class="transaction-part pull-left">
+                                        <div ng-show="transaction.type == 40" class="transaction-part pull-left">
                                             <a href="#" class="blue-link" ng-click="userInfo(transaction.senderId)">{{transaction.senderId}}</a>
                                             <span class="DDK">{{transaction.stakedAmount | DDKFilter}} DDK</span>
                                         </div>
                                         <div class="transaction-direction"></div>
-                                        <div ng-show="transaction.type != 8" class="transaction-part pull-right">
+                                        <div ng-show="transaction.type != 40" class="transaction-part pull-right">
                                             <a href="#" class="blue-link" ng-click="userInfo(transaction.recipientId)">{{transaction.recipientId
                                                 || ""}}</a>
                                             <span class="DDK">{{transaction.amount | DDKFilter}} DDK</span>
                                         </div>
-                                        <div ng-show="transaction.type == 8" class="transaction-part pull-right"></div>
+                                        <div ng-show="transaction.type == 40" class="transaction-part pull-right"></div>
                                     </div>
                                     <div class="transaction-bottom">
                                         <div class="fee">
