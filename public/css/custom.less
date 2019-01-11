@@ -1,5 +1,4 @@
 body{
-  //background-color: #eef5f9;
   background-color: #51606d;
 }
 .ovh{
@@ -22,7 +21,6 @@ body{
       &.active {
         a {
           font-weight: 500;
-          //border-bottom: solid 4px #cc3d3d;
           border-bottom: solid 4px #0288d1;
         }
       }
@@ -41,12 +39,10 @@ body{
   .table{
     tr{
       &:nth-child(even){
-        //background: #fafafa;
         background-color:#45525e;
       }
       &:hover{
-       // background-color: #eee;
-        background-color:#45525e;
+       background-color:#45525e;
       }
     }
     td{
@@ -61,7 +57,7 @@ body{
   float: left;
   min-width: 240px;
   padding: 0 10px;
-  //background: #cc3d3d;
+  
   #logo{
     display: inline-block;
     background-position: center center;
@@ -69,10 +65,9 @@ body{
   }
 }
 #header{
- // background-color: #ffffff;
+
   background: linear-gradient(to right,#3b4650,#647688);
   #title{
-    //color: @brown1;
     color: #fff;
   }
   #top-menu{
@@ -140,7 +135,6 @@ body{
   }
 }
 .pass-window-icon{
- // background-color: #cc3d3d;
   background-color: #0288d1;
   
 }
@@ -148,8 +142,7 @@ body{
   background: none;
 }
 .btn.btn-blue{
-  //background-color: #cc3d3d!important;
-  background-color: #0288d1!important;
+ background-color: #0288d1!important;
 }
 .pl-none{
   padding-left: 0px!important;
@@ -160,15 +153,12 @@ body{
 }
 /* For Menu Sidebar  */
 #sidebar-wrapper{
-  //background: #ffffff;
- // background: #46535f;
-  background: #3b4650;
+   background: #3b4650;
   .account-block {
-    // background-color: #fbfbfb;
+    
     background-color: #3b4650;
-    // border-bottom: #f5f1f1 1px solid;
     .address {
-      //color: #cc3d3d;
+      
       color: #fff;
     }
     .name{
@@ -216,7 +206,6 @@ body{
 }
 /*For explorer html*/
 .widget {
-  //background: #ffffff;
   background: #46535f;
   margin-bottom: 25px;
   border-radius: 4px;
@@ -276,7 +265,6 @@ body{
 .panel{
   
   .panel-heading{
-    //background: #cc3d3d;
     background: #45525e;
     padding: 12px;
     border-bottom: none;
@@ -483,7 +471,6 @@ body{
         width: 50px;
         text-align: center;
         line-height: 70px;
-       // background: #f2f5f7;
         background: rgba(255,255,255,.2);
         border-radius: 100%;
       }
@@ -505,7 +492,7 @@ body{
         font-size: 14px;
         font-weight: 400;
         display: block;
-        //color: #ababab;
+       
       }
     }
   }
@@ -526,7 +513,6 @@ body{
   z-index: 99999;
   width: 100%;
   height: 100vh;
-  //background: #cc3d3d;
   background: #3b4650;
   .loader-container{
     display: inline-block;
@@ -616,13 +602,11 @@ body::-webkit-scrollbar-track,#sidebar-wrapper::-webkit-scrollbar-track{
 
 /* Handle */
 body::-webkit-scrollbar-thumb,#sidebar-wrapper::-webkit-scrollbar-thumb {
- // background: #cc3d3d; 
   background: #0288d1;
 }
 
 /* Handle on hover */
 body::-webkit-scrollbar-thumb:hover,#sidebar-wrapper::-webkit-scrollbar-thumb:hover {
-  //background: #cc3d3d; 
   background: #0288d1;
 }
 .top-header-section{
@@ -678,7 +662,6 @@ body::-webkit-scrollbar-thumb:hover,#sidebar-wrapper::-webkit-scrollbar-thumb:ho
   border-color: #cecece;
   overflow: hidden;
   .nav-tabs{
-    //background: #cc3d3d;
     background:#0488d1;
     display: table;
     li{
@@ -1008,7 +991,6 @@ a.imhere-pre{
 .footer{
   padding: 10px 0;
   text-align: center;
- // background: #cc3d3d;
   background:#0288d1;
   color: #fff;
   position: fixed;
@@ -1023,8 +1005,7 @@ a.imhere-pre{
 
 .main-container-fluid{
   padding-bottom: 65px;
-  //background-color: #3b4650;
-}
+  }
 
 .referral-tab{
   .tab-content {
@@ -1035,20 +1016,18 @@ a.imhere-pre{
   }
   .nav-tabs>li.active>a{
     color: #fff;
-    // background: #cc3d3d;
     background: #0288d1;
     border: none;
   }
   .nav-tabs>li>a{
     padding: 12px 15px;
-    //color: #544835;
     color: #fff;
-    //background: #e0e0e0;
     background: #46535f;
+    border-bottom: none;
   }
-  // .nav-tabs {
-  //   border-bottom: 1px solid #ddd;
-  // }
+  .nav-tabs {
+    border-bottom: none; 
+    }
   .nav-tabs>li{
     margin-bottom: inherit;
   }
@@ -1058,7 +1037,6 @@ a.imhere-pre{
   .chart-container{
     text-align: center;
     padding: 15px;
-    //background: #fff;
     background:#485160;
   }
 }
@@ -1337,4 +1315,7 @@ td.child.open {
 }
 .icofont {
   background: rgba(255,255,255,.2);
+}
+[type=checkbox].filled-in:not(:checked)+label:after{
+  border: 2px solid #fff!important;
 }
