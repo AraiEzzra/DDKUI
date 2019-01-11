@@ -6,3 +6,4 @@ package-lock.json
 public/package-lock.json
 server.js
 .idea/
+certs/
