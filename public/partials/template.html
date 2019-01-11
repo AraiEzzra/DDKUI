@@ -250,10 +250,14 @@
             <ul id="menu">
                 <li ng-show="showMenuItem('main.dashboard')" ui-sref-active="active">
                     <a ui-sref="main.dashboard" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="dashboard-icon"></div>
-                       
+                        <!-- <div class="nav-icon" id="dashboard-icon"></div> -->
+                        <div class="nav-icon">
+                            <i class="fa fa-home"></i>
+
+
+                        </div>
                         <!-- <i class="fa fa-home"></i> -->
-                        
+
                         <span class="menu-text">
                             <translate>Dashboard</translate>
                         </span>
@@ -261,7 +265,13 @@
                 </li>
                 <li ng-show="showMenuItem('main.forging')" ui-sref-active="active">
                     <a ui-sref="main.forging" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="forging-icon"></div>
+                        <!-- <div class="nav-icon" id="forging-icon"></div> -->
+                        <div class="nav-icon">
+                            <i class=" fa fa-thumbs-up"></i>
+
+
+                        </div>
+
                         <span class="menu-text">
                             <translate>DDK Delegates</translate>
                         </span>
@@ -271,7 +281,10 @@
                 <ul id="submenu" ng-hide="subForgingCollapsed">
                     <li ng-show="showMenuItem('main.delegates')" ui-sref-active="active">
                         <a ui-sref="main.delegates" class="waves-effect waves-blue">
-                            <div class="nav-icon" id="delegates-icon"></div>
+                            <!-- <div class="nav-icon" id="delegates-icon"></div> -->
+                            <div class="nav-icon">
+                                <i class="fa fa-cogs"></i>
+                            </div>
                             <span class="menu-text">
                                 <translate>Delegates</translate>
                             </span>
@@ -279,7 +292,11 @@
                     </li>
                     <li ng-show="showMenuItem('main.votes')" ui-sref-active="active">
                         <a ui-sref="main.votes" class="waves-effect waves-blue">
-                            <div class="nav-icon" id="myvotes-icon"></div>
+                            <!-- <div class="nav-icon" id="myvotes-icon"></div> -->
+                            
+                            <div class="nav-icon">
+                                <i class="fa fa-check-square-o"></i>
+                            </div>
                             <span class="menu-text">
                                 <translate>My Votes</translate>
                             </span>
@@ -288,25 +305,44 @@
                 </ul>
                 <li ng-show="showMenuItem('main.blockchain')" ui-sref-active="active">
                     <a ui-sref="main.blockchain" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="blockchain-icon"></div>
+                        <!-- <div class="nav-icon" id="blockchain-icon"></div> -->
+
+
+                        <div class="nav-icon">
+                            <i class="fa fa-link" ></i>
+                            
+
+                        </div>
                         <span class="menu-text">
                             <translate>DDK Blockchain</translate>
                         </span>
                     </a>
                 </li>
-                <li ng-show="showMenuItem('main.explorer')" ui-sref-active="active">
+                <!-- <li ng-show="showMenuItem('main.explorer')" ui-sref-active="active">
                     <a ui-sref="main.explorer" class="waves-effect waves-blue" ng-click="classAdd()">
-                        <div class="nav-icon" id="explorer-icon"></div>
+                       
+
+                        <div class="nav-icon">
+                            <i class="fa fa-bullseye"></i>
+
+
+                        </div>
                         <span class="menu-text">
                             <translate>DDK Explorer</translate>
                         </span>
                     </a>
-                </li>
+                </li> -->
                 <li ng-show="showMenuItem('main.stake')" ui-sref-active="active">
                     <a ui-sref="main.stake" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="stake-icon"></div>
+                        <!-- <div class="nav-icon" id="stake-icon"></div> -->
+                        <div class="nav-icon">
+                            <i class="fa fa-database"></i>
+
+
+                        </div>
+
                         <span class="menu-text">
-                            <translate>DDK Staking</translate>
+                            <translate>DDK Stake</translate>
                         </span>
                     </a>
                 </li>
@@ -320,7 +356,12 @@
                 </li>
                 <li ng-show="showMenuItem('main.referralStatistics')" ui-sref-active="active">
                     <a ui-sref="main.referralStatistics" class="waves-effect waves-blue">
-                        <div class="nav-icon" id="referral-icon"></div>
+                        <!-- <div class="nav-icon" id="referral-icon"></div> -->
+                        <div class="nav-icon">
+                            <i class="fa fa-user-plus"></i>
+
+
+                        </div>
                         <span class="menu-text">
                             <translate>Airdrop Statistics</translate>
                         </span>
