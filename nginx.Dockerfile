@@ -4,7 +4,7 @@ RUN     groupadd ddk -g 1100 && useradd -u 1100 ddk -g ddk
 
 USER    root
 RUN     apt-get update
-RUN     apt-get install curl gnupg -y
+RUN     apt-get install curl gnupg git -y
 RUN     curl -sL https://deb.nodesource.com/setup_10.x | /bin/bash -
 RUN     apt-get install build-essential nodejs -y
 RUN     npm install --global npm@latest && \

@@ -27,7 +27,7 @@ DDKApp.config([
         $urlRouterProvider.otherwise("/");
 
         $tooltipProvider.setTriggers({
-            'hover': 'mouseenter'     
+            'hover': 'mouseenter'
         });
 
         // Now set up the states
@@ -128,6 +128,7 @@ DDKApp.config([
     $rootScope.$state = $state;
     const currentURL = new URL(window.location.origin);
     currentURL.port = 7007;
+    currentURL.protocol = 'http';
     $rootScope.serverUrl = currentURL.origin;
     $rootScope.defaultLoaderScreen = false;
 
