@@ -139,7 +139,7 @@ DDKApp.config([
                     return;
                 }
                 if (AuthService.isLoggedIn()) {
-                        if (toState.name != 'loading')
+                        if (toState.name !='loading')
                             $state.go(toState.name);
                         else
                             $state.go('main.dashboard');
