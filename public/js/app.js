@@ -12,6 +12,7 @@ require('../node_modules/ng-table/dist/ng-table.js');
 require('../bower_components/bootstrap/dist/js/bootstrap.min.js');
 
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
+const config = require('../../config');
 
 Mnemonic = require('bitcore-mnemonic');
 
@@ -126,9 +127,11 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    const currentURL = new URL(window.location.origin);
-    currentURL.port = 7007;
-    currentURL.protocol = 'http';
+    const currentURL = new URL(`${config.serverProtocol}://${config.serverHost}`);
+    if (config.serverProtocol === 'http') {
+        currentURL.port = config.serverPort;
+    }
+
     $rootScope.serverUrl = currentURL.origin;
     $rootScope.defaultLoaderScreen = false;
 
