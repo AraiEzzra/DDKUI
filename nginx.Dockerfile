@@ -1,7 +1,5 @@
 FROM    nginx
 
-RUN     groupadd ddk -g 1100 && useradd -u 1100 ddk -g ddk
-
 USER    root
 RUN     apt-get update
 RUN     apt-get install curl gnupg git -y
@@ -14,11 +12,9 @@ RUN     npm install --global npm@latest && \
 WORKDIR /home/ddk
 RUN     chmod -R 777 /home/ddk
 
-USER    ddk
-
-COPY    --chown=ddk ./package.json /home/ddk/
-COPY    --chown=ddk ./config.json /home/ddk/
-COPY    --chown=ddk ./public /home/ddk/public
+COPY    ./package.json /home/ddk/
+COPY    ./config.json /home/ddk/
+COPY    ./public /home/ddk/public
 
 RUN     npm install
 RUN     cd public && \
@@ -26,6 +22,3 @@ RUN     cd public && \
         npm install
 
 RUN     cd public && grunt release
-
-# TODO: add permissions to ddk user for nginx
-USER    root
