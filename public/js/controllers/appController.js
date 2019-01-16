@@ -566,6 +566,12 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         ]);
     });
 
+    $scope.$on('socket:updateTotalStakeAmount', function (ev, data) {
+        $timeout(function () {
+            $scope.$broadcast('updateTotalStakeAmount', data);
+        });
+    });
+
     $window.onfocus = function () {
         $scope.getAppData();
         $scope.updateViews([$state.current.name]);
