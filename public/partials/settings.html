@@ -66,7 +66,8 @@
 
     <!-- For Google Authentication Enable Section -->
     <div class="col-xs-12" ng-if="disable">
-        <div class="panel panel-default settings-panel">
+        <!-- <div class="panel panel-default settings-panel"> -->
+         <div class="panel-default custom-panel-default settings-panel">
             <div class="panel-heading">
                 <h2>{{'Google Authentication'|translate}}</h2>
             </div>
@@ -94,7 +95,8 @@
 
     <!-- For Google Authentication -->
     <div class="col-md-12 google-authentication-container" ng-if="myVar">
-        <div class="content main-google-auth-section">
+        <!-- <div class="content main-google-auth-section "> -->
+        <div class="content main-google-auth-section panel-default custom-panel-default">
             <form class="form-horizontal">
                 <ul class="nav nav-tabs">
                     <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex()}">
