@@ -82,13 +82,13 @@ function modalFactoryFactory($animate, $compile, $rootScope, $controller, $q, $h
         var appModal = document.querySelector('.app-modal');
         // console.log('modaljs:: appModal ', appModal);
         var modalContents = appModal.querySelectorAll('.modal-content');
-        // console.log('modalContents:: ', modalContents);
-        if(modalContents) {
+       
+        if(modalContents && modalContents.length) {
           addClickEventListenersOn(modalContents);
           return modal;
         }
         var materialModalContents = appModal.querySelectorAll('.material-modal-content');
-        if(materialModalContents) {
+        if(materialModalContents && materialModalContents.length) {
           addClickEventListenersOn(materialModalContents);
           return modal;
         }
