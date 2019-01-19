@@ -10,4 +10,3 @@ angular.module('DDKApp').service('esClient', function (esFactory) {
         log: 'error'
     });
 });
-
