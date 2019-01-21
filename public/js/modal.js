@@ -21,7 +21,8 @@ function modalFactoryFactory($animate, $compile, $rootScope, $controller, $q, $h
         container     = angular.element(config.container || document.body),
         element       = null,
         html,
-        scope;
+        scope,
+        clickedInsideModalContent = false;
 
     if (config.template) {
       html = $q.when(config.template);
@@ -46,7 +47,8 @@ function modalFactoryFactory($animate, $compile, $rootScope, $controller, $q, $h
     function addClickEventListenersOn(nodeList) {
       for(var i = 0 ; i < nodeList.length; i++) {
         nodeList[i].addEventListener('click', function(event) {
-          event.stopPropagation();
+          // event.stopPropagation();
+          clickedInsideModalContent = true;
         }, false);
       }
     }
@@ -58,7 +60,12 @@ function modalFactoryFactory($animate, $compile, $rootScope, $controller, $q, $h
         throw new Error('The template contains no elements; you need to wrap text nodes')
       }
       angular.element(document).keydown(onKeyDown);
-      element.on('click', closeModal);
+      element.on('click', function(event) {
+        if(!clickedInsideModalContent) {
+          closeModal();
+        }
+        clickedInsideModalContent = false;
+      });
       scope = $rootScope.$new();
       if (controller) {
         if (!locals) {
