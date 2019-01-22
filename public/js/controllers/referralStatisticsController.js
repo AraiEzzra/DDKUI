@@ -41,7 +41,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             });
     }
 
-    // Referral List
+    /* For Referral List */
     $scope.tableReferral = new ngTableParams({
         page: 1,
         count: 1,
@@ -77,15 +77,9 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     $scope.updateReferral = function () {
         $scope.tableReferral.reload();
     };
-    // End Referral
+    /* End Referral */
 
-
-
-
-
-
-    
-    // Rewards List
+    /* For Rewards List */
     $scope.tableRewards = new ngTableParams({
         page: 1,
         count: 10,
@@ -102,7 +96,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
                     $scope.view.inLoading = false;
-                    
+
                 }, null, true);
             }
         });
@@ -119,10 +113,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     $scope.$watch("filter.$", function () {
         $scope.tableRewards.reload();
     });
-    // End Rewards
-
-
-
+    /* End Rewards */
 
     $scope.options = {
         legend: {
@@ -160,7 +151,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         $scope.airdropData = airdropDataJson;
     });
 
-    // Search blocks watcher
+    /* For Search blocks watcher */
     var tempSearchBlockID = '',
         searchBlockIDTimeout;
     $scope.$watch('searchBlocks.searchForBlock', function (val) {
@@ -179,7 +170,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         searchBlockIDTimeout = $timeout(function () {
             $scope.searchBlocks.searchForBlock = tempSearchBlockID;
             $scope.updateReferral();
-        }, 2000); // Delay 2000 ms
+        }, 2000); // Delay 2000 ms 
     });
 }]);
 

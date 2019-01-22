@@ -24,7 +24,7 @@ require('../../js/controllers/withdrawlController');
 require('../../js/controllers/referalController');
 require('../../js/controllers/referralStatisticsController');
 
-// Modals
+/* Modals Controllers */
 require('../../js/controllers/modals/blockModalController');
 require('../../js/controllers/modals/forgingModalController');
 require('../../js/controllers/modals/referralLinkModalController');
@@ -47,7 +47,5 @@ require('../../js/controllers/modals/masterPassphraseModalController');
 require('../../js/controllers/modals/errorModalController');
 require('../../js/controllers/modals/confirmDeletionModalController');
 require('../../js/controllers/modals/openDappModalController');
-
 require('../../js/controllers/modals/SpecifictransactionController');
-// require('../../js/controllers/modals/SpecifictransactionInfoModal');
-//require('../../js/factories/modals/agreeConfirmationModal');
+

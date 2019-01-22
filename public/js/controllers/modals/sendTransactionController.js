@@ -48,7 +48,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             $scope.presendError = true;
         } else {
             if (correctAddress) {
-                if($scope.to == $scope.address){
+                if ($scope.to == $scope.address) {
                     $scope.errorMessage.recipient = 'Sender and Recipient can\'t be same';
                     $scope.presendError = true;
                     return;
@@ -84,7 +84,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                 $scope.presendError = false;
                 $scope.errorMessage = {};
             });
-            if($scope.presendError){
+            if ($scope.presendError) {
                 return;
             }
         }
@@ -99,7 +99,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             return;
         }
         if ($scope.rememberedPassphrase) {
-            if($scope.otp){
+            if ($scope.otp) {
                 $scope.OTP = true;
             }
             validateForm(function () {
@@ -284,8 +284,8 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     $scope.setFees = function (rawFee) {
         var regEx2 = /[0]+$/;
         //Convert fee according to whole/decimal number
-        $scope.fee = (rawFee % 1) != 0 ?  rawFee.toFixed(8).toString().replace(regEx2, ''): rawFee.toString();
-    
+        $scope.fee = (rawFee % 1) != 0 ? rawFee.toFixed(8).toString().replace(regEx2, '') : rawFee.toString();
+
     };
 
     $scope.calFees = function (amount) {

@@ -62,7 +62,7 @@ angular.module('DDKApp').controller('dappController', ['$scope', 'viewFactory', 
         });
     };
 
-    // previous != previous :)
+    /* previous != previous :) */
     $scope.view.page = { title: '', previous: 'main.dappstore' };
     $scope.view.bar = {};
     $scope.showMore = false;

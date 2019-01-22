@@ -7,3 +7,4 @@ public/package-lock.json
 server.js
 .idea/
 certs/
+template.pot

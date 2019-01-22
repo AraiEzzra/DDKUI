@@ -96,7 +96,7 @@ angular.module('DDKApp').controller('forgingController', ['$scope', '$rootScope'
         $scope.ddkfoundation =true;
     }
 
-    // Blocks
+    /* Blocks */
     $scope.tableBlocks = new ngTableParams({
         page: 1,
         count: 25,
@@ -139,7 +139,7 @@ angular.module('DDKApp').controller('forgingController', ['$scope', '$rootScope'
     $scope.updateBlocks = function () {
         $scope.tableBlocks.reload();
     };
-    // end Blocks
+    /* end Blocks */
 
     $scope.updateGraphs = function () {
         delegateService.getCountedDelegate(userService.publicKey, function (response) {

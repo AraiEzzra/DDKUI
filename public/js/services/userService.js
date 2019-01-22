@@ -4,7 +4,7 @@ angular.module('DDKApp').service('userService', function () {
 
     this.rememberPassphrase = false;
     this.rememberedPassphrase = '';
- 
+
     this.setData = function (address, publicKey, balance, unconfirmedBalance, effectiveBalance, token, totalFrozeAmount, username, groupBonus) {
         this.address = address;
         this.publicKey = publicKey;
@@ -14,21 +14,21 @@ angular.module('DDKApp').service('userService', function () {
         this._balance = balance;
         this._unconfirmedBalance = unconfirmedBalance;
         this.token = token;
-        this.totalFrozeAmount= totalFrozeAmount;
+        this.totalFrozeAmount = totalFrozeAmount;
         this.username = username;
         this.groupBonus = groupBonus;
     }
 
-    this.setWithdrawlStatus = function(ruleStatus) {
+    this.setWithdrawlStatus = function (ruleStatus) {
         this.withdrawalStatus = ruleStatus;
     }
 
-    this.getPublicKey = function() {
+    this.getPublicKey = function () {
         return this.publicKey;
     }
 
     this.getAddress = function () {
-       return this.address;
+        return this.address;
     }
 
     this.setSessionPassphrase = function (pass) {
@@ -40,7 +40,7 @@ angular.module('DDKApp').service('userService', function () {
         this.forging = forging;
     }
 
-    this.setMultisignature = function (multisignature,cb) {
+    this.setMultisignature = function (multisignature, cb) {
         this.multisignature = multisignature;
         cb(multisignature);
     }

@@ -12,17 +12,16 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
     $scope.activeLabel = function (pass) {
         return pass != '';
     }
-
+    /* For Generate Passphrase */
     $scope.generatePassphrase = function () {
         var code = new Mnemonic(Mnemonic.Words.ENGLISH);
         $scope.newPassphrase = code.toString();
     };
 
-    $scope.goToStep = function (step,email) {
+    $scope.goToStep = function (step, email) {
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        if(!regex.test(email) && email)
-        {
+        if (!regex.test(email) && email) {
             $scope.errorMessage = 'Please enter a valid email address.';
             $scope.emailErr = true;
             return;
@@ -36,14 +35,14 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
             $scope.step = step;
         }
     }
-
+    /* For SavePasshrase */
     $scope.savePassToFile = function (pass) {
         var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
     $scope.migrateData = function (data, address) {
-        //update database tables : mem_accounts and stakeOrder table
+        /* update database tables : mem_accounts and stakeOrder table */
         $http.post($rootScope.serverUrl + "/api/accounts/migrateData/", {
             data: data,
             address: address
@@ -53,8 +52,9 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
 
     }
 
-    $scope.login = function (pass,email) {
-        
+    /* For Login with Email and Password */
+    $scope.login = function (pass, email) {
+
         var data = { secret: pass };
         if (!Mnemonic.isValid(pass) || $scope.newPassphrase != pass) {
             $scope.errorMessage = 'The passphrase entered doesn\'t match with the one generated before.Please go back';
@@ -62,7 +62,7 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
             return;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, etps_user: true, email:email }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, etps_user: true, email: email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
@@ -72,7 +72,7 @@ angular.module('DDKApp').controller('newUserMigrationController', ["$scope", "$h
                     userService.setForging(resp.data.account.forging);
                     userService.setSecondPassphrase(resp.data.account.secondSignature);
                     userService.unconfirmedPassphrase = resp.data.account.unconfirmedSignature;
-                    $scope.migrateData($scope.dataVar,resp.data.account.address);
+                    $scope.migrateData($scope.dataVar, resp.data.account.address);
                     $state.go('main.dashboard');
                 } else {
                     console.error("Login failed. Failed to open account.");

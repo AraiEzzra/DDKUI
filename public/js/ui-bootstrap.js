@@ -5,7 +5,7 @@
  * Version: 0.13.0 - 2015-05-02
  * License: MIT
  */
-angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse", "ui.bootstrap.dropdown", "ui.bootstrap.position", "ui.bootstrap.modal", "ui.bootstrap.transition", "ui.bootstrap.tooltip", "ui.bootstrap.bindHtml"]), angular.module("ui.bootstrap.accordion", ["ui.bootstrap.collapse"]).constant("accordionConfig", {closeOthers: !0}).controller("AccordionController", ["$scope", "$attrs", "accordionConfig", function (e, t, n) {
+angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse", "ui.bootstrap.dropdown", "ui.bootstrap.position", "ui.bootstrap.modal", "ui.bootstrap.transition", "ui.bootstrap.tooltip", "ui.bootstrap.bindHtml"]), angular.module("ui.bootstrap.accordion", ["ui.bootstrap.collapse"]).constant("accordionConfig", { closeOthers: !0 }).controller("AccordionController", ["$scope", "$attrs", "accordionConfig", function (e, t, n) {
     this.groups = [], this.closeOthers = function (o) {
         var i = angular.isDefined(t.closeOthers) ? e.$eval(t.closeOthers) : n.closeOthers;
         i && angular.forEach(this.groups, function (e) {
@@ -35,7 +35,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
         transclude: !0,
         replace: !0,
         templateUrl: "template/accordion/accordion-group.html",
-        scope: {heading: "@", isOpen: "=?", isDisabled: "=?"},
+        scope: { heading: "@", isOpen: "=?", isDisabled: "=?" },
         controller: function () {
             this.setHeading = function (e) {
                 this.heading = e
@@ -74,19 +74,19 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
     return {
         link: function (t, n, o) {
             function i() {
-                n.removeClass("collapse").addClass("collapsing"), e.addClass(n, "in", {to: {height: n[0].scrollHeight + "px"}}).then(r)
+                n.removeClass("collapse").addClass("collapsing"), e.addClass(n, "in", { to: { height: n[0].scrollHeight + "px" } }).then(r)
             }
 
             function r() {
-                n.removeClass("collapsing"), n.css({height: "auto"})
+                n.removeClass("collapsing"), n.css({ height: "auto" })
             }
 
             function a() {
-                n.css({height: n[0].scrollHeight + "px"}).removeClass("collapse").addClass("collapsing"), e.removeClass(n, "in", {to: {height: "0"}}).then(l)
+                n.css({ height: n[0].scrollHeight + "px" }).removeClass("collapse").addClass("collapsing"), e.removeClass(n, "in", { to: { height: "0" } }).then(l)
             }
 
             function l() {
-                n.css({height: "0"}), n.removeClass("collapsing"), n.addClass("collapse")
+                n.css({ height: "0" }), n.removeClass("collapsing"), n.addClass("collapse")
             }
 
             t.$watch(o.collapse, function (e) {
@@ -94,7 +94,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
             })
         }
     }
-}]), angular.module("ui.bootstrap.dropdown", ["ui.bootstrap.position"]).constant("dropdownConfig", {openClass: "open"}).service("dropdownService", ["$document", "$rootScope", function (e, t) {
+}]), angular.module("ui.bootstrap.dropdown", ["ui.bootstrap.position"]).constant("dropdownConfig", { openClass: "open" }).service("dropdownService", ["$document", "$rootScope", function (e, t) {
     var n = null;
     this.open = function (t) {
         n || (e.bind("click", o), e.bind("keydown", i)), n && n !== t && (n.isOpen = !1), n = t
@@ -135,9 +135,9 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
     }, u.$watch("isOpen", function (t, n) {
         if (m && s.dropdownMenu) {
             var o = a.positionElements(s.$element, s.dropdownMenu, "bottom-left", !0);
-            s.dropdownMenu.css({top: o.top + "px", left: o.left + "px", display: t ? "block" : "none"})
+            s.dropdownMenu.css({ top: o.top + "px", left: o.left + "px", display: t ? "block" : "none" })
         }
-        r[t ? "addClass" : "removeClass"](s.$element, p), t ? (u.focusToggleElement(), i.open(u)) : i.close(u), d(e, t), angular.isDefined(t) && t !== n && f(e, {open: !!t})
+        r[t ? "addClass" : "removeClass"](s.$element, p), t ? (u.focusToggleElement(), i.open(u)) : i.close(u), d(e, t), angular.isDefined(t) && t !== n && f(e, { open: !!t })
     }), e.$on("$locationChangeSuccess", function () {
         u.isOpen = !1
     }), e.$on("$destroy", function () {
@@ -191,7 +191,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
     };
     return {
         position: function (t) {
-            var n = this.offset(t), o = {top: 0, left: 0}, r = i(t[0]);
+            var n = this.offset(t), o = { top: 0, left: 0 }, r = i(t[0]);
             r != e[0] && (o = this.offset(angular.element(r)), o.top += r.clientTop - r.scrollTop, o.left += r.clientLeft - r.scrollLeft);
             var a = t[0].getBoundingClientRect();
             return {
@@ -229,17 +229,17 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
                 }
             };
             switch (s) {
-                case"right":
-                    l = {top: d[u](), left: p[s]()};
+                case "right":
+                    l = { top: d[u](), left: p[s]() };
                     break;
-                case"left":
-                    l = {top: d[u](), left: i.left - r};
+                case "left":
+                    l = { top: d[u](), left: i.left - r };
                     break;
-                case"bottom":
-                    l = {top: d[s](), left: p[u]()};
+                case "bottom":
+                    l = { top: d[s](), left: p[u]() };
                     break;
                 default:
-                    l = {top: i.top - a, left: p[u]()}
+                    l = { top: i.top - a, left: p[u]() }
             }
             return l
         }
@@ -250,9 +250,9 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
             var e = [];
             return {
                 add: function (t, n) {
-                    e.push({key: t, value: n})
+                    e.push({ key: t, value: n })
                 }, get: function (t) {
-                    for (var n = 0; n < e.length; n++)if (t == e[n].key)return e[n]
+                    for (var n = 0; n < e.length; n++)if (t == e[n].key) return e[n]
                 }, keys: function () {
                     for (var t = [], n = 0; n < e.length; n++)t.push(e[n].key);
                     return t
@@ -287,7 +287,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
 }]).directive("modalWindow", ["$modalStack", "$q", function (e, t) {
     return {
         restrict: "EA",
-        scope: {index: "@", animate: "="},
+        scope: { index: "@", animate: "=" },
         replace: !0,
         transclude: !0,
         templateUrl: function (e, t) {
@@ -409,7 +409,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
     }, g
 }]).provider("$modal", function () {
     var e = {
-        options: {animation: !0, backdrop: !0, keyboard: !0},
+        options: { animation: !0, backdrop: !0, keyboard: !0 },
         $get: ["$injector", "$rootScope", "$q", "$templateRequest", "$controller", "$modalStack", function (t, n, o, i, r, a) {
             function l(e) {
                 return e.template ? o.when(e.template) : i(angular.isFunction(e.templateUrl) ? e.templateUrl() : e.templateUrl)
@@ -435,7 +435,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
                         return a.dismiss(p, e)
                     }
                 };
-                if (t = angular.extend({}, e.options, t), t.resolve = t.resolve || {}, !t.template && !t.templateUrl)throw new Error("One of template or templateUrl options is required.");
+                if (t = angular.extend({}, e.options, t), t.resolve = t.resolve || {}, !t.template && !t.templateUrl) throw new Error("One of template or templateUrl options is required.");
                 var d = o.all([l(t)].concat(c(t.resolve)));
                 return d.then(function (e) {
                     var o = (t.scope || n).$new();
@@ -469,7 +469,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
     return e
 }), angular.module("ui.bootstrap.transition", []).value("$transitionSuppressDeprecated", !1).factory("$transition", ["$q", "$timeout", "$rootScope", "$log", "$transitionSuppressDeprecated", function (e, t, n, o, i) {
     function r(e) {
-        for (var t in e)if (void 0 !== l.style[t])return e[t]
+        for (var t in e) if (void 0 !== l.style[t]) return e[t]
     }
 
     i || o.warn("$transition is now deprecated. Use $animate from ngAnimate instead.");
@@ -505,7 +505,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
         })
     }
 
-    var t = {placement: "top", animation: !0, popupDelay: 0, useContentExp: !1}, n = {
+    var t = { placement: "top", animation: !0, popupDelay: 0, useContentExp: !1 }, n = {
         mouseenter: "mouseleave",
         click: "click",
         focus: "blur"
@@ -518,7 +518,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
         return function (i, u, p, d) {
             function f(e) {
                 var t = e || d.trigger || p, o = n[t] || t;
-                return {show: t, hide: o}
+                return { show: t, hide: o }
             }
 
             d = angular.extend({}, t, o, d);
@@ -657,7 +657,7 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
     return {
         restrict: "EA",
         replace: !0,
-        scope: {content: "@", placement: "@", popupClass: "@", animation: "&", isOpen: "&"},
+        scope: { content: "@", placement: "@", popupClass: "@", animation: "&", isOpen: "&" },
         templateUrl: "template/tooltip/tooltip-popup.html"
     }
 }).directive("tooltip", ["$tooltip", function (e) {
@@ -666,25 +666,25 @@ angular.module("ui.bootstrap", ["ui.bootstrap.accordion", "ui.bootstrap.collapse
     return {
         restrict: "EA",
         replace: !0,
-        scope: {contentExp: "&", placement: "@", popupClass: "@", animation: "&", isOpen: "&", originScope: "&"},
+        scope: { contentExp: "&", placement: "@", popupClass: "@", animation: "&", isOpen: "&", originScope: "&" },
         templateUrl: "template/tooltip/tooltip-template-popup.html"
     }
 }).directive("tooltipTemplate", ["$tooltip", function (e) {
-    return e("tooltipTemplate", "tooltip", "mouseenter", {useContentExp: !0})
+    return e("tooltipTemplate", "tooltip", "mouseenter", { useContentExp: !0 })
 }]).directive("tooltipHtmlPopup", function () {
     return {
         restrict: "EA",
         replace: !0,
-        scope: {contentExp: "&", placement: "@", popupClass: "@", animation: "&", isOpen: "&"},
+        scope: { contentExp: "&", placement: "@", popupClass: "@", animation: "&", isOpen: "&" },
         templateUrl: "template/tooltip/tooltip-html-popup.html"
     }
 }).directive("tooltipHtml", ["$tooltip", function (e) {
-    return e("tooltipHtml", "tooltip", "mouseenter", {useContentExp: !0})
+    return e("tooltipHtml", "tooltip", "mouseenter", { useContentExp: !0 })
 }]).directive("tooltipHtmlUnsafePopup", function () {
     return {
         restrict: "EA",
         replace: !0,
-        scope: {content: "@", placement: "@", popupClass: "@", animation: "&", isOpen: "&"},
+        scope: { content: "@", placement: "@", popupClass: "@", animation: "&", isOpen: "&" },
         templateUrl: "template/tooltip/tooltip-html-unsafe-popup.html"
     }
 }).value("tooltipHtmlUnsafeSuppressDeprecated", !1).directive("tooltipHtmlUnsafe", ["$tooltip", "tooltipHtmlUnsafeSuppressDeprecated", "$log", function (e, t, n) {

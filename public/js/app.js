@@ -12,6 +12,7 @@ require('../node_modules/ng-table/dist/ng-table.js');
 require('../bower_components/bootstrap/dist/js/bootstrap.min.js');
 
 require('../node_modules/elasticsearch-browser/elasticsearch.angular.min.js');
+const config = require('../../config');
 
 Mnemonic = require('bitcore-mnemonic');
 
@@ -27,10 +28,10 @@ DDKApp.config([
         $urlRouterProvider.otherwise("/");
 
         $tooltipProvider.setTriggers({
-            'hover': 'mouseenter'     
+            'hover': 'mouseenter'
         });
 
-        // Now set up the states
+        /* Now set up the states */
         $stateProvider
             .state('main', {
                 abstract: true,
@@ -98,7 +99,7 @@ DDKApp.config([
                 templateUrl: "/partials/referal.html",
                 controller: "referalController",
                 resolve: {
-                    accountExists: function($http, $rootScope, $stateParams) {
+                    accountExists: function ($http, $rootScope, $stateParams) {
                         return $http.post($rootScope.serverUrl + "/api/accounts/checkAccountExists", { address: $stateParams.id });
                     }
                 }
@@ -126,23 +127,26 @@ DDKApp.config([
     languageService();
     clipboardService();
     $rootScope.$state = $state;
-    const currentURL = new URL(window.location.origin);
-    currentURL.port = 7007;
+    const currentURL = new URL(`${config.serverProtocol}://${config.serverHost}`);
+    if (config.serverProtocol === 'http') {
+        currentURL.port = config.serverPort;
+    }
+
     $rootScope.serverUrl = currentURL.origin;
     $rootScope.defaultLoaderScreen = false;
 
-    // render current logged-in user upon page refresh if currently logged-in
+    /* Render current logged-in user upon page refresh if currently logged-in */
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         AuthService.getUserStatus()
             .then(function () {
-                if(toState.name == 'notFound' || toState.name == 'referal') {
+                if (toState.name == 'notFound' || toState.name == 'referal') {
                     return;
                 }
                 if (AuthService.isLoggedIn()) {
-                        if (toState.name !='loading')
-                            $state.go(toState.name);
-                        else
-                            $state.go('main.dashboard');
+                    if (toState.name != 'loading')
+                        $state.go(toState.name);
+                    else
+                        $state.go('main.dashboard');
                 } else {
                     if (toState.name == 'existingETPSUser') {
                         $state.go('existingETPSUser');
@@ -153,7 +157,7 @@ DDKApp.config([
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-        if(toState.name === 'referal') {
+        if (toState.name === 'referal') {
             if (!toParams || !toParams.id) {
                 event.preventDefault();
                 return $state.go('notFound');

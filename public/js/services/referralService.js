@@ -1,11 +1,11 @@
 require('angular');
 
 angular.module('DDKApp').service('referralService', function ($http, $rootScope, userService, $filter) {
-    //var self = this;
+    
 
     var referalStat = {
 
-        // Get Referral List
+        /* Get Referral List */
         getReferralList: function ($searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
             $http.post($rootScope.serverUrl + "/referral/list", {
                 referrer_address: userService.address
@@ -19,11 +19,11 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
                 }
             });
         },
-        // End Referral List
+        /* End Referral List */
 
-        // Get Rewards List
+        /* Get Rewards List */
         getRewardList: function ($searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
-            //var self = this;
+           
             $http.post($rootScope.serverUrl + "/referral/rewardHistory", {
                 address: userService.address
             }).then(function (response) {
@@ -53,9 +53,9 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
             }
             );
         },
-        // End Rewards List
+        /* End Rewards List */
 
-        // Get Airdrop Balance
+        /* Get Airdrop Balance */
         getAirdropBalance: function (address, cb) {
             $http.post($rootScope.serverUrl + "/api/accounts/senderBalance", {
                 address: address
@@ -68,7 +68,7 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
             }
             );
         },
-        // End Airdrop Balance
+        /* End Airdrop Balance */
 
     };
     return referalStat;

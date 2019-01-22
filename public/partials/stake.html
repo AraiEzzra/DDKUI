@@ -7,7 +7,6 @@
             </div>
             <!-- <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true">
             </canvas> -->
-
             <div class="stake-pie-container">
                 <div class="pieChart-values">
                     <span>
@@ -54,12 +53,12 @@
                 </span>
             </div>
         </div>
-   </div>
+    </div>
 </div>
 
 
 
-<!-----------------Tabs------------------>
+<!--- Latest and Referral Tabs----->
 
 <div class="referral-tab">
     <ul class="nav nav-tabs">
@@ -74,16 +73,9 @@
 
 
     <div class="tab-content panel panel-default">
-
         <div class="tab-pane active" id="1">
 
-
             <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
-                <!-- <div class="panel-heading">
-                <h2>
-                    {{'Latest Orders'|translate}}
-                </h2>
-            </div> -->
                 <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
                     cellspacing="0" template-pagination="custom/pager">
                     <tr ng-repeat="fo in $data">
@@ -95,9 +87,11 @@
                             timestampFilter}}</td>
                         <td data-title="tableStakes.cols.VoteTimeRemain" sortable="'VoteTimeRemain'">{{fo.nextVoteMilestone
                             >0 ? (fo.nextVoteMilestone | timestampFilter):0}}</td>
-                        <td data-title="tableStakes.cols.reward" sortable="'reward'">{{fo.voteCount/4 - (fo.voteCount/4)%1}}</td>
+                        <td data-title="tableStakes.cols.reward" sortable="'reward'">{{fo.voteCount/4 -
+                            (fo.voteCount/4)%1}}</td>
                         <td data-title="tableStakes.cols.voteCount" sortable="'voteCount'">{{fo.voteCount}}</td>
-                        <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.nextVoteMilestone > currentDDKTimestamp? 'true':'false'}}</td>
+                        <td data-title="tableStakes.cols.voteDone" sortable="'voteDone'">{{fo.nextVoteMilestone >
+                            currentDDKTimestamp? 'true':'false'}}</td>
                         <td data-title="tableStakes.cols.recipient" sortable="'recipient'">{{fo.recipientId || '-'}}</td>
                         <td data-title="tableStakes.cols.transIndicator" sortable="'transIndicator'">{{fo.transferCount
                             }}/3</td>
@@ -105,7 +99,8 @@
                             <!-- <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="!fo.status" >
                                 <i class="mdi-content-send" ></i>
                             </button> -->
-                            <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)" ng-disabled="true">
+                            <button class="sendFreezeAmount-btn" ng-click="sendFreezeOrder(fo.id,fo.freezedAmount)"
+                                ng-disabled="true">
                                 <i class="mdi-content-send"></i>
                             </button>
                         </td>
@@ -127,18 +122,14 @@
 
 
         <div class="tab-pane" id="2">
-           <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
-                <!-- <div class="panel-heading">
-                <h2>
-                    {{'Latest Orders'|translate}}
-                </h2>
-            </div> -->
+            <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
                 <table ng-show="countFreezeOrders" ng-table="tableReward" border="0" width="100%" cellpadding="0"
                     cellspacing="0" template-pagination="custom/pager">
                     <tr ng-repeat="fo1 in $data">
                         <td data-title="tableReward.cols.rewardAmount" sortable="'rewardAmount'">{{fo1.v_reward /
                             100000000}} DDK</td>
-                        <td data-title="tableReward.cols.rewardTime" sortable="'rewardTime'">{{fo1.t_timestamp | timeAgoFilter}} | {{fo1.t_timestamp | timestampFilter}}</td>
+                        <td data-title="tableReward.cols.rewardTime" sortable="'rewardTime'">{{fo1.t_timestamp |
+                            timeAgoFilter}} | {{fo1.t_timestamp | timestampFilter}}</td>
                     </tr>
                     <tr ng-show="loading">
                         <td class="gray2 white-text" colspan="7">
@@ -153,7 +144,7 @@
                 </div>
 
             </div>
-          </div>
-       </div>
+        </div>
+    </div>
 
 </div>

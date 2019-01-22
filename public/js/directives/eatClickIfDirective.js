@@ -2,7 +2,7 @@ require('angular');
 angular.module('DDKApp').directive('eatClickIf', ['$parse', '$rootScope',
     function ($parse, $rootScope) {
         return {
-            // This ensures eatClickIf is compiled before ngClick
+            /* This ensures eatClickIf is compiled before ngClick */
             priority: 100,
             restrict: 'A',
             compile: function ($element, attr) {
@@ -13,9 +13,9 @@ angular.module('DDKApp').directive('eatClickIf', ['$parse', '$rootScope',
                         element.on(eventName, function (event) {
                             var callback = function () {
                                 if (fn(scope, {$event: event})) {
-                                    // Prevents ng-click from being executed
+                                    /* Prevents ng-click from being executed */
                                     event.stopImmediatePropagation();
-                                    // Prevents href
+                                    /*  Prevents href */
                                     event.preventDefault();
                                     return false;
                                 }

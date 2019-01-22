@@ -36,12 +36,12 @@ angular.module('DDKApp').controller('multisignatureModalController', ["$scope", 
     }
 
     $scope.members = {};
-
+    /* For Delegate Member */
     $scope.deleteMember = function (publicKey) {
         delete $scope.members[publicKey];
         $scope.totalCount = $scope.totalCount - 1;
     }
-
+    /* For  Add member */
     $scope.addMember = function (member) {
         $scope.addingError = '';
         var isAddress = /^(DDK)+[0-9]+$/ig;
@@ -50,10 +50,11 @@ angular.module('DDKApp').controller('multisignatureModalController', ["$scope", 
             $scope.addingError = 'Empty address';
         } else {
             var Buffer = require('buffer/').Buffer;
-            var buffer =  []
+            var buffer = []
             try {
-                buffer = Buffer(member, "hex")}
-            catch(err) {
+                buffer = Buffer(member, "hex")
+            }
+            catch (err) {
 
             }
             if (buffer.length == 32) {
@@ -62,7 +63,7 @@ angular.module('DDKApp').controller('multisignatureModalController', ["$scope", 
                 if ($scope.members[$scope.address] || address == userService.address) {
                     return;
                 }
-                $scope.members[$scope.member] = {address: address, publicKey: $scope.member};
+                $scope.members[$scope.member] = { address: address, publicKey: $scope.member };
                 $scope.totalCount = $scope.totalCount + 1;
                 $scope.member = '';
             } else {

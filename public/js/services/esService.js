@@ -1,6 +1,5 @@
-// added new service to check status of elasticsearch server
+/* Added new service to check status of elasticsearch server */
 
-//var config = require('../../../config.json');
 var config = require('../../../config');
 var connectionHost = config.elasticsearchHost || 'localhost:9200';
 
@@ -10,4 +9,3 @@ angular.module('DDKApp').service('esClient', function (esFactory) {
         log: 'error'
     });
 });
-

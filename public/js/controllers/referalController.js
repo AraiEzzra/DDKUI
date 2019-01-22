@@ -3,10 +3,10 @@ require('angular');
 
 angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', 'accountExists', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams, accountExists) {
 
-    if(!accountExists.data.success) {
+    if (!accountExists.data.success) {
         $state.go('notFound');
     }
-    
+
     var _referalId = $stateParams.id;
     $scope.step = 1;
     $scope.noMatch = false;
@@ -14,7 +14,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
     $scope.view.loadingText = gettextCatalog.getString('Registering user');
     $scope.view.inLoading = false;
 
- 
+
     $scope.activeLabel = function (pass) {
         return pass != '';
     }
@@ -24,11 +24,10 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
         $scope.newPassphrase = code.toString();
     };
 
-    $scope.goToStep = function (step,email) {
+    $scope.goToStep = function (step, email) {
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        if(!regex.test(email) && email)
-        {
+        if (!regex.test(email) && email) {
             $scope.errorMessage = 'Please enter a valid email address.';
             $scope.emailErr = true;
             return;
@@ -48,7 +47,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
         FS.saveAs(blob, "DDKPassphrase.txt");
     }
 
-    $scope.login = function (pass,email) {
+    $scope.login = function (pass, email) {
 
         if (!pass || pass.trim().split(/\s+/g).length < 12) {
             $scope.errorMessage = 'Passphrase must consist of 12 or more words.';
@@ -60,7 +59,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
             $scope.noMatch = true;
             return;
         }
-        if(_referalId == "") {
+        if (_referalId == "") {
             $scope.errorMessage = 'Referal Id in the URL can\'t be blank';
             $scope.noMatch = true;
             return;
@@ -71,7 +70,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
             return;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId, email:email }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId, email: email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);
@@ -83,7 +82,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
                     $state.go('main.dashboard');
                 } else {
                     $scope.errorMessage = resp.data.error;
-                    $scope.noMatch = true;                    
+                    $scope.noMatch = true;
                 }
             }, function (error) {
                 $scope.errorMessage = error.data.error ? error.data.error : error.data;
@@ -96,6 +95,6 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
         angular.element(document.querySelector("body")).removeClass("ovh");
     }
 
-   $scope.generatePassphrase();
-    
+    $scope.generatePassphrase();
+
 }]);

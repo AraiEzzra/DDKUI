@@ -17,11 +17,11 @@ angular.module('DDKApp').controller('dappsController', ['$scope', 'viewFactory',
 
         while (0 !== currentIndex) {
 
-            // Pick a remaining element...
+            /* Pick a remaining element...*/
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
 
-            // And swap it with the current element.
+            /* And swap it with the current element. */
             temporaryValue = array[currentIndex];
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
@@ -30,7 +30,7 @@ angular.module('DDKApp').controller('dappsController', ['$scope', 'viewFactory',
         return array;
     }
 
-    // Search dapps watcher
+    /* Search dapps watcher */
     var tempsearchForDappID = '',
         searchForDappIDTimeout;
     $scope.$watch('searchDapp.searchForDappGlobal', function (val) {
@@ -50,7 +50,7 @@ angular.module('DDKApp').controller('dappsController', ['$scope', 'viewFactory',
         searchForDappIDTimeout = $timeout(function () {
             $scope.searchDapp.searchForDappGlobal = tempsearchForDappID;
             $scope.searchDappText();
-        }, 2000); // Delay 2000 ms
+        }, 2000); /* Delay 2000 ms */
     })
 
     $scope.addNewDapp = function () {

@@ -2,7 +2,7 @@
 require('angular');
 
 
-angular.module('DDKApp').service("stakeService", function ($http, $filter, esClient, userService,$rootScope) {
+angular.module('DDKApp').service("stakeService", function ($http, $filter, esClient, userService, $rootScope) {
 
   function filterData(data, filter) {
     return $filter('filter')(data, filter)
@@ -29,11 +29,11 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
       var startTime;
       var endTime;
 
-      // added search functionality for stake orders
-      //FIXME: Search stake orders based on conditions
+      /* added search functionality for stake orders
+         FIXME: Search stake orders based on conditions */
       if (searchForStake) {
         if (searchForStake.startTime && searchForStake.endTime) {
-          //Do search for stake orders based on time interval
+          /* Do search for stake orders based on time interval */
           function calculateTimestamp(date) {
             date = date.split('-');
             var year = date[2];
@@ -43,7 +43,7 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
             var d2 = new Date(Date.UTC(year, (month - 1), day, 17, 0, 0, 0));
             return parseInt((d2.getTime() - d1.getTime()) / 1000);
           }
-          //FIXME: start/end Dates should be modified on the UI
+          /* FIXME: start/end Dates should be modified on the UI */
           var startDate = '20-02-2018';
           var endDate = '21-02-2018';
           var startTime = calculateTimestamp(startDate);
@@ -87,7 +87,7 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
             cb(null);
           });
         } else {
-          //Do search for stake orders based on status i.e Active/Inactive
+          /* Do search for stake orders based on status i.e Active/Inactive */
           esClient.search({
             index: 'stake_orders',
             type: 'stake_orders',
@@ -130,16 +130,16 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
           });
         }
       } else {
-        //Do search for all stake orders related to <address>
+        /* Do search for all stake orders related to <address> */
         esClient.search({
           index: 'stake_orders',
           type: 'stake_orders',
           body: {
             query: {
-                match_all: {}
+              match_all: {}
             },
             sort: [],
-        }
+          }
         }, function (error, stakeResponse, status) {
           if (stakeResponse.hits.total > 0) {
             esClient.search({
@@ -186,40 +186,38 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
       }
     },
     getRewardData: function ($defer, params, filter, cb) {
-      
+
       $http.get($rootScope.serverUrl + "/api/frogings/getRewardHistory", {
-          params : {
-            senderId: userService.address
-/*             limit: 10,
-            offset: 0 */
-          }
+        params: {
+          senderId: userService.address
+        }
       }).then(function (response) {
-        console.log('Reward ',response);
+        console.log('Reward ', response);
         function filterData(data, filter) {
           return $filter('filter')(data, filter)
-      }
-      function orderData(data, params) {
+        }
+        function orderData(data, params) {
           return params.sorting() ? $filter('orderBy')(data, params.orderBy()) : filteredData;
-      }
-      function sliceData(data, params) {
+        }
+        function sliceData(data, params) {
           return data.slice((params.page() - 1) * params.count(), params.page() * params.count())
-      }
-      function transformData(data, filter, params) {
+        }
+        function transformData(data, filter, params) {
           return sliceData(orderData(filterData(data, filter), params), params);
-      }
-      if (response.data.success) {
+        }
+        if (response.data.success) {
           params.total(response.data.count);
           var filteredData = $filter('filter')(response.data.rewardHistory, filter);
           var transformData = transformData(response.data.rewardHistory, filter, params);
           $defer.resolve(transformData);
           cb();
-      } else {
+        } else {
           $defer.resolve([]);
           cb();
-          
-      }
-  });
-}
+
+        }
+      });
+    }
   };
   return service;
 });

@@ -15,7 +15,7 @@ angular.module('DDKApp').controller('masterPassphraseModalController', ["$scope"
         masterPassphraseModal.deactivate();
         angular.element(document.querySelector("body")).removeClass("ovh");
     }
-
+    /* For PassPhase check */
     $scope.passcheck = function (pass) {
         $scope.emptyPass = !pass;
         if (!$scope.emptyPass) {

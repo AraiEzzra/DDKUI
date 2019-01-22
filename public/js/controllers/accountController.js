@@ -2,8 +2,8 @@
 require('angular');
 var config = require('../../../config');
 
-angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', 'SpecifictransactionInfoModal',function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo, SpecifictransactionInfoModal) {
-    
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', 'SpecifictransactionInfoModal', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo, SpecifictransactionInfoModal) {
+
     $scope.ExplorerHost = config.explorerServerHost;
     $scope.ExplorerPort = config.explorerServerPort;
     $scope.view = viewFactory;
@@ -19,10 +19,10 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     $scope.secondPassphrase = userService.secondPassphrase;
     $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
     $scope.transactionsLoading = true;
-    $scope.sponsor ;
+    $scope.sponsor;
     $scope.allVotes = 100 * 1000 * 1000 * 1000 * 1000 * 100;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
-    
+
     $scope.voteTransaction = false;
     $scope.stakeTransaction = false;
 
@@ -45,15 +45,15 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     };
 
     /*--------------Transaction Information--------------------*/
-    $scope.SpecifictransactionInfoModal = function (transaction,id) {
-        if(id==1){
-            $scope.voteTransaction= true;
-            $scope.stakeTransaction= false; 
-            
-        }else if(id==2){
+    $scope.SpecifictransactionInfoModal = function (transaction, id) {
+        if (id == 1) {
+            $scope.voteTransaction = true;
+            $scope.stakeTransaction = false;
+
+        } else if (id == 2) {
             $scope.sponsor = Object.keys(transaction.asset.airdropReward.sponsors)[0]
-            $scope.stakeTransaction= true; 
-            $scope.voteTransaction= false;
+            $scope.stakeTransaction = true;
+            $scope.voteTransaction = false;
         }
         $scope.modal = SpecifictransactionInfoModal.activate({ transaction: transaction });
         angular.element(document.querySelector("body")).addClass("ovh");
@@ -86,7 +86,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             $scope.modal = blockInfo.activate({ block: tmp });
             angular.element(document.querySelector("body")).addClass("ovh");
         }
-            );
+        );
     }
 
     $scope.resetAppData = function () {
@@ -108,7 +108,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     }
 
     $scope.getTransactions = function () {
-           $http.get($rootScope.serverUrl + "/api/transactions", {
+        $http.get($rootScope.serverUrl + "/api/transactions", {
             params: {
                 senderPublicKey: userService.publicKey,
                 recipientId: $scope.address,
@@ -149,7 +149,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 userService.totalFrozeAmount = account.totalFrozeAmount;
                 $scope.balance = userService.balance;
                 $scope.unconfirmedBalance = userService.unconfirmedBalance;
-                
+
                 $scope.balanceToShow = $filter('decimalFilter')(userService.unconfirmedBalance - userService.totalFrozeAmount);
                 if ($scope.balanceToShow[1]) {
                     $scope.balanceToShow[1] = '.' + $scope.balanceToShow[1];
@@ -242,7 +242,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             });
     }
 
-/* Dashboard DDK Data */
+    /* Dashboard DDK Data */
     $scope.getDashboardDDKData = function () {
         $http.get($rootScope.serverUrl + "/api/accounts/getDashboardDDKData")
             .then(function (resp) {
@@ -259,7 +259,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                     var circulatingSupply = resp.data.totalCirculatingSupply / 100000000;
                     $scope.circulatingSupply = parseFloat(circulatingSupply);
                 } else {
-                    console.log('Error in getDashboardDDKData : ',resp.data.error);
+                    console.log('Error in getDashboardDDKData : ', resp.data.error);
                 }
             });
     }
@@ -320,17 +320,17 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     /*   $scope.getCandles(); */
 
 
-   /* For Vote Icon Functionality */
-   $scope.voteIconVisibility =function(transaction){
+    /* For Vote Icon Functionality */
+    $scope.voteIconVisibility = function (transaction) {
 
-    if(transaction.type == 60 && (transaction.asset.reward>0||transaction.asset.unstake>0||(transaction.asset.airdropReward.withAirdropReward==true&&transaction.asset.airdropReward.totalReward>0))){
+        if (transaction.type == 60 && (transaction.asset.reward > 0 || transaction.asset.unstake > 0 || (transaction.asset.airdropReward.withAirdropReward == true && transaction.asset.airdropReward.totalReward > 0))) {
 
-        return true;
-    }else{
-    
-        return false;
+            return true;
+        } else {
+
+            return false;
+        }
+
     }
-
-   }
 
 }]);

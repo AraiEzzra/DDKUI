@@ -3,20 +3,20 @@ require('angular');
 angular.module('DDKApp').service('blockService', function ($http, esClient, $filter) {
     function filterData(data, filter) {
         return $filter('filter')(data, filter)
-      }
-    
-      function orderData(data, params) {
+    }
+
+    function orderData(data, params) {
         return params.sorting() ? $filter('orderBy')(data, params.orderBy()) : filteredData;
-      }
-    
-      function sliceData(data, params) {
+    }
+
+    function sliceData(data, params) {
         return data.slice((params.page() - 1) * params.count(), params.page() * params.count())
-      }
-    
-      function transformData(data, filter, params) {
+    }
+
+    function transformData(data, filter, params) {
         return sliceData(orderData(filterData(data, filter), params), params);
-      }
-    // modified search with elasticsearch
+    }
+    /* Modified search with elasticsearch */
     var blocks = {
         lastBlockId: null,
         searchForBlock: '',
@@ -34,7 +34,7 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                     },
                 }
             }, function (error, blockResponse, status) {
-                if(error) {
+                if (error) {
                     console.log('Elasticsearch ID Search Error: ', error);
                 } else {
                     if (blockResponse.hits.hits.length == 0) {
@@ -76,7 +76,7 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                         "aggs": {}
                     }
                 }, function (err, res) {
-                    if(err) {
+                    if (err) {
                         console.log('Elasticsearch Address Search Error: ', err);
                     } else {
                         var blocksData = [];
@@ -111,7 +111,7 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                                     }
                                 }
                             }, function (error, blockResponse, status) {
-                                if(error) {
+                                if (error) {
                                     console.log('Elasticsearch Height Search Error: ', error);
                                 } else {
                                     if (error) {
@@ -151,7 +151,7 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                             sort: [{ b_height: { order: 'desc' } }],
                         }
                     }, function (error, blocksResponse, status) {
-                        if(error) {
+                        if (error) {
                             console.log('Elasticsearch Error: ', error);
                         } else {
                             if (fromBlocks) {
@@ -165,7 +165,7 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                                         sort: [{ b_height: { order: 'desc' } }],
                                     }
                                 }, function (err, res) {
-                                    if(err) {
+                                    if (err) {
                                         console.log('Elasticsearch Error:err ', err);
                                     } else {
                                         if (res.hits.hits[0]._source.b_height) {

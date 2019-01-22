@@ -1,24 +1,24 @@
 angular.module('DDKApp').service('AuthService', ['$http', 'userService', '$window', '$location', '$rootScope', function ($http, userService, $window, $location, $rootScope) {
 
-    // create user variable to track user's status
+    /* create user variable to track user's status */
     var user = null;
 
-    // return available functions for use in the controllers
+    /* return available functions for use in the controllers */
     return ({
         isLoggedIn: isLoggedIn,
         getUserStatus: getUserStatus
     });
 
-    // check whether user is logged-in or not
+    /* check whether user is logged-in or not*/
     function isLoggedIn() {
-	if (user) {
+        if (user) {
             return true;
         } else {
             return false;
         }
     }
-    
-    // get user's status
+
+    /* get user's status */
     function getUserStatus() {
         return $http({
             method: 'GET',

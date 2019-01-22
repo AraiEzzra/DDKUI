@@ -1,4 +1,4 @@
-// controller configuration for elasticsearch to inject into services 
+/* controller configuration for elasticsearch to inject into services */
 
 require('angular');
 

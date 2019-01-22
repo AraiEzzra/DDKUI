@@ -17,7 +17,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     $scope.transactionsView = transactionsService;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
 
-    // Latest Blocks Details
+    /* Latest Blocks Details */
     $scope.tableBlocks = new ngTableParams({
         page: 1,
         count: 10,
@@ -35,7 +35,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
                     $scope.countForgingBlocks = params.total();
                     $scope.loading = false;
                     $scope.view.inLoading = false;
-                    
+
                 }, null, true);
             }
         });
@@ -60,22 +60,16 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     $scope.updateBlocks = function () {
         $scope.tableBlocks.reload();
     };
-    // end Blocks
+    /* End Blocks */
 
     $scope.$on('updateControllerData', function (event, data) {
         if (data.indexOf('main.blockchain') != -1) {
             $scope.updateBlocks();
         }
     });
-   
+
     $scope.showDDKPrice = function () {
         $scope.DDK_Price = 200;
-
-        /* $http.get("http://ddkoin.com/price/price-ddk-api.php?com=sell")
-            .then(function (price) {
-                console.log("resp"+price);
-                $scope.DDK_Price = price;
-            });*/ 
 
     }
 
@@ -90,7 +84,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     $scope.showBlock = function (block) {
         $scope.modal = blockModal.activate({ block: block });
         angular.element(document.querySelector("body")).addClass("ovh");
-        
+
     }
 
     $scope.blockInfo = function (block) {
@@ -125,7 +119,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
 
     }
 
-    // Search blocks watcher
+    /* Search blocks watcher */
     var tempSearchBlockID = '',
         searchBlockIDTimeout;
 
@@ -145,10 +139,10 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
         searchBlockIDTimeout = $timeout(function () {
             $scope.searchBlocks.searchForBlock = tempSearchBlockID;
             $scope.updateBlocks();
-        }, 2000); // Delay 2000 ms
+        }, 2000); /* Delay 2000 ms */
     });
 
-    // For ChainHeight
+    /* For ChainHeight */
     $scope.chainHeight = function () {
         esClient.search({
             index: 'blocks_list',
@@ -166,7 +160,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     }
     $scope.chainHeight();
 
-    // For TransactionsCount
+    /* For TransactionsCount */
     $scope.transactionsCount = function () {
         esClient.search({
             index: 'trs',
@@ -184,7 +178,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     }
     $scope.transactionsCount();
 
-    // Latest Transactions Details
+    /* For Latest Transactions Details */
     $scope.tableTransactions = new ngTableParams({
         page: 1,
         count: 10,
@@ -234,7 +228,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     $scope.$watch("filter.$", function () {
         $scope.tableTransactions.reload();
     });
-    // end Transactions
+    /* end Transactions */
 
 
     /* For DDK Tansaction Per Day and DDK Price */
@@ -247,7 +241,7 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
         console.log(points, evt);
     };
 
-    // Simulate async data update 
+    /* For Simulate async data update */
     $timeout(function () {
         $scope.data = [
             [28, 48, 40, 19, 86, 27, 90]
@@ -260,19 +254,4 @@ angular.module('DDKApp').controller('explorerController', ['$scope', '$timeout',
     $scope.data = [
         [65, 59, 80, 81, 56, 55, 40]
     ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }]);

@@ -18,7 +18,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     };
 
     $scope.passcheck = function (fromSecondPass) {
-        $scope.fromServer=null;
+        $scope.fromServer = null;
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
             $scope.passmode = $scope.rememberedPassphrase ? false : true;
@@ -88,13 +88,13 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
                 $scope.sending = false;
 
                 if (resp.data.error) {
-                    Materialize.toast(($scope.adding?'Vote Error':'DownVote Error'), 3000, 'red white-text');
+                    Materialize.toast(($scope.adding ? 'Vote Error' : 'DownVote Error'), 3000, 'red white-text');
                     $scope.fromServer = resp.data.error;
                 } else {
                     if ($scope.destroy) {
                         $scope.destroy();
                     }
-                    Materialize.toast(($scope.adding?'Vote Success':'DownVote Success'), 3000, 'green white-text');
+                    Materialize.toast(($scope.adding ? 'Vote Success' : 'DownVote Success'), 3000, 'green white-text');
                     voteModal.deactivate();
                     angular.element(document.querySelector("body")).removeClass("ovh");
                 }
@@ -109,9 +109,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     };
 
     feeService(function (fees) {
-
-        // $scope.fee = (userService.totalFrozeAmount * fees.vote) / 100;
-
+        
         let amount = userService.totalFrozeAmount / 100000000;
 
         $scope.setVoteFees((parseFloat(amount) * fees.vote) / 100);

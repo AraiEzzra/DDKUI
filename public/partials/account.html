@@ -6,8 +6,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/plug.png" width="32"> -->
-            <i class="icofont icofont-addons st-icon"></i>
+          <!-- <img src="images/plug.png" width="32"> -->
+          <i class="icofont icofont-addons st-icon"></i>
           <!-- </span> -->
         </span>
         </span>
@@ -24,8 +24,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/power-cord.png" width="32"> -->
-            <i class="icofont icofont-pie-chart st-icon"></i>
+          <!-- <img src="images/power-cord.png" width="32"> -->
+          <i class="icofont icofont-pie-chart st-icon"></i>
           <!-- </span> -->
         </span>
         <div class="info-box-content">
@@ -41,8 +41,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/users-group.png" width="32"> -->
-            <i class="icofont icofont-users st-icon"></i>
+          <!-- <img src="images/users-group.png" width="32"> -->
+          <i class="icofont icofont-users st-icon"></i>
           <!-- </span> -->
         </span>
         <div class="info-box-content">
@@ -58,8 +58,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/money-bag-with-dollar-symbol.png" width="32"> -->
-            <i class="icofont icofont-money-bag st-icon"></i>
+          <!-- <img src="images/money-bag-with-dollar-symbol.png" width="32"> -->
+          <i class="icofont icofont-money-bag st-icon"></i>
           <!-- </span> -->
         </span>
         <div class="info-box-content">
@@ -79,8 +79,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/snowflake.png" width="32"> -->
-            <i class="icofont icofont-snow-alt st-icon"></i>
+          <!-- <img src="images/snowflake.png" width="32"> -->
+          <i class="icofont icofont-snow-alt st-icon"></i>
           <!-- </span> -->
         </span>
         <div class="info-box-content">
@@ -99,8 +99,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/share-connection-sing.png" width="32"> -->
-            <i class="icofont icofont-brand-slideshare st-icon"></i>
+          <!-- <img src="images/share-connection-sing.png" width="32"> -->
+          <i class="icofont icofont-brand-slideshare st-icon"></i>
           <!-- </span> -->
         </span>
         <div class="info-box-content">
@@ -116,8 +116,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/icon.png" width="32"> -->
-            <i class="icofont icofont-holding-hands st-icon"></i>
+          <!-- <img src="images/icon.png" width="32"> -->
+          <i class="icofont icofont-holding-hands st-icon"></i>
           <!-- </span> -->
         </span>
         <div class="info-box-content">
@@ -133,8 +133,8 @@
       <div class="panel-body">
         <span class="icon-container">
           <!-- <span class="info-box-icon bg-blue"> -->
-            <!-- <img src="images/moneylock.png" width="32"> -->
-            <i class="icofont icofont-ui-lock st-icon"></i>
+          <!-- <img src="images/moneylock.png" width="32"> -->
+          <i class="icofont icofont-ui-lock st-icon"></i>
           <!-- </span> -->
         </span>
         <div class="info-box-content">
@@ -152,7 +152,7 @@
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-   
+
     <div class="panel-default custom-panel-default paginated">
       <div class="panel-heading pr" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length"
         ui-sref="main.transactions">
@@ -204,7 +204,7 @@
               <td ng-show="(transaction.type &gt; 0) && (transaction.type &lt; 10)"></td>
 
               <td class="padding-in-1400">
-                <!----------------------Icons of Vote and Stake---------------------------->
+                <!-------Icons of Vote and Stake----->
 
                 <i ng-if="transaction.type==40 && transaction.asset.airdropReward.totalReward > 0" class="vertical-text mdi-image-brightness-7"
                   ng-click="SpecifictransactionInfoModal(transaction,2)"></i>
@@ -233,16 +233,9 @@
             </tr>
           </tbody>
         </table>
-        <!-- <div align="right">
-          <div class="text-center" ng-if="transactions.length">
-            <a class="btn btn-blue-nav waves-effect waves-light m15" href="https://{{ExplorerHost}}/#/user-info/{{address}}"
-              target="_blank">
-              <translate>View in Explorer</translate>
-            </a>
-          </div>
-        </div> -->
+
         <div class="panel-body empty-body" ng-if="!transactions.length">
-          <!-- <div class="logo-grey"></div> -->
+
           <p class="empty-state-text">
             {{'You have not made any transactions yet.'|translate}}
           </p>

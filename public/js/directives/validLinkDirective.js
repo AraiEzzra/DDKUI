@@ -12,9 +12,9 @@ angular.module('DDKApp').directive('validLink', function () {
             var regexp = new RegExp('^(http[s]?:\/\/)([a-z0-9-./]+)(' + scope.validLink + ')$', 'i');
 
             ctrl.$validators.validLink = function (modelValue, viewValue) {
-              var value = (modelValue || viewValue);
+                var value = (modelValue || viewValue);
 
-              return !value || value.length == 0 || regexp.test(viewValue);
+                return !value || value.length == 0 || regexp.test(viewValue);
             };
         }
     }
