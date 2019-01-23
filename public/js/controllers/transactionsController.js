@@ -48,7 +48,7 @@ angular.module('DDKApp').controller('transactionsController', ['$scope', '$rootS
         page: 1,
         count: 25,
         sorting: {
-            height: 'desc'
+            timestamp: 'desc'
         }
     }, {
             total: 0,
