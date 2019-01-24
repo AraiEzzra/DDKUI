@@ -24,7 +24,12 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
     searchForStake: '',
     cachedData: [],
     getData: function (searchForStake, $defer, params, filter, secret, cb) {
-      service.searchForStake = searchForStake.trim();
+      let searchStake;
+      if(searchForStake.trim().toLowerCase() == "active" || searchForStake.trim().toLowerCase() == "inactive") {
+        searchStake = searchForStake.trim().toLowerCase() == "active" ? 1 : 0;
+      } else {
+        searchStake = '';
+      }
       var address = userService.getAddress();
       var startTime;
       var endTime;
@@ -87,6 +92,7 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
             cb(null);
           });
         } else {
+          if(searchStake) {
           //Do search for stake orders based on status i.e Active/Inactive
           esClient.search({
             index: 'stake_orders',
@@ -97,7 +103,7 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                   "must": [
                     {
                       "term": {
-                        "status": searchForStake.status
+                        "status": searchStake
                       }
                     },
                     {
@@ -128,20 +134,14 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
             }
             cb(null);
           });
+        } else {
+          params.total(0);
+          $defer.resolve([]);
+          cb(null);
+        }
         }
       } else {
         //Do search for all stake orders related to <address>
-        esClient.search({
-          index: 'stake_orders',
-          type: 'stake_orders',
-          body: {
-            query: {
-                match_all: {}
-            },
-            sort: [],
-        }
-        }, function (error, stakeResponse, status) {
-          if (stakeResponse.hits.total > 0) {
             esClient.search({
               index: 'stake_orders',
               type: 'stake_orders',
@@ -179,10 +179,6 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
               }
               cb(null);
             });
-          }
-
-        });
-
       }
     },
     getRewardData: function ($defer, params, filter, cb) {
@@ -190,11 +186,8 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
       $http.get($rootScope.serverUrl + "/api/frogings/getRewardHistory", {
           params : {
             senderId: userService.address
-/*             limit: 10,
-            offset: 0 */
           }
       }).then(function (response) {
-        console.log('Reward ',response);
         function filterData(data, filter) {
           return $filter('filter')(data, filter)
       }

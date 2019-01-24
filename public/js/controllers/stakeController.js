@@ -56,6 +56,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   });
   /* End Air Drop Balance */
 
+
   $scope.tableStakes = new ngTableParams(
     {
       page: 1,            // show first page
@@ -92,11 +93,15 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     action: gettextCatalog.getString('Action')
   };
 
-  $scope.tableStakes.settings().$scope = $scope;
+  /** Unused thing which calls the elastic search API for stake orders. 
+   * Currently not used but will be apply on the specific column name as a filter 
+   * */
+
+/*   $scope.tableStakes.settings().$scope = $scope;
 
   $scope.$watch("filter.$", function () {
     $scope.tableStakes.reload();
-  });
+  }); */
 
 /* ---------Reward--------------- */
 
@@ -112,32 +117,21 @@ $scope.tableReward = new ngTableParams(
     counts: [],
     getData: function ($defer, params) {
       $scope.loading = true;
-      // if ($scope.rememberedPassphrase == '') {
-      //   $scope.rememberedPassphrase = $rootScope.secretPhrase;
-      // }
+
       stakeService.getRewardData($defer, params, $scope.filter, function () {
-        console.log('Reward Response',$defer);
-        // $scope.searchStake.inSearch = false;
+        $scope.searchStake.inSearch = false;
         $scope.countRewardOrders = params.total();
         $scope.loading = false;
         $scope.view.inLoading = false;
-      }, null, true);
+      });
 
     }
   });
 
 $scope.tableReward.cols = {
   rewardAmount: gettextCatalog.getString('RewardAmount'),
-  //status: gettextCatalog.getString('Status'),
   rewardTime: gettextCatalog.getString('RewardTime'),
-
 };
-
-$scope.tableReward.settings().$scope = $scope;
-
-$scope.$watch("filter.$", function () {
-  $scope.tableReward.reload();
-});
 
 /* End Rewards */
 
@@ -171,14 +165,13 @@ $scope.$watch("filter.$", function () {
   $scope.$on('updateControllerData', function (event, data) {
     if (data.indexOf('main.stake') != -1) {
       $scope.updateStakes();
+      $scope.tableReward.reload();
     }
   });
 
   $scope.clearSearch = function () {
     $scope.searchStake.searchForStake = '';
   }
-
-  $scope.updateStakes();
 
   // Search blocks watcher
   var tempSearchBlockID = '',
@@ -203,4 +196,13 @@ $scope.$watch("filter.$", function () {
       $scope.updateStakes();
     }, 2000); // Delay 2000 ms
   });
+
+  $scope.hideSearchBar = function() {
+    $scope.view.bar.showStakeSearchBar = false;
+  }
+
+  $scope.showSearchBar = function() {
+    $scope.view.bar.showStakeSearchBar = true;
+  }
+
 }]);

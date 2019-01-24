@@ -39,8 +39,8 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                     var transformedData = sliceData(orderData(filteredData, params), params);
                     params.total(filteredData.length)
                     this.gettingTop = !this.gettingTop;
-                    cb();
                     $defer.resolve(transformedData);
+                    cb();
                 } else {
                     $http.get($rootScope.serverUrl + "/api/delegates/", {params: {orderBy: "rate:asc", limit: this.topRate, offset: 0}})
                         .then(function (response) {
@@ -50,8 +50,8 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                             var filteredData = $filter('filter')(delegates.cachedTOP.data, filter);
                             var transformedData = transformData(delegates.cachedTOP.data, filter, params);
                             delegates.gettingTop = !delegates.gettingTop;
-                            cb();
                             $defer.resolve(transformedData);
+                            cb();
                         });
                 }
             }
@@ -64,8 +64,8 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                     var transformedData = sliceData(orderData(filteredData, params), params);
                     params.total(filteredData.length);
                     this.gettingStandBy = !this.gettingStandBy;
-                    cb();
                     $defer.resolve(transformedData);
+                    cb();
                 }
                 else {
                     this.cachedStandby.data = [];
@@ -153,8 +153,8 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                     var delegates = angular.copy(response.data.delegates) || [];
                     params.total(delegates.length);
                     var transformedData = transformData(delegates, filter, params);
-                    cb();
                     $defer.resolve(transformedData);
+                    cb();
                 });
         },
     };
