@@ -35,7 +35,7 @@
                 <span class="input-group-addon">
                     <i class="mdi-action-search"></i>
                 </span>
-                <input type="text" class="form-control" placeholder="{{'Search for Stake'|translate}}" ng-model="searchStake.searchForStake">
+                <input type="text" class="form-control" placeholder="{{'Search for Stake Status'|translate}}" ng-model="searchStake.searchForStake">
                 <span class="input-group-addon spinner-addon">
                     <div class="preloader-wrapper" ng-class="{'active': searchStake.inSearch}">
                         <div class="spinner-layer spinner-blue-only">
@@ -63,10 +63,10 @@
 <div class="referral-tab">
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#1" data-toggle="tab">Latest orders</a>
+            <a href="#1" data-toggle="tab" ng-click=showSearchBar()>Latest orders</a>
         </li>
         <li>
-            <a href="#2" data-toggle="tab">Reward history</a>
+            <a href="#2" data-toggle="tab" ng-click=hideSearchBar()>Reward history</a>
         </li>
 
     </ul>
@@ -76,7 +76,12 @@
         <div class="tab-pane active" id="1">
 
             <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
-                <table ng-show="countFreezeOrders" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
+                <!-- <div class="panel-heading">
+                <h2>
+                    {{'Latest Orders'|translate}}
+                </h2>
+            </div> -->
+                <table ng-show="countFreezeOrders || !searchStake.searchForStake" ng-table="tableStakes" border="0" width="100%" cellpadding="0"
                     cellspacing="0" template-pagination="custom/pager">
                     <tr ng-repeat="fo in $data">
                         <td data-title="tableStakes.cols.stakedAmount" sortable="'stakedAmount'">{{fo.freezedAmount /
@@ -105,13 +110,18 @@
                             </button>
                         </td>
                     </tr>
+                    <tr ng-show="!loading && (!$data || $data.length == 0) && !searchStake.searchForStake">
+                        <td colspan="5">
+                            <translate>No Stake Orders</translate>
+                        </td>
+                    </tr>
                     <tr ng-show="loading">
                         <td class="gray2 white-text" colspan="7">
                             <translate>Loading...</translate>
                         </td>
                     </tr>
                 </table>
-                <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders">
+                <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders && searchStake.searchForStake">
                     <p class="empty-state-text">
                         <translate>No results for this search.</translate>
                     </p>
@@ -122,8 +132,13 @@
 
 
         <div class="tab-pane" id="2">
-            <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countFreezeOrders || !searchStake.searchForStake}">
-                <table ng-show="countFreezeOrders" ng-table="tableReward" border="0" width="100%" cellpadding="0"
+           <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countRewardOrders || !searchStake.inSearch}">
+                <!-- <div class="panel-heading">
+                <h2>
+                    {{'Latest Orders'|translate}}
+                </h2>
+            </div> -->
+                <table ng-show="countRewardOrders || !searchStake.inSearch" ng-table="tableReward" border="0" width="100%" cellpadding="0"
                     cellspacing="0" template-pagination="custom/pager">
                     <tr ng-repeat="fo1 in $data">
                         <td data-title="tableReward.cols.rewardAmount" sortable="'rewardAmount'">{{fo1.v_reward /
@@ -131,18 +146,17 @@
                         <td data-title="tableReward.cols.rewardTime" sortable="'rewardTime'">{{fo1.t_timestamp |
                             timeAgoFilter}} | {{fo1.t_timestamp | timestampFilter}}</td>
                     </tr>
+                    <tr ng-show="!loading && (!$data || $data.length == 0) && !searchStake.inSearch">
+                        <td colspan="5">
+                            <translate>No Rewards</translate>
+                        </td>
+                    </tr>
                     <tr ng-show="loading">
                         <td class="gray2 white-text" colspan="7">
                             <translate>Loading...</translate>
                         </td>
                     </tr>
                 </table>
-                <div class="panel-body empty-body empty-table" ng-if="!countFreezeOrders">
-                    <p class="empty-state-text">
-                        <translate>No results for this search.</translate>
-                    </p>
-                </div>
-
             </div>
         </div>
     </div>

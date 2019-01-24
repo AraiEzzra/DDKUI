@@ -40,8 +40,8 @@
             <div class="tab-content panel panel-default">
                 <h1>{{expanded}}</h1>
                 <div class="tab-pane active" id="1">
-                    <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
-                        <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableReferral"
+                    <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': referralList || !searchBlocks.searchForBlock}">
+                        <table ng-show="referralList  || !searchBlocks.searchForBlock" ng-table="tableReferral"
                             border="0" width="100%" cellpadding="0" cellspacing="0" class="referrals-list">
                             <tr ng-repeat-start="referral in $data">
                                 <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.Level}}</td>
@@ -75,17 +75,12 @@
                                 </td>
                             </tr>
                         </table>
-                        <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
-                            <p class="empty-state-text">
-                                <translate>No results for this search.</translate>
-                            </p>
-                        </div>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="2">
-                    <div class="panel-default custom-panel-default" ng-class="{'paginated': countForgingBlocks || !searchBlocks.searchForBlock}">
-                        <table ng-show="countForgingBlocks  || !searchBlocks.searchForBlock" ng-table="tableRewards"
+                    <div class="panel-default custom-panel-default" ng-class="{'paginated': rewardList || !searchBlocks.searchForBlock}">
+                        <table ng-show="rewardList  || !searchBlocks.searchForBlock" ng-table="tableRewards"
                             border="0" width="100%" cellpadding="0" cellspacing="0">
                             <tr ng-repeat="referral in $data">
                                 <td data-title="tableRewards.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.sponsor_address}}</td>
@@ -97,7 +92,7 @@
                             </tr>
                             <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
                                 <td colspan="5">
-                                    <translate>No Referral</translate>
+                                    <translate>No Rewards</translate>
                                 </td>
                             </tr>
                             <tr ng-show="loading">
@@ -106,11 +101,6 @@
                                 </td>
                             </tr>
                         </table>
-                        <div class="panel-body empty-body empty-table" ng-if="!countForgingBlocks && searchBlocks.searchForBlock">
-                            <p class="empty-state-text">
-                                <translate>No results for this search.</translate>
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>

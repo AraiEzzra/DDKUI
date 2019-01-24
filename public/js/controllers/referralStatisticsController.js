@@ -41,7 +41,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             });
     }
 
-    /* For Referral List */
+    /** For Getting the Referral List */
     $scope.tableReferral = new ngTableParams({
         page: 1,
         count: 1,
@@ -55,7 +55,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                 $scope.loading = true;
                 referralService.getReferralList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
                     $scope.searchBlocks.inSearch = false;
-                    $scope.countForgingBlocks = params.total();
+                    $scope.referralList = params.total();
                     $scope.loading = false;
                     $scope.view.inLoading = false;
                 }, null, true);
@@ -69,17 +69,10 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         action: gettextCatalog.getString('Action')
     };
 
-    $scope.tableReferral.settings().$scope = $scope;
-    $scope.$watch("filter.$", function () {
-        $scope.tableReferral.reload();
-    });
+    /** End Referral List */
 
-    $scope.updateReferral = function () {
-        $scope.tableReferral.reload();
-    };
-    /* End Referral */
 
-    /* For Rewards List */
+    /** Referral Rewards List */
     $scope.tableRewards = new ngTableParams({
         page: 1,
         count: 10,
@@ -93,10 +86,9 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
                 $scope.loading = true;
                 referralService.getRewardList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
                     $scope.searchBlocks.inSearch = false;
-                    $scope.countForgingBlocks = params.total();
+                    $scope.rewardList = params.total();
                     $scope.loading = false;
                     $scope.view.inLoading = false;
-
                 }, null, true);
             }
         });
@@ -109,11 +101,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         rewardTime: gettextCatalog.getString('Reward Time')
     };
 
-    $scope.tableRewards.settings().$scope = $scope;
-    $scope.$watch("filter.$", function () {
-        $scope.tableRewards.reload();
-    });
-    /* End Rewards */
+    /** End Referral Rewards Info */
 
     $scope.options = {
         legend: {
@@ -151,27 +139,6 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         $scope.airdropData = airdropDataJson;
     });
 
-    /* For Search blocks watcher */
-    var tempSearchBlockID = '',
-        searchBlockIDTimeout;
-    $scope.$watch('searchBlocks.searchForBlock', function (val) {
-        if (searchBlockIDTimeout) $timeout.cancel(searchBlockIDTimeout);
-        if (val.trim() != '') {
-            $scope.searchBlocks.inSearch = true;
-        } else {
-            $scope.searchBlocks.inSearch = false;
-            if (tempSearchBlockID != val) {
-                tempSearchBlockID = val;
-                $scope.updateReferral();
-                return;
-            }
-        }
-        tempSearchBlockID = val;
-        searchBlockIDTimeout = $timeout(function () {
-            $scope.searchBlocks.searchForBlock = tempSearchBlockID;
-            $scope.updateReferral();
-        }, 2000); // Delay 2000 ms 
-    });
 }]);
 
 

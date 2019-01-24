@@ -55,6 +55,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   });
   /* End Air Drop Balance */
 
+
   $scope.tableStakes = new ngTableParams(
     {
       page: 1,            // show first page
@@ -91,48 +92,47 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     action: gettextCatalog.getString('Action')
   };
 
-  $scope.tableStakes.settings().$scope = $scope;
+  /** Unused thing which calls the elastic search API for stake orders. 
+   * Currently not used but will be apply on the specific column name as a filter 
+   * */
 
-  // $scope.$watch("filter.$", function () {
-  //   $scope.tableStakes.reload();
-  // });
-
-  /* For Rewards */
-  $scope.tableReward = new ngTableParams(
-    {
-      page: 1,            // show first page
-      count: 5,           // count per page
-      //sorting: { status: 'desc' }
-    },
-    {
-      total: 0, // length of data
-      counts: [],
-      getData: function ($defer, params) {
-        $scope.loading = true;
-        stakeService.getRewardData($defer, params, $scope.filter, function () {
-          console.log('Reward Response', $defer);
-          // $scope.searchStake.inSearch = false;
-          $scope.countRewardOrders = params.total();
-          $scope.loading = false;
-          $scope.view.inLoading = false;
-        }, null, true);
-
-      }
-    });
-
-  $scope.tableReward.cols = {
-    rewardAmount: gettextCatalog.getString('RewardAmount'),
-    //status: gettextCatalog.getString('Status'),
-    rewardTime: gettextCatalog.getString('RewardTime'),
-
-  };
-
-  $scope.tableReward.settings().$scope = $scope;
+/*   $scope.tableStakes.settings().$scope = $scope;
 
   $scope.$watch("filter.$", function () {
-    $scope.tableReward.reload();
+    $scope.tableStakes.reload();
+  }); */
+
+/* ---------Reward--------------- */
+
+
+$scope.tableReward = new ngTableParams(
+  {
+    page: 1,            // show first page
+    count: 5,           // count per page
+    //sorting: { status: 'desc' }
+  },
+  {
+    total: 0, // length of data
+    counts: [],
+    getData: function ($defer, params) {
+      $scope.loading = true;
+
+      stakeService.getRewardData($defer, params, $scope.filter, function () {
+        $scope.searchStake.inSearch = false;
+        $scope.countRewardOrders = params.total();
+        $scope.loading = false;
+        $scope.view.inLoading = false;
+      });
+
+    }
   });
-  /* End Rewards */
+
+$scope.tableReward.cols = {
+  rewardAmount: gettextCatalog.getString('RewardAmount'),
+  rewardTime: gettextCatalog.getString('RewardTime'),
+};
+
+/* End Rewards */
 
   getCurrentTimestamp();
 
@@ -164,6 +164,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   $scope.$on('updateControllerData', function (event, data) {
     if (data.indexOf('main.stake') != -1) {
       $scope.updateStakes();
+      $scope.tableReward.reload();
     }
   });
 
@@ -171,9 +172,7 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     $scope.searchStake.searchForStake = '';
   }
 
-  $scope.updateStakes();
-
-  /* For Search blocks watcher */
+  // Search blocks watcher
   var tempSearchBlockID = '',
     searchBlockIDTimeout;
 
@@ -196,4 +195,13 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
       $scope.updateStakes();
     }, 2000); // Delay 2000 ms
   });
+
+  $scope.hideSearchBar = function() {
+    $scope.view.bar.showStakeSearchBar = false;
+  }
+
+  $scope.showSearchBar = function() {
+    $scope.view.bar.showStakeSearchBar = true;
+  }
+
 }]);

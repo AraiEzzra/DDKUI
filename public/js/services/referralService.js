@@ -11,11 +11,11 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
                 referrer_address: userService.address
             }).then(function (response) {
                 if (response.data.success) {
-                    cb();
                     $defer.resolve(response.data.SponsorList);
-                } else {
                     cb();
+                } else {
                     $defer.resolve([]);
+                    cb();
                 }
             });
         },
@@ -48,7 +48,6 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
                 } else {
                     $defer.resolve([]);
                     cb();
-                    
                 }
             }
             );
