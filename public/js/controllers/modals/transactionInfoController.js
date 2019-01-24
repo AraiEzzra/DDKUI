@@ -7,7 +7,7 @@ angular.module('DDKApp').controller('transactionInfoController', ["$scope", "$ht
     $scope.userInfo = function (userId) {
         transactionInfo.deactivate();
         angular.element(document.querySelector("body")).removeClass("ovh");
-        $scope.modal = userInfo.activate({userId: userId});
+        $scope.modal = userInfo.activate({ userId: userId });
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 

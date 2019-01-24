@@ -14,7 +14,7 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
     $scope.searchBlocks.searchForBlock='';
     $scope.countForgingBlocks = 0;
 
-    // Blocks
+    /* Start Blocks */
     $scope.tableBlocks = new ngTableParams({
         page: 1,
         count: 15,
@@ -47,7 +47,7 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
         numberOfTransactions: gettextCatalog.getString('Transactions'),
         totalAmount: gettextCatalog.getString('Amount'),
         totalFee: gettextCatalog.getString('Fee')
-  //      reward: gettextCatalog.getString('Reward')
+        /* reward: gettextCatalog.getString('Reward')*/
     };
 
     $scope.tableBlocks.settings().$scope = $scope;
@@ -59,7 +59,7 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
     $scope.updateBlocks = function () {
         $scope.tableBlocks.reload();
     };
-    // end Blocks
+    /* end Blocks */
 
     $scope.$on('updateControllerData', function (event, data) {
         if (data.indexOf('main.blockchain') != -1) {
@@ -93,7 +93,7 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
-    // Search blocks watcher
+    /* Search blocks watcher */
     var tempSearchBlockID = '',
         searchBlockIDTimeout;
 
@@ -113,7 +113,7 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
         searchBlockIDTimeout = $timeout(function () {
             $scope.searchBlocks.searchForBlock = tempSearchBlockID;
             $scope.updateBlocks();
-        }, 2000); // Delay 2000 ms
+        }, 2000); /* Delay 2000 ms */
     });
 
 }]);

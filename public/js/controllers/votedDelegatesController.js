@@ -5,8 +5,8 @@ angular.module('DDKApp').controller('votedDelegatesController', ['$scope', '$roo
     $scope.view = viewFactory;
     $scope.view.inLoading = true;
     $scope.view.loadingText = gettextCatalog.getString('Loading delegates');
-    $scope.view.page = {title: gettextCatalog.getString('Forging'), previous: null};
-    $scope.view.bar = {forgingMenu: true};
+    $scope.view.page = { title: gettextCatalog.getString('Forging'), previous: null };
+    $scope.view.bar = { forgingMenu: true };
 
     $scope.count = 0;
 
@@ -75,11 +75,11 @@ angular.module('DDKApp').controller('votedDelegatesController', ['$scope', '$roo
 
     $scope.balance = userService._unconfirmedBalance;
 
-    // Unconfirmed transactions
+    /* Unconfirmed transactions */
     $scope.unconfirmedTransactions = {
         list: [],
         getList: function () {
-            $http.get($rootScope.serverUrl + "/api/transactions/unconfirmed/", {params: {senderPublicKey: userService.publicKey}})
+            $http.get($rootScope.serverUrl + "/api/transactions/unconfirmed/", { params: { senderPublicKey: userService.publicKey } })
                 .then(function (response) {
                     $scope.unconfirmedTransactions.list = [];
                     response.data.transactions.forEach(function (transaction) {
@@ -92,9 +92,9 @@ angular.module('DDKApp').controller('votedDelegatesController', ['$scope', '$roo
         }
     };
     $scope.unconfirmedTransactions.getList();
-    // end Unconfirmed transactions
+    /* End Unconfirmed transactions */
 
-    // My deletates
+    /* For My deletates */
     $scope.tableMyDelegates = new ngTableParams({
         page: 1,            // Show first page
         count: 25,
@@ -102,36 +102,36 @@ angular.module('DDKApp').controller('votedDelegatesController', ['$scope', '$roo
             rate: 'asc'     // Initial sorting
         }
     }, {
-        counts: [],
-        total: 0,
-        getData: function ($defer, params) {
-            delegateService.getMyDelegates($defer, params, $scope.filter, userService.address, function (response) {
-                $scope.count = params.total();
-                $scope.loading = false;
-                $scope.view.inLoading = false;
-                $timeout(function () {
-                    $scope.unconfirmedTransactions.getList();
-                    for (publicKey in $scope.voteList.pendingList) {
-                        if ($scope.tableMyDelegates.data.filter(function (e) { return e.publicKey == publicKey; }).length === 0) {
-                            delete $scope.voteList.pendingList[publicKey];
+            counts: [],
+            total: 0,
+            getData: function ($defer, params) {
+                delegateService.getMyDelegates($defer, params, $scope.filter, userService.address, function (response) {
+                    $scope.count = params.total();
+                    $scope.loading = false;
+                    $scope.view.inLoading = false;
+                    $timeout(function () {
+                        $scope.unconfirmedTransactions.getList();
+                        for (publicKey in $scope.voteList.pendingList) {
+                            if ($scope.tableMyDelegates.data.filter(function (e) { return e.publicKey == publicKey; }).length === 0) {
+                                delete $scope.voteList.pendingList[publicKey];
+                            }
                         }
-                    }
-                }, 1000);
-            });
-        }
-    });
+                    }, 1000);
+                });
+            }
+        });
 
     $scope.checkPendingStatus = function (delegate) {
         return (delegate.publicKey in $scope.voteList.pendingList);
     }
 
     $scope.tableMyDelegates.cols = {
-        rate : gettextCatalog.getString('Rank'),
-        username : gettextCatalog.getString('Name'),
-        address : gettextCatalog.getString('DDK Address'),
-        url : gettextCatalog.getString('Url'),
-        productivity : gettextCatalog.getString('Uptime'),
-        vote : gettextCatalog.getString('Approval')
+        rate: gettextCatalog.getString('Rank'),
+        username: gettextCatalog.getString('Name'),
+        address: gettextCatalog.getString('DDK Address'),
+        url: gettextCatalog.getString('Url'),
+        productivity: gettextCatalog.getString('Uptime'),
+        vote: gettextCatalog.getString('Approval')
     };
 
     $scope.tableMyDelegates.settings().$scope = $scope;
@@ -143,7 +143,7 @@ angular.module('DDKApp').controller('votedDelegatesController', ['$scope', '$roo
     $scope.updateMyDelegates = function () {
         $scope.tableMyDelegates.reload();
     };
-    // end My delegates
+    /* End My delegates */
 
     $scope.updateView = $interval(function () {
         delegateService.cachedVotedDelegates.time = delegateService.cachedVotedDelegates.time - 20000;

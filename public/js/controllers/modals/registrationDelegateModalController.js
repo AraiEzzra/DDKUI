@@ -7,11 +7,11 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
     $scope.passmode = false;
     $scope.delegate = userService.delegate;
     $scope.isSecondPassphrase = userService.secondPassphrase;
-    $scope.delegateData = {username: ''};
+    $scope.delegateData = { username: '' };
     $scope.secondPassphrase = userService.secondPassphrase;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.focus = 'username';
-    $scope.ddkfoundation=false;
+    $scope.ddkfoundation = false;
 
     $scope.close = function () {
         if ($scope.destroy) {
@@ -21,7 +21,7 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
         registrationDelegateModal.deactivate();
         angular.element(document.querySelector("body")).removeClass("ovh");
     }
-    if(userService.address === "DDK8999840344646463126"){
+    if (userService.address === "DDK8999840344646463126") {
         $scope.ddkfoundation = true;
     }
 
@@ -54,7 +54,7 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
             }
         }
     }
-
+    /* For Passphrase check */
     $scope.passcheck = function (fromSecondPass) {
         $scope.error = null;
         if (fromSecondPass) {
@@ -84,7 +84,7 @@ angular.module('DDKApp').controller('registrationDelegateModalController', ["$sc
             });
         }
     }
-
+    /* For Registration Delegate */
     $scope.registrationDelegate = function (pass, withSecond) {
         if ($scope.secondPassphrase && !withSecond) {
             $scope.focus = 'secondPhrase';

@@ -8,12 +8,11 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
   var data = stakeService.data;
   $scope.view.loadingText = gettextCatalog.getString('Loading stake orders');
   $scope.view.page = { title: gettextCatalog.getString('Staking'), previous: null };
-  
-  /*------Reward-----*/
+
   $scope.view.loadingText1 = gettextCatalog.getString('Loading Rewards');
   $scope.view.page1 = { title: gettextCatalog.getString('Reward'), previous: null };
   $scope.countRewardOrders = 0
-  
+
   $scope.countFreezeOrders = 0;
   $scope.loading = true;
   $scope.searchStake = stakeService;
@@ -36,9 +35,9 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     $scope.labels = ["Consume", "Available"];
     let stakeLeftPercentage = (($scope.mixBalance - data / 100000000) / ($scope.mixBalance)) * 100;
     let airdropData = [stakeLeftPercentage, 100 - stakeLeftPercentage];
-    $scope.airdropData = airdropData.map(function(each_element){
+    $scope.airdropData = airdropData.map(function (each_element) {
       return Number(each_element.toFixed(3));
-  });
+    });
 
     let con = $scope.mixBalance - data / 100000000;
     let consume = con.toFixed(4);

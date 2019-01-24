@@ -13,5 +13,5 @@ angular.module('DDKApp').factory('freezeAmountModal', function (btfModal) {
         controller: 'freezeAmountController',
         templateUrl: '/partials/modals/freezeAmount.html'
     });
-}); 
+});
 

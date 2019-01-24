@@ -23,10 +23,10 @@ angular.module('DDKApp').controller('passphraseController', ['$scope', '$rootSco
     $scope.cleanUpUserData();
 
     $scope.newUser = function () {
-          $scope.newUserModal = newUser.activate({
-             destroy: function () {
-             }
-         }); 
+        $scope.newUserModal = newUser.activate({
+            destroy: function () {
+            }
+        });
     }
 
     $scope.login = function (pass, remember) {

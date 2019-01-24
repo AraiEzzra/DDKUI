@@ -10,12 +10,10 @@ angular.module('DDKApp').factory('focusFactory', function ($timeout, $window) {
     };
 });
 
-
-
 angular.module('DDKApp').factory('focus', function ($rootScope, $timeout) {
-    return function(name) {
-      $timeout(function (){
-        $rootScope.$broadcast('focusOn', name);
-      });
+    return function (name) {
+        $timeout(function () {
+            $rootScope.$broadcast('focusOn', name);
+        });
     }
-  });
+});

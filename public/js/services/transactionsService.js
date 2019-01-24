@@ -10,7 +10,7 @@ angular.module('DDKApp').service('transactionsService', function ($http, $rootSc
                 if (response.data.success) {
                     cb(response.data);
                 } else {
-                    cb({transactions: [], count: 0});
+                    cb({ transactions: [], count: 0 });
                 }
             });
         },
@@ -20,16 +20,16 @@ angular.module('DDKApp').service('transactionsService', function ($http, $rootSc
                     id: transactionId
                 }
             }).then(function (response) {
-                    if (response.data.success) {
-                        if (response.data.transaction.senderId == userService.address || response.data.transaction.recipientId == userService.address) {
-                            cb({transactions: [response.data.transaction], count: 1});
-                        } else {
-                            cb({transactions: [], count: 0});
-                        }
+                if (response.data.success) {
+                    if (response.data.transaction.senderId == userService.address || response.data.transaction.recipientId == userService.address) {
+                        cb({ transactions: [response.data.transaction], count: 1 });
                     } else {
-                        cb({transactions: [], count: 0});
+                        cb({ transactions: [], count: 0 });
                     }
+                } else {
+                    cb({ transactions: [], count: 0 });
                 }
+            }
             );
         },
         count: 0,

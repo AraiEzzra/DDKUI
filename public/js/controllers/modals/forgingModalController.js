@@ -60,7 +60,7 @@ angular.module('DDKApp').controller('forgingModalController', ["$scope", "$rootS
                 });
         }
     }
-
+   /* For stop Forging */
     $scope.stopForging = function () {
         $scope.error = null;
 

@@ -1,4 +1,4 @@
-<!----------------------Stake Transaction Modal------------------------------------------>
+<!-----Stake Transaction Modal----->
 <div>
     <div class="app-modal valign-wrapper" id="transaction-modal" ng-if="stakeTransaction">
         <div class="container height100">
@@ -40,17 +40,18 @@
         </div>
 
     </div>
-    <!------------------------------Vote Transaction Modal-------------------------------------->
-   <div class="app-modal valign-wrapper" id="voteTransaction-modal" ng-if="voteTransaction">
+
+    <!-----Vote Transaction Modal----->
+    <div class="app-modal valign-wrapper" id="voteTransaction-modal" ng-if="voteTransaction">
 
         <div class="container height100">
-       
+
             <div class="row height100">
-              <div class="col-md-6 col-md-offset-3 height100 valign-wrapper">
+                <div class="col-md-6 col-md-offset-3 height100 valign-wrapper">
                     <div class="modal-content">
 
                         <div class="modal-header modal-iconed">
-                         <h2>{{'Reward Info'|translate}}</h2>
+                            <h2>{{'Reward Info'|translate}}</h2>
 
                             <div class="close-modal" ng-click="close()">
                                 <span class="sr-only">
@@ -70,8 +71,8 @@
                                     <a href="#3" data-toggle="tab">Unstake</a>
                                 </li>
                             </ul>
-                          <div class="tab-content panel panel-default">
 
+                            <div class="tab-content panel panel-default">
                                 <div class="tab-pane active" id="1">
                                     <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
                                         class="referrals-list">
@@ -81,7 +82,7 @@
                                             </td>
                                             <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">
                                                 {{transaction.asset.reward/100000000}}
-                                               
+
                                             </td>
                                         </tr>
 
@@ -93,28 +94,31 @@
 
                                     </table>
                                 </div>
-                            <div class="tab-pane" id="2">
-                           <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
-                                        class="referrals-list">
-                                        <tr ng-show="transaction.asset.airdropReward.totalReward>0" ng-repeat="(key,value) in transaction.asset.airdropReward.sponsors">
 
-                                            <td data-title="tableReferral.cols.level" sortable="'level'">{{key}}</td>
-                                            <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{value/100000000}}</td>
 
-                                        </tr>
+                                <div class="tab-pane" id="2">
+                                    <div class="scrolling">
+                                        <table ng-table="tableReferral" border="0" width="100%" cellpadding="0"
+                                            cellspacing="0" class="referrals-list">
+                                            <tr ng-show="transaction.asset.airdropReward.totalReward>0" ng-repeat="(key,value) in transaction.asset.airdropReward.sponsors">
 
-                                        <tr ng-show="transaction.asset.airdropReward.totalReward<=0">
-                                            <td colspan="2">
-                                                <translate>No Data Available</translate>
-                                            </td>
-                                        </tr>
+                                                <td data-title="tableReferral.cols.level" sortable="'level'">{{key}}</td>
+                                                <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{value/100000000}}</td>
 
-                                    </table>
+                                            </tr>
+
+                                            <tr ng-show="transaction.asset.airdropReward.totalReward<=0">
+                                                <td colspan="2">
+                                                    <translate>No Data Available</translate>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
                                 </div>
 
-
                                 <div class="tab-pane" id="3">
-                                  <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
+                                    <table ng-table="tableReferral" border="0" width="100%" cellpadding="0" cellspacing="0"
                                         class="referrals-list">
                                         <tr ng-show="transaction.asset.unstake<0">
                                             <td data-title="tableReferral.cols.level" sortable="'level'">
@@ -143,7 +147,5 @@
                 </div>
             </div>
         </div>
-   </div>
-
-
+    </div>
 </div>

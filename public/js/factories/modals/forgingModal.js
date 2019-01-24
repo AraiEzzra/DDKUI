@@ -1,7 +1,3 @@
-
-
-
-
 require('angular');
 
 angular.module('DDKApp').factory('forgingModal', function (btfModal) {

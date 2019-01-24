@@ -5,8 +5,8 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
     $scope.view = viewFactory;
     $scope.view.inLoading = false;
     $scope.view.loadingText = gettextCatalog.getString('Loading Multi-Signature Groups');
-    $scope.view.page = {title: gettextCatalog.getString('Multi-Signature'), previous: null};
-    $scope.view.bar = {showWalletBar: true};
+    $scope.view.page = { title: gettextCatalog.getString('Multi-Signature'), previous: null };
+    $scope.view.bar = { showWalletBar: true };
     $scope.secondPassphrase = userService.secondPassphrase;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.countWallets = 0;
@@ -31,7 +31,7 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
     }
 
     $scope.showMembers = function (confirmed, dataMembers, address) {
-        dataMembers.push({address: address})
+        dataMembers.push({ address: address })
         $scope.multiMembersModal = multiMembersModal.activate({
             confirmed: confirmed,
             dataMembers: dataMembers,
@@ -87,7 +87,7 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
 
     }
 
-    // Wallets table
+    /* For Wallets table */
     $scope.tableWallets = new ngTableParams({
         page: 1,            // Show first page
         count: 25,
@@ -95,24 +95,24 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
             address: 'desc' // Initial sorting
         }
     }, {
-        counts: [],
-        total: 0,
-        getData: function ($defer, params) {
-            $scope.view.inLoading = true;
-            multiService.getWallets($defer, params, $scope.filter, function () {
-                $scope.view.inLoading = false;
-                $scope.countWallets = params.total();
-                $scope.showWallets = !!(!(_.isEmpty(userService.u_multisignatures) || _.isEmpty(userService.multisignatures)) || $scope.countWallets);
+            counts: [],
+            total: 0,
+            getData: function ($defer, params) {
+                $scope.view.inLoading = true;
+                multiService.getWallets($defer, params, $scope.filter, function () {
+                    $scope.view.inLoading = false;
+                    $scope.countWallets = params.total();
+                    $scope.showWallets = !!(!(_.isEmpty(userService.u_multisignatures) || _.isEmpty(userService.multisignatures)) || $scope.countWallets);
 
-            });
+                });
 
-        }
-    });
+            }
+        });
 
     $scope.tableWallets.cols = {
-        address : gettextCatalog.getString('Group Name'),
-        members : gettextCatalog.getString('Members'),
-        confirmations : gettextCatalog.getString('Confirmations')
+        address: gettextCatalog.getString('Group Name'),
+        members: gettextCatalog.getString('Members'),
+        confirmations: gettextCatalog.getString('Confirmations')
     };
 
     $scope.tableWallets.settings().$scope = $scope;
@@ -120,9 +120,9 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
     $scope.$watch("filter.$", function () {
         $scope.tableWallets.reload();
     });
-    // end
+    /* End wallets table */
 
-    // Wallets table
+    /* Wallets table */
     $scope.tableMultiTransactions = new ngTableParams({
         page: 1,             // Show first page
         count: 10,
@@ -130,24 +130,24 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
             timestamp: 'asc' // Initial sorting
         }
     }, {
-        counts: [],
-        total: 0,
-        getData: function ($defer, params) {
-            $scope.view.inLoading = true;
-            multiService.getPendings($defer, params, $scope.filter, function () {
-                $scope.view.inLoading = false;
-                $scope.countPendings = params.total();
-            });
-        }
-    });
+            counts: [],
+            total: 0,
+            getData: function ($defer, params) {
+                $scope.view.inLoading = true;
+                multiService.getPendings($defer, params, $scope.filter, function () {
+                    $scope.view.inLoading = false;
+                    $scope.countPendings = params.total();
+                });
+            }
+        });
 
     $scope.tableMultiTransactions.cols = {
-        transactionId : gettextCatalog.getString('Transaction ID'),
-        recipientId : gettextCatalog.getString('Recipient'),
-        timestamp : gettextCatalog.getString('Time'),
-        amount : gettextCatalog.getString('Amount'),
-        fee : gettextCatalog.getString('Fee'),
-        confirmations : gettextCatalog.getString('Confirmations Needed')
+        transactionId: gettextCatalog.getString('Transaction ID'),
+        recipientId: gettextCatalog.getString('Recipient'),
+        timestamp: gettextCatalog.getString('Time'),
+        amount: gettextCatalog.getString('Amount'),
+        fee: gettextCatalog.getString('Fee'),
+        confirmations: gettextCatalog.getString('Confirmations Needed')
     };
 
     $scope.tableMultiTransactions.settings().$scope = $scope;
@@ -155,7 +155,7 @@ angular.module('DDKApp').controller('walletsController', ['$scope', '$rootScope'
     $scope.$watch("filter.$", function () {
         $scope.tableMultiTransactions.reload();
     });
-    // end
+    /* End wallets table */
 
     $scope.$on('updateControllerData', function (event, data) {
         if (data.indexOf('main.multi') != -1) {

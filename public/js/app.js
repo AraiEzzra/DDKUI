@@ -31,7 +31,7 @@ DDKApp.config([
             'hover': 'mouseenter'
         });
 
-        // Now set up the states
+        /* Now set up the states */
         $stateProvider
             .state('main', {
                 abstract: true,
@@ -99,7 +99,7 @@ DDKApp.config([
                 templateUrl: "/partials/referal.html",
                 controller: "referalController",
                 resolve: {
-                    accountExists: function($http, $rootScope, $stateParams) {
+                    accountExists: function ($http, $rootScope, $stateParams) {
                         return $http.post($rootScope.serverUrl + "/api/accounts/checkAccountExists", { address: $stateParams.id });
                     }
                 }
@@ -135,18 +135,18 @@ DDKApp.config([
     $rootScope.serverUrl = currentURL.origin;
     $rootScope.defaultLoaderScreen = false;
 
-    // render current logged-in user upon page refresh if currently logged-in
+    /* Render current logged-in user upon page refresh if currently logged-in */
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         AuthService.getUserStatus()
             .then(function () {
-                if(toState.name == 'notFound' || toState.name == 'referal') {
+                if (toState.name == 'notFound' || toState.name == 'referal') {
                     return;
                 }
                 if (AuthService.isLoggedIn()) {
-                        if (toState.name !='loading')
-                            $state.go(toState.name);
-                        else
-                            $state.go('main.dashboard');
+                    if (toState.name != 'loading')
+                        $state.go(toState.name);
+                    else
+                        $state.go('main.dashboard');
                 } else {
                     if (toState.name == 'existingETPSUser') {
                         $state.go('existingETPSUser');
@@ -157,7 +157,7 @@ DDKApp.config([
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-        if(toState.name === 'referal') {
+        if (toState.name === 'referal') {
             if (!toParams || !toParams.id) {
                 event.preventDefault();
                 return $state.go('notFound');

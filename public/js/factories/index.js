@@ -1,9 +1,11 @@
+/* Factories */
 require('../../js/factories/userFactory');
 require('../../js/factories/viewFactory');
 require('../../js/factories/socketFactory');
 require('../../js/factories/focusFactory');
 require('../../js/factories/cutFactory');
-// Modals
+
+/* Modals */
 require('../../js/factories/modals/addContactModal');
 require('../../js/factories/modals/blockModal');
 require('../../js/factories/modals/newUser');
@@ -26,5 +28,4 @@ require('../../js/factories/modals/masterPassphraseModal');
 require('../../js/factories/modals/confirmDeletionModal');
 require('../../js/factories/modals/openDappModal');
 require('../../js/factories/modals/referralLinkModal');
-
 require('../../js/factories/modals/SpecifictransactionInfoModal');

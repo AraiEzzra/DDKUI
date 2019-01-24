@@ -1,6 +1,6 @@
 require('angular');
 
-angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootScope', 'userService', 'feeService','freezeAmountModal', '$http', function ($scope, $rootScope, userService,feeService,freezeAmountModal,$http) {
+angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootScope', 'userService', 'feeService', 'freezeAmountModal', '$http', function ($scope, $rootScope, userService, feeService, freezeAmountModal, $http) {
 
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.sending = false;
@@ -12,9 +12,9 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
 
     $scope.getCurrentFee = function () {
         $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
-                $scope.currentFee = resp.data.fee;
-                $scope.fee = resp.data.fee;
-            });
+            $scope.currentFee = resp.data.fee;
+            $scope.fee = resp.data.fee;
+        });
     }
 
     $scope.isCorrectValue = function (currency, throwError) {
@@ -24,14 +24,14 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
 
         if (!throwError) throwError = false;
 
-        function error (message) {
+        function error(message) {
             $scope.errorMessage.fAmount = message;
 
             if (throwError) {
-              throw $scope.errorMessage.fAmount;
+                throw $scope.errorMessage.fAmount;
             } else {
-              console.error(message);
-              return false;
+                console.error(message);
+                return false;
             }
         }
 
@@ -39,47 +39,47 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
             return error('DDK amount can not be blank');
         }
 
-        if(parts.length != 1){
+        if (parts.length != 1) {
             return error('DDK amount can not be decimal');
         }
 
         if (parts.length == 1) {
-            // No fractional part
+            /* No fractional part */
             fraction = '00000000';
         } else if (parts.length == 2) {
             if (parts[1].length > 8) {
                 return error('DDK amount must not have more than 8 decimal places');
             } else if (parts[1].length <= 8) {
-                // Less than eight decimal places
+                /* Less than eight decimal places */
                 fraction = parts[1];
             } else {
-                // Trim extraneous decimal places
+                /* Trim extraneous decimal places */
                 fraction = parts[1].substring(0, 8);
             }
         } else {
             return error('DDK amount must have only one decimal point');
         }
 
-        // Pad to eight decimal places
+        /* Pad to eight decimal places */
         for (var i = fraction.length; i < 8; i++) {
             fraction += '0';
         }
 
-        // Check for zero amount
+        /* Check for zero amount */
         if (amount == '0' && fraction == '00000000') {
             return error('DDK amount can not be zero');
         }
 
-        // Combine whole with fractional part
+        /* Combine whole with fractional part */
         var result = amount + fraction;
 
-        // In case there's a comma or something else in there.
-        // At this point there should only be numbers.
+        /* In case there's a comma or something else in there.
+         At this point there should only be numbers.*/
         if (!/^\d+$/.test(result)) {
             return error('DDK amount contains non-numeric characters');
         }
 
-        // Remove leading zeroes
+        /* Remove leading zeroes */
         result = result.replace(/^0+/, '');
 
         return parseInt(result);
@@ -126,7 +126,7 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
     }
 
 
-    $scope.freezeOrder = function(secretPhrase,withSecond){
+    $scope.freezeOrder = function (secretPhrase, withSecond) {
         $rootScope.secretPhrase = secretPhrase;
         if ($scope.secondPassphrase && !withSecond) {
             $scope.checkSecondPass = true;

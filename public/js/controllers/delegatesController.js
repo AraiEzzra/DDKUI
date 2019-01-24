@@ -89,7 +89,7 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
-    // Unconfirmed transactions
+    /* For Unconfirmed Transactions */
     $scope.unconfirmedTransactions = {
         list: [],
         getList: function () {
@@ -107,9 +107,9 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         }
     };
     $scope.unconfirmedTransactions.getList();
-    // end Unconfirmed transactions
+    /* End Unconfirmed transactions */
 
-    // Delegates exist
+    /* Delegates Exist */
     $scope.delegates = {
         list: [],
         getList: function (cb) {
@@ -130,11 +130,11 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
     };
     $scope.delegates.getList(function () {
     });
-    // end Delegates exist
+    /* End Delegates Exist */
 
-    // Search deletates
+    /* Search deletates */
     $scope.tableSearchDelegates = new ngTableParams({
-        page: 1,            // Show first page
+        page: 1,            //Show first page 
         count: 25,
     }, {
         counts: [],
@@ -161,9 +161,9 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         var delegate = $scope.tableSearchDelegates.data[0];
         $scope.voteList.vote(delegate.publicKey, delegate.username);
     };
-    // end Search delegates 
+    /* End Search delegates */
 
-    // Top deletates
+    /* Top deletates*/
     $scope.tableTopDelegates = new ngTableParams({
         page: 1,            // Show first page
         count: 25,
@@ -206,9 +206,9 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
     $scope.updateTop = function () {
         $scope.tableTopDelegates.reload();
     };
-    // end Top delegates
+    /* End Top delegates */
 
-    // Standby delegates
+    /* Standby delegates */
     $scope.tableStandbyDelegates = new ngTableParams({
         page: 1,            // Show first page
         count: 25,
@@ -241,7 +241,7 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
     $scope.updateStandby = function () {
         $scope.tableStandbyDelegates.reload();
     };
-    // end Standby delegates
+    /* End Standby delegates */
 
     $scope.$on('updateControllerData', function (event, data) {
         if (data.indexOf('main.delegates') != -1) {

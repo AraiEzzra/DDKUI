@@ -2,7 +2,7 @@
 
 require('angular');
 
-angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$rootScope', 'userService', 'sendTransactionModal', 'sendFreezeOrderModal', '$http','feeService', function ($scope, $rootScope, userService, sendTransactionModal,sendFreezeOrderModal,$http,feeService) {
+angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$rootScope', 'userService', 'sendTransactionModal', 'sendFreezeOrderModal', '$http', 'feeService', function ($scope, $rootScope, userService, sendTransactionModal, sendFreezeOrderModal, $http, feeService) {
 
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.sending = false;
@@ -12,8 +12,8 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
     $scope.recipientAddress = '';
     $scope.checkSecondPass = false;
     $scope.secondPassphrase = userService.secondPassphrase;
-    
 
+  /* For Form Validation */
     function validateForm(onValid) {
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.recipientAddress);
@@ -37,7 +37,7 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
         }
     }
 
-
+    /* For Passphrase check */
     $scope.passcheck = function (fromSecondPass) {
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
@@ -104,16 +104,16 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
                 });
         }
     }
-
+    /* For current Fee */ 
     $scope.getCurrentFee = function () {
         $http.get($rootScope.serverUrl + '/api/blocks/getFee').then(function (resp) {
-                $scope.currentFee = resp.data.fee;
-                $scope.fee = resp.data.fee;
-            });
+            $scope.currentFee = resp.data.fee;
+            $scope.fee = resp.data.fee;
+        });
     }
 
     feeService(function (fees) {
-        $scope.fee = (($scope.freezedAmount / 100000000) * (fees.sendfreeze * 100000000))/100;
+        $scope.fee = (($scope.freezedAmount / 100000000) * (fees.sendfreeze * 100000000)) / 100;
     });
 
     $scope.close = function () {
@@ -123,7 +123,7 @@ angular.module('DDKApp').controller('sendFreezeOrderController', ['$scope', '$ro
         sendFreezeOrderModal.deactivate();
         angular.element(document.querySelector("body")).removeClass("ovh");
     }
-    
+
     $scope.recipAddress = function () {
         $scope.recipientAddress = '';
     }

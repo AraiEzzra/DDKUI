@@ -22,7 +22,7 @@ angular.module('DDKApp').controller('secondPassphraseModalController', ["$scope"
         secondPassphraseModal.deactivate();
         angular.element(document.querySelector("body")).removeClass("ovh");
     }
-
+    /* For Generate Passphrase */
     $scope.generatePassphrase = function () {
         var code = new Mnemonic(Mnemonic.Words.ENGLISH);
         $scope.newPassphrase = code.toString();
@@ -30,11 +30,12 @@ angular.module('DDKApp').controller('secondPassphraseModalController', ["$scope"
 
     $scope.generatePassphrase();
 
+    /* For Save Passphrase */
     $scope.savePassToFile = function (pass) {
         var blob = new Blob([pass], { type: "text/plain;charset=utf-8" });
         FS.saveAs(blob, "DDKSecondPassphrase.txt");
     }
-
+    /* Confirm New Passphrase */
     $scope.confirmNewPassphrase = function () {
         if (!Mnemonic.isValid($scope.repeatPassphrase) || ($scope.repeatPassphrase != $scope.newPassphrase)) {
             $scope.noMatch = true;
@@ -44,7 +45,7 @@ angular.module('DDKApp').controller('secondPassphraseModalController', ["$scope"
             $scope.passcheck();
         }
     }
-
+    /* For Passphrase check */
     $scope.passcheck = function () {
         if ($scope.rememberedPassphrase) {
             $scope.addNewPassphrase($scope.rememberedPassphrase);
@@ -59,7 +60,7 @@ angular.module('DDKApp').controller('secondPassphraseModalController', ["$scope"
             $scope.pass = '';
         }
     }
-
+    /*  For Add New Passphrase */
     $scope.addNewPassphrase = function (pass) {
         if (!$scope.sending) {
             $scope.sending = true;

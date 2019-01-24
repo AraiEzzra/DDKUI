@@ -23,9 +23,9 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
         gettingStandBy: false,
         gettingTop: false,
         gettingVoted: false,
-        cachedTOP: {data: [], time: new Date()},
-        cachedStandby: {data: [], time: new Date()},
-        cachedVotedDelegates: {data: [], time: new Date()},
+        cachedTOP: { data: [], time: new Date() },
+        cachedStandby: { data: [], time: new Date() },
+        cachedVotedDelegates: { data: [], time: new Date() },
 
         isActiveRate: function (rate) {
             return rate <= this.topRate;
@@ -42,7 +42,7 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                     $defer.resolve(transformedData);
                     cb();
                 } else {
-                    $http.get($rootScope.serverUrl + "/api/delegates/", {params: {orderBy: "rate:asc", limit: this.topRate, offset: 0}})
+                    $http.get($rootScope.serverUrl + "/api/delegates/", { params: { orderBy: "rate:asc", limit: this.topRate, offset: 0 } })
                         .then(function (response) {
                             angular.copy(response.data.delegates, delegates.cachedTOP.data);
                             delegates.cachedTOP.time = new Date();
@@ -70,7 +70,7 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                 else {
                     this.cachedStandby.data = [];
                     var getPart = function (limit, offset) {
-                        $http.get($rootScope.serverUrl + "/api/delegates/", {params: {orderBy: "rate:asc", limit: limit, offset: offset}})
+                        $http.get($rootScope.serverUrl + "/api/delegates/", { params: { orderBy: "rate:asc", limit: limit, offset: offset } })
                             .then(function (response) {
                                 if (response.data.delegates.length > 0) {
                                     delegates.cachedStandby.data = delegates.cachedStandby.data.concat(response.data.delegates);
@@ -101,7 +101,7 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                     $defer.resolve(transformedData);
                     cb();
                 } else {
-                    $http.get($rootScope.serverUrl + "/api/accounts/delegates/", {params: {address: address}})
+                    $http.get($rootScope.serverUrl + "/api/accounts/delegates/", { params: { address: address } })
                         .then(function (response) {
                             angular.copy(response.data.delegates ? response.data.delegates : [], delegates.cachedVotedDelegates.data);
                             delegates.cachedVotedDelegates.time = new Date();
@@ -116,21 +116,21 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
             }
         },
         getDelegate: function (publicKey, cb) {
-            $http.get($rootScope.serverUrl + "/api/delegates/get", {params: {publicKey: publicKey}})
+            $http.get($rootScope.serverUrl + "/api/delegates/get", { params: { publicKey: publicKey } })
                 .then(function (response) {
                     if (response.data.success) {
                         response.data.delegate.active = delegates.isActiveRate(response.data.delegate.rate);
                         cb(response.data.delegate);
                     } else {
-                        cb({noDelegate: true, rate: 0, productivity: 0, vote: 0});
+                        cb({ noDelegate: true, rate: 0, productivity: 0, vote: 0 });
                     }
                 });
         },
         getCountedDelegate: function (publicKey, cb) {
             $q.all([
-                $http.get($rootScope.serverUrl + "/api/delegates/get", {params: {publicKey: publicKey}}),
+                $http.get($rootScope.serverUrl + "/api/delegates/get", { params: { publicKey: publicKey } }),
                 $http.get($rootScope.serverUrl + "/api/delegates/count")
-            ]).then(function(results) {
+            ]).then(function (results) {
                 if (results[0].data.success) {
                     var response = results[0];
 
@@ -143,12 +143,12 @@ angular.module('DDKApp').service('delegateService', function ($http, $rootScope,
                     response.data.delegate.active = delegates.isActiveRate(response.data.delegate.rate);
                     cb(response.data.delegate);
                 } else {
-                    cb({noDelegate: true, rate: 0, productivity: 0, vote: 0, totalCount: 0});
+                    cb({ noDelegate: true, rate: 0, productivity: 0, vote: 0, totalCount: 0 });
                 }
             });
         },
         getSearchList: function ($defer, search, params, filter, cb) {
-            $http.get($rootScope.serverUrl + "/api/delegates/search", {params: {q: search}})
+            $http.get($rootScope.serverUrl + "/api/delegates/search", { params: { q: search } })
                 .then(function (response) {
                     var delegates = angular.copy(response.data.delegates) || [];
                     params.total(delegates.length);

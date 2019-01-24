@@ -21,9 +21,9 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
         $scope.view.page = { title: gettextCatalog.getString('Settings'), previous: null };
     }
 
-    // Refresh $scope.view.page object on change of language.
+    /* Refresh $scope.view.page object on change of language. */
     $rootScope.$on('gettextLanguageChanged', setPage);
-    // Set $scope.view.page at runtime.
+    /* Set $scope.view.page at runtime.*/
     setPage();
     $scope.successMessage = {};
     $scope.errorMessage = {};
@@ -36,13 +36,13 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
         enabledMultisign: false
     }
 
-    // Show Div
+    /* Show Div */
     $scope.showDiv = function (data) {
         $scope.myVar = data;
         $scope.goToStep(0);
     }
 
-    // Enable/Disable multisignature settings
+    /* Enable/Disable multisignature settings */
     $scope.multisignaturesEnabled = false;
 
     $scope.checkEnabledMultisign = function () {
@@ -87,11 +87,11 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
     $scope.selection = $scope.steps[0];
 
     $scope.getCurrentStepIndex = function () {
-        // Get the index of the current step given selection
+        /* Get the index of the current step given selection */
         return _.indexOf($scope.steps, $scope.selection);
     };
 
-    // Go to a defined step index
+    /* Go to a defined step index */
     $scope.goToStep = function (index) {
         if (!_.isUndefined($scope.steps[index])) {
             $scope.selection = $scope.steps[index];
@@ -101,14 +101,14 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
     $scope.hasNextStep = function () {
         var stepIndex = $scope.getCurrentStepIndex();
         var nextStep = stepIndex + 1;
-        // Return true if there is a next step, false if not
+        /* Return true if there is a next step, false if not */
         return !_.isUndefined($scope.steps[nextStep]);
     };
 
     $scope.hasPreviousStep = function () {
         var stepIndex = $scope.getCurrentStepIndex();
         var previousStep = stepIndex - 1;
-        // Return true if there is a next step, false if not
+        /* Return true if there is a next step, false if not */
         return !_.isUndefined($scope.steps[previousStep]);
     };
 
@@ -146,8 +146,7 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                         $scope.incrementStep();
 
                     }
-                    //$scope.presendError = false;
-                    //$scope.errorMessage = {};
+
                 });
         }
         if (stepIndex === 1) {
@@ -181,7 +180,6 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
         }
         if (stepIndex === 3) {
             $scope.successMessage = {};
-            // $scope.enableTwoFactor = function (twoFactor) {
             var data = {
                 publicKey: userService.publicKey,
                 key: $scope.settings.twoFactor.key,
@@ -207,13 +205,10 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                     } else {
                         $scope.presendError = true;
                         $scope.errorMessage.fromServer = resp.data.error;
-                        //$scope.twoFactorKey = 'No Key. Please check previous step.'
                     }
                 });
         }
     };
-
-
 
     $scope.disableTwoFactor = function () {
         var data = {

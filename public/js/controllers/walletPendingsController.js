@@ -23,7 +23,7 @@ angular.module('DDKApp').controller('walletPendingsController', ['$scope', '$roo
         $scope.modal = transactionInfo.activate({block: block, signList: signList});
     }
 
-    // Transactions
+    /* For Transactions */
     $scope.tableTransactions = new ngTableParams({
         page: 1,
         count: 25,
@@ -54,7 +54,7 @@ angular.module('DDKApp').controller('walletPendingsController', ['$scope', '$roo
     $scope.$watch("filter.$", function () {
         $scope.tableTransactions.reload();
     });
-    // end Transactions
+    /* End Transactions */
 
     $scope.updateTransactions = function () {
         $scope.tableTransactions.reload();

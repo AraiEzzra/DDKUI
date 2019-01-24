@@ -23,22 +23,22 @@ angular.module('DDKApp').controller('templateController', ['$scope', '$rootScope
 
     $scope.getInitialSync();
 
-    $scope.getWithdrawlStatus = function() {
+    $scope.getWithdrawlStatus = function () {
         $http.get($rootScope.serverUrl + "/api/accounts/getWithdrawlStatus", {
             params: {
                 address: $scope.address
             }
         })
-        .then(function(resp) {
-            if(resp.data.success) {
-                userService.setWithdrawlStatus(resp.data.status);
-            }else {
-                userService.setWithdrawlStatus(resp.data.status);
-            }
-        })
-        .catch(function(err) {
-            $scope.errorMessage.fromServer = err;
-        })
+            .then(function (resp) {
+                if (resp.data.success) {
+                    userService.setWithdrawlStatus(resp.data.status);
+                } else {
+                    userService.setWithdrawlStatus(resp.data.status);
+                }
+            })
+            .catch(function (err) {
+                $scope.errorMessage.fromServer = err;
+            })
     }
 
 }]);
