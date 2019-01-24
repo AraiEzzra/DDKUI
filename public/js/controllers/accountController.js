@@ -2,7 +2,7 @@
 require('angular');
 var config = require('../../../config');
 
-angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', 'SpecifictransactionInfoModal', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo, SpecifictransactionInfoModal) {
+angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$rootScope', 'referralLinkModal', '$http', "userService", "$interval", "$timeout", "sendTransactionModal", "secondPassphraseModal", "delegateService", 'viewFactory', 'transactionInfo', 'userInfo', '$filter', 'gettextCatalog', 'blockInfo', 'rewardInfoModal', function ($state, $rootScope, $scope, referralLinkModal, $http, userService, $interval, $timeout, sendTransactionModal, secondPassphraseModal, delegateService, viewFactory, transactionInfo, userInfo, $filter, gettextCatalog, blockInfo, rewardInfoModal) {
 
     $scope.ExplorerHost = config.explorerServerHost;
     $scope.ExplorerPort = config.explorerServerPort;
@@ -45,7 +45,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
     };
 
     /*--------------Transaction Information--------------------*/
-    $scope.SpecifictransactionInfoModal = function (transaction, id) {
+    $scope.rewardInfoModal = function (transaction, id) {
         if (id == 1) {
             $scope.voteTransaction = true;
             $scope.stakeTransaction = false;
@@ -55,7 +55,7 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
             $scope.stakeTransaction = true;
             $scope.voteTransaction = false;
         }
-        $scope.modal = SpecifictransactionInfoModal.activate({ transaction: transaction });
+        $scope.modal = rewardInfoModal.activate({ transaction: transaction });
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 

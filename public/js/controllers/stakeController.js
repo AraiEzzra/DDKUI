@@ -93,9 +93,9 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
 
   $scope.tableStakes.settings().$scope = $scope;
 
-  $scope.$watch("filter.$", function () {
-    $scope.tableStakes.reload();
-  });
+  // $scope.$watch("filter.$", function () {
+  //   $scope.tableStakes.reload();
+  // });
 
   /* For Rewards */
   $scope.tableReward = new ngTableParams(
