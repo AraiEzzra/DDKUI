@@ -93,11 +93,11 @@ DDKApp.config([
                 templateUrl: "/partials/existing-etps-user.html",
                 controller: "existingETPSUserController"
             })
-            .state('referal', {
-                url: "/referal/:id",
+            .state('referral', {
+                url: "/referral/:id",
                 reloadOnSearch: false,
-                templateUrl: "/partials/referal.html",
-                controller: "referalController",
+                templateUrl: "/partials/referral.html",
+                controller: "referralController",
                 resolve: {
                     accountExists: function ($http, $rootScope, $stateParams) {
                         return $http.post($rootScope.serverUrl + "/api/accounts/checkAccountExists", { address: $stateParams.id });
@@ -139,7 +139,7 @@ DDKApp.config([
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         AuthService.getUserStatus()
             .then(function () {
-                if (toState.name == 'notFound' || toState.name == 'referal') {
+                if (toState.name == 'notFound' || toState.name == 'referral') {
                     return;
                 }
                 if (AuthService.isLoggedIn()) {
@@ -157,7 +157,7 @@ DDKApp.config([
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-        if (toState.name === 'referal') {
+        if (toState.name === 'referral') {
             if (!toParams || !toParams.id) {
                 event.preventDefault();
                 return $state.go('notFound');

@@ -3,7 +3,7 @@ require('angular');
 angular.module('DDKApp').service('referralService', function ($http, $rootScope, userService, $filter) {
     
 
-    var referalStat = {
+    var referralStat = {
 
         /* Get Referral List */
         getReferralList: function ($searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
@@ -70,5 +70,5 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
         /* End Airdrop Balance */
 
     };
-    return referalStat;
+    return referralStat;
 });

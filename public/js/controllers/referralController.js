@@ -1,13 +1,13 @@
 require('angular');
 
 
-angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', 'accountExists', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams, accountExists) {
+angular.module('DDKApp').controller('referralController', ["$scope", "$http", "$rootScope", "newUser", "userService", "$state", "viewFactory", 'gettextCatalog', '$window', '$location', '$stateParams', 'accountExists', function ($scope, $http, $rootScope, newUser, userService, $state, viewFactory, gettextCatalog, $window, $location, $stateParams, accountExists) {
 
     if (!accountExists.data.success) {
         $state.go('notFound');
     }
 
-    var _referalId = $stateParams.id;
+    var _referralId = $stateParams.id;
     $scope.step = 1;
     $scope.noMatch = false;
     $scope.view = viewFactory;
@@ -59,8 +59,8 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
             $scope.noMatch = true;
             return;
         }
-        if (_referalId == "") {
-            $scope.errorMessage = 'Referal Id in the URL can\'t be blank';
+        if (_referralId == "") {
+            $scope.errorMessage = 'Referral Id in the URL can\'t be blank';
             $scope.noMatch = true;
             return;
         }
@@ -70,7 +70,7 @@ angular.module('DDKApp').controller('referalController', ["$scope", "$http", "$r
             return;
         } else {
             $scope.view.inLoading = true;
-            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referalId, email: email }).then(function (resp) {
+            $http.post($rootScope.serverUrl + "/api/accounts/open/", { secret: pass, referal: _referralId, email: email }).then(function (resp) {
                 $scope.view.inLoading = false;
                 if (resp.data.success) {
                     $window.localStorage.setItem('token', resp.data.account.token);

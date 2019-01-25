@@ -19,7 +19,7 @@ angular.module('DDKApp').controller("referralLinkModalController", ["$scope", "$
             return;
         }
 
-        $scope.refLink = config.domainName + '/referal/' + userAddress;
+        $scope.refLink = config.domainName + '/referral/' + userAddress;
     }
 
     $scope.sendEmail = function (email, refLink) {

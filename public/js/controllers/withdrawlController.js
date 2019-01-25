@@ -12,7 +12,7 @@ angular.module('DDKApp').controller('withdrawlController', ['$scope', '$rootScop
     $scope.errDescription = {
         0: "Maximum distribution is 15 DDK per week",
         1: "You should have at least one active stake order",
-        2: "Your at least two referals of first level must have active stake order within last 30 days",
+        2: "Your at least two referrals of first level must have active stake order within last 30 days",
         3: "Ratio withdrawal is 1:10 from own staking DDK"
     }
 
