@@ -80,7 +80,7 @@
                                             <td data-title="tableReferral.cols.level" sortable="'level'">
                                                 <translate> Stake Reward</translate>
                                             </td>
-                                            <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">
+                                            <td data-title="tableReferral.cols.referralInfo.Stake" sortable="'referralInfo'">
                                                 {{transaction.asset.reward/100000000}}
 
                                             </td>
@@ -103,7 +103,7 @@
                                             <tr ng-show="transaction.asset.airdropReward.totalReward>0" ng-repeat="(key,value) in transaction.asset.airdropReward.sponsors">
 
                                                 <td data-title="tableReferral.cols.level" sortable="'level'">{{key}}</td>
-                                                <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{value/100000000}}</td>
+                                                <td data-title="tableReferral.cols.referralInfo.Chain" sortable="'referralInfo'">{{value/100000000}}</td>
 
                                             </tr>
 
@@ -124,7 +124,7 @@
                                             <td data-title="tableReferral.cols.level" sortable="'level'">
                                                 <translate> Unstake Reward</translate>
                                             </td>
-                                            <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">
+                                            <td data-title="tableReferral.cols.referralInfo.unstake" sortable="'referralInfo'">
                                                 {{transaction.asset.unstake/100000000}}
                                             </td>
 
