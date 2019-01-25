@@ -208,9 +208,9 @@
                 <!-------Icons of Vote and Stake----->
 
                 <i ng-if="transaction.type==40 && transaction.asset.airdropReward.totalReward > 0" class="vertical-text mdi-image-brightness-7"
-                  ng-click="SpecifictransactionInfoModal(transaction,2)"></i>
+                  ng-click="rewardInfoModal(transaction,2)"></i>
                 <i ng-if="transaction.type==60 && (transaction.asset.reward > 0 || transaction.asset.airdropReward.totalReward > 0 || transaction.asset.unstake < 0)"
-                  class="vertical-text mdi-social-person-add" ng-click="SpecifictransactionInfoModal(transaction,1)"></i>
+                  class="vertical-text mdi-social-person-add" ng-click="rewardInfoModal(transaction,1)"></i>
 
                 {{transaction.trsName}}
               </td>

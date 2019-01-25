@@ -47,5 +47,7 @@ require('../../js/controllers/modals/masterPassphraseModalController');
 require('../../js/controllers/modals/errorModalController');
 require('../../js/controllers/modals/confirmDeletionModalController');
 require('../../js/controllers/modals/openDappModalController');
-require('../../js/controllers/modals/SpecifictransactionController');
 
+//require('../../js/controllers/modals/SpecifictransactionController');
+
+require('../../js/controllers/modals/rewardInfoController');
