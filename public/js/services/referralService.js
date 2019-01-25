@@ -6,7 +6,7 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
     var referalStat = {
 
         /* Get Referral List */
-        getReferralList: function ($searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
+        getReferralList: function ($defer, cb) {
             $http.post($rootScope.serverUrl + "/referral/list", {
                 referrer_address: userService.address
             }).then(function (response) {
@@ -22,28 +22,16 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
         /* End Referral List */
 
         /* Get Rewards List */
-        getRewardList: function ($searchForBlock, $defer, params, filter, cb, address, fromBlocks) {
+        getRewardList: function ($defer, params, cb) {
            
             $http.post($rootScope.serverUrl + "/referral/rewardHistory", {
-                address: userService.address
+                address: userService.address,
+                limit: params.count(),
+                offset: (params.page() - 1) * params.count()
             }).then(function (response) {
-                function filterData(data, filter) {
-                    return $filter('filter')(data, filter)
-                }
-                function orderData(data, params) {
-                    return params.sorting() ? $filter('orderBy')(data, params.orderBy()) : filteredData;
-                }
-                function sliceData(data, params) {
-                    return data.slice((params.page() - 1) * params.count(), params.page() * params.count())
-                }
-                function transformData(data, filter, params) {
-                    return sliceData(orderData(filterData(data, filter), params), params);
-                }
                 if (response.data.success) {
                     params.total(response.data.count);
-                    var filteredData = $filter('filter')(response.data.SponsorList, filter);
-                    var transformData = transformData(response.data.SponsorList, filter, params)
-                    $defer.resolve(transformData);
+                    $defer.resolve(response.data.SponsorList);
                     cb();
                 } else {
                     $defer.resolve([]);
