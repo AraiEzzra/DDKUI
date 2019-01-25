@@ -113,22 +113,25 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                             }, function (error, blockResponse, status) {
                                 if (error) {
                                     console.log('Elasticsearch Height Search Error: ', error);
+                                    params.total(0);
+                                    $defer.resolve();
+                                    cb({ blocks: [], count: 0 });
                                 } else {
-                                    if (error) {
+                                    // if (error) {
+                                    //     params.total(0);
+                                    //     $defer.resolve();
+                                    //     cb({ blocks: [], count: 0 });
+                                    // } else {
+                                    if (blockResponse.hits.hits.length > 0) {
+                                        params.total(1);
+                                        $defer.resolve([blockResponse.hits.hits[0]._source]);
+                                        cb(null);
+                                    } else {
                                         params.total(0);
                                         $defer.resolve();
                                         cb({ blocks: [], count: 0 });
-                                    } else {
-                                        if (blockResponse.hits.hits.length > 0) {
-                                            params.total(1);
-                                            $defer.resolve([blockResponse.hits.hits[0]._source]);
-                                            cb(null);
-                                        } else {
-                                            params.total(0);
-                                            $defer.resolve();
-                                            cb({ blocks: [], count: 0 });
-                                        }
                                     }
+                                    // }
                                 }
                             });
                         } else {
