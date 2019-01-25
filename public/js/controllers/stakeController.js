@@ -117,7 +117,7 @@ $scope.tableReward = new ngTableParams(
     getData: function ($defer, params) {
       $scope.loading = true;
 
-      stakeService.getRewardData($defer, params, $scope.filter, function () {
+      stakeService.getRewardData($defer, params, function () {
         $scope.searchStake.inSearch = false;
         $scope.countRewardOrders = params.total();
         $scope.loading = false;

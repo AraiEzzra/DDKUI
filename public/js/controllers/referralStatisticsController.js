@@ -53,7 +53,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             counts: [],
             getData: function ($defer, params) {
                 $scope.loading = true;
-                referralService.getReferralList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
+                referralService.getReferralList($defer, function () {
                     $scope.searchBlocks.inSearch = false;
                     $scope.referralList = params.total();
                     $scope.loading = false;
@@ -84,7 +84,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             counts: [],
             getData: function ($defer, params) {
                 $scope.loading = true;
-                referralService.getRewardList($scope.searchBlocks.searchForBlock, $defer, params, $scope.filter, function () {
+                referralService.getRewardList($defer, params, function () {
                     $scope.searchBlocks.inSearch = false;
                     $scope.rewardList = params.total();
                     $scope.loading = false;
