@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <tr ng-repeat="transaction in unconfirmedTransactions" class="checked">
-                    <td data-title="tableTransactions.cols.height" sortable="'height'"></td>
+                    <td data-title="tableTransactions.cols.height"></td>
                     <td class="td-amount" ng-show="showAllColumns" data-title="tableTransactions.cols.id" class="pointer">
                         <a href="#" ng-click="transactionInfo(transaction)">{{transaction.id}}</a>
                     </td>
@@ -63,7 +63,7 @@
                     <td data-title="''"></td>
                 </tr>
                 <tr ng-repeat="transaction in $data">
-                    <td data-title="tableTransactions.cols.height" sortable="'height'" ng-click="blockInfo(transaction.blockId)"
+                    <td data-title="tableTransactions.cols.height" ng-click="blockInfo(transaction.blockId)"
                         class="pointer">
                         <a href="#">{{transaction.height}}</a>
                     </td>
