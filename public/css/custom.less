@@ -361,7 +361,7 @@ body{
   }
 }
 .tab-nav{
-  margin: 0 -15px  15px!important;
+  margin: -1px -15px  15px!important;
 }
 .empty-body.empty-table {
   margin-top: -22px;
@@ -1330,3 +1330,27 @@ td.child.open {
   background: rgba(255,255,255,.2);
 }
 
+/* Delegates & Votes page related */
+.view-selection-row {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  top: 126px;
+  padding-top: 16px;
+  padding-bottom: 3px;
+  background: #51606d;
+  box-shadow: 0px 6px 20px;
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,.26);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,.26);
+  box-shadow: 0px 8px 16px -6px rgba(0,0,0,.26);
+}
+
+.empty-top-space-for-fixed-bars {
+  margin-top: 164px;
+}
+
+@media (min-width: @screen-sm-max) {
+  .view-selection-row, .fixed-nav {
+    padding-right: 240px;
+  }
+}
