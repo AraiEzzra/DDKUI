@@ -97,4 +97,11 @@ angular.module('DDKApp').controller('referralController', ["$scope", "$http", "$
 
     $scope.generatePassphrase();
 
+    $scope.onEnterKeypress = function (event) {
+        if (event.which == 13) { // Enter Key Code
+            event.preventDefault();
+            $scope.login($scope.repeatPassphrase, $scope.emailId);
+        }
+    };
+
 }]);
