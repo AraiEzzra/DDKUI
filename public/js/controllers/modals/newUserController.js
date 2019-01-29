@@ -325,5 +325,11 @@ angular.module('DDKApp').controller('newUserController', ["$scope", "$http", "$r
         { name: 'Zimbabwe', code: 'ZW' }
     ];
 
+    $scope.onEnterKeypress = function (event) {
+        if (event.which == 13) { // Enter Key Code
+            event.preventDefault();
+            $scope.login($scope.repeatPassphrase, $scope.emailId);
+        }
+    };
 
 }]);

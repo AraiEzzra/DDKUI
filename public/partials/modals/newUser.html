@@ -101,7 +101,7 @@
                                 <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                     <div class="input-field passphraseGeneration">
                                         <textarea id="repeatPassphrase" class="materialize-textarea" ng-trim="false"
-                                            ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}" autofocus></textarea>
+                                            ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}" ng-keypress="onEnterKeypress($event)" autofocus></textarea>
                                         <label for="repeatPassphrase" ng-class="{'active':activeLabel(repeatPassphrase)}">
                                             <translate>Passphrase</translate>
                                         </label>
