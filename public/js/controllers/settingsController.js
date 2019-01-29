@@ -189,6 +189,10 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
             $http.post($rootScope.serverUrl + "/api/accounts/enableTwoFactor", data)
                 .then(function (resp) {
                     if (resp.data.success) {
+                        $scope.settings.otp = '';
+                        $scope.settings.twoFactor.key = '';
+                        $scope.settings.twoFactor.secret = '';
+                        $scope.settings.twoFactor.otp = '';
                         $scope.twoFactorKey = resp.data.key
                         $scope.successMessage.nextStep = 'Google Authentication is enabled for : ' + userService.getAddress();
                         Materialize.toast('2FA Enabled', 3000, 'green white-text');

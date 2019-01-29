@@ -80,12 +80,12 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
     });
 
   $scope.tableStakes.cols = {
-    stakedAmount: gettextCatalog.getString('StakeAmount'),
+    stakedAmount: gettextCatalog.getString('Stake Amount'),
     status: gettextCatalog.getString('Status'),
-    startTime: gettextCatalog.getString('StartTime'),
-    VoteTimeRemain: gettextCatalog.getString('VoteTimeRemain'),
+    startTime: gettextCatalog.getString('Start Time'),
+    VoteTimeRemain: gettextCatalog.getString('Vote Time Remain'),
     reward: gettextCatalog.getString('Reward'),
-    voteCount: gettextCatalog.getString('VoteCount'),
+    voteCount: gettextCatalog.getString('Vote Count'),
     voteDone: gettextCatalog.getString('Voted'),
     recipient: gettextCatalog.getString('Recipient'),
     transIndicator: gettextCatalog.getString('Transferred'),
@@ -96,43 +96,43 @@ angular.module('DDKApp').controller('stakeController', ['$scope', '$rootScope', 
    * Currently not used but will be apply on the specific column name as a filter 
    * */
 
-/*   $scope.tableStakes.settings().$scope = $scope;
+  /*   $scope.tableStakes.settings().$scope = $scope;
+  
+    $scope.$watch("filter.$", function () {
+      $scope.tableStakes.reload();
+    }); */
 
-  $scope.$watch("filter.$", function () {
-    $scope.tableStakes.reload();
-  }); */
-
-/* ---------Reward--------------- */
+  /* ---------Reward--------------- */
 
 
-$scope.tableReward = new ngTableParams(
-  {
-    page: 1,            // show first page
-    count: 5,           // count per page
-    //sorting: { status: 'desc' }
-  },
-  {
-    total: 0, // length of data
-    counts: [],
-    getData: function ($defer, params) {
-      $scope.loading = true;
+  $scope.tableReward = new ngTableParams(
+    {
+      page: 1,            // show first page
+      count: 5,           // count per page
+      //sorting: { status: 'desc' }
+    },
+    {
+      total: 0, // length of data
+      counts: [],
+      getData: function ($defer, params) {
+        $scope.loading = true;
 
-      stakeService.getRewardData($defer, params, function () {
-        $scope.searchStake.inSearch = false;
-        $scope.countRewardOrders = params.total();
-        $scope.loading = false;
-        $scope.view.inLoading = false;
-      });
+        stakeService.getRewardData($defer, params, function () {
+          $scope.searchStake.inSearch = false;
+          $scope.countRewardOrders = params.total();
+          $scope.loading = false;
+          $scope.view.inLoading = false;
+        });
 
-    }
-  });
+      }
+    });
 
-$scope.tableReward.cols = {
-  rewardAmount: gettextCatalog.getString('RewardAmount'),
-  rewardTime: gettextCatalog.getString('RewardTime'),
-};
+  $scope.tableReward.cols = {
+    rewardAmount: gettextCatalog.getString('Reward Amount'),
+    rewardTime: gettextCatalog.getString('Reward Time'),
+  };
 
-/* End Rewards */
+  /* End Rewards */
 
   getCurrentTimestamp();
 
@@ -196,11 +196,11 @@ $scope.tableReward.cols = {
     }, 2000); // Delay 2000 ms
   });
 
-  $scope.hideSearchBar = function() {
+  $scope.hideSearchBar = function () {
     $scope.view.bar.showStakeSearchBar = false;
   }
 
-  $scope.showSearchBar = function() {
+  $scope.showSearchBar = function () {
     $scope.view.bar.showStakeSearchBar = true;
   }
 
