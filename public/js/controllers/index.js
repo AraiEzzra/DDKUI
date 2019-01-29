@@ -8,7 +8,6 @@ require('../../js/controllers/forgingPanelController');
 require('../../js/controllers/loadingController');
 require('../../js/controllers/templateController');
 require('../../js/controllers/passphraseController');
-require('../../js/controllers/existingETPSUserController');
 require('../../js/controllers/votedDelegatesController');
 require('../../js/controllers/settingsController');
 require('../../js/controllers/walletsController');

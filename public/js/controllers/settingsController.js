@@ -169,7 +169,7 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                         $scope.incrementStep();
                     } else {
                         $scope.presendError = true;
-                        $scope.errorMessage.fromServer = resp.data.error;
+                        $scope.errorMessage.fromVerifyOTP = resp.data.error;
                         return;
                     }
                 });

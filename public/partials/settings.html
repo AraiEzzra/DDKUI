@@ -99,7 +99,8 @@
             <form class="form-horizontal">
                 <ul class="nav nav-tabs">
                     <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex()}">
-                        <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a>
+                        <!-- <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a> -->
+                        <span>{{step}}</span>
                     </li>
                 </ul>
                 <div ng-switch on="selection" class="main-form-section">
@@ -122,8 +123,8 @@
                             <div class="qr-code-input">
                                 <input class="form-control mb10" type="text" value="Enter QR Code" ng-model="settings.otp"
                                     name="qrCode">
-                                <p class="error-container" ng-show="errorMessage.fromServer">
-                                    <span class="pass-error">{{errorMessage.fromServer}}</span>
+                                <p class="error-container" ng-show="errorMessage.fromVerifyOTP">
+                                    <span class="pass-error">{{errorMessage.fromVerifyOTP}}</span>
                                 </p>
                                 <p class="error-container" ng-show="errorMessage.otp">
                                     <span class="pass-error">{{errorMessage.otp}}</span>
@@ -169,6 +170,11 @@
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" aria-describedby="2FACode" ng-model="settings.twoFactor.otp">
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="error-container" ng-show="errorMessage.fromServer">
+                                        <span class="pass-error">{{errorMessage.fromServer}}</span>
+                                    </p>
                                 </div>
                             </form>
                         </div>
