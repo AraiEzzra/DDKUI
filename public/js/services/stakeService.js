@@ -24,9 +24,9 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
     searchForStake: '',
     cachedData: [],
     getData: function (searchForStake, $defer, params, filter, secret, cb) {
-      let searchStake;
-      if(searchForStake.trim().toLowerCase() == "active" || searchForStake.trim().toLowerCase() == "inactive") {
-        searchStake = searchForStake.trim().toLowerCase() == "active" ? 1 : 0;
+      let searchStake = searchForStake.trim().toLowerCase();
+      if(searchStake == "active" || searchStake == "inactive") {
+        searchStake = (searchStake == "active") ? '1' : '0';
       } else {
         searchStake = '';
       }
@@ -73,8 +73,8 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                   "should": []
                 }
               },
-              "from": 0,
-              "size": 10,
+              "from": (params.page() - 1) * params.count(),
+              "size": params.count(),
               "sort": [],
               "aggs": {}
             }
@@ -84,10 +84,8 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
               resultData.push(stakeOrder._source);
             });
             if (resultData != null) {
-              params.total(resultData.length)
-              var filteredData = $filter('filter')(resultData, filter);
-              var transformedData = transformData(resultData, filter, params)
-              $defer.resolve(transformedData);
+              params.total(stakeResponse.hits.total);
+              $defer.resolve(resultData);
             }
             cb(null);
           });
@@ -103,7 +101,7 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                   "must": [
                     {
                       "term": {
-                        "status": searchStake
+                        "status": parseInt(searchStake)
                       }
                     },
                     {
@@ -116,8 +114,8 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
                   "should": []
                 }
               },
-              "from": 0,
-              "size": 10,
+              "from": (params.page() - 1) * params.count(),
+              "size": params.count(),
               "sort": [{ insertTime: { order: 'desc' } }],
               "aggs": {}
             }
@@ -126,11 +124,10 @@ angular.module('DDKApp').service("stakeService", function ($http, $filter, esCli
             stakeResponse.hits.hits.forEach(function (stakeOrder) {
               resultData.push(stakeOrder._source);
             });
+
             if (resultData != null) {
-              params.total(resultData.length)
-              var filteredData = $filter('filter')(resultData, filter);
-              var transformedData = transformData(resultData, filter, params)
-              $defer.resolve(transformedData);
+              params.total(stakeResponse.hits.total);
+              $defer.resolve(resultData);
             }
             cb(null);
           });
