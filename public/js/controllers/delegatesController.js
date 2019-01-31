@@ -141,9 +141,13 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         total: 0,
         getData: function ($defer, params) {
             $scope.loadingSearch = true;
-            delegateService.getSearchList($defer, $scope.searchDelegates, params, $scope.filter, function () {
-                $scope.loadingSearch = false;
-            });
+            $scope.searchBlocks.inSearch = true;
+            $timeout(function(){
+                delegateService.getSearchList($defer, $scope.searchDelegates, params, $scope.filter, function () {
+                    $scope.loadingSearch = false;
+                    $scope.searchBlocks.inSearch = false;
+                });
+            },2000);
         }
     });
 
@@ -157,10 +161,10 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         $scope.tableSearchDelegates.reload();
     };
 
-    $scope.selectFirstSearchResult = function () {
+/*     $scope.selectFirstSearchResult = function () {
         var delegate = $scope.tableSearchDelegates.data[0];
         $scope.voteList.vote(delegate.publicKey, delegate.username);
-    };
+    }; */
     /* End Search delegates */
 
     /* Top deletates*/
@@ -242,6 +246,10 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         $scope.tableStandbyDelegates.reload();
     };
     /* End Standby delegates */
+
+    $scope.clearSearch = function () {
+        $scope.searchDelegates = '';
+      }
 
     $scope.$on('updateControllerData', function (event, data) {
         if (data.indexOf('main.delegates') != -1) {
