@@ -67,26 +67,8 @@
 </div>
 <div class="row empty-top-space-for-fixed-bars">
     <div class="col-xs-12">
-
-            
-
-
-
-
-
-
-
-
-
-
-     <div class=" panel-default custom-panel-default paginated">
-
-
-
-
-
-            <!-- <form class="panel-heading"> -->
-                    <div class="search-bar">
+        <div class=" panel-default custom-panel-default paginated">
+                <div class="search-bar">
                         <div class="search-toggle" ng-if="searchDelegates">
                              <i ng-click="clearSearch()" class="mdi-content-clear small"></i>
                          </div>
@@ -94,9 +76,7 @@
                              <span class="input-group-addon">
                                  <i class="mdi-action-search"></i>
                              </span>
-                             <!-- <input type="text" class="form-control" placeholder="{{'Search Delegates'|translate}}" ng-model="searchBlocks.searchForBlock"> -->
-     
-                             <input type="text" id="search"  placeholder="{{'Search Delegates'|translate}}"  class="delegates-search form-control" autocomplete="off" ng-focus="true"
+                     <input type="text" id="search"  placeholder="{{'Search Delegates'|translate}}"  class="delegates-search form-control" autocomplete="off" ng-focus="true"
                              ng-model="searchDelegates" ng-change="updateSearch(searchDelegates)">
      
                              <span class="input-group-addon spinner-addon">
@@ -116,29 +96,7 @@
                              </span>
                          </div>
                      </div>
-             
-                 <!-- </form>
-      -->
-     
-     
-     
-            <!-- <form class="panel-heading" ng-submit="selectFirstSearchResult()">
-                <div class="input-field delegates-input">
-                 <input type="text" id="search" class="delegates-search form-control" autocomplete="off" ng-focus="true"
-                        ng-model="searchDelegates" ng-change="updateSearch(searchDelegates)">
-                      <label for="search">
-                        <i class="mdi-action-search"></i>
-                        <translate>Search Delegates</translate>
-                    </label>
-                </div>
-            </form> -->
-
-
-
-
-
-
-            <table ng-table="tableSearchDelegates" border="0" width="100%" cellpadding="0" cellspacing="0" class="ng-table-responsive"
+              <table ng-table="tableSearchDelegates" border="0" width="100%" cellpadding="0" cellspacing="0" class="ng-table-responsive"
                 template-pagination="custom/pager" ng-show="searchDelegates">
                 <tr ng-repeat="delegate in $data" ng-class="{'voted' : (delegates.voted(delegate.publicKey) || unconfirmedTransactions.inList(delegate.publicKey)), 'checked': voteList.inList(delegate.publicKey)}">
                     <td data-title="''" class="no-select checkbox-col">
