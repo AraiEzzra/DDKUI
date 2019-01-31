@@ -88,12 +88,7 @@ angular.module('DDKApp').controller('transactionsController', ['$scope', '$rootS
         amount: gettextCatalog.getString('Amount'),
         fee: gettextCatalog.getString('Fee')
     };
-
-    $scope.tableTransactions.settings().$scope = $scope;
-
-    $scope.$watch("filter.$", function () {
-        $scope.tableTransactions.reload();
-    });
+    
     /* End Transactions */
 
     $scope.updateTransactions = function () {
@@ -130,7 +125,5 @@ angular.module('DDKApp').controller('transactionsController', ['$scope', '$rootS
             $scope.updateTransactions();
         }, 2000); // Delay 2000 ms
     })
-
-    $scope.updateTransactions();
 
 }]);
