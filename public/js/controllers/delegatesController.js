@@ -6,17 +6,17 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
     $scope.view.inLoading = true;
     $scope.view.loadingText = gettextCatalog.getString('Loading delegates');
 
-    $scope.view.page = {title: gettextCatalog.getString('Forging'), previous: null};
-    $scope.view.bar = {forgingMenu: true};
+    $scope.view.page = { title: gettextCatalog.getString('Forging'), previous: null };
+    $scope.view.bar = { forgingMenu: true };
 
     $scope.countTop = 0;
     $scope.countStandby = 0;
 
-    $scope.searchDelegates = '';
-
     $scope.address = userService.address;
 
     $scope.showVotes = false;
+
+    $scope.searchDelegates = '';
 
     $scope.loadingTop = true;
     $scope.loadingStandby = true;
@@ -79,13 +79,13 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
             }
         });
         angular.element(document.querySelector("body")).addClass("ovh");
-        
+
     };
 
     $scope.balance = userService._unconfirmedBalance;
 
     $scope.userInfo = function (userId) {
-        $scope.modal = userInfo.activate({userId: userId});
+        $scope.modal = userInfo.activate({ userId: userId });
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
@@ -93,7 +93,7 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
     $scope.unconfirmedTransactions = {
         list: [],
         getList: function () {
-            $http.get($rootScope.serverUrl + "/api/transactions/unconfirmed/", {params: {senderPublicKey: userService.publicKey}})
+            $http.get($rootScope.serverUrl + "/api/transactions/unconfirmed/", { params: { senderPublicKey: userService.publicKey } })
                 .then(function (response) {
                     $scope.unconfirmedTransactions.list = [];
                     response.data.transactions.forEach(function (transaction) {
@@ -113,7 +113,7 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
     $scope.delegates = {
         list: [],
         getList: function (cb) {
-            $http.get($rootScope.serverUrl + "/api/accounts/delegates/", {params: {address: userService.address}})
+            $http.get($rootScope.serverUrl + "/api/accounts/delegates/", { params: { address: userService.address } })
                 .then(function (response) {
                     if (response.data.delegates == null) {
                         return [];
@@ -137,23 +137,24 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         page: 1,            //Show first page 
         count: 25,
     }, {
-        counts: [],
-        total: 0,
-        getData: function ($defer, params) {
-            $scope.loadingSearch = true;
-            $scope.searchBlocks.inSearch = true;
-            $timeout(function(){
-                delegateService.getSearchList($defer, $scope.searchDelegates, params, $scope.filter, function () {
-                    $scope.loadingSearch = false;
-                    $scope.searchBlocks.inSearch = false;
-                });
-            },2000);
-        }
-    });
+            counts: [],
+            total: 0,
+            getData: function ($defer, params) {
+                $scope.loadingSearch = true;
+                $scope.searchDelegates.inSearch = true;
+                //$scope.searchBlocks.inSearch = true;
+                $timeout(function () {
+                    delegateService.getSearchList($defer, $scope.searchDelegates, params, $scope.filter, function () {
+                        $scope.loadingSearch = false;
+                        $scope.searchDelegates.inSearch = false;
+                    });
+                }, 2000);
+            }
+        });
 
     $scope.tableSearchDelegates.cols = {
-        username : gettextCatalog.getString('Name'),
-        address : gettextCatalog.getString('DDK Address'),
+        username: gettextCatalog.getString('Name'),
+        address: gettextCatalog.getString('DDK Address'),
     };
 
     $scope.updateSearch = function (search) {
@@ -161,10 +162,16 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         $scope.tableSearchDelegates.reload();
     };
 
-/*     $scope.selectFirstSearchResult = function () {
-        var delegate = $scope.tableSearchDelegates.data[0];
-        $scope.voteList.vote(delegate.publicKey, delegate.username);
-    }; */
+    // $scope.clearSearch = function () {
+    //     console.log("hello clear")
+    //     $scope.searchDelegates = '';
+    //     console.log("------ a"+$scope.searchDelegates+"   -----");
+    //   }
+
+    /*     $scope.selectFirstSearchResult = function () {
+            var delegate = $scope.tableSearchDelegates.data[0];
+            $scope.voteList.vote(delegate.publicKey, delegate.username);
+        }; */
     /* End Search delegates */
 
     /* Top deletates*/
@@ -175,37 +182,37 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
             rate: 'asc'     // Initial sorting
         }
     }, {
-        counts: [],
-        total: delegateService.topRate,
-        getData: function ($defer, params) {
-            delegateService.getTopList($defer, params, $scope.filter, function () {
-                $scope.countTop = params.total();
-                $scope.loadingTop = false;
-                $scope.view.inLoading = false;
-                $timeout(function () {
-                    $scope.delegates.getList(function () {
-                        $scope.unconfirmedTransactions.getList();
+            counts: [],
+            total: delegateService.topRate,
+            getData: function ($defer, params) {
+                delegateService.getTopList($defer, params, $scope.filter, function () {
+                    $scope.countTop = params.total();
+                    $scope.loadingTop = false;
+                    $scope.view.inLoading = false;
+                    $timeout(function () {
+                        $scope.delegates.getList(function () {
+                            $scope.unconfirmedTransactions.getList();
 
-                    });
-                }, 1);
-            });
-        }
-    });
+                        });
+                    }, 1);
+                });
+            }
+        });
 
     $scope.tableTopDelegates.cols = {
-        rate : gettextCatalog.getString('Rank'),
-        username : gettextCatalog.getString('Name'),
-        address : gettextCatalog.getString('DDK Address'),
-        url : gettextCatalog.getString('Url'),
-        productivity : gettextCatalog.getString('Uptime'),
-        vote : gettextCatalog.getString('Approval')
+        rate: gettextCatalog.getString('Rank'),
+        username: gettextCatalog.getString('Name'),
+        address: gettextCatalog.getString('DDK Address'),
+        url: gettextCatalog.getString('Url'),
+        productivity: gettextCatalog.getString('Uptime'),
+        vote: gettextCatalog.getString('Approval')
     };
 
     $scope.tableTopDelegates.settings().$scope = $scope;
 
-    $scope.$watch("filter.$", function () {
-        $scope.tableTopDelegates.reload();
-    });
+    // $scope.$watch("filter.$", function () {
+    //     $scope.tableTopDelegates.reload();
+    // });
 
     $scope.updateTop = function () {
         $scope.tableTopDelegates.reload();
@@ -220,20 +227,20 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
             rate: 'asc'     // Initial sorting
         }
     }, {
-        total: 0,
-        counts: [],
-        getData: function ($defer, params) {
-            delegateService.getStandbyList($defer, params, $scope.filter, function () {
-                $scope.countStandby = params.total();
-                $scope.loadingStandby = false;
-                $timeout(function () {
-                    $scope.delegates.getList(function () {
-                        $scope.unconfirmedTransactions.getList();
-                    });
-                }, 1);
-            });
-        }
-    });
+            total: 0,
+            counts: [],
+            getData: function ($defer, params) {
+                delegateService.getStandbyList($defer, params, $scope.filter, function () {
+                    $scope.countStandby = params.total();
+                    $scope.loadingStandby = false;
+                    $timeout(function () {
+                        $scope.delegates.getList(function () {
+                            $scope.unconfirmedTransactions.getList();
+                        });
+                    }, 1);
+                });
+            }
+        });
 
     $scope.tableStandbyDelegates.cols = $scope.tableTopDelegates.cols;
     $scope.tableStandbyDelegates.settings().$scope = $scope;
@@ -247,9 +254,7 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
     };
     /* End Standby delegates */
 
-    $scope.clearSearch = function () {
-        $scope.searchDelegates = '';
-      }
+
 
     $scope.$on('updateControllerData', function (event, data) {
         if (data.indexOf('main.delegates') != -1) {

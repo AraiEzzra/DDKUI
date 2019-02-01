@@ -51,7 +51,7 @@
                         <br> Use for withdrawals and security modification.
                     </div>
                     <div class="btn-enable text-right">
-                        <a class="btn btn-blue-nav waves-effect waves-light" ng-click="showDiv(true)">
+                        <a class="btn btn-blue-nav waves-effect waves-light" ng-click="showDiv(true)" ng-show="enable">
                             <translate>Enable</translate>
                         </a>
                     </div>
@@ -82,7 +82,9 @@
                         <br> Use for withdrawals and security modification.
                     </div>
                     <div class="btn-enable text-right">
-                        <a class="btn btn-white waves-effect margin-left-10" ng-click="disableTwoFactor()">
+                        <!-- <a class="btn btn-white waves-effect margin-left-10" ng-click="disableTwoFactor()"> -->
+                        <a class="btn btn-white waves-effect margin-left-10 l-height-n" ng-click="openOTPModal()"
+                            ng-show="disable">
                             <translate>Disable</translate>
                         </a>
                     </div>
@@ -121,7 +123,9 @@
                         <div class="comm-tab-container qrCode">
                             <img src="{{ dataUrl }}" alt="dataUrl" class="img-thumbnail">
                             <div class="qr-code-input">
-                                <input class="form-control mb10" type="text" value="Enter QR Code" ng-model="settings.otp"
+                                <!-- <input class="form-control mb10" type="text" value="Enter QR Code" ng-model="settings.otp"
+                                    name="qrCode"> -->
+                                <input class="form-control mb10" type="password" value="Enter QR Code" ng-model="settings.otp"
                                     name="qrCode">
                                 <p class="error-container" ng-show="errorMessage.fromVerifyOTP">
                                     <span class="pass-error">{{errorMessage.fromVerifyOTP}}</span>
@@ -155,7 +159,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="Key">Key:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" required aria-describedby="Key"
+                                        <input type="password" class="form-control" required aria-describedby="Key"
                                             ng-model="settings.twoFactor.key">
                                     </div>
                                 </div>
@@ -169,7 +173,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" required for="2FACode">2FA Code:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" aria-describedby="2FACode" ng-model="settings.twoFactor.otp">
+                                        <input type="password" class="form-control" aria-describedby="2FACode" ng-model="settings.twoFactor.otp">
                                         <p class="error-container" ng-show="errorMessage.fromServer">
                                             <span class="pass-error">{{errorMessage.fromServer}}</span>
                                         </p>
