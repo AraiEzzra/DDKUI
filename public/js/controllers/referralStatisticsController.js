@@ -18,6 +18,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             $scope.itemDetails.index = null;
         } else {
             $scope.itemDetails.index = index;
+            $scope.stakeStatus = [];
             $http.post($rootScope.serverUrl + "/sponsor/stakeStatus", { address: sponsorAddress })
                 .then(function (resp) {
                     if (resp.data.success) {
@@ -44,16 +45,17 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     /** For Getting the Referral List */
     $scope.tableReferral = new ngTableParams({
         page: 1,
-        count: 1,
-        sorting: {
+        count: 4,
+/*         sorting: {
             level: 'desc'
-        }
+        } */
     }, {
             total: 0,
             counts: [],
             getData: function ($defer, params) {
                 $scope.loading = true;
-                referralService.getReferralList($defer, function () {
+                referralService.getReferralList($defer, params, $scope, function () {
+                    $scope.itemDetails.index = null;
                     $scope.searchBlocks.inSearch = false;
                     $scope.referralList = params.total();
                     $scope.loading = false;
