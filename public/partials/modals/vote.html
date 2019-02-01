@@ -33,6 +33,9 @@
                                 <span class="fee-text flat-text pull-right" ng-if="fee =='0'">Please Stake before
                                     vote/unvote</span>
                             </div>
+                            <div class="modal-body voting-error" ng-if="voteCountError">
+                                <span class="pass-error">Maximum vote count must be 3</span>
+                            </div>
                             <div class="modal-body voting-error" ng-if="fromServer">
                                 <span class="pass-error">{{fromServer}}</span>
                             </div>
