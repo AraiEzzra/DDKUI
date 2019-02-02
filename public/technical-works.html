@@ -21,7 +21,6 @@
     <meta name="application-name" content="{{'DDK - Blockchain Application Platform'|translate}}" />
     <meta name="msapplication-TileColor" content="#F3F3E1" />
     <link rel="stylesheet" href="/static/css/app.css">
-    <script src="/static/js/vendor_app.js"></script>
 
     <style type="text/css">
         .technical-works-text {
@@ -40,7 +39,20 @@
 
 <body>
     <div>
-        <div ui-view ng-class="lang.id" class="container-app"></div>
+        <div ui-view ng-class="lang.id" class="container-app">
+            <div id="pass" class="ng-scope">
+                <!-- <div class="pass-banner"></div> -->
+                <div class="overlay"></div>
+                <div class="pass-bottom">
+                    <div class="pass-window">
+                        <div class="pass-window-icon">
+                            <span><img style="width: 70%;position: relative;top: -85px;" src="/images/logo.png" alt="logo"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         <div class="technical-works-text">MAINNET IS CURRENTLY UNDER TECHNICAL MAINTANANCE - PLEASE TRY AGAIN LATER</div>
     </div>
 </body>
