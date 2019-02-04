@@ -8,6 +8,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.secondPassphrase = userService.secondPassphrase;
     $scope.focus = 'secretPhrase';
+    $scope.voteCountError= false;
 
     Object.size = function (obj) {
         var size = 0, key;
@@ -18,6 +19,10 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     };
 
     $scope.passcheck = function (fromSecondPass) {
+        if(Object.size($scope.voteList) > 3){
+            $scope.voteCountError= true;
+            return;
+        }
         $scope.fromServer = null;
         if (fromSecondPass) {
             $scope.checkSecondPass = false;
@@ -51,6 +56,7 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     }
 
     $scope.removeVote = function (publicKey) {
+        $scope.voteCountError= false;
         delete $scope.voteList[publicKey];
         delete $scope.pendingList[publicKey];
         if (!Object.size($scope.voteList)) {

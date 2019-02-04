@@ -470,14 +470,6 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         ]);
     });
 
-    $scope.$on('socket:blocks/change', function (ev, data) {
-        $scope.getAppData();
-        $scope.updateViews([
-            'main.blockchain',
-            'main.dashboard'
-        ]);
-    });
-
     $scope.$on('socket:delegates/change', function (ev, data) {
         $scope.getAppData();
         $scope.updateViews([
@@ -518,10 +510,6 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
 
     $scope.$on('socket:updateConnected', function (ev, data) {
         $scope.totalConnected = data;
-        $scope.getAppData();
-        $scope.updateViews([
-            'main.dashboard'
-        ]);
     });
 
     /* Autoupdate stake Table */

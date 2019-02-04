@@ -38,7 +38,6 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
         });
 
 
-
     $scope.tableBlocks.cols = {
         height: gettextCatalog.getString('Height'),
         blockId: gettextCatalog.getString('Block ID'),
@@ -49,12 +48,6 @@ angular.module('DDKApp').controller('blockchainController', ['$scope', '$timeout
         totalFee: gettextCatalog.getString('Fee')
         /* reward: gettextCatalog.getString('Reward')*/
     };
-
-    $scope.tableBlocks.settings().$scope = $scope;
-
-    $scope.$watch("filter.$", function () {
-        $scope.tableBlocks.reload();
-    });
 
     $scope.updateBlocks = function () {
         $scope.tableBlocks.reload();
