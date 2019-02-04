@@ -135,6 +135,16 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
         if ($scope.hasPreviousStep()) {
             var stepIndex = $scope.getCurrentStepIndex();
             var previousStep = stepIndex - 1;
+            if (stepIndex == 1) {
+                $scope.settings.otp = '';
+                $scope.errorMessage.otp = '';
+            } 
+            if(stepIndex == 3) {
+                $scope.settings.twoFactor.key = '';
+                $scope.settings.twoFactor.secret = '';
+                $scope.settings.twoFactor.otp = '';
+                $scope.errorMessage.fromServer = '';
+            }
             $scope.selection = $scope.steps[previousStep];
         }
     };
@@ -180,7 +190,7 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
                         $scope.incrementStep();
                     } else {
                         $scope.presendError = true;
-                        $scope.errorMessage.fromVerifyOTP = resp.data.error;
+                        $scope.errorMessage.otp = resp.data.error;
                         return;
                     }
                 });
