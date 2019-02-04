@@ -50,3 +50,4 @@ require('../../js/controllers/modals/openDappModalController');
 //require('../../js/controllers/modals/SpecifictransactionController');
 
 require('../../js/controllers/modals/rewardInfoController');
+require('../../js/controllers/modals/otpConfirmationController');
