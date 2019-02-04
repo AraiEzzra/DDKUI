@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="DDKApp">
+
+<head>
+    <base href="/">
+    <title>DDK MAINNET IS CURRENTLY UNDER TECHNICAL MAINTANANCE-PLEASE TRY AGAIN LATER</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123365280-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-123365280-1');
+    </script>
+
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+
+    <meta charset="UTF-8">
+    <meta name="application-name" content="{{'DDK - Blockchain Application Platform'|translate}}" />
+    <meta name="msapplication-TileColor" content="#F3F3E1" />
+    <link rel="stylesheet" href="/static/css/app.css">
+
+    <style type="text/css">
+        .technical-works-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 85px 0 0 -360px;
+            padding: 0;
+            z-index: 99999;
+            color: white;
+            font-size: large;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div ui-view ng-class="lang.id" class="container-app">
+            <div id="pass" class="ng-scope">
+                <!-- <div class="pass-banner"></div> -->
+                <div class="overlay"></div>
+                <div class="pass-bottom">
+                    <div class="pass-window">
+                        <div class="pass-window-icon">
+                            <span><img style="width: 70%;position: relative;top: -85px;" src="/images/logo.png" alt="logo"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="technical-works-text">MAINNET IS CURRENTLY UNDER TECHNICAL MAINTANANCE - PLEASE TRY AGAIN LATER</div>
+    </div>
+</body>
+
+</html>

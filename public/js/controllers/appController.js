@@ -6,6 +6,8 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     $scope.searchTransactions = transactionsService;
     $scope.searchDapp = dappsService;
     $scope.searchBlocks = blockService;
+
+
     $scope.toggled = false;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.DDK_usd = 0;
@@ -117,6 +119,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     $scope.clearSearch = function () {
         $scope.searchTransactions.searchForTransaction = '';
         $scope.searchBlocks.searchForBlock = '';
+        $scope.searchDelegates = '';
     }
 
     $scope.resetAppData = function () {
@@ -383,7 +386,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                 $scope.username = response.username;
                 userService.username = response.username;
             }
-            
+
             $scope.delegate = response;
             userService.setDelegate($scope.delegate);
             if (!response.noDelegate) {
@@ -544,12 +547,12 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     }
 
     $scope.getAppData();
-   /*  $scope.getPriceTicker(); */
-   /*  $scope.getVersion(); */
+    /*  $scope.getPriceTicker(); */
+    /*  $scope.getVersion(); */
     $scope.getMasterPassphrase();
-   /*  $timeout(function () {
-        $scope.getVersion();
-    }, 60 * 10 * 1000); */
+    /*  $timeout(function () {
+         $scope.getVersion();
+     }, 60 * 10 * 1000); */
 
     $scope.myClass = [];
     $scope.classAdd = function () {
@@ -564,7 +567,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         if ($scope.myClass.length != 0) {
             $scope.classRemove();
         } else {
-            if($state.current.name != 'main.explorer' ) return;
+            if ($state.current.name != 'main.explorer') return;
             $scope.classAdd();
         }
     }
