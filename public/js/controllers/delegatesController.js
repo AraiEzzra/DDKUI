@@ -16,7 +16,10 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
 
     $scope.showVotes = false;
 
-    $scope.searchDelegates = '';
+    $scope.search = {
+        delegates: '',
+        inSearch: false
+    };
 
     $scope.loadingTop = true;
     $scope.loadingStandby = true;
@@ -141,12 +144,11 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
             total: 0,
             getData: function ($defer, params) {
                 $scope.loadingSearch = true;
-                $scope.searchDelegates.inSearch = true;
-                //$scope.searchBlocks.inSearch = true;
+                $scope.search.inSearch = true;
                 $timeout(function () {
-                    delegateService.getSearchList($defer, $scope.searchDelegates, params, $scope.filter, function () {
+                    delegateService.getSearchList($defer, $scope.search.delegates, params, $scope.filter, function () {
                         $scope.loadingSearch = false;
-                        $scope.searchDelegates.inSearch = false;
+                        $scope.search.inSearch = false;
                     });
                 }, 2000);
             }
@@ -157,16 +159,13 @@ angular.module('DDKApp').controller('delegatesController', ['$scope', '$rootScop
         address: gettextCatalog.getString('DDK Address'),
     };
 
-    $scope.updateSearch = function (search) {
-        $scope.searchDelegates = search;
+    $scope.updateSearch = function () {
         $scope.tableSearchDelegates.reload();
     };
 
-    // $scope.clearSearch = function () {
-    //     console.log("hello clear")
-    //     $scope.searchDelegates = '';
-    //     console.log("------ a"+$scope.searchDelegates+"   -----");
-    //   }
+    $scope.clearDelegateSearch = function () {
+        $scope.search.delegates = '';
+    };
 
     /*     $scope.selectFirstSearchResult = function () {
             var delegate = $scope.tableSearchDelegates.data[0];
