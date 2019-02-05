@@ -158,7 +158,7 @@
       <div class="panel-heading pr" ng-class="{'cursor': transactions.length}" eat-click-if="!transactions.length"
         ui-sref="main.transactions">
         <h2>{{'Latest Transactions'|translate}}</h2>
-        <div class="plain-text" ng-show="transactions.length">{{'View History'|translate}}</div>
+        <div class="plain-text" ng-show="transactions.length"  data-toggle="tooltip" data-placement="bottom" title="View History of Transaction">{{'View History'|translate}}</div>
       </div>
       <div class="table-responsive">
         <table class="table" id="transactions" ng-if="transactions.length">

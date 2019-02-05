@@ -40,6 +40,11 @@
                                 <div class="error-container" ng-show="errorMessage.fromServer">
                                     <span class="pass-error">{{errorMessage.fromServer}}</span>
                                 </div>
+
+                                <div class="error-container" ng-show="errorMessage.otpNumber">
+                                    <span class="pass-error">{{errorMessage.otpNumber}}</span>
+                                </div>
+                                
                                 <input type="submit" ng-show="false">
                             </div>
 
