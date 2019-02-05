@@ -119,8 +119,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     $scope.clearSearch = function () {
         $scope.searchTransactions.searchForTransaction = '';
         $scope.searchBlocks.searchForBlock = '';
-        $scope.searchDelegates = '';
-    }
+    };
 
     $scope.resetAppData = function () {
         $scope.balance = userService.balance = 0;
