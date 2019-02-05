@@ -16,7 +16,7 @@ angular.module('DDKApp').controller('otpConfirmationController', ["$scope", "$ht
     $scope.disableTwoFactor = function (otp) {
         if (!otp) {
             $scope.presendError = true;
-            $scope.errorMessage.otpNumber = 'Please input valid OTP';
+            $scope.errorMessage.otpNumber = 'OTP Required';
             return;
         }
         var data = {
