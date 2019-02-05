@@ -34,7 +34,7 @@
 
 
     <!-- For Google Authentication Enable Section -->
-    <div class="col-xs-12" ng-show="enable">
+    <!-- <div class="col-xs-12" ng-show="enable">
         <div class="panel-default custom-panel-default settings-panel">
             <div class="panel-heading">
                 <h2>{{'Google Authentication'|translate}}</h2>
@@ -58,14 +58,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End Google Authentication Enable Section -->
 
 
 
     <!-- For Google Authentication Enable Section -->
-    <div class="col-xs-12" ng-if="disable">
-        <!-- <div class="panel panel-default settings-panel"> -->
+    <!-- <div class="col-xs-12" ng-if="disable">
+       
         <div class="panel-default custom-panel-default settings-panel">
             <div class="panel-heading">
                 <h2>{{'Google Authentication'|translate}}</h2>
@@ -81,9 +81,9 @@
                         <span class="fw500">Google Auth</span>
                         <br> Use for withdrawals and security modification.
                     </div>
-                    <div class="btn-enable text-right">
+                    <div class="btn-enable text-right"> -->
                         <!-- <a class="btn btn-white waves-effect margin-left-10" ng-click="disableTwoFactor()"> -->
-                        <a class="btn btn-white waves-effect margin-left-10 l-height-n" ng-click="openOTPModal()"
+                        <!-- <a class="btn btn-white waves-effect margin-left-10 l-height-n" ng-click="openOTPModal()"
                             ng-show="disable">
                             <translate>Disable</translate>
                         </a>
@@ -91,8 +91,46 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+
     <!-- End Google Authentication Enable Section -->
+
+    <!-- experiment on google auth -->
+
+    <div class="col-xs-12">
+            <div class="panel-default custom-panel-default settings-panel">
+                <div class="panel-heading">
+                    <h2>{{'Google Authentication'|translate}}</h2>
+                </div>
+                <div class="panel-body">
+    
+    
+                    <div class="google-auth-info">
+                        <div class="auth-icon">
+                            <img src="images/teaser.png" width="30px">
+                        </div>
+                        <div class="auth-tex lh18">
+                            <span class="fw500">Google Auth</span>
+                            <br> Use for withdrawals and security modification.
+                        </div>
+                        <!-- ng-show="enable" -->
+                        <div class="btn-enable text-right" ng-show="enable">
+                            <a class="btn btn-blue-nav waves-effect waves-light" ng-click="showDiv(true)" ng-show="enable">
+                                <translate>Enable</translate>
+                            </a>
+                        </div>
+                        <div class="btn-enable text-right" ng-show="disable">
+                                <a class="btn btn-white waves-effect margin-left-10 l-height-n" ng-click="openOTPModal()"
+                                    ng-show="disable">
+                                    <translate>Disable</translate>
+                                </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     <!-- For Google Authentication -->
     <div class="col-md-12 google-authentication-container" ng-if="myVar">

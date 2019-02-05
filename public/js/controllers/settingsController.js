@@ -1,8 +1,9 @@
 require('angular');
 
 angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope', '$http', "userService", "$interval", "multisignatureModal", 'gettextCatalog', '$location', 'otpConfirmationModal', function ($rootScope, $scope, $http, userService, $interval, multisignatureModal, gettextCatalog, $location, otpConfirmationModal) {
-
+    
     $scope.checkTwoFactorStatus = function () {
+        
         $http.get($rootScope.serverUrl + '/api/accounts/checkTwoFactorStatus', {
             params: {
                 publicKey: userService.publicKey
@@ -11,8 +12,10 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
             .then(function (resp) {
                 if (resp.data.success) {
                     $scope.disable = true;
+                    $scope.enable = false;
                 } else {
                     $scope.enable = true;
+                    $scope.disable = false;
                 }
             })
     }
@@ -21,6 +24,7 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
 
     /* otpConfirmationModal Activate */
     $scope.openOTPModal = function () {
+        $scope.enable = false;
         $scope.otpConfirmationModal = otpConfirmationModal.activate({
             destroy: function () {
             }
@@ -51,6 +55,8 @@ angular.module('DDKApp').controller('settingsController', ['$scope', '$rootScope
     $scope.showDiv = function (data) {
         $scope.myVar = data;
         $scope.goToStep(0);
+        $scope.disable = false;
+
     }
 
     /* Enable/Disable multisignature settings */
