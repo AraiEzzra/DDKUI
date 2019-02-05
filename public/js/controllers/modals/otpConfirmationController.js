@@ -30,8 +30,8 @@ angular.module('DDKApp').controller('otpConfirmationController', ["$scope", "$ht
                         publicKey: userService.publicKey
                     })
                         .then(function (resp) {
-                            $scope.disable = false;
-                            $scope.enable = true;
+                            $rootScope.disable = false;
+                            $rootScope.enable = true;
 
                             /* Deactive OTP Modal */
                             otpConfirmationModal.deactivate();
@@ -52,4 +52,6 @@ angular.module('DDKApp').controller('otpConfirmationController', ["$scope", "$ht
                 $scope.errorMessage.fromServer = err;
             })
     }
+
+
 }]);
