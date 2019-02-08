@@ -5,7 +5,7 @@
     "serverUrl": "10.5.0.5:7007",
     "elasticsearchHost": "10.5.0.2:9200",
     "domainName": "localhost",
-    "explorerServerHost": "localhost",
+    "explorerServerHost": "multinodexplorer.ddkoin.com",
     "explorerServerPort": "80",
     "port": 7000
 }
