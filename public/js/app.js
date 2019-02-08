@@ -105,7 +105,7 @@ DDKApp.config([
                 controller: "passphraseController"
             })
             .state('main.referralStatistics', {
-                url: "/referralStatistics",
+                url: "/airdrop-statistics",
                 templateUrl: "/partials/referral-statistics.html",
                 controller: "referralStatisticsController"
             })
