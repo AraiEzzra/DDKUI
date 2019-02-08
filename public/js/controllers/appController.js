@@ -533,6 +533,13 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             $scope.$broadcast('updateTotalStakeAmount', data);
         });
     });
+    
+    $scope.$on('socket:pool/verify', function (ev, data) {
+        var parsedData = JSON.parse(data);
+        console.log("Socket: pool/verify",data,", parsedData :",parsedData, "asdf", parsedData.verified, " Error :", parsedData.error);
+        if (parsedData.verified == false)
+            Materialize.toast('Transaction Error: '+ parsedData.error, 50000, 'red white-text');
+    });
 
     $window.onfocus = function () {
         $scope.getAppData();
