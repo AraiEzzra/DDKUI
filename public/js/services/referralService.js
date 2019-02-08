@@ -6,12 +6,16 @@ angular.module('DDKApp').service('referralService', function ($http, $rootScope,
     var referralStat = {
 
         /* Get Referral List */
-        getReferralList: function ($defer, cb) {
+        getReferralList: function ($defer, params, levelInfo, cb) {
             $http.post($rootScope.serverUrl + "/referral/list", {
-                referrer_address: userService.address
+                userAddress: userService.address,
+                level: levelInfo ? levelInfo : 1,
+                limit: params.count(),
+                offset: (params.page() - 1) * params.count()
             }).then(function (response) {
                 if (response.data.success) {
-                    $defer.resolve(response.data.SponsorList);
+                    params.total(response.data.count);
+                    $defer.resolve(response.data.sponsorList);
                     cb();
                 } else {
                     $defer.resolve([]);

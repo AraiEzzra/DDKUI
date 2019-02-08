@@ -6,13 +6,35 @@
   line-height: 36px;
   border: none;
   border-radius: @button-radius;
+  background-color: #46535f;
 
+ 
   &.btn-blue-nav {
     background-color: @blue !important;
     &:hover, &:focus, &.focus {
       color: @white
     }
   }
+
+  &.btn-secondary{
+  &[disabled]{
+    background-color: none!important;
+    color:#fff;
+    }
+  }
+
+  
+  &.btn-secondary.buttonColor{
+    //  background-color: @grey;
+     width: 64.5px;
+     &.active {
+      background-color: #676f76;
+     }
+     &:hover, &:focus, &.focus {
+      color: #fff;
+      background-color: #676f76;
+    }
+   }
 
   &.btn-blue {
     background-color: @blue !important;
