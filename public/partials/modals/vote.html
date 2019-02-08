@@ -26,6 +26,13 @@
                                     <i class="mdi-navigation-cancel right"></i>
                                 </li>
                             </ul>
+                            <div class="input-field left-margin-40 right-margin-40">
+                                <input id="adminCode" type="password" ng-model="adminCode">
+                                <label for="adminCode">
+                                    <translate>Admin Code</translate>
+                                </label>
+                                <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
+                            </div>
                             <div class="modal-body voting-fee">
                                 <span class="fee-text flat-text pull-right" ng-if="fee !='0'">
                                     <translate>Fee: {{fee}} DDK
