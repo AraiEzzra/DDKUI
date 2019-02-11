@@ -26,7 +26,7 @@
   
   &.btn-secondary.buttonColor{
     //  background-color: @grey;
-     width: 64.5px;
+    //  width: 64.5px;
      &.active {
       background-color: #676f76;
      }
@@ -94,5 +94,17 @@
   span {
     vertical-align: top;
     margin-left: 0.5em;
+  }
+}
+
+.buttonColor {
+  .btn-group {
+    .btn {
+      width: calc(100%/16);
+    }
+    .btn:first-child {
+      padding: 0 2px;
+      text-align: center;
+    }
   }
 }
