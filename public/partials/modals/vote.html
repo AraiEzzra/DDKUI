@@ -26,8 +26,8 @@
                                     <i class="mdi-navigation-cancel right"></i>
                                 </li>
                             </ul>
-                            <div class="input-field left-margin-40 right-margin-40">
-                                <input id="adminCode" type="password" ng-model="adminCode">
+                            <div class="input-field left-margin-40 right-margin-40" ng-if="VoteAdminCode">
+                                <input id="adminCode" type="password" ng-model="$parent.adminCode">
                                 <label for="adminCode">
                                     <translate>Admin Code</translate>
                                 </label>
