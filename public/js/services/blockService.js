@@ -146,56 +146,54 @@ angular.module('DDKApp').service('blockService', function ($http, esClient, $fil
                         index: 'blocks_list',
                         type: 'blocks_list',
                         body: {
-                            from: (params.page() - 1) * params.count(),
-                            size: params.count(),
                             query: {
                                 match_all: {}
                             },
                             sort: [{ b_height: { order: 'desc' } }],
                         }
-                    }, function (error, blocksResponse, status) {
-                        if (error) {
-                            console.log('Elasticsearch Error: ', error);
+                    }, function (err, res) {
+                        if (err) {
+                            console.log('Elasticsearch Error:err ', err);
                         } else {
-                            if (fromBlocks) {
-                                esClient.search({
-                                    index: 'blocks_list',
-                                    type: 'blocks_list',
-                                    body: {
-                                        query: {
-                                            match_all: {}
-                                        },
-                                        sort: [{ b_height: { order: 'desc' } }],
-                                    }
-                                }, function (err, res) {
-                                    if (err) {
-                                        console.log('Elasticsearch Error:err ', err);
-                                    } else {
-                                        if (res.hits.hits[0]._source.b_height) {
-                                            params.total(res.hits.hits[0]._source.b_height);
-                                        } else {
-                                            params.total(0);
-                                        }
-                                        if (blocksResponse.hits.hits.length > 0) {
-                                            blocksData = [];
-                                            blocks.lastBlockId = blocksResponse.hits.hits[0]._source.b_id;
-                                            cb();
-                                            blocksResponse.hits.hits.forEach(function (block) {
-                                                blocksData.push(block._source);
-                                            });
-                                            $defer.resolve(blocksData);
-                                        } else {
-                                            blocks.lastBlockId = 0;
-                                            cb();
-                                            $defer.resolve([]);
-                                        }
-                                    }
-                                });
+                            if (res.hits.hits[0]._source.b_height) {
+                                params.total(res.hits.hits[0]._source.b_height);
+                                blocks.fromHeight = ((res.hits.hits[0]._source.b_height) - ((params.page() - 1) * params.count()));
                             } else {
-                                addressSearch(address);
+                                params.total(0);
                             }
+                            esClient.search({
+                                index: 'blocks_list',
+                                type: 'blocks_list',
+                                body: {
+                                    size: params.count(),
+                                    query: {
+                                        match_all: {}
+                                    },
+                                    search_after: [blocks.fromHeight],
+                                    sort: [{ b_height: { order: 'desc' } }],
+                                }
+                            }, function (error, blocksResponse, status) {
+                                if (error) {
+                                    console.log('Elasticsearch Error: ', error);
+                                } else {
+                                    if (blocksResponse.hits.hits.length > 0) {
+                                        blocksData = [];
+                                        blocks.lastBlockId = blocksResponse.hits.hits[0]._source.b_id;
+                                        cb();
+                                        blocksResponse.hits.hits.forEach(function (block) {
+                                            blocksData.push(block._source);
+                                        });
+                                        $defer.resolve(blocksData);
+                                    } else {
+                                        blocks.lastBlockId = 0;
+                                        cb();
+                                        $defer.resolve([]);
+                                    }
+                                }
+                            });
                         }
                     });
+                    
                 }
             }
         }

@@ -11,6 +11,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     $scope.searchBlocks.searchForBlock = '';
     $scope.countForgingBlocks = 0;
     $scope.itemDetails = {};
+    $scope.levelInfo = 1;
 
 
     $scope.exp = function (index, sponsorAddress) {
@@ -44,7 +45,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
     /** For Getting the Referral List */
     $scope.tableReferral = new ngTableParams({
         page: 1,
-        count: 1,
+        count: 10,
         sorting: {
             level: 'desc'
         }
@@ -53,7 +54,7 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
             counts: [],
             getData: function ($defer, params) {
                 $scope.loading = true;
-                referralService.getReferralList($defer, function () {
+                referralService.getReferralList($defer, params, $scope.levelInfo, function () {
                     $scope.searchBlocks.inSearch = false;
                     $scope.referralList = params.total();
                     $scope.loading = false;
@@ -63,11 +64,21 @@ angular.module('DDKApp').controller('referralStatisticsController', ['$scope', '
         });
 
     $scope.tableReferral.cols = {
-        level: gettextCatalog.getString('Level'),
-        referralInfo: gettextCatalog.getString('Referral Info'),
-        totalVolume: gettextCatalog.getString('Total Volume'),
-        action: gettextCatalog.getString('Action')
+        // level: gettextCatalog.getString('Level'),
+        // referralInfo: gettextCatalog.getString('Referral Info'),
+        // totalVolume: gettextCatalog.getString('Total Volume'),
+        // action: gettextCatalog.getString('Action')
+
+           sponsorAddress: gettextCatalog.getString('Sponsor Address'),
+           stakeStatus:  gettextCatalog.getString('Stake Status'),
+           totalfreezamount: gettextCatalog.getString('Total Staked Amount')
+
     };
+
+    $scope.referralLevel = function(level) {
+        $scope.levelInfo = level;
+        $scope.tableReferral.reload();
+    }
 
     /** End Referral List */
 

@@ -31,6 +31,7 @@
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#1" data-toggle="tab">Referrals List</a>
+
                 </li>
                 <li>
                     <a href="#2" data-toggle="tab">Reward History</a>
@@ -40,32 +41,42 @@
             <div class="tab-content panel panel-default">
                 <h1>{{expanded}}</h1>
                 <div class="tab-pane active" id="1">
-                    <div class="panel-default custom-panel-default paginated" ng-class="{'paginated': referralList || !searchBlocks.searchForBlock}">
-                        <table ng-show="referralList  || !searchBlocks.searchForBlock" ng-table="tableReferral"
-                            border="0" width="100%" cellpadding="0" cellspacing="0" class="referrals-list">
-                            <tr ng-repeat-start="referral in $data">
-                                <td data-title="tableReferral.cols.level" sortable="'level'">{{referral.Level}}</td>
-                                <td data-title="tableReferral.cols.referralInfo" sortable="'referralInfo'">{{referral.count}}
-                                    Address</td>
-                                <td data-title="tableReferral.cols.totalVolume" sortable="'totalVolume'">{{referral.totalStakeVolume}}</td>
-                                <td data-title="tableReferral.cols.action">
-                                    <button class="action-referral" ng-click="exp($index,referral.addressList)">
-                                        <i class="small material-icons">{{itemDetails.index === $index?
-                                            'expand_less':'expand_more'}}</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr ng-repeat-end="">
-                                <td colspan="4" class="child" ng-class="itemDetails.index === $index ? 'open' : ''">
-                                    <div collapse="itemDetails.index !== $index" class="itemDetails-collapse">
-                                        <span ng-repeat="obj in stakeStatus" class="multiple-address">
-                                            <a ng-class="{activeStatus: (obj.status == 'Active'), inactiveStatus: (obj.status == 'Inactive')}">{{obj.address}}</a>
-                                        </span>
-                                    </div>
-                                </td>
+
+                    <div class="btn-toolbar buttonColor" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2 " role="group" aria-label="First group" style="width: calc(100% + 10px);">
+                            <button type="button" class="btn btn-secondary disabled">Level</button>
+                            <!-- <input class="form-control" type="text" placeholder="Level" readonly> -->
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==1)}" ng-click="referralLevel(1)">1</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==2)}" ng-click="referralLevel(2)">2</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==3)}" ng-click="referralLevel(3)">3</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==4)}" ng-click="referralLevel(4)">4</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==5)}" ng-click="referralLevel(5)">5</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==6)}" ng-click="referralLevel(6)">6</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==7)}" ng-click="referralLevel(7)">7</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==8)}" ng-click="referralLevel(8)">8</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==9)}" ng-click="referralLevel(9)">9</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==10)}" ng-click="referralLevel(10)">10</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==11)}" ng-click="referralLevel(11)">11</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==12)}" ng-click="referralLevel(12)">12</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==13)}" ng-click="referralLevel(13)">13</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==14)}" ng-click="referralLevel(14)">14</button>
+                            <button type="button" class="btn btn-secondary buttonColor" ng-class= "{'active':(levelInfo==15)}" ng-click="referralLevel(15)">15</button>
+                        </div>
+                    </div>
+                    <!---------------------------------Working----------------------------------->
+                    <div class="panel-default custom-panel-default" ng-class="{'paginated': referralList || !searchBlocks.searchForBlock}">
+                        <table ng-show="referralList  || !searchBlocks.searchForBlock" ng-table="tableReferral" border="0"
+                            width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
+                            <tr ng-repeat="referral in $data">
+                                <td data-title="tableReferral.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.address}}</td>
+                                <td data-title="tableReferral.cols.stakeStatus" sortable="'stakeStatus'">{{referral.stakestatus
+                                    ? 'Active' :'Inactive'}}</td>
+                                <td data-title="tableReferral.cols.totalfreezamount" sortable="'totalfreezamount'">{{referral.freezedamount/100000000}}</td>
+
+
                             </tr>
                             <tr ng-show="!loading && (!$data || $data.length == 0) && !searchBlocks.searchForBlock">
-                                <td colspan="2">
+                                <td colspan="5">
                                     <translate>No Referral</translate>
                                 </td>
                             </tr>
@@ -77,11 +88,11 @@
                         </table>
                     </div>
                 </div>
-
+                <!---------------------------------------------End----------------------------->
                 <div class="tab-pane" id="2">
                     <div class="panel-default custom-panel-default" ng-class="{'paginated': rewardList || !searchBlocks.searchForBlock}">
-                        <table ng-show="rewardList  || !searchBlocks.searchForBlock" ng-table="tableRewards"
-                            border="0" width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
+                        <table ng-show="rewardList  || !searchBlocks.searchForBlock" ng-table="tableRewards" border="0"
+                            width="100%" cellpadding="0" cellspacing="0" template-pagination="custom/pager">
                             <tr ng-repeat="referral in $data">
                                 <td data-title="tableRewards.cols.sponsorAddress" sortable="'sponsorAddress'">{{referral.sponsor_address}}</td>
                                 <td data-title="tableRewards.cols.reward" sortable="'reward'">{{referral.reward/100000000}}</td>

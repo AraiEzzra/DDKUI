@@ -29,7 +29,7 @@
                                             autofocus readonly ng-trim="false"></textarea>
                                         <label for="newPassphrase" ng-class="{'active':activeLabel(newPassphrase)}">Passphrase</label>
                                     </div>
-                                    <span class="pull-left generate no-select" ng-click="generatePassphrase()">
+                                    <span class="pull-left generate  blue-link  no-select" ng-click="generatePassphrase()">
                                         <span>
                                             <translate>Generate New</translate>
                                         </span>
@@ -41,10 +41,10 @@
                                             <div class="input-field">
                                                 <input id="email" type="text" ng-model="emailId">
                                                 <label for="email">
-                                                    <translate>Email</translate>
+                                                    <translate>Email Id</translate>
                                                 </label>
                                                 <a tooltip-placement="left" class="btn btn-white waves-effect email-info"
-                                                    tooltip="Email is not required for new user. However, if you enter your email in the column you will receive a welcome email only 1 time for information regarding your registration. In line with our mission, this DDK web wallet is an open source project so we do not store any email or identity records in our nodes just like the cryptographic open source wallet that exists out there."
+                                                    tooltip="Email Id is not required for new user. However, if you enter your email in the column you will receive a welcome email only 1 time for information regarding your registration. In line with our mission, this DDK web wallet is an open source project so we do not store any email or identity records in our nodes just like the cryptographic open source wallet that exists out there."
                                                     tooltip-trigger="mouseenter">?</a>
                                             </div>
                                         </div>
@@ -101,7 +101,8 @@
                                 <div class="left-margin-40 right-margin-40 top-margin-40 bottom-margin-40">
                                     <div class="input-field passphraseGeneration">
                                         <textarea id="repeatPassphrase" class="materialize-textarea" ng-trim="false"
-                                            ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}" ng-keypress="onEnterKeypress($event)" autofocus></textarea>
+                                            ng-model="repeatPassphrase" ng-class="{'invalid': noMatch}" ng-keypress="onEnterKeypress($event)"
+                                            autofocus></textarea>
                                         <label for="repeatPassphrase" ng-class="{'active':activeLabel(repeatPassphrase)}">
                                             <translate>Passphrase</translate>
                                         </label>

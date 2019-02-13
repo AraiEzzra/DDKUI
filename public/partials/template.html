@@ -80,14 +80,14 @@
                 <span class="forging-state" ng-class="{'disabled': !forgingEnabled}" ng-if="forgingStatus && view.bar.forgingMenu">{{forgingStatus}}</span>
             </div>
             <div id="top-menu">
-                <span id="balance" class="margin-right-10">
+                <span id="balance" class="margin-right-10" data-toggle="tooltip" data-placement="bottom" title="Available Balance">
                     {{availableBalance | DDKFilter}} DDK
                 </span>
-                <a class="btn btn-blue-nav waves-effect waves-light margin-right-10" ng-click="freezeAmount()">
+                <a class="btn btn-blue-nav waves-effect waves-light margin-right-10"  ng-click="freezeAmount()"  data-toggle="tooltip" data-placement="bottom" title="Stake DDK">
                     <translate>Stake</translate>
                 </a>
 
-                <a class="btn btn-blue-nav waves-effect waves-light" ng-click="sendTransaction()">
+                <a class="btn btn-blue-nav waves-effect waves-light" ng-click="sendTransaction()" data-toggle="tooltip" data-placement="bottom" title="Send DDK">
                     <i class="mdi-content-send left"></i>
                     <translate>SEND</translate>
                 </a>
@@ -251,8 +251,6 @@
                         <!-- <div class="nav-icon" id="dashboard-icon"></div> -->
                         <div class="nav-icon">
                             <i class="fa fa-home"></i>
-
-
                         </div>
                         <!-- <i class="fa fa-home"></i> -->
 
@@ -266,8 +264,6 @@
                         <!-- <div class="nav-icon" id="forging-icon"></div> -->
                         <div class="nav-icon">
                             <i class=" fa fa-thumbs-up"></i>
-
-
                         </div>
 
                         <span class="menu-text">
@@ -308,8 +304,6 @@
 
                         <div class="nav-icon">
                             <i class="fa fa-link"></i>
-
-
                         </div>
                         <span class="menu-text">
                             <translate>DDK Blockchain</translate>
@@ -335,8 +329,6 @@
                         <!-- <div class="nav-icon" id="stake-icon"></div> -->
                         <div class="nav-icon">
                             <i class="fa fa-database"></i>
-
-
                         </div>
 
                         <span class="menu-text">
