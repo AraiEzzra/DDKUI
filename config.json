@@ -7,5 +7,6 @@
     "domainName": "localhost",
     "explorerServerHost": "multinodexplorer.ddkoin.com",
     "explorerServerPort": "80",
-    "port": 7000
+    "port": 7000,
+    "VoteAdminCode":"U+FDFD_GODDK"
 }
