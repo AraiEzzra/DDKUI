@@ -1,7 +1,8 @@
 require('angular');
 var compareVersion = require('../../node_modules/compare-version/index.js');
 
-angular.module('DDKApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal', function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal) {
+angular.module('DDKApp').controller('appController', ['dappsService', '$scope', '$rootScope', '$http', "userService", "$interval", "$timeout", 'viewFactory', '$state', 'blockService', 'sendTransactionModal', 'registrationDelegateModal', 'serverSocket', 'delegateService', '$window', 'forgingModal', 'errorModal', 'userInfo', 'transactionsService', 'secondPassphraseModal', 'focusFactory', 'gettextCatalog', '$location', 'AuthService', 'freezeAmountModal','transactionErrorModal', function (dappsService, $rootScope, $scope, $http, userService, $interval, $timeout, viewFactory, $state, blockService, sendTransactionModal, registrationDelegateModal, serverSocket, delegateService, $window, forgingModal, errorModal, userInfo, transactionsService, secondPassphraseModal, focusFactory, gettextCatalog, $location, AuthService, freezeAmountModal,transactionErrorModal) {
+
 
     $scope.searchTransactions = transactionsService;
     $scope.searchDapp = dappsService;
@@ -17,6 +18,8 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
     $scope.categories = {};
     $scope.dataToShow = { forging: false }
 
+ 
+    /* Get CategryName Method*/
     $scope.getCategoryName = function (id) {
         for (var key in $scope.categories) {
             if ($scope.categories.hasOwnProperty(key)) {
@@ -38,10 +41,13 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
 
     }
 
+    /* CollapseMenu Method*/
     $scope.collapseMenu = function () {
         $scope.subForgingCollapsed = !$scope.subForgingCollapsed;
     }
 
+
+    /* ToggleMenu Method*/
     $scope.toggleMenu = function () {
         $scope.toggled = !$scope.toggled;
     }
@@ -111,16 +117,18 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         'main.referralStatistics',
 
     ];
-
+    
+    /* Convert to USD Method */
     $scope.convertToUSD = function (DDK) {
         return (DDK / 100000000) * $scope.DDK_usd;
     };
-
+    /* ClearSearch Method*/
     $scope.clearSearch = function () {
         $scope.searchTransactions.searchForTransaction = '';
         $scope.searchBlocks.searchForBlock = '';
     };
 
+    /* ResetAppData Method */
     $scope.resetAppData = function () {
         $scope.balance = userService.balance = 0;
         $scope.unconfirmedBalance = userService.unconfirmedBalance = 0;
@@ -141,6 +149,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
 
     $scope.resetAppData();
 
+    /* GetAppData Method */
     $scope.getAppData = function () {
         $http.get($rootScope.serverUrl + "/api/accounts", { params: { address: userService.address } })
             .then(function (resp) {
@@ -191,6 +200,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             });
     };
 
+    /* get MasterPassphrase Method*/
     $scope.getMasterPassphrase = function () {
         $http.get($rootScope.serverUrl + "/api/dapps/ismasterpasswordenabled")
             .then(function (resp) {
@@ -200,6 +210,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             });
     }
 
+    /* Send Transaction Method*/
     $scope.sendTransaction = function (to) {
         to = to || '';
         $scope.sendTransactionModal = sendTransactionModal.activate({
@@ -211,6 +222,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
+    /* FreezeAmount Method*/
     $scope.freezeAmount = function () {
         $scope.freezeAmountModal = freezeAmountModal.activate({
             destroy: function () {
@@ -219,7 +231,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
-
+    /* Set Second Passphrase Method*/
     $scope.setSecondPassphrase = function () {
         $scope.addSecondPassModal = secondPassphraseModal.activate({
             totalBalance: $scope.unconfirmedBalance,
@@ -229,6 +241,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
+    /* Enable Forging Method*/
     $scope.enableForging = function () {
         if ($scope.rememberedPassphrase) {
             $http.post($rootScope.serverUrl + "/api/delegates/forging/enable", {
@@ -266,7 +279,8 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             angular.element(document.querySelector("body")).addClass("ovh");
         }
     }
-
+   
+    /* Disable Forging Method*/
     $scope.disableForging = function () {
         if ($scope.rememberedPassphrase) {
 
@@ -305,7 +319,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             angular.element(document.querySelector("body")).addClass("ovh");
         }
     }
-
+    /* Toggle Forging Method*/
     $scope.toggleForging = function () {
         if ($scope.forging) {
             $scope.disableForging();
@@ -314,6 +328,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         }
     }
 
+    /* Set Forging Text Method*/
     $scope.setForgingText = function (forging) {
         if ($state.current.name == 'main.forging' || $state.current.name == 'main.votes' || $state.current.name == 'main.delegates') {
             $scope.forgingStatus = forging ? gettextCatalog.getString('Enabled') : gettextCatalog.getString('Disabled');
@@ -322,7 +337,8 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             $scope.forgingStatus = null;
         }
     }
-
+    
+    /* get Forging Method*/
     $scope.getForging = function (cb) {
         $http.get($rootScope.serverUrl + "/api/delegates/forging/status", { params: { publicKey: userService.publicKey } })
             .then(function (resp) {
@@ -334,6 +350,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             });
     }
 
+    /* getMultisignatureAccounts Method*/
     $scope.getMultisignatureAccounts = function (cb) {
         var queryParams = {
             publicKey: userService.publicKey
@@ -367,7 +384,8 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                 }
             });
     }
-
+    
+    /* Registation Delegate Method*/
     $scope.registrationDelegate = function () {
         $scope.registrationDelegateModal = registrationDelegateModal.activate({
             totalBalance: userService.unconfirmedBalance,
@@ -379,6 +397,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         angular.element(document.querySelector("body")).addClass("ovh");
     }
 
+    /* GetDelegate Method*/
     $scope.getDelegate = function () {
         delegateService.getDelegate(userService.publicKey, function (response) {
             if (response.username && !$scope.username) {
@@ -405,7 +424,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
             }
         });
     }
-
+    /* GetSync Method */
     $scope.getSync = function () {
         $http.get($rootScope.serverUrl + "/api/loader/status/sync").then(function (resp) {
             if (resp.data.success) {
@@ -423,19 +442,21 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
                 $scope.myVotesCount = response.data.delegates ? response.data.delegates.length : 0;
             });
     }
-
+    
+    /* MyUserInfo Method */
     $scope.myUserInfo = function () {
         $scope.modal = userInfo.activate({ userId: userService.address });
         angular.element(document.querySelector("body")).addClass("ovh");
     }
-
+    
+    /* Logout Method */
     $scope.logout = function () {
         $http.post($rootScope.serverUrl + "/api/accounts/logout", { address: userService.getAddress(), token: $window.localStorage.getItem('token') }).then(function (res) {
             $window.localStorage.setItem('token', '');
             $location.path('passphrase');
         });
     }
-
+    /* SyncInterval Method */
     $scope.syncInterval = $interval(function () {
         $scope.getSync();
     }, 1000 * 30);
@@ -460,6 +481,7 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
 
         });
 
+    /* Socket Methods */    
     $scope.$on('socket:transactions/change', function (ev, data) {
         $scope.getAppData();
         $scope.updateViews([
@@ -532,6 +554,26 @@ angular.module('DDKApp').controller('appController', ['dappsService', '$scope', 
         $timeout(function () {
             $scope.$broadcast('updateTotalStakeAmount', data);
         });
+    });
+    /* Transaction Error */
+    $scope.$on('socket:pool/verify', function (ev, data) {
+        var parsedData = JSON.parse(data);
+        console.log("Socket: pool/verify",data,", parsedData :",parsedData, "asdf", parsedData.verified, " Error :", parsedData.error);
+        if (parsedData.verified == false)
+            // Materialize.toast('Transaction Error: '+ parsedData.error, 50000, 'red white-text');
+          
+            $scope.transactionErrorModal = transactionErrorModal.activate({
+             error: parsedData.error,   
+            destroy: function () {
+                 }
+             });
+
+            // $scope.errorModal = errorModal.activate({
+            //     error: parsedData.error,
+            //     destroy: function () {
+                   
+            //     }
+            // })
     });
 
     $window.onfocus = function () {
