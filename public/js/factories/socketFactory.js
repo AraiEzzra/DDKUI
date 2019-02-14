@@ -27,6 +27,7 @@ angular.module('DDKApp').factory('serverSocket', ["socketFactory", "$location", 
     serverSocket.forward('stake/change');
     serverSocket.forward('milestone/change');
     serverSocket.forward('updateTotalStakeAmount');
+    serverSocket.forward ('pool/verify');
 
     return serverSocket;
 

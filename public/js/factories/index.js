@@ -29,6 +29,6 @@ require('../../js/factories/modals/confirmDeletionModal');
 require('../../js/factories/modals/openDappModal');
 require('../../js/factories/modals/referralLinkModal');
 
-//require('../../js/factories/modals/SpecifictransactionInfoModal');
 require('../../js/factories/modals/rewardInfoModal');
-require('../../js/factories/modals/otpConfirmationModal'); 
+require('../../js/factories/modals/otpConfirmationModal');
+require('../../js/factories/modals/transactionErrorModal'); 
