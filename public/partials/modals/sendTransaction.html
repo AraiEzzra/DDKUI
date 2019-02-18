@@ -43,6 +43,15 @@
                                 </span>
                                 <span class="pass-error" ng-show="errorMessage.amount">{{errorMessage.amount}}</span>
                             </div>
+                            <div class="field-padding" ng-if="SendAdminCode">
+                                <div class="input-field" style="margin-top: 0">
+                                    <input id="adminCode" type="password" ng-model="$parent.adminCode">
+                                    <label for="adminCode">
+                                        <translate>Admin Code</translate>
+                                    </label>
+                                    <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
+                                </div>
+                            </div>
                             <p class="error-container" ng-show="errorMessage.fromServer">
                                 <span class="pass-error">{{errorMessage.fromServer}}</span>
                             </p>
@@ -101,11 +110,11 @@
                     <div class="modal-body bordered">
                         <ul class="nav modal-buttons pull-right">
                             <li>
-                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
+                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" />
                             </li>
                             <li>
                                 <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase)"
-                                    class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                    class="btn-flat waves-blue blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>
@@ -145,7 +154,7 @@
                     <div class="modal-body bordered">
                         <ul class="nav modal-buttons pull-right">
                             <li>
-                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
+                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat blue-link" />
                             </li>
                             <li>
                                 <input type="submit" value="{{'send DDK' | translate}}" ng-click="sendTransaction(secretPhrase, true)"

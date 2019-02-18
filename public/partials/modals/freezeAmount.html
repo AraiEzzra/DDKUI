@@ -34,10 +34,16 @@
                                 </span>
                                 <span class="pass-error" ng-show="errorMessage.fAmount">{{errorMessage.fAmount}}</span>
                             </div>
-                            <p class="error-container" ng-show="errorMessage.recipient">
-                                <span class="pass-error">{{errorMessage.recipient}}</span>
-                            </p>
 
+                            <div class="field-padding" ng-if="StakeAdminCode">
+                                <div class="input-field" style="margin-top: 0">
+                                    <input id="adminCode" type="password" ng-model="$parent.adminCode">
+                                    <label for="adminCode">
+                                        <translate>Admin Code</translate>
+                                    </label>
+                                </div>
+                                <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
+                            </div>
 
                             <p class="error-container" ng-show="errorMessage.fromServer">
                                 <span class="pass-error">{{errorMessage.fromServer}}</span>
@@ -91,11 +97,11 @@
                     <div class="modal-body bordered">
                         <ul class="nav modal-buttons pull-right">
                             <li>
-                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat" />
+                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" />
                             </li>
                             <li>
                                 <input type="submit" value="{{'Stake DDK' | translate}}" ng-click="freezeOrder(secretPhrase)"
-                                    class="btn-flat waves-blue" ng-class="{'disabled': sending}" ng-disabled="sending" />
+                                    class="btn-flat waves-blue blue-link" ng-class="{'disabled': sending}" ng-disabled="sending" />
                             </li>
                         </ul>
                     </div>

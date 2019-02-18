@@ -101,7 +101,7 @@
                     <div class="modal-body">
                         <ul class="nav modal-buttons pull-right">
                             <li>
-                                <input type="submit" value="{{'Cancel' | translate}}" ng-click="passcheck()" class="btn-flat" />
+                                <input type="submit" value="{{'Cancel' | translate}}" ng-click="passcheck()" class="btn-flat blue-link" />
                             </li>
                             <li>
                                 <input type="submit" value="" adding="adding" vote-action ng-click="vote(secretPhrase)"
@@ -146,11 +146,11 @@
                     <div class="modal-body">
                         <ul class="nav modal-buttons pull-right">
                             <li>
-                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat" />
+                                <input type="submit" value="{{'GO BACK' | translate}}" ng-click="passcheck(true)" class="btn-flat blue-link" />
                             </li>
                             <li>
                                 <input type="submit" value="" adding="adding" vote-action ng-click="vote(secretPhrase, true)"
-                                    class="btn-flat" ng-class="{'blue-link': adding, 'red-link': !adding, 'disabled': sending}"
+                                    class="btn-flat blue-link" ng-class="{'blue-link': adding, 'red-link': !adding, 'disabled': sending}"
                                     ng-disabled="sending" />
                             </li>
                         </ul>

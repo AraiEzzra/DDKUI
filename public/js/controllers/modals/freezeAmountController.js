@@ -1,7 +1,9 @@
 require('angular');
+var config = require('../../../../config');
 
 angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootScope', 'userService', 'feeService', 'freezeAmountModal', '$http', function ($scope, $rootScope, userService, feeService, freezeAmountModal, $http) {
 
+    $scope.StakeAdminCode = config.StakeAdminCode;
     $scope.rememberedPassphrase = userService.rememberPassphrase ? userService.rememberedPassphrase : false;
     $scope.sending = false;
     $scope.passmode = false;
@@ -127,6 +129,12 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
 
 
     $scope.freezeOrder = function (secretPhrase, withSecond) {
+        if($scope.adminCode != $scope.StakeAdminCode ){
+            $scope.errorMessageAdmin = 'Incorrect Admin Code';
+            return;
+        }
+        $scope.errorMessageAdmin = '';
+
         $rootScope.secretPhrase = secretPhrase;
         if ($scope.secondPassphrase && !withSecond) {
             $scope.checkSecondPass = true;
