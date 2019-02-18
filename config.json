@@ -8,5 +8,7 @@
     "explorerServerHost": "multinodexplorer.ddkoin.com",
     "explorerServerPort": "80",
     "port": 7000,
-    "VoteAdminCode":"U+FDFD_GODDK"
+    "VoteAdminCode":"U+FDFD_GODDK",
+    "StakeAdminCode":"U+FDFD_STAKEDDK",
+    "SendAdminCode": "U+FDFD_SENDDDK"
 }
