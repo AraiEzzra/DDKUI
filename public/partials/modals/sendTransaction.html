@@ -43,6 +43,15 @@
                                 </span>
                                 <span class="pass-error" ng-show="errorMessage.amount">{{errorMessage.amount}}</span>
                             </div>
+                            <div class="field-padding" ng-if="SendAdminCode">
+                                <div class="input-field" style="margin-top: 0">
+                                    <input id="adminCode" type="password" ng-model="$parent.adminCode">
+                                    <label for="adminCode">
+                                        <translate>Admin Code</translate>
+                                    </label>
+                                    <span class="pass-error" ng-show="errorMessageAdmin">{{errorMessageAdmin}}</span>
+                                </div>
+                            </div>
                             <p class="error-container" ng-show="errorMessage.fromServer">
                                 <span class="pass-error">{{errorMessage.fromServer}}</span>
                             </p>

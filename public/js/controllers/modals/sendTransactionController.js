@@ -1,7 +1,9 @@
 require('angular');
+var config = require('../../../../config');
 
 angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$rootScope', 'sendTransactionModal', '$http', 'userService', 'feeService', '$timeout', '$filter', function ($scope, $rootScope, sendTransactionModal, $http, userService, feeService, $timeout, $filter) {
 
+    $scope.SendAdminCode = config.SendAdminCode;
     $scope.sending = false;
     $scope.passmode = false;
     $scope.accountValid = true;
@@ -240,6 +242,12 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.sendTransaction = function (secretPhrase, withSecond) {
+        if($scope.adminCode != $scope.SendAdminCode ){
+            $scope.errorMessageAdmin = 'Incorrect Admin Code';
+            return;
+        }
+        $scope.errorMessageAdmin = '';
+
         if ($scope.secondPassphrase && !withSecond) {
             $scope.OTP = false;
             $scope.checkSecondPass = true;
