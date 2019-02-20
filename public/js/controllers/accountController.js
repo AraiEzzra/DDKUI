@@ -154,6 +154,12 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 if ($scope.balanceToShow[1]) {
                     $scope.balanceToShow[1] = '.' + $scope.balanceToShow[1];
                 }
+
+                $scope.myDDKFrozen = userService.totalFrozeAmount / 100000000;
+                $scope.stakeBalanceToShow = $filter('decimalFilter')(userService.totalFrozeAmount);
+                if ($scope.stakeBalanceToShow[1]) {
+                    $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
+                }
                 $scope.secondPassphrase = userService.secondPassphrase;
                 $scope.unconfirmedPassphrase = userService.unconfirmedPassphrase;
                 $scope.availableBalanceDec = ($scope.unconfirmedBalance - userService.totalFrozeAmount) / 100000000;
@@ -201,16 +207,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
                 }
             });
     }
-
-    /* For Your DDK Frozen */
-    $scope.getMyDDKFrozen = function () {
-        $scope.myDDKFrozen = userService.totalFrozeAmount / 100000000;
-        $scope.stakeBalanceToShow = $filter('decimalFilter')(userService.totalFrozeAmount);
-        if ($scope.stakeBalanceToShow[1]) {
-            $scope.stakeBalanceToShow[1] = '.' + $scope.stakeBalanceToShow[1];
-        }
-    }
-
 
     /* For Your total supply */
     $scope.getTotalSupply = function () {
@@ -294,7 +290,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
 
     $scope.updateAppView = function () {
         $scope.getAccount();
-        $scope.getMyDDKFrozen();
         $scope.getTransactions();
         delegateService.getDelegate($scope.publicKey, function (response) {
             $timeout(function () {
@@ -308,10 +303,6 @@ angular.module('DDKApp').controller('accountController', ['$state', '$scope', '$
         if ((data.indexOf('main.dashboard') != -1 && $state.current.name == 'main.dashboard') || data.indexOf('main.transactions') != -1) {
             $scope.updateAppView();
         }
-    });
-
-    $scope.$on('updateTotalStakeAmount', function (ev, data) {
-        $scope.getMyDDKFrozen();
     });
 
     $scope.updateAppView();
