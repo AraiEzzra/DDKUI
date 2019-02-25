@@ -18,7 +18,10 @@ app.use(cookieParser());
 
 app.get('/', function (req, res) {
 
-    const serverURL = config.serverProtocol + '://' + config.serverHost + ':' + config.serverPort;
+    var serverURL = config.serverProtocol + '://' + config.serverHost;
+    if (config.serverProtocol === 'http') {
+        serverURL = serverURL + ':' + config.serverPort;
+    }
     request(serverURL, { json: true }, function (err, resp, body) {
         if (body && body.success == true) {
             res.render('wallet.html', { layout: false });
