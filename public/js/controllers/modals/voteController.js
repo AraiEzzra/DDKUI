@@ -21,6 +21,13 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     };
 
     $scope.passcheck = function (fromSecondPass) {
+        $scope.errorMessageAdmin = "";
+
+        if($scope.adminCode !== $scope.VoteAdminCode ){
+            $scope.errorMessageAdmin = "Incorrect Admin Code";
+            return;
+        }
+
         if(Object.size($scope.voteList) > 3){
             $scope.voteCountError= true;
             return;
@@ -67,10 +74,6 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     }
 
     $scope.vote = function (pass, withSecond) {
-        if($scope.adminCode != $scope.VoteAdminCode ){
-            $scope.errorMessageAdmin = 'Incorrect Admin Code';
-            return;
-        }
         if ($scope.secondPassphrase && !withSecond) {
             $scope.checkSecondPass = true;
             $scope.focus = 'secondPhrase';

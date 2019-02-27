@@ -45,6 +45,8 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.to);
         $scope.errorMessage = {};
+        $scope.errorMessageAdmin = "";
+
         if ($scope.to.trim() == '') {
             $scope.errorMessage.recipient = 'Empty recipient';
             $scope.presendError = true;
@@ -56,8 +58,13 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                     return;
                 }
                 if ($scope.isCorrectValue($scope.amount)) {
-                    $scope.presendError = false;
-                    return onValid();
+                    if ($scope.adminCode !== $scope.SendAdminCode) {
+                        $scope.errorMessageAdmin = "Incorrect Admin Code";
+                        return;
+                    } else {
+                        $scope.presendError = false;
+                        return onValid();
+                    }
                 } else {
                     $scope.presendError = true;
                 }
@@ -66,6 +73,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                 $scope.presendError = true;
             }
         }
+
     }
 
     function validateOTP(onValid) {
@@ -183,12 +191,11 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
             if (throwError) {
                 throw $scope.errorMessage.amount;
             } else {
-                console.error(message);
                 return false;
             }
         }
 
-        if (currency == null) {
+        if (!currency) {
             return error('DDK amount can not be blank');
         }
 
@@ -242,12 +249,6 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
     }
 
     $scope.sendTransaction = function (secretPhrase, withSecond) {
-        if($scope.adminCode != $scope.SendAdminCode ){
-            $scope.errorMessageAdmin = 'Incorrect Admin Code';
-            return;
-        }
-        $scope.errorMessageAdmin = '';
-
         if ($scope.secondPassphrase && !withSecond) {
             $scope.OTP = false;
             $scope.checkSecondPass = true;
