@@ -32,12 +32,11 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
             if (throwError) {
                 throw $scope.errorMessage.fAmount;
             } else {
-                console.error(message);
                 return false;
             }
         }
 
-        if (currency == null) {
+        if (!currency) {
             return error('DDK amount can not be blank');
         }
 
@@ -92,8 +91,17 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
     }
 
     function validateForm(onValid) {
+        $scope.errorMessage = {};
+        $scope.errorMessageAdmin = '';
+
         if ($scope.isCorrectValue($scope.fAmount)) {
-            return onValid();
+            if ($scope.adminCode != $scope.StakeAdminCode) {
+                $scope.errorMessageAdmin = 'Incorrect Admin Code';
+                return;
+            } else {
+                $scope.presendError = false;
+                return onValid();
+            }
         } else {
             $scope.presendError = true;
         }
@@ -129,12 +137,6 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
 
 
     $scope.freezeOrder = function (secretPhrase, withSecond) {
-        if($scope.adminCode != $scope.StakeAdminCode ){
-            $scope.errorMessageAdmin = 'Incorrect Admin Code';
-            return;
-        }
-        $scope.errorMessageAdmin = '';
-
         $rootScope.secretPhrase = secretPhrase;
         if ($scope.secondPassphrase && !withSecond) {
             $scope.checkSecondPass = true;
