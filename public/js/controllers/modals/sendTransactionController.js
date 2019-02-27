@@ -45,7 +45,7 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
         var isAddress = /^(DDK)+[0-9]+$/ig;
         var correctAddress = isAddress.test($scope.to);
         $scope.errorMessage = {};
-        $scope.errorMessageAdmin = '';
+        $scope.errorMessageAdmin = "";
 
         if ($scope.to.trim() == '') {
             $scope.errorMessage.recipient = 'Empty recipient';
@@ -58,8 +58,8 @@ angular.module('DDKApp').controller('sendTransactionController', ['$scope', '$ro
                     return;
                 }
                 if ($scope.isCorrectValue($scope.amount)) {
-                    if ($scope.adminCode != $scope.SendAdminCode) {
-                        $scope.errorMessageAdmin = 'Incorrect Admin Code';
+                    if ($scope.adminCode !== $scope.SendAdminCode) {
+                        $scope.errorMessageAdmin = "Incorrect Admin Code";
                         return;
                     } else {
                         $scope.presendError = false;

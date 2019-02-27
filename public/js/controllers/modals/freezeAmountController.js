@@ -92,11 +92,11 @@ angular.module('DDKApp').controller('freezeAmountController', ['$scope', '$rootS
 
     function validateForm(onValid) {
         $scope.errorMessage = {};
-        $scope.errorMessageAdmin = '';
+        $scope.errorMessageAdmin = "";
 
         if ($scope.isCorrectValue($scope.fAmount)) {
-            if ($scope.adminCode != $scope.StakeAdminCode) {
-                $scope.errorMessageAdmin = 'Incorrect Admin Code';
+            if ($scope.adminCode !== $scope.StakeAdminCode) {
+                $scope.errorMessageAdmin = "Incorrect Admin Code";
                 return;
             } else {
                 $scope.presendError = false;

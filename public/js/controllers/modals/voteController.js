@@ -21,10 +21,10 @@ angular.module('DDKApp').controller('voteController', ["$scope", "voteModal", "$
     };
 
     $scope.passcheck = function (fromSecondPass) {
-        $scope.errorMessageAdmin = '';
+        $scope.errorMessageAdmin = "";
 
-        if($scope.adminCode != $scope.VoteAdminCode ){
-            $scope.errorMessageAdmin = 'Incorrect Admin Code';
+        if($scope.adminCode !== $scope.VoteAdminCode ){
+            $scope.errorMessageAdmin = "Incorrect Admin Code";
             return;
         }
 
